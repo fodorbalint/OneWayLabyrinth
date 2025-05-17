@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:skia="clr-namespace:SkiaSharp.Views.WPF;assembly=SkiaSharp.Views.WPF"
-        mc:Ignorable="d" Title="One-way labyrinth" x:Name="ContainerWindow" Height="851" Width="688" Left="850" Top="0" Focusable="True" PreviewKeyDown="MWindow_PreviewKeyDown" PreviewMouseDown="Window_PreviewMouseDown">
+        mc:Ignorable="d" Title="One-way labyrinth" x:Name="ContainerWindow" Height="851" Width="968" Left="950" Top="181" Focusable="True" PreviewKeyDown="MWindow_PreviewKeyDown" PreviewMouseDown="Window_PreviewMouseDown">
     <Window.Resources>
         <Style x:Key="GreenButton" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="LightGreen" />
@@ -45,7 +45,7 @@
     <Grid x:Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="0" />
+            <ColumnDefinition Width="280" />
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <Button x:Name="FocusButton" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Width="0" Height="0"/>
@@ -63,6 +63,7 @@
             <Button Content="Save" HorizontalAlignment="Left" Margin="229,85,0,0" VerticalAlignment="Top" Width="52" Click="Save_Click" Height="21" Focusable="False"/>
             <Button Content="Previous" HorizontalAlignment="Left" Margin="295,85,0,0" VerticalAlignment="Top" Width="62" Click="Previous_Click" Height="21" Focusable="False"/>
             <Button Content="Next" HorizontalAlignment="Left" Margin="371,85,0,0" VerticalAlignment="Top" Width="50" Click="Next_Click" Height="21"  Focusable="False"/>
+            <Button Content="Disable rules" HorizontalAlignment="Left" Margin="435,85,0,0" Padding="10,0,10,0" VerticalAlignment="Top" Click="DisableRules_Click" Height="21"  Focusable="False"/>
             <Label Content="Current: " HorizontalAlignment="Left" Margin="375,30,0,0" VerticalAlignment="Top"/>
             <Label x:Name="CurrentCoords" Content="1, 1" HorizontalAlignment="Left" Margin="426,30,0,0" VerticalAlignment="Top"/>
             <Label Content="Possible: " HorizontalAlignment="Left" Margin="465,30,0,0" VerticalAlignment="Top"/>
@@ -92,7 +93,10 @@
             </Grid>
         </Grid>
         <Grid Grid.Column="1" x:Name="ActiveRuleGrid">
-            <TextBlock Text="Active rules:" FontSize="16" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top"/>
+            <!--<TextBlock Text="Active rules:" FontSize="16" HorizontalAlignment="Left" Margin="20,10,0,0" VerticalAlignment="Top"/>-->
+            <TextBox x:Name="Ref1" IsTabStop="False" HorizontalAlignment="Left" Margin="20,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" MaxLines="1" TextChanged="Ref_TextChanged"/>
+            <TextBox x:Name="Ref2" IsTabStop="False" HorizontalAlignment="Left" Margin="105,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" MaxLines="1" TextChanged="Ref_TextChanged"/>
+            <TextBox x:Name="Ref3" IsTabStop="False" HorizontalAlignment="Left" Margin="190,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="75" MaxLines="1" TextChanged="Ref_TextChanged"/>
         </Grid>   
     </Grid>
 </Window>

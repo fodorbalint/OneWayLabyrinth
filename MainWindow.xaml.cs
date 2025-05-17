@@ -150,11 +150,14 @@ namespace OneWayLabyrinth
         bool saveConcise = false; // save only routes without their possibilities in one file
         bool showCheckerArea = false;
         bool showCheckerBoard = false;
+        string refString;
+        bool saveRef = false;
 
         public bool calculateFuture = false; // does not allow a future line body or end to be a possibility. Stepped on future lines are followed through without checking possibilities on the way.
         Stopwatch watch;
         public static ILogger<MainWindow> logger;
-        public string baseDir = AppDomain.CurrentDomain.BaseDirectory;        
+        public string baseDir = AppDomain.CurrentDomain.BaseDirectory; 
+        public static bool rulesDisabled = false;       
 
         // ----- Initialize -----
 
@@ -203,6 +206,13 @@ namespace OneWayLabyrinth
                 arr = lines[10].Split(": ");
                 ShowCheckerBoardCheck.IsChecked = bool.Parse(arr[1]);
                 showCheckerBoard = (bool)ShowCheckerBoardCheck.IsChecked;
+                arr = lines[11].Split(": ");
+                refString = arr[1];
+                string[] arr2 = refString.Split(";");
+                Ref1.Text = arr2[0];
+                Ref2.Text = arr2[1];
+                Ref3.Text = arr2[2]; 
+                saveRef = true;      
 
                 CheckSize();
 				Size.Text = size.ToString();
@@ -268,6 +278,8 @@ namespace OneWayLabyrinth
 
         private void SetActiveRules()
         {
+            return;
+
             if (activeRules)
             {
                 ContainerWindow.Width = 1048; // accomodates up to 7 x 7 rule grid
@@ -283,6 +295,8 @@ namespace OneWayLabyrinth
 
         public void ClearActiveRules()
         {
+            return;
+
             while (ActiveRuleGrid.Children.Count > 1)
             {
                 ActiveRuleGrid.Children.RemoveAt(ActiveRuleGrid.Children.Count - 1);
@@ -291,6 +305,8 @@ namespace OneWayLabyrinth
 
         public void ShowActiveRules(List<string> rules, List<List<int[]>> forbiddenFields, List<int[]> startForbiddenFields, List<int[]> sizes)
         {
+            return;
+
             if (rules.Count == 0) return;
 
             int i;
@@ -438,10 +454,113 @@ namespace OneWayLabyrinth
             }            
         }
 
+        private void Ref_TextChanged(object sender, TextChangedEventArgs args)
+        {
+            while (ActiveRuleGrid.Children.Count > 3) {
+                ActiveRuleGrid.Children.RemoveAt(ActiveRuleGrid.Children.Count - 1);
+            }
+
+            string file1, file2, file3;
+
+            int yOffset = 0;
+            string yearPrefix = "2024_";
+            
+            if (Ref1.Text.Length <= 5 || Ref1.Text.Length > 5 && Ref1.Text.Substring(0,2) != "20")
+            {
+                file1 = yearPrefix + Ref1.Text;
+            }
+            else
+            {
+                file1 = Ref1.Text;                
+            } 
+
+            if (Ref2.Text.Length <= 5 || Ref2.Text.Length > 5 && Ref2.Text.Substring(0,2) != "20")
+            {
+                file2 = yearPrefix + Ref2.Text;
+            }
+            else
+            {
+                file2 = Ref2.Text;                
+            }
+
+            if (Ref3.Text.Length <= 5 || Ref3.Text.Length > 5 && Ref3.Text.Substring(0,2) != "20")
+            {
+                file3 = yearPrefix + Ref3.Text;
+            }
+            else
+            {
+                file3 = Ref3.Text;                
+            }
+                
+            string saveFile1 = "", saveFile2 = "", saveFile3 = "";
+
+            if (File.Exists(baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "References\\" + file1 + ".svg"))
+            {
+                Ref1.Text = file1;
+                Ref1.SelectionStart = Ref1.Text.Length;
+                Ref1.SelectionLength = 0;
+                saveFile1 = file1;
+
+                DrawSVG(file1, 240, 240, 20, 40);                
+                yOffset += 260;
+            }
+
+            if (File.Exists(baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "References\\" + file2 + ".svg"))
+            {
+                Ref2.Text = file2;
+                Ref2.SelectionStart = Ref2.Text.Length;
+                Ref2.SelectionLength = 0;
+                saveFile2 = file2;
+
+                DrawSVG(file2, 240, 240, 20, yOffset + 40);
+                yOffset += 260;
+            }
+
+            if (File.Exists(baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "References\\" + file3 + ".svg"))
+            {
+                Ref3.Text = file3;
+                Ref3.SelectionStart = Ref3.Text.Length;
+                Ref3.SelectionLength = 0;
+                saveFile3 = file3;
+
+                DrawSVG(file3, 240, 240, 20, yOffset + 40);
+            }
+
+            if (saveRef) { // no save on startup
+                refString = saveFile1 + ";" + saveFile2 + ";" + saveFile3; 
+                SaveSettings(null, null);
+            }
+        }
+
+        private void DrawSVG(string file, int w, int h, int left, int top) {
+            SKElement c = new();
+            c.IgnorePixelScaling = true;
+            c.Tag = baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "References\\" + file + ".svg";
+            c.PaintSurface += SKElement_PaintSurface3;
+            c.Width = w;
+            c.Height = h;
+            c.Margin = new Thickness(left, top, 0, 0);
+            c.HorizontalAlignment = HorizontalAlignment.Left;
+            c.VerticalAlignment = VerticalAlignment.Top;
+            c.MouseLeftButtonDown += SkElement_MouseLeftButtonDown;
+            ActiveRuleGrid.Children.Add(c);
+        }
+
+        private void SkElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            string source = ((SKElement)sender).Tag.ToString().Replace(".svg",".txt");
+            if (File.Exists(source)) {
+                Reload(true, source);
+            }
+        }
+
         private void ReadDir()
         {
             loadFile = "";
-            string[] files = Directory.GetFiles(baseDir, "*.txt");
+            string[] files = Directory.GetFiles(baseDir, "*.txt")
+                .Select(f => System.IO.Path.GetFileName(f))
+                .OrderBy(f => f, StringComparer.Create(CultureInfo.CurrentCulture, ignoreCase: true))
+                .ToArray();
             foreach (string file in files)
             {
                 string fileName = System.IO.Path.GetFileName(file);
@@ -454,8 +573,15 @@ namespace OneWayLabyrinth
         }
 
         private void LoadFromFile()
-        {            
-            string content = File.ReadAllText(baseDir + loadFile);
+        {          
+            string content;  
+            if (File.Exists(loadFile)) {
+                content = File.ReadAllText(loadFile);
+            }
+            else {
+                content = File.ReadAllText(baseDir + loadFile);
+            }
+
             string[] loadPath;
             bool circleDirectionLeft = true;
             inFuture = false;
@@ -520,6 +646,11 @@ namespace OneWayLabyrinth
                         taken.areaLineDirections = new();
                         taken.areaPairFields = new();
                         taken.areaLineSecondary = new();
+
+                        // Uncomment the next two lines to disable file analysis.
+
+                        //possibleDirections.Add(new int[] {});
+                        //ReplaceLastPossible(takenPossible);
 
                         NextStepPossibilities();                        
 
@@ -771,7 +902,7 @@ namespace OneWayLabyrinth
             Reload();
         }
 
-        private void Reload(bool fromFile = true)
+        private void Reload(bool fromFile = true, string fileName = "")
         {
             FocusButton.Focus();
 
@@ -802,7 +933,13 @@ namespace OneWayLabyrinth
                 SaveSettings(null, null);
             }
 
-            ReadDir();
+            if (fileName != "") {
+                loadFile = fileName;
+            }
+            else {
+                ReadDir();
+            }
+            
             ClearActiveRules();
 
             calculateFuture = displayFuture;
@@ -904,8 +1041,23 @@ namespace OneWayLabyrinth
 			DrawPath();
 		}
 
+        private void DisableRules_Click(object sender, RoutedEventArgs e)
+        {
+            if (!rulesDisabled)
+            {
+                rulesDisabled = true;
+                ((Button)sender).Content = "Enable rules";
+            }
+            else
+            {
+                rulesDisabled = false;
+                ((Button)sender).Content = "Disable rules";
+            }
+        }
+
 
         // ----- Button functions -----
+
 
         long startTimerValue;
         long lastTimerValue;
@@ -1107,11 +1259,11 @@ namespace OneWayLabyrinth
             {
                 showCheckerBoard = (bool)ShowCheckerBoardCheck.IsChecked;
                 DrawPath();
-            }
+            }            
 
             SetActiveRules();
 
-            string[] lines = new string[] { "size: " + size, "loadFromFile: " + loadCheck, "saveOnCompletion: " + saveCheck, "continueOnCompletion: " + continueCheck, "keepLeft: " + keepLeftCheck, "displayFutureLines: " + displayFuture, "displayArea: " + displayArea, "makeStats: " + makeStats, "activeRules: " + activeRules, "checkerArea: " + showCheckerArea, "checkerBoard: " + showCheckerBoard };
+            string[] lines = new string[] { "size: " + size, "loadFromFile: " + loadCheck, "saveOnCompletion: " + saveCheck, "continueOnCompletion: " + continueCheck, "keepLeft: " + keepLeftCheck, "displayFutureLines: " + displayFuture, "displayArea: " + displayArea, "makeStats: " + makeStats, "activeRules: " + activeRules, "checkerArea: " + showCheckerArea, "checkerBoard: " + showCheckerBoard, "references: " + refString };
 
             string linesStr = string.Join("\n", lines);
 
@@ -4621,6 +4773,20 @@ namespace OneWayLabyrinth
             }            
         }
 
+        private void SKElement_PaintSurface3(object sender, SKPaintSurfaceEventArgs e)
+        {
+            string fileName = (string)((SKElement)sender).Tag;
+            if (!File.Exists(fileName)) return;
+            var canvas = e.Surface.Canvas;
+            canvas.Clear(SKColors.White);
+
+            var svg = new SkiaSharp.Extended.Svg.SKSvg();
+            var picture = svg.Load(fileName);
+
+            var fit = e.Info.Rect.AspectFit(svg.CanvasSize.ToSizeI());
+            e.Surface.Canvas.Scale(fit.Width / svg.CanvasSize.Width);
+            e.Surface.Canvas.DrawPicture(picture);
+        }
 
         // ----- UI interaction -----
 
@@ -4631,6 +4797,7 @@ namespace OneWayLabyrinth
 		private void MWindow_PreviewKeyDown(object sender, KeyEventArgs e) // with normal KeyDown, event does not fire after calling FocusButton.Focus();
 		{			
 			if (Size.IsFocused && e.Key != Key.Enter) return;
+            if ((Ref1.IsFocused || Ref2.IsFocused || Ref3.IsFocused) && e.Key != Key.Enter) return;
 
 			if (messageCode != -1 && OKButton.Visibility == Visibility.Visible)
 			{
@@ -4648,6 +4815,10 @@ namespace OneWayLabyrinth
                 if (Size.IsFocused)
                 {
                     Reload(false);
+                }
+                else if (Ref1.IsFocused || Ref2.IsFocused || Ref3.IsFocused)
+                {
+                    FocusButton.Focus();
                 }
 				else
                 {
@@ -4691,7 +4862,14 @@ namespace OneWayLabyrinth
             {
                 if (!isTaskRunning)
                 {
-                    drawFutureIndex = taken.path.Count - 1;
+                    if (drawFutureIndex == int.MaxValue)
+                    {
+                        drawFutureIndex = taken.path.Count - 1;
+                    }
+                    else
+                    {
+                        drawFutureIndex = int.MaxValue;
+                    }                    
                 }                
             }
             else if (CapsLock || Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift) || Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) {

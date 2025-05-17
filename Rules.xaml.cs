@@ -102,17 +102,17 @@ namespace OneWayLabyrinth
         {
             string[] lines = File.ReadAllLines(baseDir + "settings.txt");
 
-            if (lines.Length > 11)
+            if (lines.Length > 12)
             {
                 /*string[] arr = lines[11].Split(": ");
                 size = int.Parse(arr[1]);
                 AppliedSize.Text = arr[1];*/
 
-                string[] arr = lines[11].Split(": ");
+                string[] arr = lines[12].Split(": ");
                 xSize = int.Parse(arr[1]);
                 XSize.Text = arr[1];
 
-                arr = lines[12].Split(": ");
+                arr = lines[13].Split(": ");
                 ySize = int.Parse(arr[1]);
                 YSize.Text = arr[1];
             }
