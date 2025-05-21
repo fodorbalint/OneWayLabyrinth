@@ -5041,7 +5041,7 @@ namespace OneWayLabyrinth
             ly = thisLy;
         }
 
-        void CheckDoubleStair() // 0706_1 -> StairAtEndConvex Stair, Also Sequence2: 0516_4, 0516_5
+        void CheckDoubleStair() // 0706_1 -> StairAtEndConvexStraight3 Stair, Also Sequence2: 0516_4, 0516_5
         {
             for (int i = 0; i < 2; i++)
             {
@@ -5277,25 +5277,28 @@ namespace OneWayLabyrinth
         // 1005: mid across
         // 0516, 0516_1: one step across
         // 0516_4, 0516_5: multiple step across
-        // 1006. Across obstacle encountered on the left. It appears at the end of the sequence, does not take part in adding a step to it.
-        // (0723 starts with next step C-shape)
-        // Double area at first step:
-        // 1014
+        // 1006: across on the left at the end of the sequence
         // 0704, 1014: area on left, close mid across on right
 
-        // Start at 3, -1
-        // 0516_6, 0516_7, 0516_8: across, 3 rotations        
+        // Start at 3, -1. 3 rotations possible.
+        // 0516_6, 0516_7, 0516_8: across
 
-        // Start at stair: 0630, 0720, 0723
+        // Start at 4, 0
+        // 1115: mid across    
 
-        // Start at 4, -1: 0727_5 (Start area is UpExtended, distance to the first obstacle % 4 = 3)
-        // 0724: up across, down mid across
-        // 0725_2: up area, down mid across
-        // 0727_2: up mid across, down across
+        // Start at 4, -1
+        // 0727_5: across, horizontal distance to the first obstacle % 4 = 3
+        // 0724: left across, right mid across
+        // 0725_2: left area, right mid across
+        // 0727_2: left mid across, right across
 
-        // Start at 4, 0: 1115 (area is straight)
+        // Start at stair:
+        // 0630: area
+        // 0720: across left, mid across right
+        // 0723: across
 
-        // Obstacle at 3, 0 and 1, -1: Next step to front will create a stair start: 0724_1
+        // Obstacle at 3, 0 and 1, -1: Next step to front will create a stair start
+        // 0724_1: across
 
         {
             for (int i = 0; i < 2; i++)

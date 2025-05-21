@@ -1046,12 +1046,12 @@ namespace OneWayLabyrinth
             if (!rulesDisabled)
             {
                 rulesDisabled = true;
-                ((Button)sender).Content = "Enable rules";
+                DisableRulesButton.Content = "Enable rules";
             }
             else
             {
                 rulesDisabled = false;
-                ((Button)sender).Content = "Disable rules";
+                DisableRulesButton.Content = "Disable rules";
             }
         }
 
@@ -4854,6 +4854,10 @@ namespace OneWayLabyrinth
                 CopyConsole_Click(null, null);
                 return;
             }
+            else if (e.Key == Key.D && !(Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            {
+                DisableRules_Click(null, null);
+            }
             else if (e.Key == Key.D && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
             {
                 ExtractDifference();
@@ -4869,61 +4873,62 @@ namespace OneWayLabyrinth
                     else
                     {
                         drawFutureIndex = int.MaxValue;
-                    }                    
-                }                
+                    }
+                }
             }
-            else if (CapsLock || Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift) || Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) {
+            else if (CapsLock || Keyboard.IsKeyDown(Key.LeftShift) || Keyboard.IsKeyDown(Key.RightShift) || Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+            {
 
-				int direction = -1;
-				switch(e.Key)
-				{
-					case Key.Down:
-						direction = 0;
-						break;
-					case Key.Right:
-						direction = 1;
-						break;
-					case Key.Up:
-						direction = 2;
-						break;
-					case Key.Left:
-						direction = 3;
-						break;
-				}
+                int direction = -1;
+                switch (e.Key)
+                {
+                    case Key.Down:
+                        direction = 0;
+                        break;
+                    case Key.Right:
+                        direction = 1;
+                        break;
+                    case Key.Up:
+                        direction = 2;
+                        break;
+                    case Key.Left:
+                        direction = 3;
+                        break;
+                }
 
-				if (direction != -1)
-				{
-					int returnCode = Move(direction);
+                if (direction != -1)
+                {
+                    int returnCode = Move(direction);
 
-					if (taken.x == size && taken.y == size && returnCode != 0)
-					{
-						possibleDirections.Add(new int[] { });
-						lineFinished = true;
-						DrawPath();
-						return;
-					}
+                    if (taken.x == size && taken.y == size && returnCode != 0)
+                    {
+                        possibleDirections.Add(new int[] { });
+                        lineFinished = true;
+                        DrawPath();
+                        return;
+                    }
 
-					if (returnCode == 2)
-					{
-						NextStepPossibilities();
-					}
-					if (returnCode != 0)
-					{
-						DrawPath();
-					}
-				}				
-			}
-			else
-			{
-				if (e.Key == Key.Left)
-				{
-					Previous_Click(new object(), new RoutedEventArgs());
-				}
-				else if (e.Key == Key.Right)
-				{
-					Next_Click(new object(), new RoutedEventArgs());
-				}
-			}
+                    if (returnCode == 2)
+                    {
+                        NextStepPossibilities();
+                    }
+                    if (returnCode != 0)
+                    {
+                        DrawPath();
+                    }
+                }
+            }
+            else
+            {
+                if (e.Key == Key.Left)
+                {
+                    Previous_Click(new object(), new RoutedEventArgs());
+                }
+                else if (e.Key == Key.Right)
+                {
+                    Next_Click(new object(), new RoutedEventArgs());
+                }
+            }
 		}
 
         private void Window_PreviewMouseDown(object sender, MouseButtonEventArgs e)

@@ -65,8 +65,18 @@
 	<rect width="1" height="1" x="10" y="12" fill="#e2bcbc" fill-opacity="1" />
 	<rect width="1" height="1" x="9" y="12" fill="#e2bcbc" fill-opacity="1" />
 	<rect width="1" height="1" x="9" y="11" fill="#e2bcbc" fill-opacity="1" />
-	<rect width="1" height="1" x="10" y="11" fill="#000000" fill-opacity="0.1" />
-	<rect width="1" height="1" x="8" y="11" fill="#000000" fill-opacity="0.1" />
+	<rect width="1" height="1" x="9" y="10" fill="#bcbce2" fill-opacity="1" />
+	<rect width="1" height="1" x="8" y="10" fill="#bcbce2" fill-opacity="1" />
+	<rect width="1" height="1" x="8" y="11" fill="#bcbce2" fill-opacity="1" />
+	<rect width="1" height="1" x="8" y="12" fill="#bcbce2" fill-opacity="1" />
+	<rect width="1" height="1" x="7" y="12" fill="#bcbce2" fill-opacity="1" />
+	<rect width="1" height="1" x="7" y="11" fill="#bcbce2" fill-opacity="1" />
+	<rect width="1" height="1" x="7" y="10" fill="#bcbce2" fill-opacity="1" />
+	<rect width="1" height="1" x="7" y="9" fill="#bcbce2" fill-opacity="1" />
+	<rect width="1" height="1" x="8" y="9" fill="#bcbce2" fill-opacity="1" />
+	<rect width="1" height="1" x="9" y="9" fill="#bcbce2" fill-opacity="1" />
+	<rect width="1" height="1" x="9" y="8" fill="#bcbce2" fill-opacity="1" />
+	<rect width="1" height="1" x="10" y="8" fill="#bcbce2" fill-opacity="1" />
 	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0.01 0 v 21" />
 	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 0.01 h 21" />
 	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 1 0 v 21" />
@@ -176,5 +186,17 @@ A 0.5 0.5 0 0 1 12 12.5
 L 11 12.5
 L 10 12.5
 A 0.5 0.5 0 0 1 9.5 12
-L 9.5 11.5" fill="white" fill-opacity="0" stroke="black" stroke-width="0.05" stroke-linecap="round" />
+L 9.5 11
+A 0.5 0.5 0 0 0 9 10.5
+A 0.5 0.5 0 0 0 8.5 11
+L 8.5 12
+A 0.5 0.5 0 0 1 8 12.5
+A 0.5 0.5 0 0 1 7.5 12
+L 7.5 11
+L 7.5 10
+A 0.5 0.5 0 0 1 8 9.5
+L 9 9.5
+A 0.5 0.5 0 0 0 9.5 9
+A 0.5 0.5 0 0 1 10 8.5
+L 10.5 8.5" fill="white" fill-opacity="0" stroke="black" stroke-width="0.05" stroke-linecap="round" />
 </svg>
