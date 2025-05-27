@@ -80,70 +80,70 @@ Find out the minimum size for Check1x3 when far end of a future line extends
 
 namespace OneWayLabyrinth
 {
-	/// <summaly>
-	/// Interaction logic for MainWindow.xaml
-	/// </summaly>
-	public partial class MainWindow : Window
-	{
-		string grid = "";
-		Random rand = new Random();
-		public Path taken;
-		public Path future;
+    /// <summaly>
+    /// Interaction logic for MainWindow.xaml
+    /// </summaly>
+    public partial class MainWindow : Window
+    {
+        string grid = "";
+        Random rand = new Random();
+        public Path taken;
+        public Path future;
 
-		List<int> futureIndex = new List<int>();
-		public static List<bool> futureActive = new List<bool>();
-		//List<int> futureLoop = new List<int>();
-		//List<int> futureLoopSelectedSection = new List<int>();
-		public static List<int[]> futureSections = new List<int[]>();
-		public static List<int[]> futureSectionMerges = new List<int[]>();
+        List<int> futureIndex = new List<int>();
+        public static List<bool> futureActive = new List<bool>();
+        //List<int> futureLoop = new List<int>();
+        //List<int> futureLoopSelectedSection = new List<int>();
+        public static List<int[]> futureSections = new List<int[]>();
+        public static List<int[]> futureSectionMerges = new List<int[]>();
         public static List<List<object>> futureSectionMergesHistory = new List<List<object>>();
         int selectedSection = -1;
         int foundSection = -1;
         int foundIndex = -1;
-		int foundEndIndex = -1;
+        int foundEndIndex = -1;
         int foundSectionStart, foundSectionEnd;
 
         List<int[]> possibleDirections = new List<int[]>(); //directions
-		public List<int[]> exits = new List<int[]>();
-		public List<int> exitIndex = new List<int>();
-		public bool inFuture = false;
-		int inFutureIndex = -1;
-		int insertIndex = -1;
+        public List<int[]> exits = new List<int[]>();
+        public List<int> exitIndex = new List<int>();
+        public bool inFuture = false;
+        int inFutureIndex = -1;
+        int insertIndex = -1;
         int drawFutureIndex = int.MaxValue;
 
-		string loadFile = "";
-		string svgName = "";
-		string savePath = "";
-		int size = 0;
-		List<int[]> directions = new List<int[]> { new int[] { 0, 1 }, new int[] { 1, 0 }, new int[] { 0, -1 }, new int[] { -1, 0 } }; //down, right, up, left
-		DispatcherTimer timer;
-		int messageCode = -1;
-		bool nearExtDone, farExtDone, nearEndDone, farEndDone; // extension at near / far end, near end connected to live end, far end reached the corner.		
-		bool lineFinished = false;
-		int nextDirection = -2;
-		int lastDirection = -1;
-		bool saveCheck, loadCheck, continueCheck;
-		public bool keepLeftCheck;
+        string loadFile = "";
+        string svgName = "";
+        string savePath = "";
+        int size = 0;
+        List<int[]> directions = new List<int[]> { new int[] { 0, 1 }, new int[] { 1, 0 }, new int[] { 0, -1 }, new int[] { -1, 0 } }; //down, right, up, left
+        DispatcherTimer timer;
+        int messageCode = -1;
+        bool nearExtDone, farExtDone, nearEndDone, farEndDone; // extension at near / far end, near end connected to live end, far end reached the corner.		
+        bool lineFinished = false;
+        int nextDirection = -2;
+        int lastDirection = -1;
+        bool saveCheck, loadCheck, continueCheck;
+        public bool keepLeftCheck;
         public long completedCount, fileCompletedCount;
-		bool completedWalkthrough = false;
+        bool completedWalkthrough = false;
 
         public bool errorInWalkthrough = false;
         public string errorString;
         public bool criticalError = false;
 
-		bool toReload = false;
-		bool toSave = false;
+        bool toReload = false;
+        bool toSave = false;
         CancellationTokenSource source;
         public bool isTaskRunning = false;
 
         bool displayFuture = true;
         bool displayArea = true;
-		public bool makeStats;
+        public bool makeStats;
         int statsRuns = 100;
-        
+
         bool activeRules = false;
         bool displayExits = true;
-		bool settingsOpen = false;
+        bool settingsOpen = false;
         int numberOfRuns = 0;
         long numberOfCompleted = 0;
         int saveFrequency = 100000;
@@ -156,35 +156,35 @@ namespace OneWayLabyrinth
         public bool calculateFuture = false; // does not allow a future line body or end to be a possibility. Stepped on future lines are followed through without checking possibilities on the way.
         Stopwatch watch;
         public static ILogger<MainWindow> logger;
-        public string baseDir = AppDomain.CurrentDomain.BaseDirectory; 
-        public static bool rulesDisabled = false;       
+        public string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+        public static bool rulesDisabled = false;
 
         // ----- Initialize -----
 
         public MainWindow()
-		{
+        {
             logger = App.ServiceProvider.GetRequiredService<ILogger<MainWindow>>();
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
 
             InitializeComponent();
 
             timer = new DispatcherTimer();
-			timer.Tick += Timer_Tick;
+            timer.Tick += Timer_Tick;
 
-			if (File.Exists(baseDir + "settings.txt"))
-			{
-				string[] lines = File.ReadAllLines(baseDir + "settings.txt");
-				string[] arr = lines[0].Split(": ");
-				size = int.Parse(arr[1]);				
-				arr = lines[1].Split(": ");
-				LoadCheck.IsChecked = bool.Parse(arr[1]);
-				loadCheck = (bool)LoadCheck.IsChecked;
+            if (File.Exists(baseDir + "settings.txt"))
+            {
+                string[] lines = File.ReadAllLines(baseDir + "settings.txt");
+                string[] arr = lines[0].Split(": ");
+                size = int.Parse(arr[1]);
+                arr = lines[1].Split(": ");
+                LoadCheck.IsChecked = bool.Parse(arr[1]);
+                loadCheck = (bool)LoadCheck.IsChecked;
                 arr = lines[2].Split(": ");
-				SaveCheck.IsChecked = bool.Parse(arr[1]);
-				saveCheck = (bool)SaveCheck.IsChecked;
+                SaveCheck.IsChecked = bool.Parse(arr[1]);
+                saveCheck = (bool)SaveCheck.IsChecked;
                 arr = lines[3].Split(": ");
                 ContinueCheck.IsChecked = bool.Parse(arr[1]);
-                continueCheck = (bool)ContinueCheck.IsChecked;                
+                continueCheck = (bool)ContinueCheck.IsChecked;
                 arr = lines[4].Split(": ");
                 KeepLeftCheck.IsChecked = bool.Parse(arr[1]);
                 keepLeftCheck = (bool)KeepLeftCheck.IsChecked;
@@ -211,24 +211,24 @@ namespace OneWayLabyrinth
                 string[] arr2 = refString.Split(";");
                 Ref1.Text = arr2[0];
                 Ref2.Text = arr2[1];
-                Ref3.Text = arr2[2]; 
-                saveRef = true;      
+                Ref3.Text = arr2[2];
+                saveRef = true;
 
                 CheckSize();
-				Size.Text = size.ToString();
-			}
-			else
-			{
-				size = 9;
-				Size.Text = size.ToString();
-				LoadCheck.IsChecked = false;
-				loadCheck = false;
-				SaveCheck.IsChecked = false;
-				saveCheck = false;;
+                Size.Text = size.ToString();
+            }
+            else
+            {
+                size = 9;
+                Size.Text = size.ToString();
+                LoadCheck.IsChecked = false;
+                loadCheck = false;
+                SaveCheck.IsChecked = false;
+                saveCheck = false; ;
                 ContinueCheck.IsChecked = false;
-				continueCheck = false;
+                continueCheck = false;
                 KeepLeftCheck.IsChecked = false;
-				keepLeftCheck = false;
+                keepLeftCheck = false;
                 DisplayFutureCheck.IsChecked = true;
                 displayFuture = true;
                 DisplayAreaCheck.IsChecked = true;
@@ -244,35 +244,35 @@ namespace OneWayLabyrinth
             }
 
             SetActiveRules();
-			
-			/*exits = new List<int[]>();
+
+            /*exits = new List<int[]>();
 			exitIndex = new List<int>();*/
 
-			ReadDir();
+            ReadDir();
 
             calculateFuture = displayFuture;
 
             if ((bool)loadCheck && loadFile != "")
-			{
-				LoadFromFile();
-			}
-			else
-			{				
-				InitializeList();
-			}
+            {
+                LoadFromFile();
+            }
+            else
+            {
+                InitializeList();
+            }
 
-			if (File.Exists(baseDir + "settings.txt") && size.ToString() != Size.Text || !File.Exists(baseDir + "settings.txt"))
-			{
+            if (File.Exists(baseDir + "settings.txt") && size.ToString() != Size.Text || !File.Exists(baseDir + "settings.txt"))
+            {
                 Size.Text = size.ToString();
                 SaveSettings(null, null);
-			}
+            }
             DrawGrid();
 
-			if (taken != null && possibleDirections.Count != taken.path.Count + 1) // null checking is only needed for removing warning
+            if (taken != null && possibleDirections.Count != taken.path.Count + 1) // null checking is only needed for removing warning
             {
                 M("Error in file.", 0);
                 return;
-			}
+            }
             DrawPath(true);
         }
 
@@ -310,9 +310,9 @@ namespace OneWayLabyrinth
             if (rules.Count == 0) return;
 
             int i;
-            
+
             if (isTaskRunning) // only record new rule when its forbidden fields were not created by other rules. More complicated rules can be true together with simpler rules that already added the necessary forbidden fields, like in 349170
-            {                
+            {
                 /*i = 0;
                 foreach (List<int[]> forbiddenField in forbiddenFields)
                 {
@@ -330,9 +330,9 @@ namespace OneWayLabyrinth
                 {
                     List<string> arr = File.ReadAllLines(baseDir + "log_rules.txt").ToList();
                     int startCount = arr.Count;
-                    
+
                     foreach (string rule in rules)
-                    {                        
+                    {
                         bool found = false;
 
                         foreach (string line in arr)
@@ -372,7 +372,7 @@ namespace OneWayLabyrinth
                                         SavePath(false);
                                         break;
                                     }
-                                }                                
+                                }
                             }
                         }
 
@@ -434,8 +434,8 @@ namespace OneWayLabyrinth
                 t.VerticalAlignment = VerticalAlignment.Top;
 
                 ActiveRuleGrid.Children.Add(t);
-                    
-                yPos+=21;
+
+                yPos += 21;
 
                 SKElement c = new();
                 c.IgnorePixelScaling = true;
@@ -451,12 +451,13 @@ namespace OneWayLabyrinth
                 yPos += sizes[i][1] * 40 + 10;
 
                 i++;
-            }            
+            }
         }
 
         private void Ref_TextChanged(object sender, TextChangedEventArgs args)
         {
-            while (ActiveRuleGrid.Children.Count > 3) {
+            while (ActiveRuleGrid.Children.Count > 3)
+            {
                 ActiveRuleGrid.Children.RemoveAt(ActiveRuleGrid.Children.Count - 1);
             }
 
@@ -464,34 +465,34 @@ namespace OneWayLabyrinth
 
             int yOffset = 0;
             string yearPrefix = "2024_";
-            
-            if (Ref1.Text.Length <= 5 || Ref1.Text.Length > 5 && Ref1.Text.Substring(0,2) != "20")
+
+            if (Ref1.Text.Length <= 5 || Ref1.Text.Length > 5 && Ref1.Text.Substring(0, 2) != "20")
             {
                 file1 = yearPrefix + Ref1.Text;
             }
             else
             {
-                file1 = Ref1.Text;                
-            } 
+                file1 = Ref1.Text;
+            }
 
-            if (Ref2.Text.Length <= 5 || Ref2.Text.Length > 5 && Ref2.Text.Substring(0,2) != "20")
+            if (Ref2.Text.Length <= 5 || Ref2.Text.Length > 5 && Ref2.Text.Substring(0, 2) != "20")
             {
                 file2 = yearPrefix + Ref2.Text;
             }
             else
             {
-                file2 = Ref2.Text;                
+                file2 = Ref2.Text;
             }
 
-            if (Ref3.Text.Length <= 5 || Ref3.Text.Length > 5 && Ref3.Text.Substring(0,2) != "20")
+            if (Ref3.Text.Length <= 5 || Ref3.Text.Length > 5 && Ref3.Text.Substring(0, 2) != "20")
             {
                 file3 = yearPrefix + Ref3.Text;
             }
             else
             {
-                file3 = Ref3.Text;                
+                file3 = Ref3.Text;
             }
-                
+
             string saveFile1 = "", saveFile2 = "", saveFile3 = "";
 
             if (File.Exists(baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "References\\" + file1 + ".svg"))
@@ -501,7 +502,7 @@ namespace OneWayLabyrinth
                 Ref1.SelectionLength = 0;
                 saveFile1 = file1;
 
-                DrawSVG(file1, 240, 240, 20, 40);                
+                DrawSVG(file1, 240, 240, 20, 40);
                 yOffset += 260;
             }
 
@@ -526,13 +527,15 @@ namespace OneWayLabyrinth
                 DrawSVG(file3, 240, 240, 20, yOffset + 40);
             }
 
-            if (saveRef) { // no save on startup
-                refString = saveFile1 + ";" + saveFile2 + ";" + saveFile3; 
+            if (saveRef)
+            { // no save on startup
+                refString = saveFile1 + ";" + saveFile2 + ";" + saveFile3;
                 SaveSettings(null, null);
             }
         }
 
-        private void DrawSVG(string file, int w, int h, int left, int top) {
+        private void DrawSVG(string file, int w, int h, int left, int top)
+        {
             SKElement c = new();
             c.IgnorePixelScaling = true;
             c.Tag = baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "References\\" + file + ".svg";
@@ -548,8 +551,9 @@ namespace OneWayLabyrinth
 
         private void SkElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            string source = ((SKElement)sender).Tag.ToString().Replace(".svg",".txt");
-            if (File.Exists(source)) {
+            string source = ((SKElement)sender).Tag.ToString().Replace(".svg", ".txt");
+            if (File.Exists(source))
+            {
                 Reload(true, source);
             }
         }
@@ -573,12 +577,14 @@ namespace OneWayLabyrinth
         }
 
         private void LoadFromFile()
-        {          
-            string content;  
-            if (File.Exists(loadFile)) {
+        {
+            string content;
+            if (File.Exists(loadFile))
+            {
                 content = File.ReadAllText(loadFile);
             }
-            else {
+            else
+            {
                 content = File.ReadAllText(baseDir + loadFile);
             }
 
@@ -614,7 +620,7 @@ namespace OneWayLabyrinth
             }
             else
             {*/
-                loadPath = content.Split(";");
+            loadPath = content.Split(";");
             //}
 
             taken = new Path(this, size, new List<int[]>(), null, true);
@@ -652,35 +658,38 @@ namespace OneWayLabyrinth
                         //possibleDirections.Add(new int[] {});
                         //ReplaceLastPossible(takenPossible);
 
-                        NextStepPossibilities();                        
+                        NextStepPossibilities();
 
-                        if (taken.possible.Count != takenPossible.Count)
+                        if (!rulesDisabled)
                         {
-                            // replace possible absolute coordinates with values from file
-                            ReplaceLastPossible(takenPossible);
-
-                            T("Number of possibles do not match at step " + taken.path.Count + ".");
-                            M("Number of possibles do not match at step " + taken.path.Count + ".", 0);
-
-                            break;
-                        }
-                        else
-                        {
-                            bool toBreak = false;
-                            for (int i = 0; i < taken.possible.Count; i++)
+                            if (taken.possible.Count != takenPossible.Count)
                             {
-                                if (!(taken.possible[i][0] == takenPossible[i][0] && taken.possible[i][1] == takenPossible[i][1]))
-                                {
-                                    ReplaceLastPossible(takenPossible);
+                                // replace possible absolute coordinates with values from file
+                                ReplaceLastPossible(takenPossible);
 
-                                    T("Wrong possible movements at step " + taken.path.Count + ".");
-                                    M("Wrong possible movements at step " + taken.path.Count + ".", 0);
-                                    toBreak = true;
-                                    break;
-                                }
+                                T("Number of possibles do not match at step " + taken.path.Count + ".");
+                                M("Number of possibles do not match at step " + taken.path.Count + ".", 0);
+
+                                break;
                             }
+                            else
+                            {
+                                bool toBreak = false;
+                                for (int i = 0; i < taken.possible.Count; i++)
+                                {
+                                    if (!(taken.possible[i][0] == takenPossible[i][0] && taken.possible[i][1] == takenPossible[i][1]))
+                                    {
+                                        ReplaceLastPossible(takenPossible);
 
-                            if (toBreak) break;
+                                        T("Wrong possible movements at step " + taken.path.Count + ".");
+                                        M("Wrong possible movements at step " + taken.path.Count + ".", 0);
+                                        toBreak = true;
+                                        break;
+                                    }
+                                }
+
+                                if (toBreak) break;
+                            }
                         }
                     }
 
@@ -693,7 +702,7 @@ namespace OneWayLabyrinth
                         taken.x = x;
                         taken.y = y;
 
-                        if (calculateFuture) CheckFutureLine(x, y);                     
+                        if (calculateFuture) CheckFutureLine(x, y);
                     }
                 }
 
@@ -703,7 +712,7 @@ namespace OneWayLabyrinth
                 taken.areaPairFields = new();
                 taken.areaLineSecondary = new();
 
-                taken.suppressLogs = false;                
+                taken.suppressLogs = false;
             }
             else // only coordinates
             {
@@ -725,7 +734,7 @@ namespace OneWayLabyrinth
                     startY = y;
 
                     if (calculateFuture) CheckFutureLine(x, y);
-                }                
+                }
             }
 
             T("Loading " + loadFile + ", taken count " + taken.path.Count + ", possibledir count " + possibleDirections.Count);
@@ -933,13 +942,15 @@ namespace OneWayLabyrinth
                 SaveSettings(null, null);
             }
 
-            if (fileName != "") {
+            if (fileName != "")
+            {
                 loadFile = fileName;
             }
-            else {
+            else
+            {
                 ReadDir();
             }
-            
+
             ClearActiveRules();
 
             calculateFuture = displayFuture;
@@ -965,16 +976,16 @@ namespace OneWayLabyrinth
             {
                 M("Error in file", 0);
                 return;
-            }            
+            }
 
             DrawPath(true);
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
-		{
+        {
             FocusButton.Focus();
-			if (messageCode == -1)
-			{
+            if (messageCode == -1)
+            {
                 if (isTaskRunning)
                 {
                     source.Cancel();
@@ -993,8 +1004,8 @@ namespace OneWayLabyrinth
             string saveName = (errorInWalkthrough && completedCount > 0) ? completedCount + ".txt" : DateTime.Today.Year + "_" + DateTime.Today.Month.ToString("00") + DateTime.Today.Day.ToString("00") + ".txt";
 
             T("Saving " + saveName);
-			File.WriteAllText(baseDir + saveName, savePath);
-		}
+            File.WriteAllText(baseDir + saveName, savePath);
+        }
 
         private void Next_Click(object sender, RoutedEventArgs e)
         {
@@ -1014,7 +1025,7 @@ namespace OneWayLabyrinth
         }
 
         private void Previous_Click(object sender, RoutedEventArgs e)
-		{
+        {
             FocusButton.Focus();
             if (isTaskRunning)
             {
@@ -1028,18 +1039,18 @@ namespace OneWayLabyrinth
             }
 
             if (messageCode == 2)
-			{
-				possibleDirections.RemoveAt(possibleDirections.Count - 1);
-				PreviousStepWithFuture();
-				messageCode = -1;
-				DrawPath();
-				return;
-			}
-			else if (messageCode != -1) return;
+            {
+                possibleDirections.RemoveAt(possibleDirections.Count - 1);
+                PreviousStepWithFuture();
+                messageCode = -1;
+                DrawPath();
+                return;
+            }
+            else if (messageCode != -1) return;
 
-			PreviousStep(true);
-			DrawPath();
-		}
+            PreviousStep(true);
+            DrawPath();
+        }
 
         private void DisableRules_Click(object sender, RoutedEventArgs e)
         {
@@ -1141,7 +1152,7 @@ namespace OneWayLabyrinth
         }
 
         private void DoThread()
-        {           
+        {
             do
             {
                 Timer_Tick(null, null);
@@ -1158,7 +1169,7 @@ namespace OneWayLabyrinth
                 if (numberOfRuns < statsRuns && !source.IsCancellationRequested)
                 {
                     Dispatcher.Invoke(() =>
-                    {  
+                    {
                         MessageLine.Visibility = Visibility.Visible;
                         MessageLine.Content = "In " + numberOfRuns + " runs, average " + Math.Round((float)numberOfCompleted / numberOfRuns, 1) + " per run.";
                         L("Current run: " + completedCount + ", " + numberOfCompleted + " in " + numberOfRuns + " runs. " + Math.Round((float)numberOfCompleted / numberOfRuns, 1) + " per run. " + errorString);
@@ -1172,7 +1183,7 @@ namespace OneWayLabyrinth
                     });
                 }
                 else
-                {                    
+                {
                     isTaskRunning = false;
 
                     Dispatcher.Invoke(() =>
@@ -1200,7 +1211,7 @@ namespace OneWayLabyrinth
                 Dispatcher.Invoke(() =>
                 {
                     isTaskRunning = false;
-                    StopTimer();                   
+                    StopTimer();
                     if (toReload)
                     {
                         toReload = false;
@@ -1223,12 +1234,12 @@ namespace OneWayLabyrinth
 
                 });
             }
-        }        
+        }
 
         private void Timer_Tick(object? sender, EventArgs e)
-		{
-			NextClick();           
-		}
+        {
+            NextClick();
+        }
 
         private void StopTimer()
         {
@@ -1252,14 +1263,14 @@ namespace OneWayLabyrinth
 
             if (showCheckerArea != ShowCheckerAreaCheck.IsChecked)
             {
-                showCheckerArea = (bool)ShowCheckerAreaCheck.IsChecked; 
-                DrawPath();               
+                showCheckerArea = (bool)ShowCheckerAreaCheck.IsChecked;
+                DrawPath();
             }
             if (showCheckerBoard != ShowCheckerBoardCheck.IsChecked)
             {
                 showCheckerBoard = (bool)ShowCheckerBoardCheck.IsChecked;
                 DrawPath();
-            }            
+            }
 
             SetActiveRules();
 
@@ -1284,7 +1295,7 @@ namespace OneWayLabyrinth
             else
             {
                 File.WriteAllLines(baseDir + "settings.txt", lines);
-            }            
+            }
         }
 
         private int Move(int directionIndex)
@@ -1324,29 +1335,29 @@ namespace OneWayLabyrinth
 
 
         private void NextClick()
-		{
-			if (isTaskRunning && messageCode != -1 && messageCode != 3) // 3 indicats halfway walkthrough
+        {
+            if (isTaskRunning && messageCode != -1 && messageCode != 3) // 3 indicats halfway walkthrough
             {
-				errorInWalkthrough = true;
-				return;
+                errorInWalkthrough = true;
+                return;
             }
 
-			if (messageCode == 2)
-			{
-				possibleDirections.RemoveAt(possibleDirections.Count - 1);
-				PreviousStepWithFuture();
-				messageCode = -1;
-				DrawPath();
-				return;
-			}
-			else if (messageCode != -1) return;
+            if (messageCode == 2)
+            {
+                possibleDirections.RemoveAt(possibleDirections.Count - 1);
+                PreviousStepWithFuture();
+                messageCode = -1;
+                DrawPath();
+                return;
+            }
+            else if (messageCode != -1) return;
 
-			if (taken.x == size && taken.y == size)
-			{
+            if (taken.x == size && taken.y == size)
+            {
                 // step back until there is an option to move right of the step that had been taken.
                 if ((continueCheck == true || isTaskRunning) && keepLeftCheck == true)
                 {
-					bool rightFound = false;
+                    bool rightFound = false;
                     nextDirection = -1;
                     bool oppositeFound;
                     bool leftFound;
@@ -1414,24 +1425,24 @@ namespace OneWayLabyrinth
 
                     } while (!rightFound && count > 2);
 
-					if (!rightFound)
-					{
-						PreviousStep(true); // c = 2. We reached the end, step back to the start position
-											 // Reset nextDirection, so that we can start again
-						completedWalkthrough = true;
-						nextDirection = -2;
+                    if (!rightFound)
+                    {
+                        PreviousStep(true); // c = 2. We reached the end, step back to the start position
+                                            // Reset nextDirection, so that we can start again
+                        completedWalkthrough = true;
+                        nextDirection = -2;
 
                         if (timer.IsEnabled)
                         {
                             StopTimer();
                         }
                     }
-					else if (count == 2)
-					{
+                    else if (count == 2)
+                    {
                         M("Halfway: " + completedCount + " walkthroughs are completed.", 3);
                         Dispatcher.Invoke(() =>
                         {
-							DrawPath();
+                            DrawPath();
                         });
                     }
 
@@ -1445,17 +1456,17 @@ namespace OneWayLabyrinth
                     InitializeList();
                     if (!(isTaskRunning)) DrawPath();
                 }
-				else if (timer.IsEnabled)
-				{
-					StopTimer();
-				} 
+                else if (timer.IsEnabled)
+                {
+                    StopTimer();
+                }
                 return;
-			}
+            }
 
-			if (NextStep())
-			{
-				if (taken.x == size && taken.y == size)
-				{
+            if (NextStep())
+            {
+                if (taken.x == size && taken.y == size)
+                {
                     if (taken.path.Count != size * size)
                     {
                         possibleDirections.Add(new int[] { });
@@ -1464,16 +1475,16 @@ namespace OneWayLabyrinth
                         errorString = "The number of steps were only " + taken.path.Count + ".";
                         criticalError = true;
 
-						if (!isTaskRunning) DrawPath();
+                        if (!isTaskRunning) DrawPath();
                     }
-					else
-					{
+                    else
+                    {
                         possibleDirections.Add(new int[] { });
                         lineFinished = true;
                         if (isTaskRunning)
                         {
                             completedCount++;
-                            
+
                             if (saveConcise)
                             {
                                 string pathStr = "";
@@ -1511,19 +1522,19 @@ namespace OneWayLabyrinth
                                     lastTimerValue = elapsed;
                                 }
                             }
-                            
+
                             //Dispatcher.Invoke(() => { DrawPath(); }); //frequent error in SKCanvas: Attempt to read or write protected memory
                         }
                         else DrawPath();
                     }
-                    
-                    return;
-				}
 
-				NextStepPossibilities();
-			}
+                    return;
+                }
+
+                NextStepPossibilities();
+            }
             if (!(isTaskRunning)) DrawPath();
-		}        
+        }
 
         private bool NextStep()
         {
@@ -1947,7 +1958,7 @@ namespace OneWayLabyrinth
 
                         // Future lines does not always extend from a 2x2 shape. 0901_2 has a one-wide line.
                         // Checking InFutureEndRel2(2, 0) gets important in 0928
-                        if (InFutureStartRel2(1, 0) && (InTakenRel2(2, 0) || InBorderRel2(2, 0) || (InFutureRel2(2, 0) && (!InFutureEndRel2(2, 0) || InFutureEndRel2(2, 0) && foundSectionStart == foundSectionEnd))) && (InTakenRel2(1, -1) ||  InBorderRel2(1, -1) || (InFutureRel2(1, -1) && !InFutureEndRel2(1, -1))))
+                        if (InFutureStartRel2(1, 0) && (InTakenRel2(2, 0) || InBorderRel2(2, 0) || (InFutureRel2(2, 0) && (!InFutureEndRel2(2, 0) || InFutureEndRel2(2, 0) && foundSectionStart == foundSectionEnd))) && (InTakenRel2(1, -1) || InBorderRel2(1, -1) || (InFutureRel2(1, -1) && !InFutureEndRel2(1, -1))))
                         {
                             T("Left/right future start valid at x " + x + " y " + y + ", start x " + (x + lx) + " y " + (y + ly));
 
@@ -2145,7 +2156,7 @@ namespace OneWayLabyrinth
                 {
                     T("Corner future valid at x " + x + " y " + y);
 
-                    future.path.Add(new int[] { x + lx, y + ly });                    
+                    future.path.Add(new int[] { x + lx, y + ly });
                     future.path.Add(new int[] { x + lx + sx, y + ly + sy });
 
                     for (int k = 0; k < 2; k++)
@@ -2154,8 +2165,8 @@ namespace OneWayLabyrinth
                         futureActive.Add(true);
                     }
                     futureSections.Add(new int[] { future.path.Count - 1, future.path.Count - 2 });
-                    
-                    
+
+
                     int selectedExtSection = futureSections.Count - 1;
 
                     future.path2 = taken.path;
@@ -2172,7 +2183,7 @@ namespace OneWayLabyrinth
                         T("Corner future line cannot be completed.");
                         M("Corner future line cannot be completed.", 2);
                         return false;
-                    }                
+                    }
                 }
                 //mirror directions
                 taken.sx = taken.thisSx;
@@ -2988,7 +2999,7 @@ namespace OneWayLabyrinth
         private void NextStepPossibilities()
         {
             if (calculateFuture && inFuture)
-            {   
+            {
                 int[] futureField = future.path[inFutureIndex];
                 taken.possible = new List<int[]> { new int[] { futureField[0], futureField[1] } };
             }
@@ -3098,12 +3109,12 @@ namespace OneWayLabyrinth
         }
 
         private void PreviousStep(bool stepBack)
-		{
-			
-			int count = taken.path.Count;
-			if (count < 2) return;
+        {
 
-			taken.areaLines = new();
+            int count = taken.path.Count;
+            if (count < 2) return;
+
+            taken.areaLines = new();
             taken.areaLineTypes = new();
             taken.areaLineDirections = new();
             taken.areaPairFields = new();
@@ -3112,150 +3123,150 @@ namespace OneWayLabyrinth
             if (!isTaskRunning) ClearActiveRules();
 
             int removeX = taken.path[count - 1][0];
-			int removeY = taken.path[count - 1][1];
+            int removeY = taken.path[count - 1][1];
 
-			if (stepBack) //actual step back
-			{
-				errorInWalkthrough = false;
-				lineFinished = false;
+            if (stepBack) //actual step back
+            {
+                errorInWalkthrough = false;
+                lineFinished = false;
                 completedCount = 0; // to prevent saving the same number as the filename
-				taken.x = taken.path[count - 2][0];
-				taken.y = taken.path[count - 2][1];
-				int lastExit = exitIndex.Count - 1;
+                taken.x = taken.path[count - 2][0];
+                taken.y = taken.path[count - 2][1];
+                int lastExit = exitIndex.Count - 1;
 
-				if (lastExit >= 0)
-				{
-					T("Previous Step " + exitIndex[lastExit] + " " + count);
-					if (exitIndex[lastExit] == count - 1)
-					{
-						T("Removing exit");
-						exits.RemoveAt(lastExit);
-						exitIndex.RemoveAt(lastExit);
-					}
-				}
+                if (lastExit >= 0)
+                {
+                    T("Previous Step " + exitIndex[lastExit] + " " + count);
+                    if (exitIndex[lastExit] == count - 1)
+                    {
+                        T("Removing exit");
+                        exits.RemoveAt(lastExit);
+                        exitIndex.RemoveAt(lastExit);
+                    }
+                }
 
-				taken.path.RemoveAt(count - 1);
-				//T("Actual step back, possibleDirections.Count " + possibleDirections.Count + " " + taken.path.Count + " " + possibleDirections[possibleDirections.Count - 1].Length);
-				possibleDirections.RemoveAt(count);
+                taken.path.RemoveAt(count - 1);
+                //T("Actual step back, possibleDirections.Count " + possibleDirections.Count + " " + taken.path.Count + " " + possibleDirections[possibleDirections.Count - 1].Length);
+                possibleDirections.RemoveAt(count);
 
-				/*int index = futureLoop.IndexOf(count - 1);
+                /*int index = futureLoop.IndexOf(count - 1);
 				if (index != -1)
 				{
 					futureLoop.RemoveAt(index);
 					futureLoopSelectedSection.RemoveAt(index);
 				}*/
 
-				if (futureIndex.Count > 0) //the last element of futureIndex is not the highest if not the most recent future path was extended last time.
-				{
+                if (futureIndex.Count > 0) //the last element of futureIndex is not the highest if not the most recent future path was extended last time.
+                {
                     RemoveAndActivateFutureAt(count - 1, removeX, removeY);
-				}
+                }
 
-				taken.possible = new List<int[]>();
+                taken.possible = new List<int[]>();
                 if (!isTaskRunning) PossibleCoords.Text = "";
-				List<int> dirs = possibleDirections[possibleDirections.Count - 1].ToList<int>();
+                List<int> dirs = possibleDirections[possibleDirections.Count - 1].ToList<int>();
 
-				foreach(int dir in dirs)
-				{
-					int newX = taken.x + directions[dir][0];
-					int newY = taken.y + directions[dir][1];
+                foreach (int dir in dirs)
+                {
+                    int newX = taken.x + directions[dir][0];
+                    int newY = taken.y + directions[dir][1];
 
-					taken.possible.Add(new int[] { newX, newY });
+                    taken.possible.Add(new int[] { newX, newY });
                     if (!isTaskRunning) PossibleCoords.Text += newX + " " + newY + "\n";
-				}
+                }
 
-                if (!isTaskRunning) CurrentCoords.Content = taken.x + " " + taken.y;				
-			}
+                if (!isTaskRunning) CurrentCoords.Content = taken.x + " " + taken.y;
+            }
             else // Next click when there is no possibilities or Next/Previous/OK click after stepping on future line, and it cannot extend				
             {
-				int lastX = taken.path[taken.path.Count - 1][0];
-				int lastY = taken.path[taken.path.Count - 1][1];
+                int lastX = taken.path[taken.path.Count - 1][0];
+                int lastY = taken.path[taken.path.Count - 1][1];
 
                 PossibleCoords.Text = "";
-				List<int> dirs = possibleDirections[possibleDirections.Count - 1].ToList<int>();
+                List<int> dirs = possibleDirections[possibleDirections.Count - 1].ToList<int>();
 
-				if (dirs.Count > 0) // when stepping on future line, and it cannot extend
-				{
-					T("PreviousStep, directions count: " + dirs.Count);
-					List<int[]> newPossible = new List<int[]>();
-					int foundIndex = -1;
-					for (int i = 0; i < dirs.Count; i++)
-					{
-						int newX = lastX + directions[dirs[i]][0];
-						int newY = lastY + directions[dirs[i]][1];
+                if (dirs.Count > 0) // when stepping on future line, and it cannot extend
+                {
+                    T("PreviousStep, directions count: " + dirs.Count);
+                    List<int[]> newPossible = new List<int[]>();
+                    int foundIndex = -1;
+                    for (int i = 0; i < dirs.Count; i++)
+                    {
+                        int newX = lastX + directions[dirs[i]][0];
+                        int newY = lastY + directions[dirs[i]][1];
 
-						if (taken.x == newX && taken.y == newY)
-						{
-							foundIndex = i;
-						}
-						else
-						{
-							newPossible.Add(new int[] { newX, newY });
+                        if (taken.x == newX && taken.y == newY)
+                        {
+                            foundIndex = i;
+                        }
+                        else
+                        {
+                            newPossible.Add(new int[] { newX, newY });
                             if (!isTaskRunning) PossibleCoords.Text += newX + " " + newY + "\n";
-						}
-					}
+                        }
+                    }
 
-					T("FoundIndex: " + foundIndex);
+                    T("FoundIndex: " + foundIndex);
 
-					dirs.RemoveAt(foundIndex);
-					taken.possible = newPossible;
-					taken.x = lastX;
-					taken.y = lastY;
-				}
+                    dirs.RemoveAt(foundIndex);
+                    taken.possible = newPossible;
+                    taken.x = lastX;
+                    taken.y = lastY;
+                }
 
-				T("dirs.Count: " + dirs.Count + " " + possibleDirections.Count);
-				TracePossible();
+                T("dirs.Count: " + dirs.Count + " " + possibleDirections.Count);
+                TracePossible();
 
-				if (dirs.Count == 0)
-				{
-					T("Directions count 0");
+                if (dirs.Count == 0)
+                {
+                    T("Directions count 0");
 
-					int lastExit = exitIndex.Count - 1;
-					if (lastExit >= 0 && exitIndex[lastExit] == taken.path.Count - 1)
-					{
-						exits.RemoveAt(lastExit);
-						exitIndex.RemoveAt(lastExit);
-					}
+                    int lastExit = exitIndex.Count - 1;
+                    if (lastExit >= 0 && exitIndex[lastExit] == taken.path.Count - 1)
+                    {
+                        exits.RemoveAt(lastExit);
+                        exitIndex.RemoveAt(lastExit);
+                    }
 
-					taken.path.RemoveAt(taken.path.Count - 1);
-					possibleDirections.RemoveAt(possibleDirections.Count - 1);
+                    taken.path.RemoveAt(taken.path.Count - 1);
+                    possibleDirections.RemoveAt(possibleDirections.Count - 1);
 
-					/*int index = futureLoop.IndexOf(count - 1);
+                    /*int index = futureLoop.IndexOf(count - 1);
 					if (index != -1)
 					{
 						futureLoop.RemoveAt(index);
 						futureLoopSelectedSection.RemoveAt(index);
 					}*/
 
-					if (futureIndex.Count > 0)
-					{
+                    if (futureIndex.Count > 0)
+                    {
                         RemoveAndActivateFutureAt(count - 1, removeX, removeY);
-					}
+                    }
 
-					PreviousStep(false);
-				}
-				else
-				{
-					possibleDirections[possibleDirections.Count - 1] = dirs.ToArray<int>();
+                    PreviousStep(false);
+                }
+                else
+                {
+                    possibleDirections[possibleDirections.Count - 1] = dirs.ToArray<int>();
                     errorInWalkthrough = false;
-				}
-			}
-		}
+                }
+            }
+        }
 
-		private void PreviousStepWithFuture()
-		{
-			int count = taken.path.Count;
+        private void PreviousStepWithFuture()
+        {
+            int count = taken.path.Count;
 
-			int removeX = taken.path[count - 1][0];
-			int removeY = taken.path[count - 1][1];
+            int removeX = taken.path[count - 1][0];
+            int removeY = taken.path[count - 1][1];
 
-			taken.path.RemoveAt(count - 1);
+            taken.path.RemoveAt(count - 1);
             RemoveAndActivateFutureAt(count - 1, removeX, removeY);
-			
-			//necessary when loading from file
-			taken.x = removeX;
-			taken.y = removeY;
-			PreviousStep(false);
-		}
+
+            //necessary when loading from file
+            taken.x = removeX;
+            taken.y = removeY;
+            PreviousStep(false);
+        }
 
         private void IncreaseFurtherSections(int section)
         {
@@ -3273,14 +3284,14 @@ namespace OneWayLabyrinth
         }
 
         public void RemoveAndActivateFutureAt(int index, int removeX, int removeY)
-		{
-			if (futureSectionMergesHistory.Count > 0)
-			{
-				// There can be more than one future line merges in one step, like in 0913. Removing only the last one is not correct.
-				for(int i = futureSectionMergesHistory.Count -1; i >= 0; i--)
-				{
-					if ((int)futureSectionMergesHistory[i][0] == index)
-					{
+        {
+            if (futureSectionMergesHistory.Count > 0)
+            {
+                // There can be more than one future line merges in one step, like in 0913. Removing only the last one is not correct.
+                for (int i = futureSectionMergesHistory.Count - 1; i >= 0; i--)
+                {
+                    if ((int)futureSectionMergesHistory[i][0] == index)
+                    {
                         futureSectionMergesHistory.RemoveAt(i);
                         if (i > 0)
                         {
@@ -3291,84 +3302,84 @@ namespace OneWayLabyrinth
                             futureSectionMerges = new List<int[]>();
                         }
                     }
-				}
-            }                    
+                }
+            }
 
-            for (int i = future.path.Count - 1; i >= 0 ; i--)
-			{
-				if (futureIndex[i] == index)
-				{
-					//T("Remove future with index " + i + " " + future.path[i][0] + " " + future.path[i][1]);
-					future.path.RemoveAt(i);
-					futureIndex.RemoveAt(i);
-					futureActive.RemoveAt(i);
+            for (int i = future.path.Count - 1; i >= 0; i--)
+            {
+                if (futureIndex[i] == index)
+                {
+                    //T("Remove future with index " + i + " " + future.path[i][0] + " " + future.path[i][1]);
+                    future.path.RemoveAt(i);
+                    futureIndex.RemoveAt(i);
+                    futureActive.RemoveAt(i);
 
-					for (int j = futureSections.Count - 1; j >= 0; j--)
-					{
-						int[] section = futureSections[j];
-						//reduce all newer sections (the ones stepped on or being on the other side)
-						if (i < section[1])
-						{
-							futureSections[j][0]--;
-							futureSections[j][1]--;
-						}
-						//section consists of only one element, we delete the section 
-						else if (i == section[0] && i == section[1])
-						{
-							futureSections.RemoveAt(j); //was last in section
-						}
-						//element is within the section
-						else if (i <= section[0] && i >= section[1])
-						{
-							futureSections[j][0]--;
-						}
-					}
-				}
-			}
+                    for (int j = futureSections.Count - 1; j >= 0; j--)
+                    {
+                        int[] section = futureSections[j];
+                        //reduce all newer sections (the ones stepped on or being on the other side)
+                        if (i < section[1])
+                        {
+                            futureSections[j][0]--;
+                            futureSections[j][1]--;
+                        }
+                        //section consists of only one element, we delete the section 
+                        else if (i == section[0] && i == section[1])
+                        {
+                            futureSections.RemoveAt(j); //was last in section
+                        }
+                        //element is within the section
+                        else if (i <= section[0] && i >= section[1])
+                        {
+                            futureSections[j][0]--;
+                        }
+                    }
+                }
+            }
 
-			for (int i = futureIndex.Count - 1; i >= 0; i--)
-			{
-				int[] field = future.path[i];
-				int fx = field[0];
-				int fy = field[1];
+            for (int i = futureIndex.Count - 1; i >= 0; i--)
+            {
+                int[] field = future.path[i];
+                int fx = field[0];
+                int fy = field[1];
 
-				if (fx == removeX && fy == removeY)
-				{
-					T("Activate at " + i + " " + removeX + " " + removeY + " inend " + InFutureSectionEnd(removeX, removeY));
-					futureActive[i] = true;
-					
-					if (InFutureSectionStart(removeX, removeY))
-					{
-						inFuture = false;
-						selectedSection = -1;
-					}
-					else
-					{
-						if (InFutureSectionEnd(removeX, removeY))
-						{
-							inFuture = true;
-							inFutureIndex = foundEndIndex;
+                if (fx == removeX && fy == removeY)
+                {
+                    T("Activate at " + i + " " + removeX + " " + removeY + " inend " + InFutureSectionEnd(removeX, removeY));
+                    futureActive[i] = true;
 
-							for (int j = futureSections.Count - 1; j >= 0; j--)
-							{
-								int[] section = futureSections[j];
-								if (inFutureIndex == section[1])
-								{
-									selectedSection = j;
-									break;
-								}
-							}							
-						}
-						else
-						{
-							inFutureIndex++;
-							T("----- Remove and activate inFutureIndex " + inFutureIndex);
-						}						
-					}
-					return;
-				}
-			}	
-		}
+                    if (InFutureSectionStart(removeX, removeY))
+                    {
+                        inFuture = false;
+                        selectedSection = -1;
+                    }
+                    else
+                    {
+                        if (InFutureSectionEnd(removeX, removeY))
+                        {
+                            inFuture = true;
+                            inFutureIndex = foundEndIndex;
+
+                            for (int j = futureSections.Count - 1; j >= 0; j--)
+                            {
+                                int[] section = futureSections[j];
+                                if (inFutureIndex == section[1])
+                                {
+                                    selectedSection = j;
+                                    break;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            inFutureIndex++;
+                            T("----- Remove and activate inFutureIndex " + inFutureIndex);
+                        }
+                    }
+                    return;
+                }
+            }
+        }
 
 
         // ----- Check functions -----
@@ -3403,10 +3414,10 @@ namespace OneWayLabyrinth
 
         private bool InTakenRel(int left, int straight)
         {
-			int x = taken.x + left * taken.lx + straight * taken.sx;
-			int y = taken.y + left * taken.ly + straight * taken.sy;
-			return InTaken(x, y);
-		}
+            int x = taken.x + left * taken.lx + straight * taken.sx;
+            int y = taken.y + left * taken.ly + straight * taken.sy;
+            return InTaken(x, y);
+        }
 
         private bool InTakenRel2(int left, int straight)
         {
@@ -3416,7 +3427,7 @@ namespace OneWayLabyrinth
         }
 
         private bool InTaken(int x, int y)
-		{
+        {
             int c1 = taken.path.Count;
             for (int i = c1 - 1; i >= 0; i--)
             {
@@ -3427,7 +3438,7 @@ namespace OneWayLabyrinth
                 }
             }
 
-			return false;
+            return false;
         }
 
         public bool InCornerRel(int left, int straight)
@@ -3451,13 +3462,13 @@ namespace OneWayLabyrinth
             int x = taken.x + left * taken.lx + straight * taken.sx;
             int y = taken.y + left * taken.ly + straight * taken.sy;
 
-			//In 0913_2 it can happen that after stepping on the future line, the 1-thin rule is true if we don't check that the coordinates are within size.
-			if (x > size || y > size) return true;
+            //In 0913_2 it can happen that after stepping on the future line, the 1-thin rule is true if we don't check that the coordinates are within size.
+            if (x > size || y > size) return true;
 
             return InFuture(x, y);
         }
-		
-		public bool InFutureRel2(int left, int straight)
+
+        public bool InFutureRel2(int left, int straight)
         {
             int x = taken.x3 + left * taken.lx + straight * taken.sx;
             int y = taken.y3 + left * taken.ly + straight * taken.sy;
@@ -3466,7 +3477,7 @@ namespace OneWayLabyrinth
         }
 
         public bool InFuture(int x, int y)
-		{
+        {
             int c = future.path.Count;
             if (c == 0) return false;
 
@@ -3491,56 +3502,56 @@ namespace OneWayLabyrinth
         }
 
         public bool InFutureStartRel2(int left, int straight)
-		{
-			int x = taken.x3 + left * taken.lx + straight * taken.sx;
-			int y = taken.y3 + left * taken.ly + straight * taken.sy;
+        {
+            int x = taken.x3 + left * taken.lx + straight * taken.sx;
+            int y = taken.y3 + left * taken.ly + straight * taken.sy;
 
-			return InFutureStart(x, y);
-		}
+            return InFutureStart(x, y);
+        }
 
         public bool InFutureStart(int x, int y)
         {
             int c = future.path.Count;
-			if (c == 0) return false;
+            if (c == 0) return false;
 
-			int foundIndex = -1;
+            int foundIndex = -1;
 
-			int i;
-			for (i = c - 1; i >= 0; i--)
-			{
-				int[] field = future.path[i];
+            int i;
+            for (i = c - 1; i >= 0; i--)
+            {
+                int[] field = future.path[i];
 
-				if (field[0] == x && field[1] == y && futureActive[i])
-				{
-					foundIndex = i;
-				}
-			}
+                if (field[0] == x && field[1] == y && futureActive[i])
+                {
+                    foundIndex = i;
+                }
+            }
 
-			if (foundIndex == -1) return false;
+            if (foundIndex == -1) return false;
 
-			i = -1;
-			foreach (int[] section in futureSections)
-			{
-				i++;
-				if (section[0] == foundIndex)
-				{
-					foreach (int[] merge in futureSectionMerges)
-					{
-						// examine all but the first merged section
-						for (int j = 1; j < merge.Length; j++)
-						{
-							if (merge[j] == i) return false;
-						}
-					}
+            i = -1;
+            foreach (int[] section in futureSections)
+            {
+                i++;
+                if (section[0] == foundIndex)
+                {
+                    foreach (int[] merge in futureSectionMerges)
+                    {
+                        // examine all but the first merged section
+                        for (int j = 1; j < merge.Length; j++)
+                        {
+                            if (merge[j] == i) return false;
+                        }
+                    }
 
-					foundSection = i;
+                    foundSection = i;
                     foundSectionStart = i;
                     return true;
-				}
-			}
+                }
+            }
 
-			return false;
-		}
+            return false;
+        }
 
         public bool InFutureSectionStart(int x, int y) // used by previousstep / activate future line. To get the correct infutureIndex, only the sections have to be examined, not the merged lines.
         {
@@ -3593,46 +3604,46 @@ namespace OneWayLabyrinth
 
         public bool InFutureEnd(int x, int y)
         {
-			int c = future.path.Count;
-			if (c == 0) return false;
+            int c = future.path.Count;
+            if (c == 0) return false;
 
-			int foundIndex = -1;
+            int foundIndex = -1;
 
-			int i;
-			for (i = c - 1; i >= 0; i--)
-			{
-				int[] field = future.path[i];
-				if (field[0] == x && field[1] == y && futureActive[i])
-				{
-					foundIndex = i;
-				}
-			}
+            int i;
+            for (i = c - 1; i >= 0; i--)
+            {
+                int[] field = future.path[i];
+                if (field[0] == x && field[1] == y && futureActive[i])
+                {
+                    foundIndex = i;
+                }
+            }
 
-			if (foundIndex == -1) return false;
+            if (foundIndex == -1) return false;
 
-			i = -1;
-			foreach (int[] section in futureSections)
-			{
-				i++;
-				if (section[1] == foundIndex)
-				{
-					foreach (int[] merge in futureSectionMerges)
-					{
-						// examine all but the last merged section
-						for (int j = 0; j < merge.Length - 1; j++)
-						{
-							if (merge[j] == i) return false;
-						}
-					}
+            i = -1;
+            foreach (int[] section in futureSections)
+            {
+                i++;
+                if (section[1] == foundIndex)
+                {
+                    foreach (int[] merge in futureSectionMerges)
+                    {
+                        // examine all but the last merged section
+                        for (int j = 0; j < merge.Length - 1; j++)
+                        {
+                            if (merge[j] == i) return false;
+                        }
+                    }
 
-					foundEndIndex = foundIndex;
+                    foundEndIndex = foundIndex;
                     foundSectionEnd = i;
                     return true;
-				}				
-			}
+                }
+            }
 
-			return false;
-		}
+            return false;
+        }
 
         public bool InFutureSectionEnd(int x, int y)
         {
@@ -3730,24 +3741,24 @@ namespace OneWayLabyrinth
         }
 
         public void SavePathUncompleted() // used in Path.cs when count area start and end fields are inequal
-		{
-			int startX = 1;
-			int startY = 1;
+        {
+            int startX = 1;
+            int startY = 1;
 
-			savePath = size + "|1-" + startX + "," + startY + ";";
+            savePath = size + "|1-" + startX + "," + startY + ";";
 
-			for (int i = 1; i < taken.path.Count; i++)
-			{
-				int[] field = taken.path[i];
-				int newX = field[0];
-				int newY = field[1];
+            for (int i = 1; i < taken.path.Count; i++)
+            {
+                int[] field = taken.path[i];
+                int newX = field[0];
+                int newY = field[1];
 
-				foreach (int direction in possibleDirections[i])
-				{
-					savePath += direction + ",";
-				}
-				savePath = savePath.Substring(0, savePath.Length - 1);
-				savePath += "-" + newX + "," + newY + ";";
+                foreach (int direction in possibleDirections[i])
+                {
+                    savePath += direction + ",";
+                }
+                savePath = savePath.Substring(0, savePath.Length - 1);
+                savePath += "-" + newX + "," + newY + ";";
 
                 startX = newX;
                 startY = newY;
@@ -3762,11 +3773,11 @@ namespace OneWayLabyrinth
             }
             savePath = savePath.Substring(0, savePath.Length - 1);
 
-			File.WriteAllText(baseDir + "uncompleted.txt", savePath);
+            File.WriteAllText(baseDir + "uncompleted.txt", savePath);
         }
 
         private void SavePath(bool isCompleted = true) // used in fast run mode
-		{
+        {
             int startX = 1;
             int startY = 1;
             string completedPathCode = "";
@@ -3775,7 +3786,7 @@ namespace OneWayLabyrinth
 
 
             for (int i = 1; i < taken.path.Count; i++)
-			{
+            {
                 int[] field = taken.path[i];
                 int newX = field[0];
                 int newY = field[1];
@@ -3867,7 +3878,7 @@ namespace OneWayLabyrinth
                 if (File.Exists(baseDir + "incomplete/" + completedCount + ".txt"))
                 {
                     int i = 1;
-                    while(File.Exists(baseDir + "incomplete/" + completedCount + "_" + i + ".txt"))
+                    while (File.Exists(baseDir + "incomplete/" + completedCount + "_" + i + ".txt"))
                     {
                         i++;
                     }
@@ -3876,21 +3887,21 @@ namespace OneWayLabyrinth
                 else
                 {
                     File.WriteAllText(baseDir + "incomplete/" + completedCount + ".txt", savePath);
-                }                
-            }            
+                }
+            }
         }
 
-		public void DrawPath(bool saveLoadFile = false)
-		{
-			string startPos = 0.5 + " " + 0.5;
-			string startPosFuture = "";
-			string path = "";
-			string pathFuture = "";
+        public void DrawPath(bool saveLoadFile = false)
+        {
+            string startPos = 0.5 + " " + 0.5;
+            string startPosFuture = "";
+            string path = "";
+            string pathFuture = "";
 
-			float posX = 0.5f;
-			float posY = 0.5f;
-			int startX = 1;
-			int startY = 1;
+            float posX = 0.5f;
+            float posY = 0.5f;
+            int startX = 1;
+            int startY = 1;
 
             // #ff0000, opacity 0.15
             string color = "#e2bcbc"; // checker grid must not show through the main line
@@ -3899,13 +3910,13 @@ namespace OneWayLabyrinth
 
             string backgrounds = "\t<rect width=\"1\" height=\"1\" x=\"" + (startX - 1) + "\" y=\"" + (startY - 1) + "\" fill=\"" + color + "\" fill-opacity=\"1\" />\r\n";
 
-			savePath = size + "|1-" + startX + "," + startY + ";";
-			string completedPathCode = "";
+            savePath = size + "|1-" + startX + "," + startY + ";";
+            string completedPathCode = "";
 
-			int newX = 0;
-			int newY = 0;
+            int newX = 0;
+            int newY = 0;
 
-			/*bool inLoop = false;
+            /*bool inLoop = false;
 			if (exits.Count > 0)
 			{
 				int[] lastExit = exits[exits.Count - 1];
@@ -3918,13 +3929,13 @@ namespace OneWayLabyrinth
 				}
 			}*/
 
-			int lastDrawnDirection = 0;
+            int lastDrawnDirection = 0;
 
-			for (int i = 1; i < taken.path.Count; i++)
-			{
-				int[] field = taken.path[i];
-				newX = field[0];
-				newY = field[1];
+            for (int i = 1; i < taken.path.Count; i++)
+            {
+                int[] field = taken.path[i];
+                newX = field[0];
+                newY = field[1];
 
                 /*if (displayExits && inLoop && i > exitIndex[exitIndex.Count - 1])
 				{
@@ -3935,131 +3946,131 @@ namespace OneWayLabyrinth
                 backgrounds += "\t<rect width=\"1\" height=\"1\" x=\"" + (newX - 1) + "\" y=\"" + (newY - 1) + "\" fill=\"" + (i > drawFutureIndex ? futureColor : color) + "\" fill-opacity=\"1\" />\r\n";
 
                 foreach (int direction in possibleDirections[i])
-				{
-					savePath += direction + ",";
-				}
-				savePath = savePath.Substring(0, savePath.Length - 1);
-				savePath += "-" + newX + "," + newY + ";";
+                {
+                    savePath += direction + ",";
+                }
+                savePath = savePath.Substring(0, savePath.Length - 1);
+                savePath += "-" + newX + "," + newY + ";";
 
-				if (saveCheck == true && lineFinished)
-				{
-					for (int j = 0; j < 4; j++)
-					{
-						if (directions[j][0] == newX - startX && directions[j][1] == newY - startY)
-						{
-							if (possibleDirections[i].Length > 1)
-							{
-								if (j == lastDrawnDirection) //stepped straight. We need to check if there is a left or right field in the possibilities
-								{
-									bool leftFound = false;
-									bool rightFound = false;
-									foreach (int direction in possibleDirections[i])
-									{
-										if (direction == j + 1 || j == 3 && direction == 0) leftFound = true;
-										if (direction == j - 1 || j == 0 && direction == 3) rightFound = true;
-									}
+                if (saveCheck == true && lineFinished)
+                {
+                    for (int j = 0; j < 4; j++)
+                    {
+                        if (directions[j][0] == newX - startX && directions[j][1] == newY - startY)
+                        {
+                            if (possibleDirections[i].Length > 1)
+                            {
+                                if (j == lastDrawnDirection) //stepped straight. We need to check if there is a left or right field in the possibilities
+                                {
+                                    bool leftFound = false;
+                                    bool rightFound = false;
+                                    foreach (int direction in possibleDirections[i])
+                                    {
+                                        if (direction == j + 1 || j == 3 && direction == 0) leftFound = true;
+                                        if (direction == j - 1 || j == 0 && direction == 3) rightFound = true;
+                                    }
 
-									if (leftFound && rightFound) // straight
-									{
-										completedPathCode += "b";
-									}
-									else if (leftFound) // right
-									{
-										completedPathCode += "c";
-									}
-									else // left
-									{
-										completedPathCode += "a";
-									}
-								}
-								else if (j == lastDrawnDirection + 1 || lastDrawnDirection == 3 && j == 0) completedPathCode += "a"; // left
-								else completedPathCode += "c"; // right
-							}
-							
-							lastDrawnDirection = j;
-						}
-					}
-				}
+                                    if (leftFound && rightFound) // straight
+                                    {
+                                        completedPathCode += "b";
+                                    }
+                                    else if (leftFound) // right
+                                    {
+                                        completedPathCode += "c";
+                                    }
+                                    else // left
+                                    {
+                                        completedPathCode += "a";
+                                    }
+                                }
+                                else if (j == lastDrawnDirection + 1 || lastDrawnDirection == 3 && j == 0) completedPathCode += "a"; // left
+                                else completedPathCode += "c"; // right
+                            }
 
-				float prevX = posX;
-				float prevY = posY;				
+                            lastDrawnDirection = j;
+                        }
+                    }
+                }
 
-				if (startY == newY)
-				{
-					posX = (float)(startX + newX) / 2 - 0.5f;
-					posY = newY - 0.5f;
-				}
-				else
-				{
-					posY = (float)(startY + newY) / 2 - 0.5f;
-					posX = newX - 0.5f;
-				}			
+                float prevX = posX;
+                float prevY = posY;
 
-				if (prevX == posX || prevY == posY)
-				{
-					path += "L " + posX + " " + posY + "\r\n";
-				}
-				else
-				{
-					int dir = 0; //counter-clockwise
+                if (startY == newY)
+                {
+                    posX = (float)(startX + newX) / 2 - 0.5f;
+                    posY = newY - 0.5f;
+                }
+                else
+                {
+                    posY = (float)(startY + newY) / 2 - 0.5f;
+                    posX = newX - 0.5f;
+                }
 
-					if (posX > prevX && posY > prevY)
-					{
-						if (startX - 0.5f == posX)
-						{
-							dir = 1;
-						}
-					}
-					if (posX < prevX && posY < prevY)
-					{
-						if (startX - 0.5f == posX)
-						{
-							dir = 1;
-						}
-					}
-					if (posX > prevX && posY < prevY)
-					{
-						if (startY - 0.5f == posY)
-						{
-							dir = 1;
-						}
-					}
-					if (posX < prevX && posY > prevY)
-					{
-						if (startY - 0.5f == posY)
-						{
-							dir = 1;
-						}
-					}
-					path += "A 0.5 0.5 0 0 " + dir + " " + posX + " " + posY + "\r\n";
-				}
+                if (prevX == posX || prevY == posY)
+                {
+                    path += "L " + posX + " " + posY + "\r\n";
+                }
+                else
+                {
+                    int dir = 0; //counter-clockwise
 
-				startX = newX;
-				startY = newY;
-			}
+                    if (posX > prevX && posY > prevY)
+                    {
+                        if (startX - 0.5f == posX)
+                        {
+                            dir = 1;
+                        }
+                    }
+                    if (posX < prevX && posY < prevY)
+                    {
+                        if (startX - 0.5f == posX)
+                        {
+                            dir = 1;
+                        }
+                    }
+                    if (posX > prevX && posY < prevY)
+                    {
+                        if (startY - 0.5f == posY)
+                        {
+                            dir = 1;
+                        }
+                    }
+                    if (posX < prevX && posY > prevY)
+                    {
+                        if (startY - 0.5f == posY)
+                        {
+                            dir = 1;
+                        }
+                    }
+                    path += "A 0.5 0.5 0 0 " + dir + " " + posX + " " + posY + "\r\n";
+                }
 
-			if (taken.path.Count > 1) path += "L " + (newX - 0.5f) + " " + (newY - 0.5f) + "\r\n";
+                startX = newX;
+                startY = newY;
+            }
 
-			string futureBackgrounds = "";
-			string futurePath = "";
-			startX = -1;
-			startY = -1;
+            if (taken.path.Count > 1) path += "L " + (newX - 0.5f) + " " + (newY - 0.5f) + "\r\n";
 
-			string t = "";
+            string futureBackgrounds = "";
+            string futurePath = "";
+            startX = -1;
+            startY = -1;
+
+            string t = "";
 
             foreach (int[] section in futureSections)
-			{
-				t += "--- Section: " + section[0] + " " + section[1] + "\n";
-			}
-			foreach (int[] section in futureSectionMerges)
-			{
-				t += "--- Section merge: ";
+            {
+                t += "--- Section: " + section[0] + " " + section[1] + "\n";
+            }
+            foreach (int[] section in futureSectionMerges)
+            {
+                t += "--- Section merge: ";
                 foreach (int s in section)
-				{
-					t += s + ", ";
-				}
-				t = t.Substring(0, t.Length - 2) + "\n";
-			}
+                {
+                    t += s + ", ";
+                }
+                t = t.Substring(0, t.Length - 2) + "\n";
+            }
             foreach (List<object> obj in futureSectionMergesHistory)
             {
                 t += "--- Section merge history: " + obj[0] + "\n";
@@ -4072,306 +4083,306 @@ namespace OneWayLabyrinth
                         t += s + ", ";
                     }
                     t = t.Substring(0, t.Length - 2) + "\n";
-                }                
+                }
             }
 
             bool prevStartItem = false;
 
-			if (future.path.Count != 0 && calculateFuture)
-			{
-				for (int i = future.path.Count - 1; i >= 0; i--)
-				{
-					int currentSection = -1;
+            if (future.path.Count != 0 && calculateFuture)
+            {
+                for (int i = future.path.Count - 1; i >= 0; i--)
+                {
+                    int currentSection = -1;
 
-					bool startItem = false;
-					bool endItem = false;
+                    bool startItem = false;
+                    bool endItem = false;
 
-					//T("Future block: " + i + " " + future.path[i][0] + " " + future.path[i][1]);
+                    //T("Future block: " + i + " " + future.path[i][0] + " " + future.path[i][1]);
 
-					//merged sections will be drawn later
-					bool continueSign = false;
+                    //merged sections will be drawn later
+                    bool continueSign = false;
 
-					for (int j = 0; j < futureSections.Count; j++)
-					{
-						int[] section = futureSections[j];
+                    for (int j = 0; j < futureSections.Count; j++)
+                    {
+                        int[] section = futureSections[j];
 
-						//T(" section[0] " + section[0] + " " + section[1]);
-						if (i <= section[0] && i >= section[1])
-						{
-							currentSection = j;
-							//T("currentSection " + currentSection + " i " + i + " " + section[0] + " " + section[1]);
-						}
+                        //T(" section[0] " + section[0] + " " + section[1]);
+                        if (i <= section[0] && i >= section[1])
+                        {
+                            currentSection = j;
+                            //T("currentSection " + currentSection + " i " + i + " " + section[0] + " " + section[1]);
+                        }
 
-						// examine if the current section is one of the merged sections
-						for (int k = 0; k < futureSectionMerges.Count; k++)
-						{
-							int[] merge = futureSectionMerges[k];
-							for (int h = 0; h < merge.Length; h++)
-							{
-								//T(merge[h] + " " + currentSection);
-								if (merge[h] == currentSection)
-								{
-									//T("Continue at " + i);
-									continueSign = true;
-								}
-							}
-						}
+                        // examine if the current section is one of the merged sections
+                        for (int k = 0; k < futureSectionMerges.Count; k++)
+                        {
+                            int[] merge = futureSectionMerges[k];
+                            for (int h = 0; h < merge.Length; h++)
+                            {
+                                //T(merge[h] + " " + currentSection);
+                                if (merge[h] == currentSection)
+                                {
+                                    //T("Continue at " + i);
+                                    continueSign = true;
+                                }
+                            }
+                        }
 
-						if (i == section[0])
-						{
-							startItem = true;
-						}
-						if (i == section[1])
-						{
-							endItem = true;
-						}
-					}
+                        if (i == section[0])
+                        {
+                            startItem = true;
+                        }
+                        if (i == section[1])
+                        {
+                            endItem = true;
+                        }
+                    }
 
-					if (continueSign)
-					{
-						continue;
-					}
+                    if (continueSign)
+                    {
+                        continue;
+                    }
 
-					//if we stepped on the start item, it is inactive now. The next active field needs to be the start item.
-					if (!futureActive[i] && startItem)
-					{
-						prevStartItem = true;
-					}
-					
-					if (!futureActive[i]) continue;
+                    //if we stepped on the start item, it is inactive now. The next active field needs to be the start item.
+                    if (!futureActive[i] && startItem)
+                    {
+                        prevStartItem = true;
+                    }
 
-					if (prevStartItem)
-					{
-						startItem = true;
-						prevStartItem = false;
-					}					
+                    if (!futureActive[i]) continue;
 
-					int[] field = future.path[i];
-					newX = field[0];
-					newY = field[1];
-					
-					futureBackgrounds += "\t<rect width=\"1\" height=\"1\" x=\"" + (newX - 1) + "\" y=\"" + (newY - 1) + "\" fill=\"" + futureColor + "\" fill-opacity=\"1\" />\r\n";
+                    if (prevStartItem)
+                    {
+                        startItem = true;
+                        prevStartItem = false;
+                    }
 
-					if (startItem)
-					{
-						posX = newX - 0.5f;
-						posY = newY - 0.5f;
-						startPosFuture = newX - 0.5 + " " + (newY - 0.5);
-						pathFuture = "";
+                    int[] field = future.path[i];
+                    newX = field[0];
+                    newY = field[1];
 
-						startX = newX;
-						startY = newY;
+                    futureBackgrounds += "\t<rect width=\"1\" height=\"1\" x=\"" + (newX - 1) + "\" y=\"" + (newY - 1) + "\" fill=\"" + futureColor + "\" fill-opacity=\"1\" />\r\n";
 
-						continue;
-					}
+                    if (startItem)
+                    {
+                        posX = newX - 0.5f;
+                        posY = newY - 0.5f;
+                        startPosFuture = newX - 0.5 + " " + (newY - 0.5);
+                        pathFuture = "";
 
-					float prevX = posX;
-					float prevY = posY;
+                        startX = newX;
+                        startY = newY;
 
-					if (startY == newY)
-					{
-						posX = (float)(startX + newX) / 2 - 0.5f;
-						posY = newY - 0.5f;
-					}
-					else
-					{
-						posY = (float)(startY + newY) / 2 - 0.5f;
-						posX = newX - 0.5f;
-					}			
+                        continue;
+                    }
 
-					if (prevX == posX || prevY == posY)
-					{
-						pathFuture += "L " + posX + " " + posY + "\r\n";
-					}
-					else
-					{
-						int dir = 0; //counter-clockwise
+                    float prevX = posX;
+                    float prevY = posY;
 
-						if (posX > prevX && posY > prevY)
-						{
-							if (startX - 0.5f == posX)
-							{
-								dir = 1;
-							}
-						}
-						if (posX < prevX && posY < prevY)
-						{
-							if (startX - 0.5f == posX)
-							{
-								dir = 1;
-							}
-						}
-						if (posX > prevX && posY < prevY)
-						{
-							if (startY - 0.5f == posY)
-							{
-								dir = 1;
-							}
-						}
-						if (posX < prevX && posY > prevY)
-						{
-							if (startY - 0.5f == posY)
-							{
-								dir = 1;
-							}
-						}
-						pathFuture += "A 0.5 0.5 0 0 " + dir + " " + posX + " " + posY + "\r\n";
-					}
+                    if (startY == newY)
+                    {
+                        posX = (float)(startX + newX) / 2 - 0.5f;
+                        posY = newY - 0.5f;
+                    }
+                    else
+                    {
+                        posY = (float)(startY + newY) / 2 - 0.5f;
+                        posX = newX - 0.5f;
+                    }
 
-					startX = newX;
-					startY = newY;
+                    if (prevX == posX || prevY == posY)
+                    {
+                        pathFuture += "L " + posX + " " + posY + "\r\n";
+                    }
+                    else
+                    {
+                        int dir = 0; //counter-clockwise
 
-					if (endItem)
-					{
-						pathFuture += "L " + (newX - 0.5f) + " " + (newY - 0.5f) + "\r\n";
-						futurePath += "\t<path d=\"M " + startPosFuture + "\r\n" + pathFuture + "\" fill=\"white\" fill-opacity=\"0\" stroke=\"blue\" stroke-width=\"0.05\" stroke-linecap=\"round\" />\r\n";
-					}
-				}
+                        if (posX > prevX && posY > prevY)
+                        {
+                            if (startX - 0.5f == posX)
+                            {
+                                dir = 1;
+                            }
+                        }
+                        if (posX < prevX && posY < prevY)
+                        {
+                            if (startX - 0.5f == posX)
+                            {
+                                dir = 1;
+                            }
+                        }
+                        if (posX > prevX && posY < prevY)
+                        {
+                            if (startY - 0.5f == posY)
+                            {
+                                dir = 1;
+                            }
+                        }
+                        if (posX < prevX && posY > prevY)
+                        {
+                            if (startY - 0.5f == posY)
+                            {
+                                dir = 1;
+                            }
+                        }
+                        pathFuture += "A 0.5 0.5 0 0 " + dir + " " + posX + " " + posY + "\r\n";
+                    }
 
-				if (futureSectionMerges.Count != 0)
-				{
-					prevStartItem = false;
+                    startX = newX;
+                    startY = newY;
 
-					for (int i = futureSectionMerges.Count - 1; i >= 0; i--)
-					{
-						int[] merge = futureSectionMerges[i];
-						for (int j = 0; j < merge.Length; j++)
-						{
-							int startIndex = futureSections[merge[j]][0];
-							int endIndex = futureSections[merge[j]][1];
+                    if (endItem)
+                    {
+                        pathFuture += "L " + (newX - 0.5f) + " " + (newY - 0.5f) + "\r\n";
+                        futurePath += "\t<path d=\"M " + startPosFuture + "\r\n" + pathFuture + "\" fill=\"white\" fill-opacity=\"0\" stroke=\"blue\" stroke-width=\"0.05\" stroke-linecap=\"round\" />\r\n";
+                    }
+                }
 
-							T("startIndex " + startIndex + " endIndex " + endIndex);
+                if (futureSectionMerges.Count != 0)
+                {
+                    prevStartItem = false;
 
-							for (int k = startIndex; k >= endIndex; k--)
-							{
-								bool startItem = false;
-								bool endItem = false;
+                    for (int i = futureSectionMerges.Count - 1; i >= 0; i--)
+                    {
+                        int[] merge = futureSectionMerges[i];
+                        for (int j = 0; j < merge.Length; j++)
+                        {
+                            int startIndex = futureSections[merge[j]][0];
+                            int endIndex = futureSections[merge[j]][1];
 
-								if (j == 0 && k == startIndex)
-								{
-									startItem = true;
-								}
-								if (j == merge.Length - 1 && k == endIndex)
-								{
-									endItem = true;
-								}
+                            T("startIndex " + startIndex + " endIndex " + endIndex);
 
-								//repeat the code above
+                            for (int k = startIndex; k >= endIndex; k--)
+                            {
+                                bool startItem = false;
+                                bool endItem = false;
 
-								if (!futureActive[k] && startItem)
-								{
-									prevStartItem = true;
-								}
+                                if (j == 0 && k == startIndex)
+                                {
+                                    startItem = true;
+                                }
+                                if (j == merge.Length - 1 && k == endIndex)
+                                {
+                                    endItem = true;
+                                }
 
-								if (!futureActive[k]) continue;
+                                //repeat the code above
 
-								if (prevStartItem)
-								{
-									startItem = true;
-									prevStartItem = false;
-								}
+                                if (!futureActive[k] && startItem)
+                                {
+                                    prevStartItem = true;
+                                }
 
-								int[] field = future.path[k];
-								newX = field[0];
-								newY = field[1];
+                                if (!futureActive[k]) continue;
 
-								color = "#0000ff";
-								string opacity = "0.15";
-								futureBackgrounds += "\t<rect width=\"1\" height=\"1\" x=\"" + (newX - 1) + "\" y=\"" + (newY - 1) + "\" fill=\"" + color + "\" fill-opacity=\"" + opacity + "\" />\r\n";
+                                if (prevStartItem)
+                                {
+                                    startItem = true;
+                                    prevStartItem = false;
+                                }
 
-								if (startItem)
-								{
-									posX = newX - 0.5f;
-									posY = newY - 0.5f;
-									startPosFuture = newX - 0.5 + " " + (newY - 0.5);
-									pathFuture = "";
+                                int[] field = future.path[k];
+                                newX = field[0];
+                                newY = field[1];
 
-									startX = newX;
-									startY = newY;
+                                color = "#0000ff";
+                                string opacity = "0.15";
+                                futureBackgrounds += "\t<rect width=\"1\" height=\"1\" x=\"" + (newX - 1) + "\" y=\"" + (newY - 1) + "\" fill=\"" + color + "\" fill-opacity=\"" + opacity + "\" />\r\n";
 
-									continue;
-								}
+                                if (startItem)
+                                {
+                                    posX = newX - 0.5f;
+                                    posY = newY - 0.5f;
+                                    startPosFuture = newX - 0.5 + " " + (newY - 0.5);
+                                    pathFuture = "";
 
-								float prevX = posX;
-								float prevY = posY;
+                                    startX = newX;
+                                    startY = newY;
 
-								if (startY == newY)
-								{
-									posX = (float)(startX + newX) / 2 - 0.5f;
-									posY = newY - 0.5f;
-								}
-								else
-								{
-									posY = (float)(startY + newY) / 2 - 0.5f;
-									posX = newX - 0.5f;
-								}
+                                    continue;
+                                }
 
-								if (prevX == posX || prevY == posY)
-								{
-									pathFuture += "L " + posX + " " + posY + "\r\n";
-								}
-								else
-								{
-									int dir = 0; //counter-clockwise
+                                float prevX = posX;
+                                float prevY = posY;
 
-									if (posX > prevX && posY > prevY)
-									{
-										if (startX - 0.5f == posX)
-										{
-											dir = 1;
-										}
-									}
-									if (posX < prevX && posY < prevY)
-									{
-										if (startX - 0.5f == posX)
-										{
-											dir = 1;
-										}
-									}
-									if (posX > prevX && posY < prevY)
-									{
-										if (startY - 0.5f == posY)
-										{
-											dir = 1;
-										}
-									}
-									if (posX < prevX && posY > prevY)
-									{
-										if (startY - 0.5f == posY)
-										{
-											dir = 1;
-										}
-									}
-									pathFuture += "A 0.5 0.5 0 0 " + dir + " " + posX + " " + posY + "\r\n";
-								}
+                                if (startY == newY)
+                                {
+                                    posX = (float)(startX + newX) / 2 - 0.5f;
+                                    posY = newY - 0.5f;
+                                }
+                                else
+                                {
+                                    posY = (float)(startY + newY) / 2 - 0.5f;
+                                    posX = newX - 0.5f;
+                                }
 
-								startX = newX;
-								startY = newY;
+                                if (prevX == posX || prevY == posY)
+                                {
+                                    pathFuture += "L " + posX + " " + posY + "\r\n";
+                                }
+                                else
+                                {
+                                    int dir = 0; //counter-clockwise
 
-								if (endItem)
-								{
-									pathFuture += "L " + (newX - 0.5f) + " " + (newY - 0.5f) + "\r\n";
-									futurePath += "\t<path d=\"M " + startPosFuture + "\r\n" + pathFuture + "\" fill=\"white\" fill-opacity=\"0\" stroke=\"blue\" stroke-width=\"0.05\" stroke-linecap=\"round\" />\r\n";
-								}
-							}
-						}
-					}
-				}
-			}
+                                    if (posX > prevX && posY > prevY)
+                                    {
+                                        if (startX - 0.5f == posX)
+                                        {
+                                            dir = 1;
+                                        }
+                                    }
+                                    if (posX < prevX && posY < prevY)
+                                    {
+                                        if (startX - 0.5f == posX)
+                                        {
+                                            dir = 1;
+                                        }
+                                    }
+                                    if (posX > prevX && posY < prevY)
+                                    {
+                                        if (startY - 0.5f == posY)
+                                        {
+                                            dir = 1;
+                                        }
+                                    }
+                                    if (posX < prevX && posY > prevY)
+                                    {
+                                        if (startY - 0.5f == posY)
+                                        {
+                                            dir = 1;
+                                        }
+                                    }
+                                    pathFuture += "A 0.5 0.5 0 0 " + dir + " " + posX + " " + posY + "\r\n";
+                                }
 
-			string possibles = "";
-			if (possibleDirections.Count > 1)
-			{
-				foreach (int direction in possibleDirections[possibleDirections.Count - 1])
-				{
-					savePath += direction + ",";
+                                startX = newX;
+                                startY = newY;
 
-					possibles += "\t<rect width=\"1\" height=\"1\" x=\"" + (taken.x - 1 + directions[direction][0]) + "\" y=\"" + (taken.y - 1 + directions[direction][1]) + "\" fill=\"#000000\" fill-opacity=\"0.1\" />\r\n";
-				}
-			}
-			savePath = savePath.Substring(0, savePath.Length - 1);
+                                if (endItem)
+                                {
+                                    pathFuture += "L " + (newX - 0.5f) + " " + (newY - 0.5f) + "\r\n";
+                                    futurePath += "\t<path d=\"M " + startPosFuture + "\r\n" + pathFuture + "\" fill=\"white\" fill-opacity=\"0\" stroke=\"blue\" stroke-width=\"0.05\" stroke-linecap=\"round\" />\r\n";
+                                }
+                            }
+                        }
+                    }
+                }
+            }
 
-			/*if (exits.Count > 0)
+            string possibles = "";
+            if (possibleDirections.Count > 1)
+            {
+                foreach (int direction in possibleDirections[possibleDirections.Count - 1])
+                {
+                    savePath += direction + ",";
+
+                    possibles += "\t<rect width=\"1\" height=\"1\" x=\"" + (taken.x - 1 + directions[direction][0]) + "\" y=\"" + (taken.y - 1 + directions[direction][1]) + "\" fill=\"#000000\" fill-opacity=\"0.1\" />\r\n";
+                }
+            }
+            savePath = savePath.Substring(0, savePath.Length - 1);
+
+            /*if (exits.Count > 0)
 			{
 				savePath += ":";
 
@@ -4392,22 +4403,22 @@ namespace OneWayLabyrinth
 				savePath = savePath.Substring(0, savePath.Length - 1) + "," + taken.circleDirectionLeft;
 			}*/
 
-			if (path != "")
-			{
-				path = path.Substring(0, path.Length - 2);
-			}
+            if (path != "")
+            {
+                path = path.Substring(0, path.Length - 2);
+            }
 
             string areaBackground = "";
             string checker = "";
 
             if (taken.areaLines.Count != 0 && displayArea)
-			{
+            {
                 for (int i = 0; i < taken.areaLines.Count; i++)
                 {
                     areaBackground += DrawAreaLine(taken.areaLines[i], taken.areaLineTypes[i], taken.areaLineDirections[i]);
 
                     if (showCheckerArea)
-                    { 
+                    {
                         if ((taken.areaLineTypes[i] == 2 || taken.areaLineTypes[i] == 3) && taken.areaPairFields.Count > i)
                         {
                             foreach (int[] field in taken.areaPairFields[i])
@@ -4421,12 +4432,12 @@ namespace OneWayLabyrinth
                             }
                         }
                     }
-                } 
+                }
             }
 
             if (showCheckerBoard)
-            { 
-                for(int i = 0; i < size; i++)
+            {
+                for (int i = 0; i < size; i++)
                 {
                     for (int j = 0; j < size; j++)
                     {
@@ -4438,10 +4449,10 @@ namespace OneWayLabyrinth
                 }
             }
 
-			string content = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 " + size + " " + size + "\">\r\n\t<path d=\"M0,0 h" + size + " v" + size + " h-" + size + " z\" fill=\"#dddddd\" />\r\n" + checker + backgrounds + futureBackgrounds + possibles + areaBackground + grid +
-				"\t<path d=\"M " + startPos + "\r\n[path]\" fill=\"white\" fill-opacity=\"0\" stroke=\"black\" stroke-width=\"0.05\" stroke-linecap=\"round\" />\r\n" +
-				futurePath + "</svg>";
-			content = content.Replace("[path]", path);
+            string content = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 " + size + " " + size + "\">\r\n\t<path d=\"M0,0 h" + size + " v" + size + " h-" + size + " z\" fill=\"#dddddd\" />\r\n" + checker + backgrounds + futureBackgrounds + possibles + areaBackground + grid +
+                "\t<path d=\"M " + startPos + "\r\n[path]\" fill=\"white\" fill-opacity=\"0\" stroke=\"black\" stroke-width=\"0.05\" stroke-linecap=\"round\" />\r\n" +
+                futurePath + "</svg>";
+            content = content.Replace("[path]", path);
 
             ReadDir();
 
@@ -4454,18 +4465,18 @@ namespace OneWayLabyrinth
             {
                 tag = (errorInWalkthrough && completedCount > 0) ? completedCount.ToString() : DateTime.Today.Year + "_" + DateTime.Today.Month.ToString("00") + DateTime.Today.Day.ToString("00");
             }
-            
-            Canvas.Tag = tag;
-            svgName =  tag + ".svg";
 
-			File.WriteAllText(baseDir + svgName, content);
-            
+            Canvas.Tag = tag;
+            svgName = tag + ".svg";
+
+            File.WriteAllText(baseDir + svgName, content);
+
             if (completedPathCode != "")
-			{
-				if (loadFile != "" && File.ReadAllText(baseDir + loadFile) != savePath || loadFile == "") File.WriteAllText(baseDir + "completed/" + completedPathCode + ".txt", savePath);
-			}
-			Canvas.InvalidateVisual();
-		}
+            {
+                if (loadFile != "" && File.ReadAllText(baseDir + loadFile) != savePath || loadFile == "") File.WriteAllText(baseDir + "completed/" + completedPathCode + ".txt", savePath);
+            }
+            Canvas.InvalidateVisual();
+        }
 
         private string DrawAreaLine(List<int[]> areaLine, int type, bool directionLeft)
         {
@@ -4541,7 +4552,7 @@ namespace OneWayLabyrinth
                     if (directionLeft)
                     {
                         if (field[0] == prevField[0] && field[0] == nextField[0]) // straight vertical
-                        {                            
+                        {
                             if (field[1] < nextField[1]) // down
                             {
                                 if (prevField[1] == nextField[1]) // single field at the upper edge
@@ -4562,7 +4573,7 @@ namespace OneWayLabyrinth
                                 else
                                 {
                                     areaBackground += "\t<rect width=\"0.25\" height=\"1\" x=\"" + (field[0] - 1) + "\" y=\"" + (field[1] - 1) + "\" fill=\"" + color + "\" fill-opacity=\"0.25\" />\r\n";
-                                }                                
+                                }
                             }
                         }
                         else if (field[1] == prevField[1] && field[1] == nextField[1]) // straight horizontal
@@ -4576,7 +4587,7 @@ namespace OneWayLabyrinth
                                 else
                                 {
                                     areaBackground += "\t<rect width=\"1\" height=\"0.25\" x=\"" + (field[0] - 1) + "\" y=\"" + (field[1] - 1) + "\" fill=\"" + color + "\" fill-opacity=\"0.25\" />\r\n";
-                                }                                
+                                }
                             }
                             else // left
                             {
@@ -4587,7 +4598,7 @@ namespace OneWayLabyrinth
                                 else
                                 {
                                     areaBackground += "\t<rect width=\"1\" height=\"0.25\" x=\"" + (field[0] - 1) + "\" y=\"" + (field[1] - 0.25) + "\" fill=\"" + color + "\" fill-opacity=\"0.25\" />\r\n";
-                                }                                
+                                }
                             }
                         }
                         else if (field[1] < prevField[1]) // up
@@ -4648,7 +4659,7 @@ namespace OneWayLabyrinth
                                 else
                                 {
                                     areaBackground += "\t<rect width=\"0.25\" height=\"1\" x=\"" + (field[0] - 1) + "\" y=\"" + (field[1] - 1) + "\" fill=\"" + color + "\" fill-opacity=\"0.25\" />\r\n";
-                                }                                
+                                }
                             }
                             else // up
                             {
@@ -4674,7 +4685,7 @@ namespace OneWayLabyrinth
                                 {
                                     areaBackground += "\t<rect width=\"1\" height=\"0.25\" x=\"" + (field[0] - 1) + "\" y=\"" + (field[1] - 0.25) + "\" fill=\"" + color + "\" fill-opacity=\"0.25\" />\r\n";
                                 }
-                                
+
                             }
                             else // left
                             {
@@ -4770,7 +4781,7 @@ namespace OneWayLabyrinth
                 var fit = e.Info.Rect.AspectFit(svg.CanvasSize.ToSizeI());
                 e.Surface.Canvas.Scale(fit.Width / svg.CanvasSize.Width);
                 e.Surface.Canvas.DrawPicture(picture);
-            }            
+            }
         }
 
         private void SKElement_PaintSurface3(object sender, SKPaintSurfaceEventArgs e)
@@ -4792,26 +4803,26 @@ namespace OneWayLabyrinth
 
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true, CallingConvention = CallingConvention.Winapi)]
-		public static extern short GetKeyState(int keyCode);
+        public static extern short GetKeyState(int keyCode);
 
-		private void MWindow_PreviewKeyDown(object sender, KeyEventArgs e) // with normal KeyDown, event does not fire after calling FocusButton.Focus();
-		{			
-			if (Size.IsFocused && e.Key != Key.Enter) return;
+        private void MWindow_PreviewKeyDown(object sender, KeyEventArgs e) // with normal KeyDown, event does not fire after calling FocusButton.Focus();
+        {
+            if (Size.IsFocused && e.Key != Key.Enter) return;
             if ((Ref1.IsFocused || Ref2.IsFocused || Ref3.IsFocused) && e.Key != Key.Enter) return;
 
-			if (messageCode != -1 && OKButton.Visibility == Visibility.Visible)
-			{
-				if (e.Key == Key.Enter)
-				{
-					OK_Click(new object(), new RoutedEventArgs());
-				}
-				return;
-			}
+            if (messageCode != -1 && OKButton.Visibility == Visibility.Visible)
+            {
+                if (e.Key == Key.Enter)
+                {
+                    OK_Click(new object(), new RoutedEventArgs());
+                }
+                return;
+            }
 
-			bool CapsLock = (((ushort)GetKeyState(0x14)) & 0xffff) != 0;
+            bool CapsLock = (((ushort)GetKeyState(0x14)) & 0xffff) != 0;
 
-			if (e.Key == Key.Enter)
-			{
+            if (e.Key == Key.Enter)
+            {
                 if (Size.IsFocused)
                 {
                     Reload(false);
@@ -4820,25 +4831,25 @@ namespace OneWayLabyrinth
                 {
                     FocusButton.Focus();
                 }
-				else
+                else
                 {
                     Reload();
                 }
-				//Keyboard.ClearFocus(); removes the focus from the textbox, but the window becomes unresponsive. Calling MWindow.Focus(); will put the focus on the textbox again.
-			}
+                //Keyboard.ClearFocus(); removes the focus from the textbox, but the window becomes unresponsive. Calling MWindow.Focus(); will put the focus on the textbox again.
+            }
             else if (e.Key == Key.Escape && settingsOpen)
             {
                 CloseSettings_Click(null, null);
             }
-			else if (e.Key == Key.Space)
-			{
-				StartStop_Click(new object(), new RoutedEventArgs());
-			}
-			else if (e.Key == Key.S && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
-			{
-				Save_Click(new object(), new RoutedEventArgs());
-				return;
-			}
+            else if (e.Key == Key.Space)
+            {
+                StartStop_Click(new object(), new RoutedEventArgs());
+            }
+            else if (e.Key == Key.S && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            {
+                Save_Click(new object(), new RoutedEventArgs());
+                return;
+            }
             else if (e.Key == Key.E && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && !settingsOpen)
             {
                 OpenSettings_Click(null, null);
@@ -4929,7 +4940,7 @@ namespace OneWayLabyrinth
                     Next_Click(new object(), new RoutedEventArgs());
                 }
             }
-		}
+        }
 
         private void Window_PreviewMouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -5051,14 +5062,14 @@ namespace OneWayLabyrinth
         // ----- Logging -----
 
         public void L(string s)
-		{
-			File.AppendAllText(baseDir + "log_stats.txt", s + "\n");
-		}
+        {
+            File.AppendAllText(baseDir + "log_stats.txt", s + "\n");
+        }
 
         public void M(object o, int code)
-		{
-			Dispatcher.Invoke(() =>
-			{
+        {
+            Dispatcher.Invoke(() =>
+            {
                 messageCode = code;
                 MessageLine.Content = o.ToString();
                 MessageLine.Visibility = Visibility.Visible;
@@ -5092,37 +5103,37 @@ namespace OneWayLabyrinth
         }
 
         private void OK_Click(object sender, RoutedEventArgs e)
-		{
-			HideMessage();
-			switch (messageCode)
-			{
-				case 0:
+        {
+            HideMessage();
+            switch (messageCode)
+            {
+                case 0:
                     errorInWalkthrough = false;
-					break;
+                    break;
                 case 3:
                     MessageLine.Visibility = Visibility.Visible;
                     break;
-				case 1: // when stepping on a future line and it cannot extend
-					possibleDirections.RemoveAt(possibleDirections.Count - 1);
-					PreviousStepWithFuture();
-					inFuture = false;
-					selectedSection = -1;
-					DrawPath();
-					break;
-				case 2: // when added future lines cannot extend
-					possibleDirections.RemoveAt(possibleDirections.Count - 1);
-					PreviousStepWithFuture();
-					DrawPath();
-					break;
-			}
-			messageCode = -1;
-		}
+                case 1: // when stepping on a future line and it cannot extend
+                    possibleDirections.RemoveAt(possibleDirections.Count - 1);
+                    PreviousStepWithFuture();
+                    inFuture = false;
+                    selectedSection = -1;
+                    DrawPath();
+                    break;
+                case 2: // when added future lines cannot extend
+                    possibleDirections.RemoveAt(possibleDirections.Count - 1);
+                    PreviousStepWithFuture();
+                    DrawPath();
+                    break;
+            }
+            messageCode = -1;
+        }
 
-		private void HideMessage()
-		{
-			MessageLine.Visibility = Visibility.Hidden;
-			OKButton.Visibility = Visibility.Hidden;			
-		}
+        private void HideMessage()
+        {
+            MessageLine.Visibility = Visibility.Hidden;
+            OKButton.Visibility = Visibility.Hidden;
+        }
 
 
         // ----- Other -----
@@ -5166,7 +5177,7 @@ namespace OneWayLabyrinth
                     }
                 }
                 M(count + " differences extracted.", 0);
-            }			
+            }
         }
     }
 }

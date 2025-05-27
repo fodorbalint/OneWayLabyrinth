@@ -63,7 +63,7 @@ namespace OneWayLabyrinth
         List<int[]> directions = new() { new int[] { 0, 1 }, new int[] { 1, 0 }, new int[] { 0, -1 }, new int[] { -1, 0 } };
         public string baseDir = AppDomain.CurrentDomain.BaseDirectory;
         bool futureLineMoving = false;
-        List<int[]> futureLine; 
+        List<int[]> futureLine;
         int futureLineCurrentX = 0;
         int futureLineCurrentY = 0;
         int futureLinePrevDir = -1;
@@ -72,7 +72,7 @@ namespace OneWayLabyrinth
         {
             InitializeComponent();
             //LoadDir();
-            LoadSizeSetting();           
+            LoadSizeSetting();
         }
 
         private void SaveSizeSetting()
@@ -272,7 +272,7 @@ namespace OneWayLabyrinth
                     el.Height = 40;
                     el.HorizontalAlignment = HorizontalAlignment.Left;
                     el.VerticalAlignment = VerticalAlignment.Top;
-                    el.Margin = new Thickness((i - 1) % elementsInRow * 50, (i - 1 - (i - 1) % elementsInRow) / elementsInRow * 50, 0, 0); 
+                    el.Margin = new Thickness((i - 1) % elementsInRow * 50, (i - 1 - (i - 1) % elementsInRow) / elementsInRow * 50, 0, 0);
                     RuleGrid.Children.Add(el);
 
                     Panel.SetZIndex(el, i);
@@ -388,8 +388,6 @@ namespace OneWayLabyrinth
             string sizeStr = newRule.Substring(pos + 13, lastPos - pos - 13);
             newRule = newRule.Replace("viewBox=\"0 0 " + sizeStr, "viewBox=\"0 0 " + xSize + " " + ySize);
 
-            T(newRule);
-
             int pos1 = newRule.IndexOf("<!--2-->");
             int pos2 = newRule.IndexOf("<!--3-->");
             newRule = newRule.Substring(0, pos1 + 8) + "\n" + grid + newRule.Substring(pos2);
@@ -429,7 +427,7 @@ namespace OneWayLabyrinth
             SaveRule.Visibility = Visibility.Collapsed;
             ResetRule.Visibility = Visibility.Collapsed;
             Cancel.Visibility = Visibility.Collapsed;
-        }       
+        }
 
 
         // ----- Rule creation process -----
@@ -507,8 +505,8 @@ namespace OneWayLabyrinth
 
             if (coordX <= xSize && coordY <= ySize)
             {
-                T("End in table: " + coordX + " " + coordY);        
-                
+                T("End in table: " + coordX + " " + coordY);
+
                 /*if (draggedElement >= 13 && draggedElement <= 21)
                 { // count area fields can only be placed on empty fields
                     foreach (int[] coord in takenCoordinates)
@@ -648,12 +646,13 @@ namespace OneWayLabyrinth
                 }*/
                 else if (draggedElement == 9)
                 {
-                    futureLineMoving = true;                    
+                    futureLineMoving = true;
                     futureLineCurrentX = coordX;
                     futureLineCurrentY = coordY;
-                    futureLine = new List<int[]> { new int[] { coordX, coordY } };                    
+                    futureLine = new List<int[]> { new int[] { coordX, coordY } };
                 }
-                else {
+                else
+                {
                     if (draggedElement == 1)
                     {
                         if (forbiddenCoordinates.Count == 1)
@@ -798,46 +797,46 @@ namespace OneWayLabyrinth
                     case 10:
                         addField = forbiddenField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1)).Replace("M 0.2 0.2", "M " + (coordX - 1 + 0.2f) + " " + (coordY - 1 + 0.2f)).Replace("M 0.2 0.8", "M " + (coordX - 1 + 0.2f) + " " + (coordY - 1 + 0.8f));
                         break;
-                    /*case 9:
-                        addField = futureStartField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1)).Replace("M 0.2 0.2", "M " + (coordX - 1 + 0.2f) + " " + (coordY - 1 + 0.2f));
-                        break;
-                    case 10:
-                        addField = futureEndField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1)).Replace("M 0.2 0.5", "M " + (coordX - 1 + 0.2f) + " " + (coordY - 1 + 0.5f));
-                        break;
-                    case 11:
-                        addField = notCornerField.Replace("M 0.3 0.2", "M " + (coordX - 0.7f) + " " + (coordY - 0.8f)).Replace("0.42", (coordX - 0.58f).ToString()).Replace("0.58", (coordY - 0.42f).ToString());
-                        break;
-                    case 12:                        
-                    case 13:
-                        addField = countAreaPairStartField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1)).Replace("M 0.3 0.3", "M " + (coordX - 1 + 0.3f) + " " + (coordY - 1 + 0.3f));
-                        break;
-                    case 14:
-                        addField = countAreaPairEndField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1)).Replace("M 0.3 0.5", "M " + (coordX - 1 + 0.3f) + " " + (coordY - 1 + 0.5f));
-                        break;
-                    case 15:
-                        addField = countAreaPairBorderField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1));
-                        break;
-                    case 16:
-                        addField = countAreaImpairStartField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1)).Replace("M 0.3 0.3", "M " + (coordX - 1 + 0.3f) + " " + (coordY - 1 + 0.3f));
-                        break;
-                    case 17:
-                        addField = countAreaImpairEndField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1)).Replace("M 0.3 0.5", "M " + (coordX - 1 + 0.3f) + " " + (coordY - 1 + 0.5f));
-                        break;
-                    case 18:
-                        addField = countAreaImpairBorderField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1));
-                        break;
-                    case 19:
-                        addField = countAreaImpairDeterminedStartField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1)).Replace("M 0.3 0.3", "M " + (coordX - 1 + 0.3f) + " " + (coordY - 1 + 0.3f));
-                        break;
-                    case 20:
-                        addField = countAreaImpairDeterminedEndField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1)).Replace("M 0.3 0.5", "M " + (coordX - 1 + 0.3f) + " " + (coordY - 1 + 0.5f));
-                        break;
-                    case 21:
-                        addField = countAreaImpairDeterminedBorderField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1));
-                        break;
-                    case 22:
-                        addField = countAreaImpairDeterminedEntryField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1)).Replace("M 0.3 0.5", "M " + (coordX - 0.7f) + " " + (coordY - 0.5f)).Replace("M 0.5 0.3", "M " + (coordX - 0.5f) + " " + (coordY - 0.7f));
-                        break;*/
+                        /*case 9:
+                            addField = futureStartField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1)).Replace("M 0.2 0.2", "M " + (coordX - 1 + 0.2f) + " " + (coordY - 1 + 0.2f));
+                            break;
+                        case 10:
+                            addField = futureEndField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1)).Replace("M 0.2 0.5", "M " + (coordX - 1 + 0.2f) + " " + (coordY - 1 + 0.5f));
+                            break;
+                        case 11:
+                            addField = notCornerField.Replace("M 0.3 0.2", "M " + (coordX - 0.7f) + " " + (coordY - 0.8f)).Replace("0.42", (coordX - 0.58f).ToString()).Replace("0.58", (coordY - 0.42f).ToString());
+                            break;
+                        case 12:                        
+                        case 13:
+                            addField = countAreaPairStartField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1)).Replace("M 0.3 0.3", "M " + (coordX - 1 + 0.3f) + " " + (coordY - 1 + 0.3f));
+                            break;
+                        case 14:
+                            addField = countAreaPairEndField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1)).Replace("M 0.3 0.5", "M " + (coordX - 1 + 0.3f) + " " + (coordY - 1 + 0.5f));
+                            break;
+                        case 15:
+                            addField = countAreaPairBorderField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1));
+                            break;
+                        case 16:
+                            addField = countAreaImpairStartField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1)).Replace("M 0.3 0.3", "M " + (coordX - 1 + 0.3f) + " " + (coordY - 1 + 0.3f));
+                            break;
+                        case 17:
+                            addField = countAreaImpairEndField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1)).Replace("M 0.3 0.5", "M " + (coordX - 1 + 0.3f) + " " + (coordY - 1 + 0.5f));
+                            break;
+                        case 18:
+                            addField = countAreaImpairBorderField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1));
+                            break;
+                        case 19:
+                            addField = countAreaImpairDeterminedStartField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1)).Replace("M 0.3 0.3", "M " + (coordX - 1 + 0.3f) + " " + (coordY - 1 + 0.3f));
+                            break;
+                        case 20:
+                            addField = countAreaImpairDeterminedEndField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1)).Replace("M 0.3 0.5", "M " + (coordX - 1 + 0.3f) + " " + (coordY - 1 + 0.5f));
+                            break;
+                        case 21:
+                            addField = countAreaImpairDeterminedBorderField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1));
+                            break;
+                        case 22:
+                            addField = countAreaImpairDeterminedEntryField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1)).Replace("M 0.3 0.5", "M " + (coordX - 0.7f) + " " + (coordY - 0.5f)).Replace("M 0.5 0.3", "M " + (coordX - 0.5f) + " " + (coordY - 0.7f));
+                            break;*/
                 }
 
                 if (draggedElement == 9)
@@ -909,11 +908,11 @@ namespace OneWayLabyrinth
 
                     DrawPath();
                 }
-            }            
+            }
         }
 
         private void DrawPath()
-        {            
+        {
             int startX = futureLine[0][0];
             int startY = futureLine[0][1];
             float posX = startX - 0.5f;
@@ -931,7 +930,7 @@ namespace OneWayLabyrinth
                 float prevX = posX;
                 float prevY = posY;
 
-                if(startY == newY)
+                if (startY == newY)
 
                 {
                     posX = (float)(startX + newX) / 2 - 0.5f;
@@ -1507,7 +1506,7 @@ namespace OneWayLabyrinth
                                 return false;
                             }
                             break;
-                    } 
+                    }
                 }
             }
 
@@ -2075,7 +2074,7 @@ namespace OneWayLabyrinth
 
         // ----- Metadata settings -----
 
-        
+
         /*private void RotateClockwise_Click(object sender, RoutedEventArgs e)
         {
             if (RotateClockwise.IsChecked == null || (bool)RotateClockwise.IsChecked)
@@ -2096,17 +2095,17 @@ namespace OneWayLabyrinth
 
         /*private void CircleDirectionLeft_Click(object sender, RoutedEventArgs e)
         {*/
-            /*if (!(arrowStart is null) && !(arrowEnd is null))
-            {
-                int pos = newRule.IndexOf("<!-- " + arrowStart[0] + " " + arrowStart[1] + " " + arrowEnd[0] + " " + arrowEnd[1] + " 15 -->");
+        /*if (!(arrowStart is null) && !(arrowEnd is null))
+        {
+            int pos = newRule.IndexOf("<!-- " + arrowStart[0] + " " + arrowStart[1] + " " + arrowEnd[0] + " " + arrowEnd[1] + " 15 -->");
 
-                newRule = newRule.Substring(0, pos) + "<!-- " + arrowEnd[0] + " " + arrowEnd[1] + " " + arrowStart[0] + " " + arrowStart[1] + " 15 -->\n\t<path d=\"" + DrawArrow(arrowEnd[0], arrowEnd[1], arrowStart[0], arrowStart[1]) + "\" fill=\"white\" fill-opacity=\"0\" stroke=\"black\" stroke-width=\"0.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n</svg>";
-            }*/
-
-            /*File.WriteAllText(baseDir + svgName, newRule);
-            Canvas.InvalidateVisual();
-            SaveMeta();
+            newRule = newRule.Substring(0, pos) + "<!-- " + arrowEnd[0] + " " + arrowEnd[1] + " " + arrowStart[0] + " " + arrowStart[1] + " 15 -->\n\t<path d=\"" + DrawArrow(arrowEnd[0], arrowEnd[1], arrowStart[0], arrowStart[1]) + "\" fill=\"white\" fill-opacity=\"0\" stroke=\"black\" stroke-width=\"0.05\" stroke-linecap=\"round\" stroke-linejoin=\"round\" />\n</svg>";
         }*/
+
+        /*File.WriteAllText(baseDir + svgName, newRule);
+        Canvas.InvalidateVisual();
+        SaveMeta();
+    }*/
 
         /*private void SaveMeta()
         {

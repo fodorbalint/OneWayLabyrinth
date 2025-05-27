@@ -2164,6 +2164,14 @@ It is again about the movement rules on the area border, but it is a new case. I
 
 <!---->
 
+The pattern remains true if we offset the first obstacle by one.
+
+<img align="top" src="References/2024_0817.svg" width="13" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/corner 1 5 double obstacle inside.svg" width="4" />
+
+<!---->
+
+Here, the distance to the first obstacle is shorter.
+
 <img align="top" src="References/2024_0619.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/5 dist up lines v2.svg" width="4" />
 
 At the previous step, the area is 1W. (1B with the shown checkerboard.) Looking at the rule represenation, stepping right is already disabled, but we cannot step straight either due to the second obstacle.
@@ -2173,11 +2181,11 @@ To group these situations, first we check the area like this:
 <img align="top" src="References/up next.svg" width="2" />
 
 Then, depending on the distance, we will know that we need to step up after entering the area in the following cases:
-3 distance: 1W
-4 distance: 1B, but this situation cannot arise, because then we wouldn't be able to enter the area now.
 
 <!---->
 
+3 distance: 1W
+4 distance: 1B, but this situation cannot arise, because then we wouldn't be able to enter the area now.
 5 distance: 1W
 6 distance: If the area is 1B, it can be filled without having to enter at the first black field or having to step up if we do so.
 
@@ -2186,12 +2194,15 @@ The rule has three rotations. The obstacle defining the area can be:
 - Right up side
 - Bottom right side
 
-The second obstacle is in mid across position relative to the entry point as we have seen in the examples. We do not go wrong if we include checking for an across obstacle, but is it necessary?
+The second obstacle is in mid across position relative to the entry point as we have seen in the examples. But we do not go wrong if we include checking for an across obstacle, and indeed, there is one here:
 
-If we run statistics now, it turns out that without these area border movement rules, the average number of walkthroughs before getting an error is 293, based on 100 attempts. By adding them, the number increases to 695. It tells us that in over half of the failures, this is the solution.
-This is a useful tool for debugging too. If, by introducing a new rule set, the errors become more frequent, there is a mistake in the algorithm.
-When we finished the 7&nbsp;x&nbsp;7 grid, the statistics gave us 5.7 walkthroughs on 11&nbsp;x&nbsp;11 using those rules.
-By developing the algorithm further, we have solved 99% of the cases we could not at that time. We get a little less ratio on a 21&nbsp;x&nbsp;21 grid, but of a similar order of magnitude: 9 vs. 0.2.
+<img align="top" src="References/2024_0717_2.svg" width="11" />
+
+<!---->
+
+We can also make the rule general by adding stairs to the beginning. As long as the area is 1W, a start obstacle should be checked for.
+
+<img align="top" src="References/start obstacle inside 1 6 across.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/start obstacle inside 1 4 across.svg" width="4" />
 
 <!---->
 
@@ -2281,7 +2292,7 @@ In the left representation, we enter at the first left field. On the right, we e
 
 <!---->
 
-<b>4.5 Stair at start</b>
+<b>5. Stair at start</b>
 
 To continue the previous pattern, here is a case where there does not need to be a double obstacle at the exit point of the stair, but the area border has the same shape. The area is W = B.
 
@@ -2291,7 +2302,7 @@ At the exit point, an impair area is created with the second obstacle.
 
 <!---->
 
-<b>5. Start obstacle outside</b>
+<b>6. Start obstacle outside</b>
 
 <img align="top" src="References/2024_0715.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/straight 5 dist start obstacle.svg" width="4" />
 
@@ -2331,7 +2342,7 @@ If we enter now, the corner blacks will have to be filled separately, so we must
 
 <!---->
 
-<b>6. End obstacle outside at x and y distance</b>
+<b>7. End obstacle outside at x and y distance</b>
 
 We began the border movement rules with end obstacles that were close relative to the exit point. This has to be extended so that if we find any corner at x and y distance in the upper left quarter that makes up an area we cannot enter later, the rule applies. But first, let's look at some cases we have missed.
 
@@ -2410,7 +2421,7 @@ Again, the distance can be increased, the area is now 2B:
 
 <!---->
 
-<b>7a. Stair at end convex</b>
+<b>8. Stair at end convex</b>
 
 <img align="top" src="References/2024_1008.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/Stair at end convex rule.svg" width="5" />
 
@@ -2422,7 +2433,7 @@ When we extend the rule (with the start area being 2B now), it is clear where th
 
 <!---->
 
-<b>7b. Stair at end convex + stair sequence</b>
+<b>9. Stair at end convex + stair sequence</b>
 
 <img align="top" src="References/2024_0706_1.svg" width="13" />
 
@@ -2444,7 +2455,7 @@ The start obstacle can be shifted by one vertically, and it will give us the sam
 
  <!---->
 
-<b>8. Stair + 2 obstacles</b>
+<b>10. Stair + 2 obstacles</b>
 
 <img align="top" src="References/2024_0726.svg" width="11" />
 
@@ -2463,7 +2474,7 @@ These cases were previously solved by applying a sequence on the right side afte
 
 <!---->
 
-<b>9. 3 x 3 Stair</b>
+<b>11. 3 x 3 Stair</b>
 
 This is another case where the sequence would be applied on the opposite of the normal side.
 
@@ -2477,89 +2488,7 @@ If one case that does not fit into the system, it is okay to treat it separately
 
 <!---->
 
-<b>10. Sequence extensions</b>
-
-<img align="top" src="References/2024_0704.svg" width="11" />
-
-Second case of sequence (page 145). Until now, we only checked for C-shapes and close obstacles on the left side when we exit an area, and now we need to add corner discovery to find an obstacle at any x and y distance that creates an area we have to enter now. 
-
-<!---->
-
-In the next one, the area is on the right side.
-
-<img align="top" src="References/2024_0706.svg" width="11" />
-
-A new start area might occur in the form of a next step C-shape. In this, there is a regular stair pattern that leads to an area on the right side.
-
-<img align="top" src="References/2024_0630.svg" width="11" /><img src="References/spacer.svg" width="1" /><img src="References/stair area.svg" width="5" />
-
-<!---->
-
-There can also be two close obstacles in the end:
-
-<img align="top" src="References/2024_0720.svg" width="11" /><img src="References/spacer.svg" width="1" /><img src="References/stair area end.svg" width="4" />
-
-In the next example, this occurs after multiple steps:
-
-<img align="top" src="References/2024_1006_marked.svg" width="13" />
-
-<!---->
-
-And here is an example where the sequence is not only a stair but changes direction twice.
-
-<img align="top" src="References/2024_0723.svg" width="11" />
-
-<!---->
-
-We know the area and the border movement of the following case.
-
-<img align="top" src="References/2024_0724.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/up 3 sequence.svg" width="5" />
-
-Until now, we checked for end obstacles at the white corner, but given the known exit field, we should also check for two close (and maybe far) obstacles on each side.
-And indeed, the left side turns out to be a far obstacle here:
-
-<img align="top" src="References/2024_0725_2.svg" width="11" />
-
-<!---->
-
-There can also be a sequence by going along the left side here:
-
-<img align="top" src="References/2024_0727_5.svg" width="11" />
-
-<!--When the distance to the first obstacle is over 3, the chances are no sequence exist, because the line can exit and re-enter the start area, filling some fields outside of it.-->
-
-<!---->
-
-<img align="top" src="References/2024_0724_1.svg" width="11" />
-
-This is a perfect example of a sequence that travels along the edges, not filling the center.
-For start pattern, we check the following:
-
-<img align="top" src="References/2024_0724_1_rule.svg" width="2" />
-
-It is also obvious that it has two rotations.
-
-<!---->
-
-A similar case will shed light onto the fact that we need to improve the sequence algorithm.
-
-<img align="top" src="References/2025_0516.svg" width="13" />
-
-Although it is obvious we cannot step straight here, a case could be constructed where the close mid across obstacle would not be present. And the sequence runs into an error unless we check for a straight C-shape on the right side whenever a step is found on the left. This has to be done two steps back in the example.
-
-<!---->
-
-<b>8. Area end sequence</b>
-
-<img align="top" src="References/2024_0711.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/corner 3 1 sequence.svg" width="6" />
-
-This can be considered as the fifth start area of sequence, but what in reality happens here is that we start with an 5&nbsp;x&nbsp;3 area which is 1B, and in order to fill it after entering at white, we have to exit at the farthest black and then fill the corner black separately.
-But when we exit for the first time, a stair shape will force the line on a course that leads to a C-shape on the left and a close across obstacle on the right. The corner black will therefore not be filled.
-In the program, we apply sequence after discovering a start area like this. We may consider extending the rule for a larger horizontal distance, adding +1B value for every 4 extension, but it is not safe to do so, because then the area can be filled even if we do not exit at the farthest black for the first time.
-
-<!---->
-
-<b>9. Reverse stair</b>
+<b>12. Reverse stair</b>
 
 <img align="top" src="References/2024_0718.svg" width="11" />
 
@@ -2567,13 +2496,13 @@ The line in this case has to make a stair as shown on page 179-181, but now we a
 
 <img align="top" src="References/StairAtEndConvex 3 1 later.svg" width="6" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/StairAtEndConvex 3 2 later.svg" width="6" />
 
-Having a W = B area, we either need to enter or exit at the white field. It is an extension of the double obstacle outside rule (page 172-173).
+Having a W = B area, we either need to enter or exit at the white field. It is an extension of the double obstacle outside rule (page 175).
 
 There have been found cases where the left obstacle is mid across, and the right obstacle is a C-shape.
 
 <!---->
 
-<b>10. Reverse stair 3 obstacles</b>
+<b>13. Reverse stair 3 obstacles</b>
 
 At every 10 million attempts, a pattern like this emerges:
 
@@ -2634,11 +2563,11 @@ An example for the Reverse stair 3 obstacles is quickly found where the stair is
 
 <!---->
 
-And, here is the next one to figure out:
+<b>14. Stair at end concave</b>
 
 <img align="top" src="References/2024_0814.svg" width="13" />
 
-We have seen this pattern before. It is the Double obstacle inside (page 169), but now it starts with a stair.
+We have seen this pattern before. It is the Double obstacle inside (page 172), but now it starts with a stair.
 
 <img align="top" src="References/double obstacle inside 4x1 1.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/double obstacle inside 4x1 2.svg" width="5" />
 
@@ -2647,27 +2576,23 @@ It is easy to see that the stair part can be extended to any length.
 
 <!---->
 
-And also, the top can be a field longer, so it will solve the second case of Double obstacle inside as shown on page 170:
+And also, the top can be a field longer, so it will solve the second case of Double obstacle inside as shown on page 173:
 
 <img align="top" src="References/double obstacle inside 5x1 1.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/double obstacle inside 5x1 2.svg" width="5" />
 
 <!---->
 
-Wherever we get stuck and see a 3-long indentation in the taken area, we can suspect a double obstacle pattern. 
+This is a variation of the Double obstacle inside pattern at 4 distance (page 172):
 
-The next example would be another variation, only the upper obstacle does not need to be checked due to the fixed movement on the area borderline.
+<img align="top" src="References/2024_0820.svg" width="13" />
 
-<img align="top" src="References/2024_0817.svg" width="13" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/corner 1 5 double obstacle inside.svg" width="4" />
+<img align="top" src="References/double obstacle inside 4 dist mid across C 1.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/double obstacle inside 4 dist mid across C 2.svg" width="4" />
 
-The result is a Start obstacle inside pattern (page 166). While at that time we only looked at the 0 horizontal distance obstacle, now it is at 1 distance, but the examined area is the same.
-
-<!---->
-
-We can also make the rule general by adding stairs to the beginning. As long as the area is 1W, a start obstacle should be checked.
-
-<img align="top" src="References/start obstacle inside 1 6 across.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/start obstacle inside 1 4 across.svg" width="4" />
+This time, we have a C-shape at the far end. This can be applied to any of the three other distances as well.
 
 <!---->
+
+<b>15. Remote stair</b>
 
 In the next example, the 3-long wall on the left together with the stair going downwards right encloses and area where the live end makes a near obstacle with one of the fields on the borderline. 
 
@@ -2678,13 +2603,150 @@ In theory, the live end can also be a close across obstacle. In that case, the c
 
 <!---->
 
-This is a variation of the double obstacle inside pattern at 4 distance (page 169):
+<b>16. Sequence extensions</b>
 
-<img align="top" src="References/2024_0820.svg" width="13" />
+There are new sequence cases. A logical way to structure them is to group them by the start obstacle placement. They will be given as "horizontal distance, vertical distance", and the side they are on is called left, even if in the example it is mirrored. I will also write how many rotations are possible. If the obstacle placement is on the left in the first rotation, the second will change it to be straight ahead, the third to the right, the fourth to behind.
+Until now, we only checked for C-shapes and close obstacles on the left side, but it will soon change. Remote corner obstacles have to be checked for, which create an area we cannot enter later. 
+For completeness, I will include situations we are already familiar with.
 
-<img align="top" src="References/double obstacle inside 4 dist mid across C 1.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/double obstacle inside 4 dist mid across C 2.svg" width="4" />
+<!---->
 
-This time, we have a C-shape at the far end. This can be applied to any of the three other distances as well.
+<b>3, 0</b>
+Two rotations.
+
+C-shape left, area right
+
+<img align="top" src="References/2024_0706.svg" width="11" />
+
+Area left, mid across right
+
+<img align="top" src="References/2024_0704.svg" width="11" />
+
+<!---->
+
+C-shape left, mid across right
+
+<img align="top" src="References/2024_1005.svg" width="13" />
+
+Across left, mid across right
+
+<img align="top" src="References/2024_1006.svg" width="13" />
+
+<!---->
+
+<b>3, -1</b>
+Three rotations.
+
+C-shape left, across right
+
+<img align="top" src="References/2024_0516_6.svg" width="8" />
+
+<b>4, 0</b>
+Three rotations.
+
+C-shape left, mid across right
+
+<img align="top" src="References/2024_1115.svg" width="13" />
+
+<!---->
+
+<b>4, -1</b>
+Three rotations.
+
+Across left, mid across right
+
+<img align="top" src="References/2024_0724.svg" width="11" />
+
+C-shape left, across right
+
+<img align="top" src="References/2024_0727_5.svg" width="11" />
+
+<!---->
+
+Mid across left, across right
+
+<img align="top" src="References/2024_0727_2.svg" width="11" />
+
+Area left, mid across right
+
+<img align="top" src="References/2024_0725_2.svg" width="11" />
+
+When the horizontal distance of the start obstacle is over 4, the chances are that no sequence exist, because the line can exit and re-enter the start area, filling some fields outside of it.
+
+<!---->
+
+<b>2, 1 (stair shape)</b>
+First and fourth rotation.
+
+C-shape left, area right
+
+<img align="top" src="References/2024_0630.svg" width="11" />
+
+Across left, mid across right
+
+<img align="top" src="References/2024_0720.svg" width="11" />
+
+<!---->
+
+C-shape left, across right
+
+<img align="top" src="References/2024_0723.svg" width="11" />
+
+<!---->
+
+<b>0, 3 and 1, -1</b>
+Two rotations
+
+If we take one step straight, we are at the previous case, only we cannot avoid going left from there.
+
+C-shape left, across right
+
+<img align="top" src="References/2024_0724_1.svg" width="11" />
+
+<!---->
+
+Although the end of the sequence can consist of multiple combinations of:
+- c-shape left
+- mid across left
+- scross left
+- area left
+and
+- mid across right
+- across right
+- area right,
+each step of it is either a c-shape or a mid across on the left side. In the latter case, the line changes direction.
+
+Here is an example walkthrough:
+
+<img align="top" src="References/2024_1005_1.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/2024_1005_2.svg" width="9" />
+<img src="References/spacer.svg" height="1" />
+<img align="top" src="References/2024_1005_3.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/2024_1005_4.svg" width="9" />
+
+<!---->
+
+<img align="top" src="References/2024_1005_5.svg" width="9" />
+
+But the sequence algorithm is not complete.
+Look at this case:
+
+<img align="top" src="References/2025_0516.svg" width="13" />
+
+Although it is obvious we cannot step straight here, a case could be constructed where the close mid across obstacle would not be present. And the sequence runs into an error unless we check for a straight C-shape on the right side whenever a step is found on the left. This has to be done two steps back in the example.
+
+<!---->
+
+If we run statistics after completing section 2 (Start obstacle inside), it turns out that without these area border movement rules, the average number of walkthroughs before getting an error is 293, based on 100 attempts. By adding them, the number increases to 695. It tells us that in over half of the failures, this is the solution.
+This is a useful tool for debugging too. If, by introducing a new rule set, the errors become more frequent, there is a mistake in the algorithm.
+When we finished the 7&nbsp;x&nbsp;7 grid, the statistics gave us 5.7 walkthroughs on 11&nbsp;x&nbsp;11 using those rules.
+By developing the algorithm further, we have solved 99% of the cases we could not at that time. We get a little less ratio on a 21&nbsp;x&nbsp;21 grid, but of a similar order of magnitude: 9 vs. 0.2.
+
+Taking into account all discovered rules, there is no unsolved case on the 11 x 11 board after running 1 million random cases. For 13 x 13, the error rate is 1 in 4000.
+
+<!---->
+
+The 16 rule categories is as simple as the algorithm gets at this point. So far, every case has been solvable using them, and I expect it to continue like that. The new errors should point to missing cases in the algorithm or a finite amount of new, similar patterns will emerge.
+Maybe some of them can be grouped to simplify things, but the ideal solution would be something that is based on a single idea, even if several cases have to be examined due to the number of directions and rotations available. The single area rule, where we counted the number of black and white fields and compared them to the border line, met these criteria, but it was not enough.
+If the solution involves examing a multitude of patterns, there will be no way to prove that we have covered all cases either. We have just found an algorithm that reliably goes through a square grid.
 
 <!---->
 
@@ -2725,11 +2787,22 @@ Exact calculation line:
 
 <span class="header">Development / correction notes</span>
 
+<b>Solved, needs documentation:</b>
+
+(Statitics: around 4000)
+2025_0522: LeftRightCorner, area has a maximum allowed of white fields. There is an across obstacle at the bottom of the stair edge
+2025_0522_1: Stair at end concave straight 4
+2025_0525: Stair at end concave straight 5
+2025_0525_1: Stair at end convex 4
+2025_0527: Stair at end concave straight 3 (Statitics: 6348)
+
 <b>Developments:</b>
 
 Calculate next step enter left and right for any AreaUp and Corner distance. (page 129)
 Extend 0720_3 case to any horizontal distance (page 180)
 Check if opposite empty fields should be disabled at certain rotations of the 4 single area rule groups. (fx. LeftRightAreaUpExtended closed corner 4: Cannot step down). A safety check can be impelmented: if the left and right direction is available but the straight direction is disabled, and there is not a close obstacle/corner on both sides, it is an error.
+
+<!---->
 
 <b>Improvements:</b>
 
@@ -2738,8 +2811,6 @@ Review rules if they have unnecessary rotations when disabling a field, fx. stra
 Review CountArea old and new algorithms
 Do not disable a possible field (and display the area) if the field is taken anyway (0725_4, 0731 step straight)
 All Sequence patterns should be replaced with stair-area rules like 0725_5. Is it possible? At 0726_2, applying sequence is unnecessary. 
-
-<!---->
 
 <b>Display:</b>
 
@@ -2751,6 +2822,8 @@ Next step left/right areas could be shown in program
 Specify future line extension and connection rules on page 3?
 The corner discovery head can be in any of the 4 quarters and the area is still closed at the right position. Only stop when reaching the corner or passing by the live end.
 
+<!---->
+
 <b>Find example:</b>
 
 StartObstacleInside corner (nextY - nextX) % 4 = 2 (0619 extension, page 207)
@@ -2759,43 +2832,23 @@ Stair extensions: flat top far away (0725_6) where the end obstacle is far away.
 StraightSmall 2 and 3 with stair leg, like StairAtEndConcave5 and 6.
 StairAtEndConcave6 with other than 2 x mid across obstacles 
 
-<!---->
-
 <b>To do:</b>
 
-Finished, needs documentation:
-
-Categories of Sequence2 with examples:
-Start 3,0 end at corner (0706 (also StairAtEndConvexStraight3), 1001)
-Start 3.0 end at mid across (1005)
-Start 3,0 end at corner on left, mid across on right: 0704, 1014
-Start 3,-1 at at across (0516_6/0516_7/0516_8)
-Start stair: 0723
-Start 4, -1: 0727_5
-Start 4, 0: 1115 
-Start 0, 3 and stair: 0724_1
-Start 4, 1: 0706_1
-
-Is 0711 CheckStairAtEndConvexStraight3 Stair? Corner 4 2 Sequence should be eliminated as it uses CheckSequenceRecursive.
-
-CheckStairAtEndConvexStraight3 Stair is a sequence as well, with 4, 1 start obstacle, but it is not implemented there (0706_1, 1006_1)
-
-<!---->
-
-Other tasks:
-
-When loading a file, possible fields are not displayed as numbers on the top?
+In the rules for 2025_0522 to 2025_0527, the second obstacle is always mid across, but I used CheckNearFieldSmallRel1 which also solves the across cases. They might never occur.
+Review page number references
+Remove unnecessary markings in the five 1005 examples (sequence walkthrough)
+When loading a file, possible fields are not displayed as numbers on the top. Does it only happen when the calculated moves are not the same as in the file?
 CheckStairAtEndConvexStraight3 Stair: Can the down field be free in rotation 1?
 Checking corner is not implemented in CheckStairAtEndConvexStraight3 4, 2 start obstacle before an example is found.
 0727_5 is added to Sequence2, but we need to think about a general UpExtended start area where distance to the obstacle % 4 = 3.
 Display relevant area rules in examples or clean them up where unnecessary rules are displayed. (For example 1012_1)
+
+<!---->
+
 StairAtStart: are there 5 and 6-distance top stairs?
 Hypothesis: A wrong rule that unnecessarily disables a field does not only limit the number of walkthroughs but will result in a stuck case.
 Page 180: rewrite corner 5 1 extended stair 2.svg for stair at end convex straight.
 0516_2 is both StairAtEndConvex and StairAtStart (representation: StairAtEndConvex 3 1 now nostair.svg and StairAtEndConvex 3 2 now nostair.svg)
-
-<!---->
-
 Make pattern set representation: 0625 can be extended vertically, holding a fixed 2 horizontal distance, or in a stair at the far end, so that vert = hori + 2. The two can also be combined. The same can happen with 0625_1, which is just one vertical distance shorter. (Stair extension: 0712)
 
 <!--

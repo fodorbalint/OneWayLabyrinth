@@ -25,9 +25,9 @@ The project contains the source code for use with Visual Studio. To start the pr
 
 Screenshots:
 
-<img align="top" src="References/screenshot_main.png" width="100%"/><br />
+<img align="top" src="References/screenshot_main2.png" width="100%"/><br />
 <img src="References/spacer.svg" height="54"/><br />
-<img align="top" src="References/screenshot_rules.png" width="100%"/>
+<img align="top" src="References/screenshot_rules2.png" width="100%"/>
 
 ---
 

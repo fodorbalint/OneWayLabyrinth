@@ -8,5 +8,5 @@ displayArea: True
 makeStats: True
 activeRules: False
 checkerArea: True
-checkerBoard: False
-references: 2024_0820;2024_0619;2024_0717_2
+checkerBoard: True
+references: 2025_0527_1;2025_0527_1_rule1;2025_0527_1_rule2
