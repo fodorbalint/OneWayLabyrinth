@@ -31,7 +31,7 @@ In the beginning, I let it run on a 21&nbsp;x&nbsp;21 field, and whenever the li
 
 A 3&nbsp;x&nbsp;3 area can only be filled in two ways, which are mirrored versions of each other:
 
-<img src="References/3x3.svg" width="3" /><img src="References/spacer.svg" width="1" /><img src="References/3x3_1.svg" width="3" />
+<img src="References/3x3.svg" width="3" />[spacer]<img src="References/3x3_1.svg" width="3" />
 
 The 5&nbsp;x&nbsp;5 requires much more consideration. Whenever it is possible to draw future lines, the program has to be able to do it. The future lines can not only extend at each step but connect too.
 
@@ -42,7 +42,7 @@ Here are the things to consider on a grid of this size:
 
 <!---->
 
-<img src="References/rules/5/C-Shape.svg" width="4" align="top" /><img src="References/spacer.svg" width="1" /><img src="References/C-Shape example.svg" width="5" align="top" />
+<img src="References/rules/5/C-Shape.svg" width="4" align="top" />[spacer]<img src="References/C-Shape example.svg" width="5" align="top" />
 
 - A single field next to the live end that is walled from two other sides (either by the border or the line) needs to be filled in the next step. I call it C-shape. The pattern is both mirrored and rotated, so that the empty field is straight ahead. To qualify for this rule, the empty field cannot be the end corner. If there is a C-shape, we don't need to check other rules.
 
@@ -62,15 +62,15 @@ Here are the things to consider on a grid of this size:
 
 <!---->
 
-<img src="References/1019_9.svg" width="5" /><img src="References/spacer.svg" width="1" /><img src="References/1019_10.svg" width="5" />
+<img src="References/1019_9.svg" width="5" />[spacer]<img src="References/1019_10.svg" width="5" />
 
 - Future line extension when we step on a future line: The far can be extended if it was 2 distance away from the near end. It can now fill the C-shape.
 
-<img src="References/1021_4.svg" width="5" /><img src="References/spacer.svg" width="1" /><img src="References/1021_5.svg" width="5" /><img src="References/spacer.svg" width="1" /><img src="References/1021_6.svg" width="5" />
+<img src="References/1021_4.svg" width="5" />[spacer]<img src="References/1021_5.svg" width="5" />[spacer]<img src="References/1021_6.svg" width="5" />
 
 The same goes with 1 x- and y-distance. A C-Shape is not always created in this case.
 
-<img src="References/1019_11.svg" width="5" /><img src="References/spacer.svg" width="1" /><img src="References/1019_12.svg" width="5" />
+<img src="References/1019_11.svg" width="5" />[spacer]<img src="References/1019_12.svg" width="5" />
 
 If the far end was near the end corner, it has to choose the other empty field.
 
@@ -80,11 +80,11 @@ If the far end was near the end corner, it has to choose the other empty field.
 
 - Future line extension when stepping away: If there was a near end where the main line was in the previous step, it now may have only one choice to move, so it can be extended.
 
-<img src="References/future connection.svg" width="5" /><img src="References/spacer.svg" width="1" /><img src="References/0821_4.svg" width="5" />
+<img src="References/future connection.svg" width="5" />[spacer]<img src="References/0821_4.svg" width="5" />
 
 - Future line connection: In this case, the line being stepped on extends until the far end has two options. (When the end corner is one of them, it has to be removed.) Then, the line on the left extends and now has no other option than to connect to the line on the right.
 
-<img src="References/0930.svg" width="5" /><img src="References/spacer.svg" width="1" /><img src="References/0930_0_1.svg" width="5" />
+<img src="References/0930.svg" width="5" />[spacer]<img src="References/0930_0_1.svg" width="5" />
 
 - When we are two distance away from the edge, we need to check if stepping towards it is possible.
 
@@ -102,7 +102,7 @@ But let's start with the simpler rules:
 
 - Future line extension: When a near end is at 2 distance left or right from the live end, it will fill the field between them if the live end steps elsewhere. That's what happened in the 5&nbsp;x&nbsp;5 example above before the line failed.
 
-<img src="References/0911.svg" width="7" /><img src="References/spacer.svg" width="1" /><img src="References/0911_0_1.svg" width="7" />
+<img src="References/0911.svg" width="7" />[spacer]<img src="References/0911_0_1.svg" width="7" />
 
 In other situations, there is a 1-thin future line next to the live end that can be extended if its far end is at the corner. Though disabling this rule does not affect the total amount of walkthroughs on a 7&nbsp;x&nbsp;7 grid, I chose to include it in the project on the basis that if a future line can be extended, we should do it. It can make a considerable difference. The left picture is without the rule, the right is with it.
 
@@ -112,17 +112,17 @@ In other situations, there is a 1-thin future line next to the live end that can
 
 - Just like moving near the edge, we need to disable some fields if we are approaching an older section of the main line. In order to determine on which side the enclosed area is created, we need to examine the direction of the line at the connection point.
 
-<img src="References/checknearfield/close straight left right.svg" width="2" /><img src="References/spacer.svg" width="1" /><img src="References/checknearfield/close straight left left.svg" width="3" /><img src="References/spacer.svg" width="1" /><img src="References/checknearfield/close straight right right.svg" width="3" /><img src="References/spacer.svg" width="1" /><img src="References/checknearfield/close straight right left.svg" width="2" />
+<img src="References/checknearfield/close straight left right.svg" width="2" />[spacer]<img src="References/checknearfield/close straight left left.svg" width="3" />[spacer]<img src="References/checknearfield/close straight right right.svg" width="3" />[spacer]<img src="References/checknearfield/close straight right left.svg" width="2" />
 
 The gray square means empty field. When the field 2 to straight is taken, its left or right side will be taken too.
 
-<img src="References/checknearfield/close mid across right.svg" width="3" /><img src="References/spacer.svg" width="1" /><img src="References/checknearfield/close mid across left.svg" width="4" />
+<img src="References/checknearfield/close mid across right.svg" width="3" />[spacer]<img src="References/checknearfield/close mid across left.svg" width="4" />
 
 These will only be checked if one of the above 4 situations were not present. (They have to be mirrored, too.)
 
 <!---->
 
-<img src="References/checknearfield/close across right.svg" width="4" /><img src="References/spacer.svg" width="1" /><img src="References/checknearfield/close across left.svg" width="5" />
+<img src="References/checknearfield/close across right.svg" width="4" />[spacer]<img src="References/checknearfield/close across left.svg" width="5" />
 
 Likewise, these will be not be checked if the previous rules were true.
 
@@ -132,7 +132,7 @@ And when none of the 1-distance situations are valid, we check for 2-distance.
 
 Impair areas can now happen inside the grid, not just on the edge, and the following rules have to be applied:
 
-<img src="References/checknearfield/far straight left.svg" width="4" /><img src="References/spacer.svg" width="1" /><img src="References/checknearfield/far straight right.svg" width="4" />
+<img src="References/checknearfield/far straight left.svg" width="4" />[spacer]<img src="References/checknearfield/far straight right.svg" width="4" />
 
 The procedure is similar to the the straight 2-distance rule. The only difference is that we count the area starting and ending at the marked fields. In the first, the direction of the circle is left, in the second right.
 
@@ -142,21 +142,21 @@ Besides mirroring them, we also have to rotate them both counter-clockwise and c
 But we do not need 12 of such rules. Taking the first, the live end cannot come from the left, because the area parity was already checked in the previous step, and now we just added 2 fields to it. It can come from the right, and then there is naturally only one field we might have to disable.
 Here are the representations of the two scenarios for the left side:
 
-<img align="top" src="References/checknearfield/far side down.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/checknearfield/far side up.svg" width="4" />
+<img align="top" src="References/checknearfield/far side down.svg" width="4" />[spacer]<img align="top" src="References/checknearfield/far side up.svg" width="4" />
 
 Similarly to the straight rules, these will only apply if there is no wall 2 distance to the left or right. Let's construct these preconditions.
 
-<img align="top" src="References/checknearfield/close side straight.svg" width="3" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/checknearfield/close side mid across up.svg" width="3" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/checknearfield/close side mid across down.svg" width="3" />
+<img align="top" src="References/checknearfield/close side straight.svg" width="3" />[spacer]<img align="top" src="References/checknearfield/close side mid across up.svg" width="3" />[spacer]<img align="top" src="References/checknearfield/close side mid across down.svg" width="3" />
 
 We are not finished. Did you notice the example above is not covered by these rules? We have to move the taken fields 1 and 2 steps to the side, both in straight and side direction.
 
 <!---->
 
-<img align="top" src="References/checknearfield/far mid across left.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/checknearfield/far mid across right.svg" width="5" />
+<img align="top" src="References/checknearfield/far mid across left.svg" width="4" />[spacer]<img align="top" src="References/checknearfield/far mid across right.svg" width="5" />
 <img src="References/spacer.svg" height="1" />
-<img align="top" src="References/checknearfield/far across left.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/checknearfield/far across right_0.svg" width="4" />
+<img align="top" src="References/checknearfield/far across left.svg" width="5" />[spacer]<img align="top" src="References/checknearfield/far across right_0.svg" width="4" />
 <img src="References/spacer.svg" height="1" />
-<img align="top" src="References/checknearfield/far side mid across up.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/checknearfield/far side mid across down.svg" width="4" />
+<img align="top" src="References/checknearfield/far side mid across up.svg" width="4" />[spacer]<img align="top" src="References/checknearfield/far side mid across down.svg" width="4" />
 <img src="References/spacer.svg" height="1" />
 <img align="top" src="References/checknearfield/far side across up.svg" width="4" />
 
@@ -164,22 +164,22 @@ We are not finished. Did you notice the example above is not covered by these ru
 
 When any of the straight 1-distance rules are present, we don't need to check the side rules or the area created with the border. We can only move within the enclosed area:
 
-<img src="References/1019_8.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/1021_2.svg" width="9" />
+<img src="References/1019_8.svg" width="9" />[spacer]<img align="top" src="References/1021_2.svg" width="9" />
 
 And these are the rest of the rules:
 
-<img align="top" src="References/rules/7/Future L.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/Future L 65.svg" width="7" />
+<img align="top" src="References/rules/7/Future L.svg" width="4" />[spacer]<img align="top" src="References/Future L 65.svg" width="7" />
 
 This is what I started the 7&nbsp;x&nbsp;7 introduction with. I will call it Future L.
 
 <!---->
 
-<img align="top" src="References/rules/7/Future 2 x 2 Start End.svg" width="6" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/Future 2 x 2 Start End 450.svg" width="7" />
+<img align="top" src="References/rules/7/Future 2 x 2 Start End.svg" width="6" />[spacer]<img align="top" src="References/Future 2 x 2 Start End 450.svg" width="7" />
 
 
 <img align="top" src="References/rules/7/Future 2 x 3 Start End.svg" width="3" /><img src="References/spacer.svg" width="4" /><img align="top" src="References/Future 2 x 3 Start End 465.svg" width="7" />
 
-<img align="top" src="References/rules/7/Future 3 x 3 Start End.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/Future 3 x 3 Start End 1861.svg" width="7" />
+<img align="top" src="References/rules/7/Future 3 x 3 Start End.svg" width="5" />[spacer]<img align="top" src="References/Future 3 x 3 Start End 1861.svg" width="7" />
 
 And these are the remaining size-specific rules. Future 2&nbsp;x&nbsp;2 Start End, Future 2&nbsp;x&nbsp;3 Start End and Future 3&nbsp;x&nbsp;3 Start End.
 
@@ -212,7 +212,7 @@ To discover 9-specific patterns, I run the program keeping it left as long as th
 
 Let's simplify the pattern. Which will be impossible to fill?
 
-<img align="top" src="References/1008.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/1008_1.svg" width="9" />
+<img align="top" src="References/1008.svg" width="9" />[spacer]<img align="top" src="References/1008_1.svg" width="9" />
 
 It is the picture on the left. Since the yellow-bordered area is impair, adding the (4,2) (4,3) (4,4) fields will be pair. We enter the area at (4,4), so we will exit at (4,3). Now we enter the 3&nbsp;x&nbsp;3 area in the top left corner at its side, (3,3) and will exit at (2,4). The result is two C-shapes on each side:
 
@@ -242,7 +242,7 @@ This will probably be another rule, because in this case it is not necessary to 
 
 Now let's run the program further up to number 13 992:
 
-<img align="top" src="References/1010_4_error.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/1010_4.svg" width="9" />
+<img align="top" src="References/1010_4_error.svg" width="9" />[spacer]<img align="top" src="References/1010_4.svg" width="9" />
 
 It is also just like the 7&nbsp;x&nbsp;7 rule, just with the extension of the area on the opposite side of the future line ends. But we can't simply remove the two taken fields on that side, because the line might continue in that direction, as it is the case here:
 
@@ -267,7 +267,7 @@ The next error, at 14 004 has something to with how I defined the universal rule
 
 We need to take a few steps back, and then we can create the rule. It is similar to the universal 2-distance rule on the side, it just checks the field 2 behind and 1 to the side too. Even though the area counted is pair, now stepping to the right is disabled.
 
-<img align="top" src="References/rules/9_old/Future 2 x 3 Start End 9.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/1013_2.svg" width="9" />
+<img align="top" src="References/rules/9_old/Future 2 x 3 Start End 9.svg" width="4" />[spacer]<img align="top" src="References/1013_2.svg" width="9" />
 
 <!---->
 
@@ -277,7 +277,7 @@ At 55 298, we get this:
 
 Let's analyze it! A double C-shape is created, because the line occupied the A field, and out of the B, C and D fields it exited the right-side area at C. It means, the area enclosed by the marked fields is pair. In this case, we shouldn't step right and the rule will therefore look like:
 
-<img align="top" src="References/Double C-Shape orig.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/1022_1.svg" width="9" />
+<img align="top" src="References/Double C-Shape orig.svg" width="4" />[spacer]<img align="top" src="References/1022_1.svg" width="9" />
 
 But what if from the A position, we step upwards in another situation?
 
@@ -295,7 +295,7 @@ If the area we started with is pair, then the other will be impair. We can only 
 
 One certain situation reveals the incorrectness of the 7-rules when it comes to a 9-grid. In the following example, when I apply a rule rotated, it will disable a field that would otherwise be viable.
 
-<img align="top" src="References/Future 2 x 2 Start End rotated.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/1027.svg" width="9" />
+<img align="top" src="References/Future 2 x 2 Start End rotated.svg" width="4" />[spacer]<img align="top" src="References/1027.svg" width="9" />
 
 Rotating was not necessary to start with on 7&nbsp;x&nbsp;7, because no such situation occurred.
 
@@ -313,7 +313,7 @@ As we run the program further, we will discover this at 227 200:
 
 Intuitively, we can draw up the square, and let's mark the exit as well. There can be loops on the upper, lower and right side, they have no importance when tracing it back to the live end. There is only one way to go through.
 
-<img align="top" src="References/Square 4 x 2 orig.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/227200_1.svg" width="9" />
+<img align="top" src="References/Square 4 x 2 orig.svg" width="5" />[spacer]<img align="top" src="References/227200_1.svg" width="9" />
 
 <!---->
 
@@ -325,7 +325,7 @@ Once we step to A, it is unavoidable to get to B before entering the outlined ar
 The area is impair, therefore we cannot complete it starting in C and ending in D.
 If we omit the C field from the area, the area becomes pair. It is clear that the start and end field being across each other, a pair amount of fields cannot be filled. We must therefore enter the area now.
 
-<img align="top" src="References/rules/9_old/Count Area 2 Across.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/233810_1.svg" width="9" />
+<img align="top" src="References/rules/9_old/Count Area 2 Across.svg" width="5" />[spacer]<img align="top" src="References/233810_1.svg" width="9" />
 
 <!---->
 
@@ -336,7 +336,7 @@ If we omit the C field from the area, the area becomes pair. It is clear that th
 But it is more than that. Notice that enclosed areas has been created on both sides simultaneously. Because of the universal rules for approaching an older section of the line, now we have no option to move. The areas can be filled individually, but we cannot step to left and right at the same time.
 We have to create 2-distance rules, which take both sides into account.
 
-<img align="top" src="References/checknearfield/2 far mid across across.svg" width="6" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/checknearfield/2 far side mid across across down.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/checknearfield/2 far side mid across across up.svg" width="4" />
+<img align="top" src="References/checknearfield/2 far mid across across.svg" width="6" />[spacer]<img align="top" src="References/checknearfield/2 far side mid across across down.svg" width="4" />[spacer]<img align="top" src="References/checknearfield/2 far side mid across across up.svg" width="4" />
 
 These are just a few of the possible combinations.
 
@@ -355,7 +355,7 @@ At 349 215, we find this:
 Though a double C-shape has been created in backwards direction, it indicates that the area on the right cannot be filled either.
 We have made a similar rule previously. Now we need to simplify it.
 
-<img align="top" src="References/Double C-Shape orig.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Double C-Shape.svg" width="3" />
+<img align="top" src="References/Double C-Shape orig.svg" width="4" />[spacer]<img align="top" src="References/rules/9_old/Double C-Shape.svg" width="3" />
 
 The area now has to be impair for the right direction to be forbidden. Essentially, we just added the three extra fields to the pair area.
 
@@ -367,7 +367,7 @@ The area now has to be impair for the right direction to be forbidden. Essential
 
 We have to mark where the area has been created in another way.
 
-<img align="top" src="References/Square 4 x 2 orig.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Square 4 x 2.svg" width="4" />
+<img align="top" src="References/Square 4 x 2 orig.svg" width="5" />[spacer]<img align="top" src="References/rules/9_old/Square 4 x 2.svg" width="4" />
 
 The taken field in the upper right corner is now checked for direction, but it is not enough. It can go upwards, and the exit of the area can still be on the bottom edge, just look at the example and imagine the live end was at A with the pattern already drawn. (On 11&nbsp;x&nbsp;11, it is possible to draw it.)
 In order to establish an enclosed area, we must not encounter the bottom-right corner of the grid when walking along the edge of it.
@@ -376,7 +376,7 @@ In order to establish an enclosed area, we must not encounter the bottom-right c
 
 626 071 is:
 
-<img align="top" src="References/626071.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/626071_1.svg" width="9" />
+<img align="top" src="References/626071.svg" width="9" />[spacer]<img align="top" src="References/626071_1.svg" width="9" />
 
 With the marked area being pair, if we enter the area by stepping left, we will exit at A. But we can only get there from B; if we entered from the top, nothing would fill B, and we cannot enter and exit it after we left the area - subtracting 1 from the area would make it impair, so then we couldn't have exited at A.
 The taken field C creates a C-shape, which we need to step into from B.
@@ -385,50 +385,50 @@ The taken field C creates a C-shape, which we need to step into from B.
 
 The universal far across rule have to be extended. By default, we disable the option to step straight or right if the counted area is impair. When it is pair, we need to disable the left field.
 
-<img align="bottom" src="References/checknearfield/far across left.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="bottom" src="References/checknearfield/far across left end C.svg" width="5" />
+<img align="bottom" src="References/checknearfield/far across left.svg" width="5" />[spacer]<img align="bottom" src="References/checknearfield/far across left end C.svg" width="5" />
 <img src="References/spacer.svg" height="1" />
-<img align="bottom" src="References/checknearfield/far side across up.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="bottom" src="References/checknearfield/far side across up end C.svg" width="5" />
+<img align="bottom" src="References/checknearfield/far side across up.svg" width="4" />[spacer]<img align="bottom" src="References/checknearfield/far side across up end C.svg" width="5" />
 
 The same concept we encounter at 635 301, only the C-shape is created when we enter an area, on the other side of it.
 
-<img align="top" src="References/635301.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/635301_1.svg" width="9" />
+<img align="top" src="References/635301.svg" width="9" />[spacer]<img align="top" src="References/635301_1.svg" width="9" />
 
 <!---->
 
 We have seen this in the third 9&nbsp;x&nbsp;9 rule. There the taken field next to the exit was in middle across position, and now it is across. And we also need to think about an obstacle straight ahead. Here are the original universal rules and their modifications.
 Straight, circle direction left:
 
-<img src="References/checknearfield/far straight left.svg" width="4" /><img src="References/spacer.svg" width="1" /><img src="References/checknearfield/far straight left start C.svg" width="5" />
+<img src="References/checknearfield/far straight left.svg" width="4" />[spacer]<img src="References/checknearfield/far straight left start C.svg" width="5" />
 <img src="References/spacer.svg" height="1" />
-<img src="References/checknearfield/far mid across left.svg" width="4" /><img src="References/spacer.svg" width="1" /><img src="References/checknearfield/far mid across left start C.svg" width="5" />
+<img src="References/checknearfield/far mid across left.svg" width="4" />[spacer]<img src="References/checknearfield/far mid across left start C.svg" width="5" />
 <img src="References/spacer.svg" height="1" />
-<img src="References/checknearfield/far across left.svg" width="5" /><img src="References/spacer.svg" width="1" /><img src="References/checknearfield/far across left start C.svg" width="6" />
+<img src="References/checknearfield/far across left.svg" width="5" />[spacer]<img src="References/checknearfield/far across left start C.svg" width="6" />
 
 <!---->
 
 Circle direction right:
 
-<img src="References/checknearfield/far straight right.svg" width="4" /><img src="References/spacer.svg" width="1" /><img src="References/checknearfield/far straight right start C.svg" width="5" />
+<img src="References/checknearfield/far straight right.svg" width="4" />[spacer]<img src="References/checknearfield/far straight right start C.svg" width="5" />
 <img src="References/spacer.svg" height="1" />
-<img src="References/checknearfield/far mid across right.svg" width="5" /><img src="References/spacer.svg" width="1" /><img src="References/checknearfield/far mid across right start C.svg" width="5" />
+<img src="References/checknearfield/far mid across right.svg" width="5" />[spacer]<img src="References/checknearfield/far mid across right start C.svg" width="5" />
 <img src="References/spacer.svg" height="1" />
-<img src="References/checknearfield/far across right.svg" width="6" /><img src="References/spacer.svg" width="1" /><img src="References/checknearfield/far across right start C.svg" width="6" />
+<img src="References/checknearfield/far across right.svg" width="6" />[spacer]<img src="References/checknearfield/far across right start C.svg" width="6" />
 
 Side, with taken fields above and below:
 
-<img src="References/checknearfield/far side up.svg" align="top" width="4" /><img src="References/spacer.svg" width="1" /><img src="References/checknearfield/far side up start C.svg" align="top" width="4" />
+<img src="References/checknearfield/far side up.svg" align="top" width="4" />[spacer]<img src="References/checknearfield/far side up start C.svg" align="top" width="4" />
 <img src="References/spacer.svg" height="1" />
-<img src="References/checknearfield/far side down.svg" align="top" width="4" /><img src="References/spacer.svg" width="1" /><img src="References/checknearfield/far side down start C.svg" align="top" width="4" />
+<img src="References/checknearfield/far side down.svg" align="top" width="4" />[spacer]<img src="References/checknearfield/far side down start C.svg" align="top" width="4" />
 
 <!---->
 
-<img src="References/checknearfield/far side mid across up.svg" align="top" width="4" /><img src="References/spacer.svg" width="1" /><img src="References/checknearfield/far side mid across up start C.svg" align="top" width="4" />
+<img src="References/checknearfield/far side mid across up.svg" align="top" width="4" />[spacer]<img src="References/checknearfield/far side mid across up start C.svg" align="top" width="4" />
 <img src="References/spacer.svg" height="1" />
-<img src="References/checknearfield/far side mid across down.svg" align="top" width="4" /><img src="References/spacer.svg" width="1" /><img src="References/checknearfield/far side mid across down start C.svg" align="top" width="4" />
+<img src="References/checknearfield/far side mid across down.svg" align="top" width="4" />[spacer]<img src="References/checknearfield/far side mid across down start C.svg" align="top" width="4" />
 <img src="References/spacer.svg" height="1" />
-<img src="References/checknearfield/far side across up.svg" align="top" width="4" /><img src="References/spacer.svg" width="1" /><img src="References/checknearfield/far side across up start C.svg" align="top" width="4" />
+<img src="References/checknearfield/far side across up.svg" align="top" width="4" />[spacer]<img src="References/checknearfield/far side across up start C.svg" align="top" width="4" />
 <img src="References/spacer.svg" height="1" />
-<img src="References/checknearfield/far side across down.svg" align="bottom" width="4" /><img src="References/spacer.svg" width="1" /><img src="References/checknearfield/far side across down start C.svg" align="bottom" width="4" />
+<img src="References/checknearfield/far side across down.svg" align="bottom" width="4" />[spacer]<img src="References/checknearfield/far side across down start C.svg" align="bottom" width="4" />
 
 I have made some changes by adding some empty fields in side positions, so they are the same as the straight rules, just rotated.
 Also, I have added the side across down rule and changed the straight across rule accordingly. Not only fields next to each other can define an area, they can be across too. In that case, if the area originally was marked impair, now it has to be pair.
@@ -469,7 +469,7 @@ And now the walkthrough is possible.
 
 Continuing the 9&nbsp;x&nbsp;9 program, we get this at 641 019:
 
-<img align="top" src="References/641019.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/641019_1.svg" width="9" />
+<img align="top" src="References/641019.svg" width="9" />[spacer]<img align="top" src="References/641019_1.svg" width="9" />
 
 If you enter the pair area straight ahead, you will exit at A, and you need to turn towards B because of the C-shape. Now you cannot go in and out of the area enclosed by C, and the situation would be the same if that obstacle was in D. 
 
@@ -483,7 +483,7 @@ And with this marking system, we can correct the rules previously made. All rule
 
 So we get the 2-distance across rule, the straight 3-distance rule to prevent a double C-shape, and the square constellation with 3 areas. All of them are rotated clockwise or counter-clockwise.
 
-<img align="top" src="References/rules/9_old/Count Area 2 Across.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Double C-Shape rotated.svg" width="6" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Square 4 x 2_2.svg" width="4" />
+<img align="top" src="References/rules/9_old/Count Area 2 Across.svg" width="5" />[spacer]<img align="top" src="References/rules/9_old/Double C-Shape rotated.svg" width="6" />[spacer]<img align="top" src="References/rules/9_old/Square 4 x 2_2.svg" width="4" />
 
 Let's return to the last example and make a modification:
 
@@ -509,7 +509,7 @@ The rule is now:
 
 740 039 is a slight modification.
 
-<img align="top" src="References/740039.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/740039_1.svg" width="9" />
+<img align="top" src="References/740039.svg" width="9" />[spacer]<img align="top" src="References/740039_1.svg" width="9" />
 
 The only difference is, that the obstacle is 3-distance away. With the area being impair, if we enter at A, we must exit at C.
 What if we omit D from the area? Then the area will be pair, so we must exit at B, and the only way to get there is from C. And if D is included, we can only step to C from there. Either way, we step away from the area beyond D, so the rule will be:
@@ -520,7 +520,7 @@ What if we omit D from the area? Then the area will be pair, so we must exit at 
 
 811 808:
 
-<img align="top" src="References/811808.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/811808_1.svg" width="9" />
+<img align="top" src="References/811808.svg" width="9" />[spacer]<img align="top" src="References/811808_1.svg" width="9" />
 
 Recognize it is a variation of the square obstacle pattern where instead of an area, there is a C-shape at the rule's upper edge. 
 
@@ -530,7 +530,7 @@ Recognize it is a variation of the square obstacle pattern where instead of an a
 
 1 261 580:
 
-<img align="top" src="References/1261580.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/1261580_1.svg" width="9" />
+<img align="top" src="References/1261580.svg" width="9" />[spacer]<img align="top" src="References/1261580_1.svg" width="9" />
 
 Again, same pattern with area. The upper obstacle is now moved, but it will satisfy the previous examples too. The rule replaces the old one.
 
@@ -540,7 +540,7 @@ Again, same pattern with area. The upper obstacle is now moved, but it will sati
 
 2 022 337 is getting stuck because of the stair-shaped walls that force the future line along them. Therefore, an area is created with only one field to go in and out of it. What is the solution?
 
-<img align="top" src="References/2022337.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/2022337_1.svg" width="9" />
+<img align="top" src="References/2022337.svg" width="9" />[spacer]<img align="top" src="References/2022337_1.svg" width="9" />
 
 Though not as universal as we want it to be, this will solve this specific situation:
 
@@ -550,7 +550,7 @@ Though not as universal as we want it to be, this will solve this specific situa
 
 And soon, at 2 022 773 we encounter a similar one:
 
-<img align="top" src="References/2022773.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/2022773_1.svg" width="9" />
+<img align="top" src="References/2022773.svg" width="9" />[spacer]<img align="top" src="References/2022773_1.svg" width="9" />
 <img src="References/spacer.svg" height="1" />
 <img align="top" src="References/rules/9_old/Double Area Stair 2.svg" width="5" />
 
@@ -564,7 +564,7 @@ On 17&nbsp;x&nbsp;17, we can construct a situation where the obstacle across the
 
 We have all the tools to handle 2 034 575.
 
-<img align="top" src="References/2034575.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/2034575_1.svg" width="9" />
+<img align="top" src="References/2034575.svg" width="9" />[spacer]<img align="top" src="References/2034575_1.svg" width="9" />
 
 It is an impair area where the number of the starting field's color is less than the other color.
 
@@ -574,7 +574,7 @@ It is an impair area where the number of the starting field's color is less than
 
 Next stop is at 3 224 847.
 
-<img align="top" src="References/3224847.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/3224847_1.svg" width="9" />
+<img align="top" src="References/3224847.svg" width="9" />[spacer]<img align="top" src="References/3224847_1.svg" width="9" />
 
 A pair area is created with the obstacle 3 distance away, so if we step into it, we will exit at the middle, but because of an area, we cannot step there.
 
@@ -586,11 +586,11 @@ Should the left field be disabled too? Yes. We still have to exit at the middle,
 
 From our experience, the area can be substituted with C-shape.
 
-<img align="top" src="References/1219.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Straight Mid Across 3 End C.svg" width="2" />
+<img align="top" src="References/1219.svg" width="11" />[spacer]<img align="top" src="References/rules/9_old/Straight Mid Across 3 End C.svg" width="2" />
 
 3 225 432 is a variation of the impair area imbalance rules we have seen before.
 
-<img align="top" src="References/3225432.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/3225432_1.svg" width="9" />
+<img align="top" src="References/3225432.svg" width="9" />[spacer]<img align="top" src="References/3225432_1.svg" width="9" />
 <img src="References/spacer.svg" height="1" />
 <img align="top" src="References/rules/9_old/Mid Mid Across 3 Determined.svg" width="5" />
 
@@ -598,7 +598,7 @@ From our experience, the area can be substituted with C-shape.
 
 8 076 012 builds upon the existing rule where C-shapes are created on both sides if we enter an impair area.
 
-<img align="top" src="References/8076012.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/8076012_1.svg" width="9" />
+<img align="top" src="References/8076012.svg" width="9" />[spacer]<img align="top" src="References/8076012_1.svg" width="9" />
 
 Here, a C-shape at the start would force the line to enter the area.
 
@@ -608,7 +608,7 @@ Here, a C-shape at the start would force the line to enter the area.
 
 Soon we get a similar situation, only here it is the imbalance of pair and impair fields that is to blame.
 
-<img align="top" src="References/8076044.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/8076044_1.svg" width="9" />
+<img align="top" src="References/8076044.svg" width="9" />[spacer]<img align="top" src="References/8076044_1.svg" width="9" />
 
 If we step to A, we cannot step left and therefure must continue to B (or right). From B, the only possibility is C, but the 5&nbsp;x&nbsp;3 area is not just impair, there is less of the C-parity field than the other.
 In the rule, I introduced a new field that indicates the entry point; this has always been the start field until now.
@@ -619,7 +619,7 @@ In the rule, I introduced a new field that indicates the entry point; this has a
 
 At 19 717 655 the program stops.
 
-<img align="top" src="References/19717655.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/19717655_1.svg" width="9" />
+<img align="top" src="References/19717655.svg" width="9" />[spacer]<img align="top" src="References/19717655_1.svg" width="9" />
 
 Obvously, we cannot step straight, but had we extended the future line until the end corner, the situation would not have occurred and we would have just got this:
 
@@ -644,13 +644,13 @@ For now, here is the solution to this and the next cases:
 
 19 718 148 is a slight modification of 2 022 773 where there is an area instead of a C-shape straight ahead.
 
-<img align="top" src="References/19718148.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/19718148_1.svg" width="9" />
+<img align="top" src="References/19718148.svg" width="9" />[spacer]<img align="top" src="References/19718148_1.svg" width="9" />
 <img src="References/spacer.svg" height="1" />
-<img align="top" src="References/rules/9_old/Double Area Stair 2.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Double Area Stair Area.svg" width="5" />
+<img align="top" src="References/rules/9_old/Double Area Stair 2.svg" width="5" />[spacer]<img align="top" src="References/rules/9_old/Double Area Stair Area.svg" width="5" />
 
 We encounter a new constellation of 3 areas in 23 310 321 where the exit is next to the live end.
 
-<img align="top" src="References/23310321.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/23310321_1.svg" width="9" />
+<img align="top" src="References/23310321.svg" width="9" />[spacer]<img align="top" src="References/23310321_1.svg" width="9" />
 
 <!---->
 
@@ -666,109 +666,109 @@ Still, the number of completed walkthroughs before the appereance of the rule ma
 
 462, Double Area C-Shape 
 
-<img align="top" src="References/462.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Double Area C-Shape.svg" width="5" />
+<img align="top" src="References/462.svg" width="9" />[spacer]<img align="top" src="References/rules/9_old/Double Area C-Shape.svg" width="5" />
 
 1 861, Double C-Shape
 
-<img align="top" src="References/1861.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Double C-Shape rotated.svg" width="6" />
+<img align="top" src="References/1861.svg" width="9" />[spacer]<img align="top" src="References/rules/9_old/Double C-Shape rotated.svg" width="6" />
 
 <!---->
 
 9 121, Count Area 2 Across
 
-<img align="top" src="References/9121.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Count Area 2 Across.svg" width="5" />
+<img align="top" src="References/9121.svg" width="9" />[spacer]<img align="top" src="References/rules/9_old/Count Area 2 Across.svg" width="5" />
 
 22 328, Straight Mid Across 3 End Area
 
-<img align="top" src="References/22328.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Straight Mid Across 3 End Area.svg" width="4" />
+<img align="top" src="References/22328.svg" width="9" />[spacer]<img align="top" src="References/rules/9_old/Straight Mid Across 3 End Area.svg" width="4" />
 
 <!---->
 
 22 328, Straight Across End Area
 
-<img align="top" src="References/22328_1.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Straight Across End Area.svg" width="4" />
+<img align="top" src="References/22328_1.svg" width="9" />[spacer]<img align="top" src="References/rules/9_old/Straight Across End Area.svg" width="4" />
 
 25 153, Straight Across End C
 
-<img align="top" src="References/25153.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Straight Across End C.svg" width="3" />
+<img align="top" src="References/25153.svg" width="9" />[spacer]<img align="top" src="References/rules/9_old/Straight Across End C.svg" width="3" />
 
 <!---->
 
 227 130, Square 4&nbsp;x&nbsp;2 C-Shape 
 
-<img align="top" src="References/227130.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Square 4 x 2 C-Shape.svg" width="5" />
+<img align="top" src="References/227130.svg" width="9" />[spacer]<img align="top" src="References/rules/9_old/Square 4 x 2 C-Shape.svg" width="5" />
 
 231 960, Square 43&nbsp;x&nbsp;2 Area
 
-<img align="top" src="References/231960.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Square 4 x 2 Area.svg" width="5" />
+<img align="top" src="References/231960.svg" width="9" />[spacer]<img align="top" src="References/rules/9_old/Square 4 x 2 Area.svg" width="5" />
 
 <!---->
 
 740 129, Straight Across 3 End Area 
 
-<img align="top" src="References/740129.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Straight Across 3 End Area.svg" width="4" />
+<img align="top" src="References/740129.svg" width="9" />[spacer]<img align="top" src="References/rules/9_old/Straight Across 3 End Area.svg" width="4" />
 
 740 363, Triple Area
 
-<img align="top" src="References/740363.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Triple Area.svg" width="5" />
+<img align="top" src="References/740363.svg" width="9" />[spacer]<img align="top" src="References/rules/9_old/Triple Area.svg" width="5" />
 
 <!---->
 
 2 022 763, Double Area Stair
 
-<img align="top" src="References/2022763.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Double Area Stair.svg" width="7" />
+<img align="top" src="References/2022763.svg" width="9" />[spacer]<img align="top" src="References/rules/9_old/Double Area Stair.svg" width="7" />
 
 2 023 198, Double Area Stair 2
 
-<img align="top" src="References/2023198.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Double Area Stair 2.svg" width="5" />
+<img align="top" src="References/2023198.svg" width="9" />[spacer]<img align="top" src="References/rules/9_old/Double Area Stair 2.svg" width="5" />
 
 <!---->
 
 2 034 435, Mid Mid Across 3 Determined (and Mid Across 3 Impair Determined)
 
-<img align="top" src="References/2034435.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Mid Mid Across 3 Determined.svg" width="5" />
+<img align="top" src="References/2034435.svg" width="9" />[spacer]<img align="top" src="References/rules/9_old/Mid Mid Across 3 Determined.svg" width="5" />
 
 2 059 934, Mid Across 3 Impair Determined
 
-<img align="top" src="References/2059934.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Mid Across 3 Impair Determined.svg" width="4" />
+<img align="top" src="References/2059934.svg" width="9" />[spacer]<img align="top" src="References/rules/9_old/Mid Across 3 Impair Determined.svg" width="4" />
 
 <!---->
 
 8 076 202, Straight Mid Across 3 End C
 
-<img align="top" src="References/8076202.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Straight Mid Across 3 End C.svg" width="2" />
+<img align="top" src="References/8076202.svg" width="9" />[spacer]<img align="top" src="References/rules/9_old/Straight Mid Across 3 End C.svg" width="2" />
 
 8 076 706, Double C-Shape Start C
 
-<img align="top" src="References/8076706.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Double C-Shape Start C.svg" width="3" />
+<img align="top" src="References/8076706.svg" width="9" />[spacer]<img align="top" src="References/rules/9_old/Double C-Shape Start C.svg" width="3" />
 
 <!---->
 
 8 076 762, Double C-Shape Determined
 
-<img align="top" src="References/8076762.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Double C-Shape Determined.svg" width="3" />
+<img align="top" src="References/8076762.svg" width="9" />[spacer]<img align="top" src="References/rules/9_old/Double C-Shape Determined.svg" width="3" />
 
 18 665 383, Triple Area Exit Down
 
-<img align="top" src="References/18665383.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9/Triple Area Exit Down.svg" width="6" />
+<img align="top" src="References/18665383.svg" width="9" />[spacer]<img align="top" src="References/rules/9/Triple Area Exit Down.svg" width="6" />
 
 <!---->
 
 19 720 122, Triple Area Stair
 
-<img align="top" src="References/19720122.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Triple Area Stair.svg" width="7" />
+<img align="top" src="References/19720122.svg" width="9" />[spacer]<img align="top" src="References/rules/9_old/Triple Area Stair.svg" width="7" />
 
 19 720 614, Double Area Stair Area
 
-<img align="top" src="References/19720614.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Double Area Stair Area.svg" width="5" />
+<img align="top" src="References/19720614.svg" width="9" />[spacer]<img align="top" src="References/rules/9_old/Double Area Stair Area.svg" width="5" />
 
 <!---->
 
 23 350 320 is new, but it shows similarity to the Mid Across 3 Impair Determined rule. As the double C-shape reveals, it is about pair/impair field imbalance.
 
-<img align="top" src="References/23350320.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/23350320_1.svg" width="9" />
+<img align="top" src="References/23350320.svg" width="9" />[spacer]<img align="top" src="References/23350320_1.svg" width="9" />
 <img src="References/spacer.svg" height="1" />
-<img align="top" src="References/rules/9_old/Mid Across 3 Impair Determined.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Mid Across 3 Impair Determined 2.svg" width="3" />
+<img align="top" src="References/rules/9_old/Mid Across 3 Impair Determined.svg" width="4" />[spacer]<img align="top" src="References/rules/9_old/Mid Across 3 Impair Determined 2.svg" width="3" />
 
 If we step left in the impair area, we can only exit at the count area middle field, but there is one less field of that type than the other.
 And no fields can be omitted from the area for entry and exit later.
@@ -779,7 +779,7 @@ When the count area middle + end field is omitted, the possible exit is the coun
 
 By now, we are able to group some rules and even solve the original 213&nbsp;x&nbsp;21 example. Previously, we have covered all of the cases where an obstacle is 2 distance away from the live end. Let's examine distances of 3, 4 and so on in this constellation:
 
-<img align="top" src="References/3pair.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/4pair.svg" width="6" />
+<img align="top" src="References/3pair.svg" width="5" />[spacer]<img align="top" src="References/4pair.svg" width="6" />
 
 Besides the count area fields being empty, here I also assume that the left field and the field below the obstacle is also empty. In the future, this might have to be changed and new constellations added.
 Knowing the difference between the number of pair and impair fields, we can make a decision in some cases.
@@ -960,7 +960,7 @@ Check the original 21&nbsp;x&nbsp;21 example. Two steps back, there will be 9 di
 
 Does this procedure apply to any of the size-specific rules? Not exactly, but let's look them through. Here are all of them that deal with black and white field imbalance:
 
-<img align="top" src="References/rules/9_old/Mid Across 3 Impair Determined.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Mid Mid Across 3 Determined.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/13_old/Across 3 Impair Determined.svg" width="6" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Mid Across 3 Impair Determined 2.svg" width="3" />
+<img align="top" src="References/rules/9_old/Mid Across 3 Impair Determined.svg" width="4" />[spacer]<img align="top" src="References/rules/9_old/Mid Mid Across 3 Determined.svg" width="5" />[spacer]<img align="top" src="References/rules/13_old/Across 3 Impair Determined.svg" width="6" />[spacer]<img align="top" src="References/rules/9_old/Mid Across 3 Impair Determined 2.svg" width="3" />
 <img src="References/spacer.svg" height="1" />
 <img align="top" src="References/rules/9_old/Double C-Shape Determined.svg" width="3" />
 
@@ -1034,7 +1034,7 @@ The next thing to do is the horizontal increase.
 
 3 distance:
 
-<img align="top" src="References/3x3dist.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/3x3dist_1.svg" width="5" />
+<img align="top" src="References/3x3dist.svg" width="5" />[spacer]<img align="top" src="References/3x3dist_1.svg" width="5" />
 
 The picture on the left is the representation we have used so far. However, we cannot exit at the black in the middle, and when we exit at one of the whites, the other is only accessible for immediate entry. Therefore, I will add the extra field. If there is a taken field anywhere ahead acting as the obstacle, we can get to it by drawing a straight line and a stair.
 
@@ -1130,7 +1130,7 @@ Conclusion: if the white and black fields in the area are equal, we cannot enter
 
 2. Larger horizontal distance
 
-<img align="top" src="References/x 2n.svg" width="10" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/x 2n 1.svg" width="10" />
+<img align="top" src="References/x 2n.svg" width="10" />[spacer]<img align="top" src="References/x 2n 1.svg" width="10" />
 
 <!---->
 
@@ -1238,7 +1238,7 @@ and the black line count is (n+2&nbsp;-&nbsp;(n+2)&nbsp;%&nbsp;2)&nbsp;/&nbsp;2 
 
 3. Larger vertical distance
 
-<img align="top" src="References/2n x.svg" width="6" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/2n 1 x.svg" width="6" />
+<img align="top" src="References/2n x.svg" width="6" />[spacer]<img align="top" src="References/2n 1 x.svg" width="6" />
 
 <!---->
 
@@ -1331,7 +1331,7 @@ The only difference is the added 2 x 2 area. To the first, we apply the straight
 
 Having the universal algorithm, these two size-specific rules can be deleted:
 
-<img align="top" src="References/rules/9_old/Mid Mid Across 3 Determined.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/13_old/Across 3 Impair Determined.svg" width="6" />
+<img align="top" src="References/rules/9_old/Mid Mid Across 3 Determined.svg" width="5" />[spacer]<img align="top" src="References/rules/13_old/Across 3 Impair Determined.svg" width="6" />
 
 As we continue the case above, soon we will discover a deficiency which actually has been visible all along.
 
@@ -1343,7 +1343,7 @@ With the border on top, now we have no option to move.
 
 The following rules are active, in addition to the universal one that disables the left field:
 
-<img align="top" src="References/rules/9_old/Mid Across 3 Impair Determined.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Mid Across 3 Impair Determined 2.svg" width="3" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Double C-Shape.svg" width="3" />
+<img align="top" src="References/rules/9_old/Mid Across 3 Impair Determined.svg" width="4" />[spacer]<img align="top" src="References/rules/9_old/Mid Across 3 Impair Determined 2.svg" width="3" />[spacer]<img align="top" src="References/rules/9_old/Double C-Shape.svg" width="3" />
 
 There are three more black fields in the area than white, so there is not enough vertical distance for entering and exiting that many times.
 The straight-to-side algorithm has to be rotated upwards and mirrored, so we get this:
@@ -1354,7 +1354,7 @@ Let's look at the distances from 3 to 6 to have an example of each case of modul
 
 <!---->
 
-<img align="top" src="References/3dist up.svg" width="2" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/4dist up.svg" width="2" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/5dist up.svg" width="2" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/6dist up.svg" width="2" />
+<img align="top" src="References/3dist up.svg" width="2" />[spacer]<img align="top" src="References/4dist up.svg" width="2" />[spacer]<img align="top" src="References/5dist up.svg" width="2" />[spacer]<img align="top" src="References/6dist up.svg" width="2" />
 
 D (distance) % 4 = 3:
 
@@ -1407,7 +1407,7 @@ An extension of the universal rule is necessary to include cases of a "big" area
 
 <!---->
 
-<img align="top" src="References/3dist up big.svg" width="2" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/4dist up big.svg" width="2" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/5dist up big.svg" width="2" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/6dist up big.svg" width="2" />
+<img align="top" src="References/3dist up big.svg" width="2" />[spacer]<img align="top" src="References/4dist up big.svg" width="2" />[spacer]<img align="top" src="References/5dist up big.svg" width="2" />[spacer]<img align="top" src="References/6dist up big.svg" width="2" />
 
 D % 4 = 3:
 
@@ -1438,7 +1438,7 @@ Later: 1W &rarr; 1B = (D-2)/4 W &rarr; (D-2)/4 B
 
 While this will not solve the case above (we are not able to step left), we can construct one where it is of use when the Double C-Shape Determined rule is turned off.
 
-<img align="top" src="References/2024_0328_2.svg" width="8" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/2024_0328_3.svg" width="8" />
+<img align="top" src="References/2024_0328_2.svg" width="8" />[spacer]<img align="top" src="References/2024_0328_3.svg" width="8" />
 
 <!---->
 
@@ -1581,7 +1581,7 @@ Later:
 
 While creating a case to verify the newly created rule set, I have encountered this:
 
-<img align="top" src="References/2024_0330.svg" width="10" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/2024_0330_1.svg" width="10" />
+<img align="top" src="References/2024_0330.svg" width="10" />[spacer]<img align="top" src="References/2024_0330_1.svg" width="10" />
 
 It is not possible to continue after stepping upwards.
 But where is the missing part?
@@ -1600,7 +1600,7 @@ One thing is sure, we have been using the small area representations when defini
 
 See the difference:
 
-<img align="top" src="References/corner big 4 x 5 big.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/corner big 4 x 5 small.svg" width="4" />
+<img align="top" src="References/corner big 4 x 5 big.svg" width="4" />[spacer]<img align="top" src="References/corner big 4 x 5 small.svg" width="4" />
 
 Can it be a problem?
 We will see, but let's look at one detail: If we step upwards, we have to step left to fill the corner white, otherwise it is only good for an exit, which we do not want if the area contains 1 more white fields than black (for the left representation).
@@ -1657,7 +1657,7 @@ It just means we have to remove the Now W conditions for stepping right.
 
 Now we can continue the case, but we will find that we cannot go past this point:
 
-<img align="top" src="References/2024_0331_1.svg" width="10" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/2024_0331.svg" width="10" />
+<img align="top" src="References/2024_0331_1.svg" width="10" />[spacer]<img align="top" src="References/2024_0331.svg" width="10" />
 
 The picture on the right is the crossroad. If we step upwards, the area can be completed.
 The area between the live end and the corner on the left contains one more black field than white, so the number could be made by stepping left and up, only we cannot step left because of the C-shape.
@@ -1697,13 +1697,13 @@ This can be calculated for any x and y distance obstacle, but we are still missi
 
 Straight obstacle:
 
-<img align="top" src="References/straight left.svg" width="3" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/straight right.svg" width="3" />
+<img align="top" src="References/straight left.svg" width="3" />[spacer]<img align="top" src="References/straight right.svg" width="3" />
 
 Besides all the fields straight ahead, the gray field has to be empty in order to apply the rule.
 
 <!---->
 
-<img align="top" src="References/straight 3.svg" width="3" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/straight 4.svg" width="3" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/straight 5.svg" width="3" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/straight 6.svg" width="3" />
+<img align="top" src="References/straight 3.svg" width="3" />[spacer]<img align="top" src="References/straight 4.svg" width="3" />[spacer]<img align="top" src="References/straight 5.svg" width="3" />[spacer]<img align="top" src="References/straight 6.svg" width="3" />
 
 Notice the area is the same as with the case where the obstacle is one field to the right, but there is a difference:
 Look at the 3-distance case. Since the obstacle is straight ahead, if we enter now by stepping left, we cannot exit at the black field, because then one of the whites could not have been filled.
@@ -1745,7 +1745,7 @@ If we don't apply the first size-specific rule, we get stuck here:
 
 As a reminder:
 
-<img align="top" src="References/462.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Double Area C-Shape.svg" width="5" />
+<img align="top" src="References/462.svg" width="9" />[spacer]<img align="top" src="References/rules/9_old/Double Area C-Shape.svg" width="5" />
 
 Let's put this into the perspective of our current knowledge.
 
@@ -1755,7 +1755,7 @@ What happens here is that the 3&nbsp;x&nbsp;2 area has a certain exit point, the
 
 In general, if we have an area of this shape,
 
-<img align="top" src="References/464_1.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/464_2.svg" width="6" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/464_3.svg" width="7" />
+<img align="top" src="References/464_1.svg" width="5" />[spacer]<img align="top" src="References/464_2.svg" width="6" />[spacer]<img align="top" src="References/464_3.svg" width="7" />
 
 that consists equal amount of black and white fields, and we enter now, we will exit at the black field, and the preceding field could only have been the farthest corner white, and we can continue backwards through all corner whites like this:
 
@@ -1777,7 +1777,7 @@ You could make the process more bulletproof by including the across obstacles at
 
 But let's continue the program. There are still single area cases we haven't thought about yet. (Previously we had rules for them, but not in the new system.)
 
-<img align="top" src="References/2024_0419.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/2024_0419_1.svg" width="9" />
+<img align="top" src="References/2024_0419.svg" width="9" />[spacer]<img align="top" src="References/2024_0419_1.svg" width="9" />
 
 Obviously, at 1 distance we cannot step right, but neither can we at 2 distance if the area is impair. It is because stepping straight allows for 1W, while stepping right only 0W is possible.
 
@@ -1791,11 +1791,11 @@ Reviewing those 2-distance rules, we can see that many of them has a double area
 
 Per our expectation, the program stops at the next double area case.
 
-<img align="top" src="References/2024_22328.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/2024_22328_1.svg" width="9" />
+<img align="top" src="References/2024_22328.svg" width="9" />[spacer]<img align="top" src="References/2024_22328_1.svg" width="9" />
 
 What is common in these rules?
 
-<img align="top" src="References/rules/9_old/Straight Mid Across 3 End Area.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Straight Mid Across 3 End C.svg" width="2" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Straight Across End Area.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9_old/Straight Across End C.svg" width="3" />
+<img align="top" src="References/rules/9_old/Straight Mid Across 3 End Area.svg" width="4" />[spacer]<img align="top" src="References/rules/9_old/Straight Mid Across 3 End C.svg" width="2" />[spacer]<img align="top" src="References/rules/9_old/Straight Across End Area.svg" width="4" />[spacer]<img align="top" src="References/rules/9_old/Straight Across End C.svg" width="3" />
 <img src="References/spacer.svg" height="1" />
 <img align="top" src="References/rules/9_old/Straight Across 3 End Area.svg" width="4" />
 
@@ -1803,7 +1803,7 @@ What is common in these rules?
 
 There is an area with a straight border line of maximum 3 fields, with the obstacle being in the upper left corner. The farthest border field cannot be the exit, the line needs to go downwards from it, but another area is created with one of the obstacles on the up side.
 
-<img align="top" src="References/Double Area first case.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/Double Area second case.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/Double Area third case.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/Double Area first case rotated.svg" width="6" />
+<img align="top" src="References/Double Area first case.svg" width="4" />[spacer]<img align="top" src="References/Double Area second case.svg" width="4" />[spacer]<img align="top" src="References/Double Area third case.svg" width="4" />[spacer]<img align="top" src="References/Double Area first case rotated.svg" width="6" />
 
 The live end can be in 3 different positions in relation to the area. All patterns can be rotated clockwise, but the first can also be rotated counter-clockwise, shown in the fourth picture. I call this group of rules Double Area.
 
@@ -1816,7 +1816,7 @@ And the left forbidden field in the first rule is already disabled too.
 Take a better look at the third.
 The reason the line is not exiting from the corner is that there is one more black field than white:
 
-<img align="top" src="References/743059_1.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/743059.svg" width="9" />
+<img align="top" src="References/743059_1.svg" width="9" />[spacer]<img align="top" src="References/743059.svg" width="9" />
 
 So far, we simply assumed that it is the opposite, just because the area is impair, but such a case does not exist. Because of the single area rule with the obstacle, the step to get there is disabled. In the following example the desired area is 1B. So is the area defined by the obstacle on the right.
 
@@ -1826,7 +1826,7 @@ So far, we simply assumed that it is the opposite, just because the area is impa
 
 When checking the conditions for the first area, these are the fields that need to be empty:
 
-<img align="top" src="References/double area case 1.svg" width="2" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/double area case 2.svg" width="3" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/double area case 3.svg" width="3" />
+<img align="top" src="References/double area case 1.svg" width="2" />[spacer]<img align="top" src="References/double area case 2.svg" width="3" />[spacer]<img align="top" src="References/double area case 3.svg" width="3" />
 
 Notice that the first two cases can exist simultaneously. Then we examine the smaller area (second case); the obstacle in the first will create a C-shape with the exit of that area and the leftwards step will be disabled by the single area rule:
 
@@ -1925,7 +1925,7 @@ Accordingly, there will be 3 ways the rule is rotated.
 
 We get stuck at 641 027 in a case that was previously solved with Double C-Shape.
 
-<img align="top" src="References/641027.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/641027_1.svg" width="9" />
+<img align="top" src="References/641027.svg" width="9" />[spacer]<img align="top" src="References/641027_1.svg" width="9" />
 
 <!---->
 
@@ -1943,11 +1943,11 @@ In the next case, the area is 1W. So if we enter now by stepping straight, we sh
 
 Similarly, at 4 distance we cannot even recreate a 1B area if there is an obstacle right to the farthest border field.
 
-<img align="top" src="References/2024_0607.svg" width="6" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/2024_0607_1.svg" width="6" />
+<img align="top" src="References/2024_0607.svg" width="6" />[spacer]<img align="top" src="References/2024_0607_1.svg" width="6" />
 
 Now, take a look at the following two cases. The first is the well-known Triple Area Exit Down, at over 18 million, while the other comes at around 51 million.
 
-<img align="top" src="References/18677343 marked.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/51015231 marked.svg" width="9" />
+<img align="top" src="References/18677343 marked.svg" width="9" />[spacer]<img align="top" src="References/51015231 marked.svg" width="9" />
 
 In the first, we can only step left. In the second, we cannot step left.
 It is easy to see that the pattern can be longer. If there is a stair shape downwards with 3 fields at the bottom, there will be a stair backwards, which conflicts with the obstacle on the left (D).
@@ -1962,7 +1962,7 @@ What is the simplest algorithm to apply?
 
 In the following, I check these fields as empty, taken or directional taken.
 
-<img align="top" src="References/Down Stair 0.svg" width="7" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/CheckDownStairMidAcross.svg" width="2" />
+<img align="top" src="References/Down Stair 0.svg" width="7" />[spacer]<img align="top" src="References/CheckDownStairMidAcross.svg" width="2" />
 
 The area enclosed with red line is repeated downwards left, until both of the fields are taken.
 For each return step, I check a mid across directional field. Their right and down field need to be empty as well.
@@ -1977,13 +1977,13 @@ To accomodate the Triple Area Exit Down case, let's first check the presence of 
 
 The program will soon find a case where there return obstacle is in Across position. So we can add it to the rule.
 
-<img align="top" src="References/53144883.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/Down Stair.svg" width="8" />
+<img align="top" src="References/53144883.svg" width="9" />[spacer]<img align="top" src="References/Down Stair.svg" width="8" />
 
 <!---->
 
 At 59 million, a similar case emerges, but the Stair pattern is not able to solve it. Instead, we can apply the first case of Double Area rotated when stepping one straight.
 
-<img align="top" src="References/59434452.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/Double Area first case rotated next.svg" width="7" />
+<img align="top" src="References/59434452.svg" width="9" />[spacer]<img align="top" src="References/Double Area first case rotated next.svg" width="7" />
 
 Notice, this could have solved the Triple Area Exit Down as well, but there can be constructed a case where the Next Step Stair pattern will work alone:
 
@@ -1993,15 +1993,15 @@ Notice, this could have solved the Triple Area Exit Down as well, but there can 
 
 Soon we encounter a situation that could have been solved by a single area algorithm if we rotated the pattern:
 
-<img align="top" src="References/59438645.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/2024_0604_1.svg" width="7" />
+<img align="top" src="References/59438645.svg" width="9" />[spacer]<img align="top" src="References/2024_0604_1.svg" width="7" />
 
 And in fact we can take the x and y distance obstacle rule and have it rotated three ways to simplify the program code. And we can group all cases like this. Previously I thought it is only necessary to check the obstacles around the half circle in front of the live end, but an obstacle behind can have an effect too. It is because we do not only have two options to choose from (enter now or later), but there is difference between the "enter now" fields too.
 
 <!---->
 
-<img align="top" src="References/corner 3 rotation.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/straight 3 rotation.svg" width="9" />
+<img align="top" src="References/corner 3 rotation.svg" width="9" />[spacer]<img align="top" src="References/straight 3 rotation.svg" width="9" />
 <img src="References/spacer.svg" height="1" />
-<img align="top" src="References/up 3 rotation.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/up big 3 rotation.svg" width="9" />
+<img align="top" src="References/up 3 rotation.svg" width="9" />[spacer]<img align="top" src="References/up big 3 rotation.svg" width="9" />
 
 In addition to the gray fields, the area border fields are checked for being empty too.
 When disabling a field in a rule, pay attention to its rotation. When the area is large, the direction opposite to the obstacle may be disabled, but doing so is an error in case of a small area.  
@@ -2025,7 +2025,7 @@ In which area conditions do we run into the issue?
 
 3 distance:
 
-<img align="top" src="References/areaup corner 3 2W.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/areaup corner 3 1W.svg" width="4" />
+<img align="top" src="References/areaup corner 3 2W.svg" width="4" />[spacer]<img align="top" src="References/areaup corner 3 1W.svg" width="4" />
 
 On the left, we start by stepping left, and the area is 2W.
 On the other hand, if we step straight, and the area is 1W, it does not create an issue.
@@ -2042,7 +2042,7 @@ If we step straight, 1B is possible.
 
 5 and 6 distance:
 
-<img align="top" src="References/areaup corner 5 now.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/areaup corner 6.svg" width="4" />
+<img align="top" src="References/areaup corner 5 now.svg" width="4" />[spacer]<img align="top" src="References/areaup corner 6.svg" width="4" />
 
 For entering now 2W and 1B can be completed without relying on the corner field.
 However, if we enter later, a 2W area for 5 distance will require a corner fill:
@@ -2055,7 +2055,7 @@ Where the issue is present, the numbers of possible white or black lines will in
 
 The area to be checked is not exactly the same as in the single area rule with the same obstacle placement. Compare:
 
-<img align="top" src="References/up 3 rotation.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/up 3 rotation double.svg" width="9" />
+<img align="top" src="References/up 3 rotation.svg" width="9" />[spacer]<img align="top" src="References/up 3 rotation double.svg" width="9" />
 
 That means, we have to check the new border fields for being empty, and the number for the original area will be:
 
@@ -2114,13 +2114,13 @@ Let's finish this set and look at an 1W area for straight movement. It can go th
 
 Now we take the second case of Double Area:
 
-<img align="top" src="References/double area case 2 line 2.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/double area case 2 line 6.svg" width="4" />
+<img align="top" src="References/double area case 2 line 2.svg" width="4" />[spacer]<img align="top" src="References/double area case 2 line 6.svg" width="4" />
 
 On the left, we step left, and the area is W = B. If we extend the distance, the rule will be valid at 1B as we would expect.
 
 The third case is:
 
-<img align="top" src="References/double area case 3 line 3.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/double area case 3 line 7.svg" width="4" />
+<img align="top" src="References/double area case 3 line 3.svg" width="4" />[spacer]<img align="top" src="References/double area case 3 line 7.svg" width="4" />
 
 At 3 distance, we step left, and the area is 1B.
 At 7 distance, it is 2B.
@@ -2129,7 +2129,7 @@ At 7 distance, it is 2B.
 
 When integrating the rule, pay attention to its rotation. If the obstacles are on the right side, the left field has to be disabled too.
 
-<img align="top" src="References/2024_0610.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/2024_0610_1.svg" width="5" />
+<img align="top" src="References/2024_0610.svg" width="5" />[spacer]<img align="top" src="References/2024_0610_1.svg" width="5" />
 
 In the third rotation position, where the first obstacle is behind on the right side, all 3 directions would have to be disabled. Therefore, it is safe to say, such a situation does not exist.
 
@@ -2145,7 +2145,7 @@ Instead, we run the program at random, but I will categorize the cases I have en
 
 <b>1. Additional cases of border movement, second obstacle outside the area, at the end of it</b>
 
-<img align="top" src="References/2024_0618_2.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/areaup corner 4 closed later.svg" width="4" />
+<img align="top" src="References/2024_0618_2.svg" width="11" />[spacer]<img align="top" src="References/areaup corner 4 closed later.svg" width="4" />
 
 It is a closed corner case where the distance to the obstacle is 4, the area is 1W, and we enter later.
 Because the field 1 right and 1 up is taken, the area needs to be defined as:
@@ -2158,7 +2158,7 @@ The previous rules can be transferred into this new group.
 
 <b>2. Start obstacle inside</b>
 
-<img align="top" src="References/2024_0618.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/5 dist up lines.svg" width="5" />
+<img align="top" src="References/2024_0618.svg" width="11" />[spacer]<img align="top" src="References/5 dist up lines.svg" width="5" />
 
 It is again about the movement rules on the area border, but it is a new case. If the area at 5 distance is 1W, we can enter later, but we have to step up from there in order to be able to exit at the farthest white field. This conflicts with the obstacle inside.
 
@@ -2166,13 +2166,13 @@ It is again about the movement rules on the area border, but it is a new case. I
 
 The pattern remains true if we offset the first obstacle by one.
 
-<img align="top" src="References/2024_0817.svg" width="13" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/corner 1 5 double obstacle inside.svg" width="4" />
+<img align="top" src="References/2024_0817.svg" width="13" />[spacer]<img align="top" src="References/corner 1 5 double obstacle inside.svg" width="4" />
 
 <!---->
 
 Here, the distance to the first obstacle is shorter.
 
-<img align="top" src="References/2024_0619.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/5 dist up lines v2.svg" width="4" />
+<img align="top" src="References/2024_0619.svg" width="11" />[spacer]<img align="top" src="References/5 dist up lines v2.svg" width="4" />
 
 At the previous step, the area is 1W. (1B with the shown checkerboard.) Looking at the rule represenation, stepping right is already disabled, but we cannot step straight either due to the second obstacle.
 
@@ -2202,29 +2202,29 @@ The second obstacle is in mid across position relative to the entry point as we 
 
 We can also make the rule general by adding stairs to the beginning. As long as the area is 1W, a start obstacle should be checked for.
 
-<img align="top" src="References/start obstacle inside 1 6 across.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/start obstacle inside 1 4 across.svg" width="4" />
+<img align="top" src="References/start obstacle inside 1 6 across.svg" width="5" />[spacer]<img align="top" src="References/start obstacle inside 1 4 across.svg" width="4" />
 
 <!---->
 
 <b>3. Double obstacle inside</b>
 
-<img align="top" src="References/2024_0619_1.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/straight small area movement 0.svg" width="4" />
+<img align="top" src="References/2024_0619_1.svg" width="11" />[spacer]<img align="top" src="References/straight small area movement 0.svg" width="4" />
 
 If we fill all three areas, a field in the middle will be missed.
 
 Let's examine this area:
 
-<img align="top" src="References/straight small area movement.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/straight small area movement 1.svg" width="4" />
+<img align="top" src="References/straight small area movement.svg" width="4" />[spacer]<img align="top" src="References/straight small area movement 1.svg" width="4" />
 
 The area is 1W. We have to enter at the first white field and exit at the second. The second black field needs to be filled, so it gives us two possible enter / exit movements. In either scenario, a mid across obstacle is encountered inside the area.
 
 <!---->
 
-<img align="top" src="References/2024_0714.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/straight 5 small area movement.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/straight 5 small area movement 1.svg" width="4" />
+<img align="top" src="References/2024_0714.svg" width="11" />[spacer]<img align="top" src="References/straight 5 small area movement.svg" width="4" />[spacer]<img align="top" src="References/straight 5 small area movement 1.svg" width="4" />
 
 Again, the area is 1W. There is a field between the entry and the exit field, and we encounter an obstacle inside there area no matter if we fill it after entry or before exit.
 
-<img align="top" src="References/2024_0716.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/straight small 3 double obstacle inside.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/straight small 3 double obstacle inside 2.svg" width="4" />
+<img align="top" src="References/2024_0716.svg" width="11" />[spacer]<img align="top" src="References/straight small 3 double obstacle inside.svg" width="4" />[spacer]<img align="top" src="References/straight small 3 double obstacle inside 2.svg" width="4" />
 
 The area is 1W here as well.
 
@@ -2233,7 +2233,7 @@ The area is 1W here as well.
 And here is the case for 2 distance, with 1W area:
 
 
-<img align="top" src="References/2024_0717_4.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/straight small 2 double obstacle inside.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/straight small 2 double obstacle inside 2.svg" width="4" />
+<img align="top" src="References/2024_0717_4.svg" width="11" />[spacer]<img align="top" src="References/straight small 2 double obstacle inside.svg" width="4" />[spacer]<img align="top" src="References/straight small 2 double obstacle inside 2.svg" width="4" />
 
 <!---->
 
@@ -2243,7 +2243,7 @@ And here is the case for 2 distance, with 1W area:
 
 It is a straight obstacle case with extended area where two close obstacles are present outside. The area is 1W according to following illustrations:
 
-<img align="top" src="References/straight 4 extended.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/straight 4 extended 2.svg" width="4" />
+<img align="top" src="References/straight 4 extended.svg" width="4" />[spacer]<img align="top" src="References/straight 4 extended 2.svg" width="4" />
 
 If we enter later at the first black field, the corner white will have to be filled.
 If we enter at the first white field, we collide with the closest close obstacle.
@@ -2252,9 +2252,9 @@ If we enter at the first white field, we collide with the closest close obstacle
 
 The same area definition at 3 distance will solve Triple Area Exit Down, making the previous solution obsolete. The area is now W = B.
 
-<img align="top" src="References/18677343.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/straight 3 extended.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/straight 3 extended 2.svg" width="4" />
+<img align="top" src="References/18677343.svg" width="9" />[spacer]<img align="top" src="References/straight 3 extended.svg" width="4" />[spacer]<img align="top" src="References/straight 3 extended 2.svg" width="4" />
 
-<img align="top" src="References/2024_0709.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/straight 3 extended C.svg" width="4" />
+<img align="top" src="References/2024_0709.svg" width="11" />[spacer]<img align="top" src="References/straight 3 extended C.svg" width="4" />
 
 Instead of an upper obstacle, here we have a C-shape, but its function is the same.
 
@@ -2262,7 +2262,7 @@ Instead of an upper obstacle, here we have a C-shape, but its function is the sa
 
 There can be two obstacles outside with a different start area as well:
 
-<img align="top" src="References/2024_0725.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/double obstacle outside 0 4 dist 1.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/double obstacle outside 0 4 dist 2.svg" width="4" />
+<img align="top" src="References/2024_0725.svg" width="11" />[spacer]<img align="top" src="References/double obstacle outside 0 4 dist 1.svg" width="4" />[spacer]<img align="top" src="References/double obstacle outside 0 4 dist 2.svg" width="4" />
 
 If we step straight, there are two ways to fill an 1W area. In the first, we collide with the end obstacle, and in the second, the start obstacle.
 
@@ -2270,7 +2270,7 @@ If we step straight, there are two ways to fill an 1W area. In the first, we col
 
 Increasing the distance by 1 and the area to 2W, in order to make the area, we either have fill the last white field alone or the first as a corner. The middle white will be either entry or exit point, with the preceding/following field the neighbor black:
 
-<img align="top" src="References/2024_0727_3.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/double obstacle outside 0 5 dist 1.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/double obstacle outside 0 5 dist 2.svg" width="4" />
+<img align="top" src="References/2024_0727_3.svg" width="11" />[spacer]<img align="top" src="References/double obstacle outside 0 5 dist 1.svg" width="4" />[spacer]<img align="top" src="References/double obstacle outside 0 5 dist 2.svg" width="4" />
 
 <!---->
 
@@ -2278,7 +2278,7 @@ And the pattern can be extended along a stair:
 
 <img align="top" src="References/2024_0725_5.svg" width="11" />
 
-<img align="top" src="References/StairAtStart 3 1.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/StairAtStart 3 2.svg" width="5" />
+<img align="top" src="References/StairAtStart 3 1.svg" width="5" />[spacer]<img align="top" src="References/StairAtStart 3 2.svg" width="5" />
 
 The area is 2B. If we enter now, we have to exit at a black field and then fill the remaining to as corners.
 
@@ -2286,7 +2286,7 @@ The area is 2B. If we enter now, we have to exit at a black field and then fill 
 
 Similarly:
 
-<img align="top" src="References/StairAtStart 4 1.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/StairAtStart 4 2.svg" width="5" />
+<img align="top" src="References/StairAtStart 4 1.svg" width="5" />[spacer]<img align="top" src="References/StairAtStart 4 2.svg" width="5" />
 
 In the left representation, we enter at the first left field. On the right, we entered at the first black and exit there. In either case, if the area is 2W, we cannot enter later.
 
@@ -2296,7 +2296,7 @@ In the left representation, we enter at the first left field. On the right, we e
 
 To continue the previous pattern, here is a case where there does not need to be a double obstacle at the exit point of the stair, but the area border has the same shape. The area is W = B.
 
-<img align="top" src="References/2024_1012_1.svg" width="13" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/Stair at start equal.svg" width="7" />
+<img align="top" src="References/2024_1012_1.svg" width="13" />[spacer]<img align="top" src="References/Stair at start equal.svg" width="7" />
 
 At the exit point, an impair area is created with the second obstacle.
 
@@ -2304,14 +2304,14 @@ At the exit point, an impair area is created with the second obstacle.
 
 <b>6. Start obstacle outside</b>
 
-<img align="top" src="References/2024_0715.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/straight 5 dist start obstacle.svg" width="4" />
+<img align="top" src="References/2024_0715.svg" width="11" />[spacer]<img align="top" src="References/straight 5 dist start obstacle.svg" width="4" />
 
 With a 2W area, if we step straight, we have to step right afterwards. This conflicts with the obstacle on the right.
 This and the previous rule can be made universal to include distances to the first obstacle increased by a multiple of 4.
 
 <!---->
 
-<img align="top" src="References/2024_0624.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/up big extended.svg" width="4" />
+<img align="top" src="References/2024_0624.svg" width="11" />[spacer]<img align="top" src="References/up big extended.svg" width="4" />
 
 The area is the extended version of the y vertical distance, 0 horizontal distance rule. (The first area we examined, at page 71.) It is not necessary to decide whether we can enter now or later, it is already taken care of by the other single area groups. But there is a close obstacle at the entry point outside the area. If, at 4 distance, the area is 1W, we enter at the first white field, from which we step down and left.
 Therefore, we cannot enter later.
@@ -2320,7 +2320,7 @@ Therefore, we cannot enter later.
 
 Here, we have to extend the area of the previous example along the short axis. The area is still 1W.
 
-<img align="top" src="References/2024_0727_1.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/corner 5 1 extended stair.svg" width="7" />
+<img align="top" src="References/2024_0727_1.svg" width="11" />[spacer]<img align="top" src="References/corner 5 1 extended stair.svg" width="7" />
 
 But we don't have to define this area separately. The x and y distance obstacle will solve it too:
 
@@ -2336,7 +2336,7 @@ It can be proved that the corner at (3,3) position does not do anything, so it i
 
 In the next example, the area is xB where x is the height of the stair representation.
 
-<img align="top" src="References/2024_0905.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/StairAtEndConvexStraight 3 now.svg" width="6" />
+<img align="top" src="References/2024_0905.svg" width="11" />[spacer]<img align="top" src="References/StairAtEndConvexStraight 3 now.svg" width="6" />
 
 If we enter now, the corner blacks will have to be filled separately, so we must exit the first line at the last black field. This will conflict with the mid across obstacle.
 
@@ -2346,7 +2346,7 @@ If we enter now, the corner blacks will have to be filled separately, so we must
 
 We began the border movement rules with end obstacles that were close relative to the exit point. This has to be extended so that if we find any corner at x and y distance in the upper left quarter that makes up an area we cannot enter later, the rule applies. But first, let's look at some cases we have missed.
 
-<img align="top" src="References/2024_0720_3.svg" width="11"/><img src="References/spacer.svg" width="1" /><img align="top" src="References/corner 3 1 end obstacle.svg" width="5" />
+<img align="top" src="References/2024_0720_3.svg" width="11"/>[spacer]<img align="top" src="References/corner 3 1 end obstacle.svg" width="5" />
 
 The area is 1B. If we enter now, we have to reserve the first corner black for later, so we exit at the second black for the first time. There have been found a case where the end obstacle can be in across position as well.
 
@@ -2354,7 +2354,7 @@ The area is 1B. If we enter now, we have to reserve the first corner black for l
 
 And the next is the extension with the second area:
 
-<img align="top" src="References/2024_0625.svg" width="11"/><img src="References/spacer.svg" width="1" /><img align="top" src="References/corner 2 4 double area.svg" width="5" />
+<img align="top" src="References/2024_0625.svg" width="11"/>[spacer]<img align="top" src="References/corner 2 4 double area.svg" width="5" />
 
 Here, the first area is 1B, so if we enter now, we will exit at the first black field, coming from above. This creates a second area, which is 1W, so we cannot enter it later.
 
@@ -2363,25 +2363,25 @@ Here, the first area is 1B, so if we enter now, we will exit at the first black 
 The followings are variations, with different start areas.
 Here, the area is 1B:
 
-<img align="top" src="References/2024_0627.svg" width="11" /><img src="References/spacer.svg" width="1" /><img src="References/up 4 double area.svg" width="5" />
+<img align="top" src="References/2024_0627.svg" width="11" />[spacer]<img src="References/up 4 double area.svg" width="5" />
 
 W = B:
 
-<img align="top" src="References/2024_0625_1.svg" width="11"/><img src="References/spacer.svg" width="1" /><img align="top" src="References/corner 2 3 double area.svg" width="5" />
+<img align="top" src="References/2024_0625_1.svg" width="11"/>[spacer]<img align="top" src="References/corner 2 3 double area.svg" width="5" />
 
 <!---->
 
 W = B:
 
-<img align="top" src="References/2024_0710.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/up extended 3 dist area.svg" width="5" />
+<img align="top" src="References/2024_0710.svg" width="11" />[spacer]<img align="top" src="References/up extended 3 dist area.svg" width="5" />
 
-<img align="top" src="References/2024_0712.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/corner 2 3 mid area.svg" width="6" />
+<img align="top" src="References/2024_0712.svg" width="11" />[spacer]<img align="top" src="References/corner 2 3 mid area.svg" width="6" />
 
 When we have an obstacle 2 horizontal and 3 vertical distance away, and the area is 1B, the corner black has to be filled separately, and the border movement will make up a stair. For the second step, the area with the new obstacle is 1W, so we cannot enter it later.
 
 <!---->
 
-<img align="top" src="References/2024_0716_1.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/down stair 2 4.svg" width="5" />
+<img align="top" src="References/2024_0716_1.svg" width="11" />[spacer]<img align="top" src="References/down stair 2 4.svg" width="5" />
 
 This is the stair pattern from page 150, which we had abandoned in favor of area rules. We have already worked it out at a lesser distance:
 
@@ -2394,7 +2394,7 @@ Is the second obstacle a close obstacle relative to the field 1 left and 2 up, o
 
 But here is another stair case. This time the entry point is from below.
 
-<img align="top" src="References/2024_0717.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/down stair 1 4.svg" width="5" />
+<img align="top" src="References/2024_0717.svg" width="11" />[spacer]<img align="top" src="References/down stair 1 4.svg" width="5" />
 
 The examined area is 1B. Only stepping up has to be disabled, we can step left and enter the area going 2 up, 1 right, 1 down and 1 right. An extension of this would look like:
 
@@ -2412,7 +2412,7 @@ The next example shows a stair where there is a far obstacle at the end.
 
 If we reverse the horizontal and vertical distance for the first obstacle, we find ourselves in a similar situation.
 
-<img align="top" src="References/2024_0725_6.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/corner 1 4 stair.svg" width="6" />
+<img align="top" src="References/2024_0725_6.svg" width="11" />[spacer]<img align="top" src="References/corner 1 4 stair.svg" width="6" />
 
 In order to make the 1B area, we need to exit at the second black field, and a stair pattern will be drawn from there.
 Again, the distance can be increased, the area is now 2B:
@@ -2423,7 +2423,7 @@ Again, the distance can be increased, the area is now 2B:
 
 <b>8. Stair at end convex</b>
 
-<img align="top" src="References/2024_1008.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/Stair at end convex rule.svg" width="5" />
+<img align="top" src="References/2024_1008.svg" width="11" />[spacer]<img align="top" src="References/Stair at end convex rule.svg" width="5" />
 
 The area marked by the rule is 1B. So if we enter now, the have to exit at the farthest black field, becase the closest one will need to be filled separately. This will create an area with the upper left obstacle in the rule that needs to be pair, but in the example it is 3 x 3.
 
@@ -2439,7 +2439,7 @@ When we extend the rule (with the start area being 2B now), it is clear where th
 
 It is the first case of sequence (page 142) where multiple steps have to be applied, just like we did at the second and third case.
 
-<img align="top" src="References/StairAtEndConvex 3 Stair 1.svg" width="6" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/StairAtEndConvex 3 Stair 2.svg" width="7" />
+<img align="top" src="References/StairAtEndConvex 3 Stair 1.svg" width="6" />[spacer]<img align="top" src="References/StairAtEndConvex 3 Stair 2.svg" width="7" />
 
 Notice the start area has a convex borderline, and it forms a 3-long flat top and a stair-shaped leg in the generalized rule. On the left, the area is 1B, and on the right it is 2B.
 
@@ -2451,7 +2451,7 @@ The start obstacle can be shifted by one vertically, and it will give us the sam
 
  <img align="top" src="References/2024_0711.svg" width="13" />
 
- <img align="top" src="References/2024_0711_rule.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/2024_0711_rule 2.svg" width="6" />
+ <img align="top" src="References/2024_0711_rule.svg" width="5" />[spacer]<img align="top" src="References/2024_0711_rule 2.svg" width="6" />
 
  <!---->
 
@@ -2461,14 +2461,14 @@ The start obstacle can be shifted by one vertically, and it will give us the sam
 
 In this case, the line would continue on the right after exiting the area until it conflicts with an obstacle on the opposite side.
 
-<img align="top" src="References/nearStair 1.svg" width="6" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/nearStair 2.svg" width="6" />
+<img align="top" src="References/nearStair 1.svg" width="6" />[spacer]<img align="top" src="References/nearStair 2.svg" width="6" />
 
 On the right, a theoretical extension is shown. The blue fields cannot be filled.
 For now, we apply the mid across obstacle to the last step, and the across to the last before one, but there might come other combinations, like in the next case:
 
 <!---->
 
-<img align="top" src="References/2024_0713.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/nearStair 3.svg" width="6" />
+<img align="top" src="References/2024_0713.svg" width="11" />[spacer]<img align="top" src="References/nearStair 3.svg" width="6" />
 
 These cases were previously solved by applying a sequence on the right side after exiting an area on the left. This should, and can be avoided if we simplify the algorithm. 
 
@@ -2494,7 +2494,7 @@ If one case that does not fit into the system, it is okay to treat it separately
 
 The line in this case has to make a stair as shown on page 179-181, but now we are entering from the end.
 
-<img align="top" src="References/StairAtEndConvex 3 1 later.svg" width="6" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/StairAtEndConvex 3 2 later.svg" width="6" />
+<img align="top" src="References/StairAtEndConvex 3 1 later.svg" width="6" />[spacer]<img align="top" src="References/StairAtEndConvex 3 2 later.svg" width="6" />
 
 Having a W = B area, we either need to enter or exit at the white field. It is an extension of the double obstacle outside rule (page 175).
 
@@ -2511,7 +2511,7 @@ At every 10 million attempts, a pattern like this emerges:
 It is easy to see the parts that contribute to the case being impossible, but how do we define a universal or simplified rule?
 Below the first pattern descibes the exit point of the pair area (A), while the second is the border movement rule with the end obstacle at the start point B.
 
-<img align="top" src="References/Reverse Stair 3 Obstacles 1.svg" width="3" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/Reverse Stair 3 Obstacles 2.svg" width="4" />
+<img align="top" src="References/Reverse Stair 3 Obstacles 1.svg" width="3" />[spacer]<img align="top" src="References/Reverse Stair 3 Obstacles 2.svg" width="4" />
 
 In order to fill the marked area with respect to the end obstacle, we need to enter at either C or D. But because of E, we cannot step from A to C, and because of E and F, we cannot reach D.
 
@@ -2525,7 +2525,7 @@ If we make a stair shaped pattern that leads up to the first obstacle, it is cle
 - 1 straight
 - 3 straight and 2 right
 
-<img align="top" src="References/Reverse Stair 3 Obstacles 3.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/Reverse Stair 3 Obstacles 4.svg" width="5" />
+<img align="top" src="References/Reverse Stair 3 Obstacles 3.svg" width="5" />[spacer]<img align="top" src="References/Reverse Stair 3 Obstacles 4.svg" width="5" />
 
 Now let's check if we can get to any of these fields and enter the area afterwards.
 
@@ -2551,7 +2551,7 @@ Because of the stair shape, it is certain that we would enter the second green f
 
 The next case uses the stair area described in the previous chapter, so that it has 3 fields in the top row. Because of the blue obstacle, A is the entry point, and similarly to the previous example, we get stuck at the green field if we do not enter now.
 
-<img align="top" src="References/2024_0731.svg" width="11" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/Reverse Stair 3 Obstacles 7.svg" width="7" />
+<img align="top" src="References/2024_0731.svg" width="11" />[spacer]<img align="top" src="References/Reverse Stair 3 Obstacles 7.svg" width="7" />
 
 No more cases are found after several days of running. It is time to move on to the 13&nbsp;x&nbsp;13 board.
 
@@ -2569,7 +2569,7 @@ An example for the Reverse stair 3 obstacles is quickly found where the stair is
 
 We have seen this pattern before. It is the Double obstacle inside (page 172), but now it starts with a stair.
 
-<img align="top" src="References/double obstacle inside 4x1 1.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/double obstacle inside 4x1 2.svg" width="5" />
+<img align="top" src="References/double obstacle inside 4x1 1.svg" width="5" />[spacer]<img align="top" src="References/double obstacle inside 4x1 2.svg" width="5" />
 
 Since the area is 1W, we enter at the first white field and exit at the second. The black in between will be either filled after entry or before exit. In both cases, there is a close obstacle in the way.
 It is easy to see that the stair part can be extended to any length.
@@ -2578,7 +2578,7 @@ It is easy to see that the stair part can be extended to any length.
 
 And also, the top can be a field longer, so it will solve the second case of Double obstacle inside as shown on page 173:
 
-<img align="top" src="References/double obstacle inside 5x1 1.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/double obstacle inside 5x1 2.svg" width="5" />
+<img align="top" src="References/double obstacle inside 5x1 1.svg" width="5" />[spacer]<img align="top" src="References/double obstacle inside 5x1 2.svg" width="5" />
 
 <!---->
 
@@ -2586,7 +2586,7 @@ This is a variation of the Double obstacle inside pattern at 4 distance (page 17
 
 <img align="top" src="References/2024_0820.svg" width="13" />
 
-<img align="top" src="References/double obstacle inside 4 dist mid across C 1.svg" width="4" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/double obstacle inside 4 dist mid across C 2.svg" width="4" />
+<img align="top" src="References/double obstacle inside 4 dist mid across C 1.svg" width="4" />[spacer]<img align="top" src="References/double obstacle inside 4 dist mid across C 2.svg" width="4" />
 
 This time, we have a C-shape at the far end. This can be applied to any of the three other distances as well.
 
@@ -2596,7 +2596,7 @@ This time, we have a C-shape at the far end. This can be applied to any of the t
 
 In the next example, the 3-long wall on the left together with the stair going downwards right encloses and area where the live end makes a near obstacle with one of the fields on the borderline. 
 
-<img align="top" src="References/2024_0818_1.svg" width="13" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/remote stair.svg" width="7" />
+<img align="top" src="References/2024_0818_1.svg" width="13" />[spacer]<img align="top" src="References/remote stair.svg" width="7" />
 
 To start with, we can search for a corner obstacle enclosing a big area; its relative y coordinate must be x + 3. From there, taking each field to left and down, we check for the closest wall on the left side. If it is 2 distance away, the pattern is found and depending on the number of steps taken, the live end now acts as a close mid across obstacle, so we can only step left. Of course, the area has to be white = black.
 In theory, the live end can also be a close across obstacle. In that case, the corner obstacle is y = x + 4.
@@ -2718,9 +2718,9 @@ each step of it is either a c-shape or a mid across on the left side. In the lat
 
 Here is an example walkthrough:
 
-<img align="top" src="References/2024_1005_1.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/2024_1005_2.svg" width="9" />
+<img align="top" src="References/2024_1005_1.svg" width="9" />[spacer]<img align="top" src="References/2024_1005_2.svg" width="9" />
 <img src="References/spacer.svg" height="1" />
-<img align="top" src="References/2024_1005_3.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/2024_1005_4.svg" width="9" />
+<img align="top" src="References/2024_1005_3.svg" width="9" />[spacer]<img align="top" src="References/2024_1005_4.svg" width="9" />
 
 <!---->
 
@@ -2747,6 +2747,74 @@ Taking into account all discovered rules, there is no unsolved case on the 11 x 
 The 16 rule categories is as simple as the algorithm gets at this point. So far, every case has been solvable using them, and I expect it to continue like that. The new errors should point to missing cases in the algorithm or a finite amount of new, similar patterns will emerge.
 Maybe some of them can be grouped to simplify things, but the ideal solution would be something that is based on a single idea, even if several cases have to be examined due to the number of directions and rotations available. The single area rule, where we counted the number of black and white fields and compared them to the border line, met these criteria, but it was not enough.
 If the solution involves examing a multitude of patterns, there will be no way to prove that we have covered all cases either. We have just found an algorithm that reliably goes through a square grid.
+
+<!---->
+
+1. new case:
+
+<img align="top" src="References/2025_0528.svg" width="13" />
+
+Observable patterns:
+
+<img align="top" src="References/2025_0528_rule.svg" width="8" />
+
+The concave area is 3B. There are 2 corner black fields and 3 non-corner black fields, so if we enter now, the border movement has to be as shown on the picture. But due to the internal wall shape, a second line is drawn, which start we cannot get to.  
+
+<!---->
+
+If the other way were chosen:
+
+<img align="top" src="References/2025_0528_correct.svg" width="13" />
+
+<!---->
+
+2. new case:
+
+<img align="top" src="References/2025_0716.svg" width="13" />
+
+Observable pattern:
+
+<img align="top" src="References/2025_0716_rule.svg" width="6" />
+[spacer_h]
+<img align="top" src="References/2025_0716_rule2.svg" width="7" />[spacer]<img align="top" src="References/2025_0716_rule3.svg" width="7" />
+
+The concave area is 2W. If we step straight, we have to step left, but this conflicts with the close obstacle inside. This is a case of Stair at end concave start obstacle.
+
+<!---->
+
+The second and the third picture is a theoretical extension.
+
+If the other way were chosen:
+
+<img align="top" src="References/2025_0716_correct.svg" width="13" />
+
+<!---->
+
+<b>Program hotkeys</b>
+
+Main window:
+
+Enter:
+- Reload
+- Remove cursor from references text boxes
+Escape: Close settings
+Space: Start/stop run at 10 steps per second
+Ctrl + S: Save
+E: Open settings
+R: Open rules
+C: Copy algorithm to console app
+D: Disable rules
+Ctrl + D: Extract difference (not currently used)
+F: Mark further line with blue background
+Ctrl/Shift or Caps Lock is on + arrows: Move line
+Left: Previous step
+Right: Next step
+
+Rules window:
+
+To create a rule, drag and drop the squares into the grid, or press their corresponding numbers while the mouse points at the desired position in the grid.
+Click on a placed square to delete it.
+In case of future line (number 9), press the arrows after placing the start and finish by Esc or Enter.
 
 <!---->
 
@@ -2840,11 +2908,12 @@ Remove unnecessary markings in the five 1005 examples (sequence walkthrough)
 When loading a file, possible fields are not displayed as numbers on the top. Does it only happen when the calculated moves are not the same as in the file?
 CheckStairAtEndConvexStraight3 Stair: Can the down field be free in rotation 1?
 Checking corner is not implemented in CheckStairAtEndConvexStraight3 4, 2 start obstacle before an example is found.
-0727_5 is added to Sequence2, but we need to think about a general UpExtended start area where distance to the obstacle % 4 = 3.
-Display relevant area rules in examples or clean them up where unnecessary rules are displayed. (For example 1012_1)
 
 <!---->
 
+
+0727_5 is added to Sequence2, but we need to think about a general UpExtended start area where distance to the obstacle % 4 = 3.
+Display relevant area rules in examples or clean them up where unnecessary rules are displayed. (For example 1012_1)
 StairAtStart: are there 5 and 6-distance top stairs?
 Hypothesis: A wrong rule that unnecessarily disables a field does not only limit the number of walkthroughs but will result in a stuck case.
 Page 180: rewrite corner 5 1 extended stair 2.svg for stair at end convex straight.
@@ -2852,7 +2921,7 @@ Page 180: rewrite corner 5 1 extended stair 2.svg for stair at end convex straig
 Make pattern set representation: 0625 can be extended vertically, holding a fixed 2 horizontal distance, or in a stair at the far end, so that vert = hori + 2. The two can also be combined. The same can happen with 0625_1, which is just one vertical distance shorter. (Stair extension: 0712)
 
 <!--
-<img align="top" src="References/18665383.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/rules/9/Triple Area Exit Down.svg" width="6" />
+<img align="top" src="References/18665383.svg" width="9" />[spacer]<img align="top" src="References/rules/9/Triple Area Exit Down.svg" width="6" />
 
 Previously we used open corners:
 
@@ -2867,7 +2936,7 @@ In this specific case, the distance is 3, and the area is 1 black.-->
 <!--Now I give you another case to think about. It was discovered by the program previously as 51 015 231.
 The second picture is the probable point of choice.
 
-<img align="top" src="References/51015231.svg" width="9" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/51015231_1.svg" width="9" />-->
+<img align="top" src="References/51015231.svg" width="9" />[spacer]<img align="top" src="References/51015231_1.svg" width="9" />-->
 
 <!-- Write about optimizing performance / checking close rules first. Is checking next step posibilities necessary? Add 743 056 case to Check3DoubleArea in documentation; add general case where the farthest corner field has to be stepped on separately. There we should check for close obstacles. 
 
@@ -2913,16 +2982,16 @@ When stepping back on completion, what if the left and right field is possible? 
 
 <!--Side straight cases, small area:
 
-<img align="top" src="References/side straight up.svg" width="6" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/side straight down.svg" width="6" />
+<img align="top" src="References/side straight up.svg" width="6" />[spacer]<img align="top" src="References/side straight down.svg" width="6" />
 
-<img align="top" src="References/side straight 3.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/side straight 4.svg" width="6" />
+<img align="top" src="References/side straight 3.svg" width="5" />[spacer]<img align="top" src="References/side straight 4.svg" width="6" />
 <img src="References/spacer.svg" height="1" />
-<img align="top" src="References/side straight 5.svg" width="7" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/side straight 6.svg" width="8" />
+<img align="top" src="References/side straight 5.svg" width="7" />[spacer]<img align="top" src="References/side straight 6.svg" width="8" />
 
 Big area:
 
-<img align="top" src="References/side straight big up.svg" width="6" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/side straight big down.svg" width="6" />
+<img align="top" src="References/side straight big up.svg" width="6" />[spacer]<img align="top" src="References/side straight big down.svg" width="6" />
 <img src="References/spacer.svg" height="1" />
-<img align="top" src="References/side straight big 3.svg" width="5" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/side straight big 4.svg" width="6" />
+<img align="top" src="References/side straight big 3.svg" width="5" />[spacer]<img align="top" src="References/side straight big 4.svg" width="6" />
 <img src="References/spacer.svg" height="1" />
-<img align="top" src="References/side straight big 5.svg" width="7" /><img src="References/spacer.svg" width="1" /><img align="top" src="References/side straight big 6.svg" width="8" />-->
+<img align="top" src="References/side straight big 5.svg" width="7" />[spacer]<img align="top" src="References/side straight big 6.svg" width="8" />-->

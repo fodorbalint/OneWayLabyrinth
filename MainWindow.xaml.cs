@@ -4850,17 +4850,17 @@ namespace OneWayLabyrinth
                 Save_Click(new object(), new RoutedEventArgs());
                 return;
             }
-            else if (e.Key == Key.E && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)) && !settingsOpen)
+            else if (e.Key == Key.E && !settingsOpen)
             {
                 OpenSettings_Click(null, null);
                 return;
             }
-            else if (e.Key == Key.R && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            else if (e.Key == Key.R)
             {
                 Rules_Click(null, null);
                 return;
             }
-            else if (e.Key == Key.C && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            else if (e.Key == Key.C)
             {
                 CopyConsole_Click(null, null);
                 return;
@@ -4873,7 +4873,7 @@ namespace OneWayLabyrinth
             {
                 ExtractDifference();
             }
-            else if (e.Key == Key.F && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            else if (e.Key == Key.F)
             {
                 if (!isTaskRunning)
                 {

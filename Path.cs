@@ -1150,7 +1150,7 @@ namespace OneWayLabyrinth
             {
                 bool circleDirectionLeft = (i == 0) ? true : false;
 
-                for (int j = 0; j < 4; j++)
+                for (int j = 0; j < 4; j++) // rotate CW
                 {
                     int quarter = quarters[i][j];
                     foreach (int[] corner in closedCorners[quarter])
@@ -1703,6 +1703,15 @@ namespace OneWayLabyrinth
                                                 {
                                                     AddForbidden(-1, 0);
                                                 }
+                                            }
+
+                                            // 2025_0527_1: close obstacles inside or outside
+                                            // j = 2 rotation might be possible, but we need an example of it
+                                            if (hori == vert && hori >= 4 && j == 1 && whiteDiff == 0 && CheckNearFieldSmallRel0(1, 0, 0, 1, true) && CheckNearFieldSmallRel0(2, 2, 0, 2, true))
+                                            {
+                                                T("LeftRightCorner close obstacle inside outside " + i + " " + j + ": Cannot step left");
+
+                                                AddForbidden(1, 0);
                                             }
 
                                             if (!(whiteDiff <= nowWCount && whiteDiff >= -nowBCount) && j != 3) // for left rotation, lx, ly is the down field
@@ -3201,7 +3210,7 @@ namespace OneWayLabyrinth
         }
 
         void CheckStairAtEndConcaveStraight3()
-        // // 2025_0527
+        // 2025_0527
         {
             for (int i = 0; i < 2; i++)
             {

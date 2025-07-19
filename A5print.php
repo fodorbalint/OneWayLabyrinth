@@ -5,6 +5,12 @@
     else {
         $order = 0;    
     }
+    if (isset($_GET["start"])) {
+        $start = $_GET["start"];        
+    }
+    else {
+        $start = 1;    
+    }
     ob_start();
 
     if ($order < 2) {
@@ -140,6 +146,8 @@ document.addEventListener('visibilitychange', function() {
 <table width="<?php print $order < 2 ? 1040 : 520 ?>" align="center">
 <?php
     $content = str_replace("\r", "", str_replace("<br />", "", file_get_contents("readme0.md")));
+    $content = str_replace("[spacer]", '<img src="References/spacer.svg" width="1" />', $content);
+    $content = str_replace("[spacer_h]", '<img src="References/spacer.svg" height="1" />', $content);
     
     $pos1 = strpos($content, "#");
     $pos2 = strpos($content, "\n",  $pos1);
@@ -162,8 +170,8 @@ document.addEventListener('visibilitychange', function() {
     
     $output = "";
 
-    if ($order == 0) { // 1 2 3 4, for reading in browser
-        for($i = 0; $i < count($pageTexts); $i++) {
+    if ($order == 0) { // 1 2 3 4, for reading in browser        
+        for($i = ($start % 2 == 1) ? $start - 1 : $start - 2; $i < count($pageTexts); $i++) {
             if ($i % 2 == 0) {                
                 $output.= "<tr><td><div class=\"border\"></div><div>".$pageTexts[$i]."</div><div class=\"num\">".($i+1)."</div></td>\n";
             }            
@@ -177,8 +185,8 @@ document.addEventListener('visibilitychange', function() {
     }
     else if ($order == 1) { // 4 1 2 3, for printing on A4 paper on both sides
         $pages = array();
-        
-        for($i = 0; $i < count($pageTexts); $i++) {
+
+        for($i = ($start % 4 == 1) ? $start - 1 : ($start - 1) - ($start - 1) % 4; $i < count($pageTexts); $i++) {
             if ($i % 2 == 1) {
                 if ($i % 4 == 1) {
                     $pages[] = "<tr><td><div class=\"border\"></div><div>".$pageTexts[$i]."</div><div class=\"num\">".($i+1)."</div></td>\n";

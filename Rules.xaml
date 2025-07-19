@@ -6,20 +6,21 @@
         xmlns:skia="clr-namespace:SkiaSharp.Views.WPF;assembly=SkiaSharp.Views.WPF"
         xmlns:local="clr-namespace:OneWayLabyrinth"
         mc:Ignorable="d"
-        Title="Rules" Height="851" Width="780" Left="170" Top="181" PreviewKeyDown="Window_PreviewKeyDown" >
+        Title="Rules" Height="851" Width="780" Left="170" Top="181" PreviewKeyDown="Window_PreviewKeyDown" Background="#dddddd">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="300" />
+            <!--<ColumnDefinition Width="300" />-->
         </Grid.ColumnDefinitions>
 
         <ScrollViewer x:Name="MainScroll" Grid.Column="0">
-            <Grid x:Name="MainGrid">
+            <Grid x:Name="MainGrid">                
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                 </Grid.RowDefinitions>
 
+                <Button x:Name="FocusButton" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Width="0" Height="0"/>
                 <Button x:Name="CreateNew" Click="CreateNew_Click" Grid.Row="0" Margin="10,0,0,0" Padding="3,1,3,1" Content="Create new" VerticalAlignment="Top" HorizontalAlignment="Left" />
                 <Button x:Name="SaveRule" Click="SaveRule_Click" Grid.Row="0" Margin="87,0,0,0" Padding="3,1,3,1" Content="Save rule" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Collapsed" />
                 <Button x:Name="ResetRule" Click="ResetRule_Click" Grid.Row="0" Margin="153,0,0,0" Padding="3,1,3,1" Content="Reset" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Collapsed" />
@@ -38,14 +39,23 @@
                     <TextBlock Margin="90,22,0,0" Text="by" VerticalAlignment="Top" HorizontalAlignment="Left" />
                     <TextBox x:Name="YSize" HorizontalAlignment="Left" Margin="108,22,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="30" KeyDown="XYSize_KeyDown"/>
                     
-                    <Grid x:Name="RuleGrid" Grid.Column="0" Margin="0,44,0,0" MouseDown="RuleGrid_MouseDown" MouseMove="RuleGrid_MouseMove" MouseUp="RuleGrid_MouseUp" MouseLeave="RuleGrid_MouseLeave" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <TextBlock Margin="15,44,0,0" Text="1" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
+                    <TextBlock Margin="65,44,0,0" Text="2" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
+                    <TextBlock Margin="115,44,0,0" Text="3" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
+                    <TextBlock Margin="165,44,0,0" Text="4" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
+                    <TextBlock Margin="215,44,0,0" Text="5" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
+                    <TextBlock Margin="265,44,0,0" Text="6" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
+                    <TextBlock Margin="315,44,0,0" Text="7" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
+                    <TextBlock Margin="365,44,0,0" Text="8" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
+                    <TextBlock Margin="415,44,0,0" Text="9" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
+                    <Grid x:Name="RuleGrid" Grid.Column="0" Margin="0,69,0,0" MouseDown="RuleGrid_MouseDown" MouseMove="RuleGrid_MouseMove" MouseUp="RuleGrid_MouseUp" MouseLeave="RuleGrid_MouseLeave" VerticalAlignment="Top" HorizontalAlignment="Left">
                         <skia:SKElement x:Name="Canvas" Panel.ZIndex="0" IgnorePixelScaling="True" PaintSurface="SKElement_PaintSurface" Tag="newRule" Margin="0,100,0,10" HorizontalAlignment="Left" VerticalAlignment="Top" />                        
                     </Grid>
                 </Grid>
             </Grid>
         </ScrollViewer>
 
-        <TextBlock Grid.Column="1" TextWrapping="Wrap" Padding="5,5,5,5">                
+        <!--<TextBlock Grid.Column="1" TextWrapping="Wrap" Padding="5,5,5,5">                
                 You can create rule representations using the following fields.
                 Drag and drop the fields:<LineBreak />
                 - live end<LineBreak />
@@ -53,11 +63,11 @@
                 - black border field<LineBreak />
                 - taken field<LineBreak />
                 - directional taken field<LineBreak />
-                - future line, press the arrows after placing the start point<LineBreak />
-                - forbidden field<LineBreak />
+                - future line<LineBreak />
+                Press the arrows after placing it to draw it, and finish by clicking in the table, dragging a new field or pressing enter.
                 <LineBreak />
                 <LineBreak />
-                To delete a rule, delete the file in the file system.
-        </TextBlock>
+                To delete a field already placed, click on it. The rule is found in the file system as newRule.svg.
+        </TextBlock>-->
     </Grid>
 </Window>
