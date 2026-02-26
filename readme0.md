@@ -2425,11 +2425,19 @@ Again, the distance can be increased, the area is now 2B:
 
 <img align="top" src="References/2024_1008.svg" width="11" />[spacer]<img align="top" src="References/Stair at end convex rule.svg" width="5" />
 
-The area marked by the rule is 1B. So if we enter now, the have to exit at the farthest black field, becase the closest one will need to be filled separately. This will create an area with the upper left obstacle in the rule that needs to be pair, but in the example it is 3 x 3.
+The area marked by the rule is 1B. So if we enter now, we have to exit at the farthest black field, becase the closest one will need to be filled separately. This will create an area with the upper left obstacle in the rule that needs to be pair, but in the example it is 3 x 3.
 
 When we extend the rule (with the start area being 2B now), it is clear where the stair edge will be.
 
 <img align="top" src="References/Stair at end convex rule 2.svg" width="6" />
+
+<!---->
+
+This is a variation where, if we enter later, we will not be able to exit because of the second obstacle.
+
+<img align="top" src="References/2025_0525_1.svg" width="13" />
+[spacer_h]
+<img align="top" src="References/2025_0525_1_rule.svg" width="6" />[spacer]<img align="top" src="References/2025_0525_1_rule2.svg" width="7" />
 
 <!---->
 
@@ -2592,7 +2600,54 @@ This time, we have a C-shape at the far end. This can be applied to any of the t
 
 <!---->
 
-<b>15. Remote stair</b>
+In the following, the stair of the area border starts from the field straight ahead. The area is 2W, so if we enter that field, we need to exit again, but there is a close obstacle inside.
+
+<img align="top" src="References/2025_0716.svg" width="13" />[spacer]<img align="top" src="References/2025_0716_rule.svg" width="6" />
+
+The extensions would look like this:
+
+<img align="top" src="References/2025_0716_rule2.svg" width="7" />[spacer]<img align="top" src="References/2025_0716_rule3.svg" width="7">
+
+<!---->
+
+If the other way were chosen:
+
+<img align="top" src="References/2025_0716_correct.svg" width="13" />
+
+This is a variation, with the top of the stair being one field longer.
+
+<img align="top" src="References/2025_0522_1.svg" width="13" />[spacer]<img align="top" src="References/2025_0522_1_rule.svg" width="7" />
+
+<!---->
+
+And here, the second obstacle is not a close one, but the area it creates is 1B, so it cannot be walked through.
+
+<img align="top" src="References/2025_0525.svg" width="13" />
+[spacer_h]
+<img align="top" src="References/2025_0525_rule.svg" width="7" />[spacer]<img align="top" src="References/2025_0525_rule2.svg" width="8" />
+
+<!---->
+
+The following case is similar, only the first obstacle is not a corner but a straight wall:
+
+<img align="top" src="References/2025_0720_1.svg" width="13" />
+
+<!---->
+
+<b>15. Stair at start concave</b>
+
+<img align="top" src="References/2025_0522.svg" width="13" />
+
+This is the basic corner + area rule where, if the enter later, the border should be walked like this (the area is 2W):
+
+<img align="top" src="References/2025_0522_rule.svg" width="7" />
+
+This conflicts with the across obstacle inside the area.
+
+<!---->
+
+
+<b>16. Remote stair</b>
 
 In the next example, the 3-long wall on the left together with the stair going downwards right encloses and area where the live end makes a near obstacle with one of the fields on the borderline. 
 
@@ -2603,7 +2658,7 @@ In theory, the live end can also be a close across obstacle. In that case, the c
 
 <!---->
 
-<b>16. Sequence extensions</b>
+<b>17. Sequence extensions</b>
 
 There are new sequence cases. A logical way to structure them is to group them by the start obstacle placement. They will be given as "horizontal distance, vertical distance", and the side they are on is called left, even if in the example it is mirrored. I will also write how many rotations are possible. If the obstacle placement is on the left in the first rotation, the second will change it to be straight ahead, the third to the right, the fourth to behind.
 Until now, we only checked for C-shapes and close obstacles on the left side, but it will soon change. Remote corner obstacles have to be checked for, which create an area we cannot enter later. 
@@ -2770,23 +2825,7 @@ If the other way were chosen:
 
 2. new case:
 
-<img align="top" src="References/2025_0716.svg" width="13" />
-
-Observable pattern:
-
-<img align="top" src="References/2025_0716_rule.svg" width="6" />
-[spacer_h]
-<img align="top" src="References/2025_0716_rule2.svg" width="7" />[spacer]<img align="top" src="References/2025_0716_rule3.svg" width="7" />
-
-The concave area is 2W. If we step straight, we have to step left, but this conflicts with the close obstacle inside. This is a case of Stair at end concave start obstacle.
-
-<!---->
-
-The second and the third picture is a theoretical extension.
-
-If the other way were chosen:
-
-<img align="top" src="References/2025_0716_correct.svg" width="13" />
+<img align="top" src="References/2026_0124.svg" width="13" />
 
 <!---->
 
@@ -2855,14 +2894,7 @@ Exact calculation line:
 
 <span class="header">Development / correction notes</span>
 
-<b>Solved, needs documentation:</b>
-
-(Statitics: around 4000)
-2025_0522: LeftRightCorner, area has a maximum allowed of white fields. There is an across obstacle at the bottom of the stair edge
-2025_0522_1: Stair at end concave straight 4
-2025_0525: Stair at end concave straight 5
-2025_0525_1: Stair at end convex 4
-2025_0527: Stair at end concave straight 3 (Statitics: 6348)
+Current statitics: 6348
 
 <b>Developments:</b>
 
@@ -2879,9 +2911,11 @@ Review rules if they have unnecessary rotations when disabling a field, fx. stra
 Review CountArea old and new algorithms
 Do not disable a possible field (and display the area) if the field is taken anyway (0725_4, 0731 step straight)
 All Sequence patterns should be replaced with stair-area rules like 0725_5. Is it possible? At 0726_2, applying sequence is unnecessary. 
+In CheckStairAtEndConcaveStraight5, the index of (hori, vert) is compared to (hori, vert + 1) to determine obstacle direction. Does (hori, vert + 1) always exist, or can it be empty or go out of the board?
 
 <b>Display:</b>
 
+Clean up 2025_0522_1, 2025_0525 for irrelevant area rules.
 Should we display non-critical border movements in rules? Fx. 0624 vs 0727_1 solutions (page 177-178)
 Indicate needed disabled fields in 11&nbsp;x&nbsp;11 rule representations?
 New pictures where areas were displayed incorrectly.

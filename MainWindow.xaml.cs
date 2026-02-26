@@ -208,12 +208,16 @@ namespace OneWayLabyrinth
                 showCheckerBoard = (bool)ShowCheckerBoardCheck.IsChecked;
                 arr = lines[11].Split(": ");
                 refString = arr[1];
-                string[] arr2 = refString.Split(";");
-                Ref1.Text = arr2[0];
-                Ref2.Text = arr2[1];
-                Ref3.Text = arr2[2];
-                saveRef = true;
 
+                if (refString.IndexOf(";") != -1)
+                {
+                    string[] arr2 = refString.Split(";");
+                    Ref1.Text = arr2[0];
+                    Ref2.Text = arr2[1];
+                    Ref3.Text = arr2[2];
+                    saveRef = true;
+                }
+                
                 CheckSize();
                 Size.Text = size.ToString();
             }
