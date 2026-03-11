@@ -1,4 +1,4 @@
-size: 13
+size: 11
 loadFromFile: True
 saveOnCompletion: True
 continueOnCompletion: True
@@ -8,5 +8,5 @@ displayArea: True
 makeStats: True
 activeRules: False
 checkerArea: True
-checkerBoard: False
-references: 2025_0720_1;2025_0525;2025_0525_rule
+checkerBoard: True
+references: 2024_0716;2025_0720_1;2026_0304_4

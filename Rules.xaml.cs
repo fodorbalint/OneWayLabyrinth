@@ -1024,30 +1024,39 @@ namespace OneWayLabyrinth
                 switch (e.Key)
                 {
                     case Key.D1:
+                    case Key.NumPad1:
                         draggedElement = 1;
                         break;
                     case Key.D2:
+                    case Key.NumPad2:
                         draggedElement = 2;
                         break;
                     case Key.D3:
+                    case Key.NumPad3:
                         draggedElement = 3;
                         break;
                     case Key.D4:
+                    case Key.NumPad4:
                         draggedElement = 4;
                         break;
                     case Key.D5:
+                    case Key.NumPad5:
                         draggedElement = 5;
                         break;
                     case Key.D6:
+                    case Key.NumPad6:
                         draggedElement = 6;
                         break;
                     case Key.D7:
+                    case Key.NumPad7:
                         draggedElement = 7;
                         break;
                     case Key.D8:
+                    case Key.NumPad8:
                         draggedElement = 8;
                         break;
                     case Key.D9:
+                    case Key.NumPad9:
                         draggedElement = 9;
                         break;
                 }

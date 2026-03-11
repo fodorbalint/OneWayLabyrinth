@@ -2624,7 +2624,7 @@ And here, the second obstacle is not a close one, but the area it creates is 1B,
 
 <img align="top" src="References/2025_0525.svg" width="13" />
 [spacer_h]
-<img align="top" src="References/2025_0525_rule.svg" width="7" />[spacer]<img align="top" src="References/2025_0525_rule2.svg" width="8" />
+<img align="top" src="References/StairAtEndConcaveStraight5.svg" width="5" />[spacer]<img align="top" src="References/StairAtEndConcaveStraight5_1.svg" width="6" />
 
 <!---->
 
@@ -2805,7 +2805,7 @@ If the solution involves examing a multitude of patterns, there will be no way t
 
 <!---->
 
-1. new case:
+An unsolved case that does not easily fit into the system:
 
 <img align="top" src="References/2025_0528.svg" width="13" />
 
@@ -2823,9 +2823,41 @@ If the other way were chosen:
 
 <!---->
 
-2. new case:
+<b>New cases and solutions that need classification</b>
 
-<img align="top" src="References/2026_0124.svg" width="13" />
+2026_0304_4, 2026_0301, 2026_0302_1, 2026_0304_7; Stair at end concave straight 5 is rewritten for vertical position.
+
+<img align="top" src="References/StairAtEndConcaveStraight5.svg" width="4" />[spacer]<img align="top" src="References/StairAtEndConcaveStraight5_1.svg" width="5" />
+
+2026_0304_2, 2026_0304_6; Stair at end concave 5:
+
+<img align="top" src="References/StairAtEndConcave5.svg" width="4" />[spacer]<img align="top" src="References/StairAtEndConcave5_1.svg" width="5" /> 
+
+2025_0527, 2026_0302_4, 2026_0302_5; Stair at end concave straight 3:
+
+<img align="top" src="References/StairAtEndConcaveStraight3.svg" width="6" />[spacer]<img align="top" src="References/StairAtEndConcaveStraight3_1.svg" width="7" />
+
+<!---->
+
+Stair at start convex 4:
+
+<img align="top" src="References/StairAtStartConvex4.svg" width="5" />[spacer]<img align="top" src="References/StairAtStartConvex4_1.svg" width="6" />
+
+2926_0302_7; Stair at start convex 3 uses CheckNearFieldSmallRel that is not valid to far corners, but this scenario could exist. CheckCorner1 could also be rewritten to be valid for C-shapes as in this example. Rule: 
+
+<img align="top" src="References/StairAtStartConvex3.svg" width="4" />[spacer]<img align="top" src="References/StairAtStartConvex3_1.svg" width="4" />
+
+2026_0301_1 Stair at start convex straight 3
+
+<img align="top" src="References/StairAtStartConvexStraight3.svg" width="6" />[spacer]<img align="top" src="References/StairAtStartConvexStraight3_1.svg" width="5" />
+
+<!---->
+
+2026_0302 Stair at end concave straight 6
+
+<img align="top" src="References/StairAtEndConcaveStraight6.svg" width="6" />
+
+Area is 1B. If we enter now and exit at the nearest blue line, the area with the second obstacle is still 1B and cannot be filled. We cannot first exit at the farthest blue line due to the obstacle inside that does not leave space to get there.
 
 <!---->
 
@@ -2894,10 +2926,12 @@ Exact calculation line:
 
 <span class="header">Development / correction notes</span>
 
-Current statitics: 6348
+Current statitics: 1 error in 6348 random walkthroughs, averaged from 50 runs. 
 
 <b>Developments:</b>
 
+2024_0716; Straight small cases need to be reviewed and reclassified as middle cases between stair at start and stair at end.
+For all stair at start/end rules, extend to any distance beyond 3-6.
 Calculate next step enter left and right for any AreaUp and Corner distance. (page 129)
 Extend 0720_3 case to any horizontal distance (page 180)
 Check if opposite empty fields should be disabled at certain rotations of the 4 single area rule groups. (fx. LeftRightAreaUpExtended closed corner 4: Cannot step down). A safety check can be impelmented: if the left and right direction is available but the straight direction is disabled, and there is not a close obstacle/corner on both sides, it is an error.
@@ -2915,6 +2949,7 @@ In CheckStairAtEndConcaveStraight5, the index of (hori, vert) is compared to (ho
 
 <b>Display:</b>
 
+Make an arrow at the end of the blue lines, to indicate direction. Important at Stair at end concave straight 6.
 Clean up 2025_0522_1, 2025_0525 for irrelevant area rules.
 Should we display non-critical border movements in rules? Fx. 0624 vs 0727_1 solutions (page 177-178)
 Indicate needed disabled fields in 11&nbsp;x&nbsp;11 rule representations?
@@ -2922,9 +2957,10 @@ New pictures where areas were displayed incorrectly.
 Cite page numbers when mentioning a rule
 Next step left/right areas could be shown in program
 Specify future line extension and connection rules on page 3?
-The corner discovery head can be in any of the 4 quarters and the area is still closed at the right position. Only stop when reaching the corner or passing by the live end.
 
 <!---->
+
+The corner discovery head can be in any of the 4 quarters and the area is still closed at the right position. Only stop when reaching the corner or passing by the live end.
 
 <b>Find example:</b>
 
@@ -2941,11 +2977,10 @@ Review page number references
 Remove unnecessary markings in the five 1005 examples (sequence walkthrough)
 When loading a file, possible fields are not displayed as numbers on the top. Does it only happen when the calculated moves are not the same as in the file?
 CheckStairAtEndConvexStraight3 Stair: Can the down field be free in rotation 1?
-Checking corner is not implemented in CheckStairAtEndConvexStraight3 4, 2 start obstacle before an example is found.
 
 <!---->
 
-
+Checking corner is not implemented in CheckStairAtEndConvexStraight3 4, 2 start obstacle before an example is found.
 0727_5 is added to Sequence2, but we need to think about a general UpExtended start area where distance to the obstacle % 4 = 3.
 Display relevant area rules in examples or clean them up where unnecessary rules are displayed. (For example 1012_1)
 StairAtStart: are there 5 and 6-distance top stairs?
