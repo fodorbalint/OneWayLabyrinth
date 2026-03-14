@@ -2825,13 +2825,25 @@ If the other way were chosen:
 
 <b>New cases and solutions that need classification</b>
 
-2026_0304_4, 2026_0301, 2026_0302_1, 2026_0304_7; Stair at end concave straight 5 is rewritten for vertical position.
+2926_0302_7; Stair at start convex 3 uses CheckNearFieldSmallRel that is not valid to far corners, but this scenario could exist. CheckCorner1 could also be rewritten to be valid for C-shapes as in this example. Rule: 
 
-<img align="top" src="References/StairAtEndConcaveStraight5.svg" width="4" />[spacer]<img align="top" src="References/StairAtEndConcaveStraight5_1.svg" width="5" />
+<img align="top" src="References/StairAtStartConvex3.svg" width="4" />[spacer]<img align="top" src="References/StairAtStartConvex3_1.svg" width="4" />
 
-2026_0304_2, 2026_0304_6; Stair at end concave 5:
+2024_0710, 2026_0301_1 Stair at start convex straight 3
+2024_0611 needs extension
 
-<img align="top" src="References/StairAtEndConcave5.svg" width="4" />[spacer]<img align="top" src="References/StairAtEndConcave5_1.svg" width="5" /> 
+<img align="top" src="References/StairAtStartConvexStraight3.svg" width="6" />[spacer]<img align="top" src="References/StairAtStartConvexStraight3_1.svg" width="5" />
+
+<!---->
+
+2024_0618_2, 2026_0302_6, 2026_0304_1, 2026_0304_5; Stair at start convex straight 4 1W
+2024_0727_4, 2024_0725: start obstacle outside as well 
+
+<img align="top" src="References/StairAtStartConvexStraight4_1W.svg" width="5" />[spacer]<img align="top" src="References/StairAtStartConvexStraight4_1W_1.svg" width="6" />[spacer]<img align="top" src="References/StairAtStartConvexStraight4_1W_2.svg" width="4" />
+
+2024_0610_4, 2024_0610_5, 121670752, 0627; 1B (currently LeftRightAreaUpExtended ex % 4 = 0):
+
+<img align="top" src="References/StairAtStartConvexStraight4_1B.svg" width="5" />[spacer]<img align="top" src="References/StairAtStartConvexStraight4_1B_1.svg" width="6" />
 
 2025_0527, 2026_0302_4, 2026_0302_5; Stair at end concave straight 3:
 
@@ -2839,17 +2851,13 @@ If the other way were chosen:
 
 <!---->
 
-Stair at start convex 4:
+2026_0304_2, 2026_0304_6; Stair at end concave 5:
 
-<img align="top" src="References/StairAtStartConvex4.svg" width="5" />[spacer]<img align="top" src="References/StairAtStartConvex4_1.svg" width="6" />
+<img align="top" src="References/StairAtEndConcave5.svg" width="4" />[spacer]<img align="top" src="References/StairAtEndConcave5_1.svg" width="5" /> 
 
-2926_0302_7; Stair at start convex 3 uses CheckNearFieldSmallRel that is not valid to far corners, but this scenario could exist. CheckCorner1 could also be rewritten to be valid for C-shapes as in this example. Rule: 
+2026_0304_4, 2026_0301, 2026_0302_1, 2026_0304_7; Stair at end concave straight 5 is rewritten for vertical position.
 
-<img align="top" src="References/StairAtStartConvex3.svg" width="4" />[spacer]<img align="top" src="References/StairAtStartConvex3_1.svg" width="4" />
-
-2026_0301_1 Stair at start convex straight 3
-
-<img align="top" src="References/StairAtStartConvexStraight3.svg" width="6" />[spacer]<img align="top" src="References/StairAtStartConvexStraight3_1.svg" width="5" />
+<img align="top" src="References/StairAtEndConcaveStraight5.svg" width="5" />[spacer]<img align="top" src="References/StairAtEndConcaveStraight5_1.svg" width="6" />
 
 <!---->
 

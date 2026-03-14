@@ -6,54 +6,55 @@
         xmlns:skia="clr-namespace:SkiaSharp.Views.WPF;assembly=SkiaSharp.Views.WPF"
         xmlns:local="clr-namespace:OneWayLabyrinth"
         mc:Ignorable="d"
-        Title="Rules" Height="851" Width="780" Left="170" Top="181" PreviewKeyDown="Window_PreviewKeyDown" Background="#dddddd">
+        Title="Rules" Height="851" Width="536" Left="424" Top="181" PreviewKeyDown="Window_PreviewKeyDown" Background="#dddddd">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <!--<ColumnDefinition Width="300" />-->
         </Grid.ColumnDefinitions>
 
-        <ScrollViewer x:Name="MainScroll" Grid.Column="0">
-            <Grid x:Name="MainGrid">                
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto" />
-                    <RowDefinition Height="auto" />
-                </Grid.RowDefinitions>
+        <!--<ScrollViewer x:Name="MainScroll" Grid.Column="0">-->
+        <Grid x:Name="MainGrid" Grid.Column="0" Margin="10,10,0,0">                
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+            </Grid.RowDefinitions>
 
-                <Button x:Name="FocusButton" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Width="0" Height="0"/>
-                <Button x:Name="CreateNew" Click="CreateNew_Click" Grid.Row="0" Margin="10,0,0,0" Padding="3,1,3,1" Content="Create new" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                <Button x:Name="SaveRule" Click="SaveRule_Click" Grid.Row="0" Margin="87,0,0,0" Padding="3,1,3,1" Content="Save rule" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Collapsed" />
-                <Button x:Name="ResetRule" Click="ResetRule_Click" Grid.Row="0" Margin="153,0,0,0" Padding="3,1,3,1" Content="Reset" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Collapsed" />
-                <Button x:Name="Cancel" Click="Cancel_Click" Grid.Row="0" Margin="200,0,0,0" Padding="3,1,3,1" Content="Cancel" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Collapsed" />                
+            <Button x:Name="FocusButton" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Width="0" Height="0"/>
+            <Button x:Name="CreateNew" Click="CreateNew_Click" Grid.Row="0" Margin="0,0,0,0" Padding="3,1,3,1" Content="Create new" VerticalAlignment="Top" HorizontalAlignment="Left" />
+            <Button x:Name="SaveRule" Click="SaveRule_Click" Grid.Row="0" Margin="77,0,0,0" Padding="3,1,3,1" Content="Save rule" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Collapsed" />
+            <Button x:Name="ResetRule" Click="ResetRule_Click" Grid.Row="0" Margin="143,0,0,0" Padding="3,1,3,1" Content="Reset" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Collapsed" />
+            <Button x:Name="Cancel" Click="Cancel_Click" Grid.Row="0" Margin="190,0,0,0" Padding="3,1,3,1" Content="Cancel" VerticalAlignment="Top" HorizontalAlignment="Left" Visibility="Collapsed" />                
 
-                <Grid x:Name="NewRuleGrid" Grid.Row="0" Margin="10,31,20,0" Visibility="Collapsed">
-                    <TextBlock Margin="0,0,0,0" Text="Name:" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                    <TextBox x:Name="RuleName" HorizontalAlignment="Left" Margin="41,0,0,0" TextWrapping="NoWrap" Text="Rule 1" VerticalAlignment="Top" Width="200"/>
-                    <!--<CheckBox x:Name="RotateClockwise" Content="Rotate clockwise" Click="RotateClockwise_Click" HorizontalAlignment="Left" Margin="0,21,0,0" VerticalAlignment="Top"/>
-                    <CheckBox x:Name="RotateCounterClockwise" Content="Rotate counter-clockwise" Click="RotateCounterClockwise_Click" HorizontalAlignment="Left" Margin="120,21,0,0" VerticalAlignment="Top"/>-->
-                    <!--<TextBlock Margin="0,21,0,0" Text="Applies to size:" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                    <TextBox x:Name="AppliedSize" HorizontalAlignment="Left" Margin="84,21,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="30" KeyDown="AppliedSize_KeyDown" />-->
-                    
-                    <TextBlock Text="Area size:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,22,0,0" />
-                    <TextBox x:Name="XSize" HorizontalAlignment="Left" Margin="55,22,0,0" TextWrapping="NoWrap" Text="Rule 1" VerticalAlignment="Top" Width="30" KeyDown="XYSize_KeyDown" />
-                    <TextBlock Margin="90,22,0,0" Text="by" VerticalAlignment="Top" HorizontalAlignment="Left" />
-                    <TextBox x:Name="YSize" HorizontalAlignment="Left" Margin="108,22,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="30" KeyDown="XYSize_KeyDown"/>
-                    
-                    <TextBlock Margin="15,44,0,0" Text="1" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
-                    <TextBlock Margin="65,44,0,0" Text="2" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
-                    <TextBlock Margin="115,44,0,0" Text="3" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
-                    <TextBlock Margin="165,44,0,0" Text="4" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
-                    <TextBlock Margin="215,44,0,0" Text="5" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
-                    <TextBlock Margin="265,44,0,0" Text="6" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
-                    <TextBlock Margin="315,44,0,0" Text="7" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
-                    <TextBlock Margin="365,44,0,0" Text="8" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
-                    <TextBlock Margin="415,44,0,0" Text="9" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
-                    <Grid x:Name="RuleGrid" Grid.Column="0" Margin="0,69,0,0" MouseDown="RuleGrid_MouseDown" MouseMove="RuleGrid_MouseMove" MouseUp="RuleGrid_MouseUp" MouseLeave="RuleGrid_MouseLeave" VerticalAlignment="Top" HorizontalAlignment="Left">
-                        <skia:SKElement x:Name="Canvas" Panel.ZIndex="0" IgnorePixelScaling="True" PaintSurface="SKElement_PaintSurface" Tag="newRule" Margin="0,100,0,10" HorizontalAlignment="Left" VerticalAlignment="Top" />                        
-                    </Grid>
+            <Grid x:Name="NewRuleGrid" Grid.Row="0" Margin="0,31,20,0" Visibility="Collapsed">
+                <TextBlock Margin="0,0,0,0" Text="Name:" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                <TextBox x:Name="RuleName" HorizontalAlignment="Left" Margin="41,0,0,0" TextWrapping="NoWrap" Text="Rule 1" VerticalAlignment="Top" Width="200" KeyDown="RuleName_KeyDown" />
+                <!--<CheckBox x:Name="RotateClockwise" Content="Rotate clockwise" Click="RotateClockwise_Click" HorizontalAlignment="Left" Margin="0,21,0,0" VerticalAlignment="Top"/>
+                <CheckBox x:Name="RotateCounterClockwise" Content="Rotate counter-clockwise" Click="RotateCounterClockwise_Click" HorizontalAlignment="Left" Margin="120,21,0,0" VerticalAlignment="Top"/>-->
+                <!--<TextBlock Margin="0,21,0,0" Text="Applies to size:" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                <TextBox x:Name="AppliedSize" HorizontalAlignment="Left" Margin="84,21,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="30" KeyDown="AppliedSize_KeyDown" />-->
+                
+                <TextBlock Text="Area size:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="0,22,0,0" />
+                <TextBox x:Name="XSize" HorizontalAlignment="Left" Margin="55,22,0,0" TextWrapping="NoWrap" Text="Rule 1" VerticalAlignment="Top" Width="30" KeyDown="XYSize_KeyDown" />
+                <TextBlock Margin="90,22,0,0" Text="by" VerticalAlignment="Top" HorizontalAlignment="Left" />
+                <TextBox x:Name="YSize" HorizontalAlignment="Left" Margin="108,22,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="30" KeyDown="XYSize_KeyDown"/>
+                
+                <TextBlock Margin="15,44,0,0" Text="1" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
+                <TextBlock Margin="65,44,0,0" Text="2" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
+                <TextBlock Margin="115,44,0,0" Text="3" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
+                <TextBlock Margin="165,44,0,0" Text="4" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
+                <TextBlock Margin="215,44,0,0" Text="5" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
+                <TextBlock Margin="265,44,0,0" Text="6" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
+                <TextBlock Margin="315,44,0,0" Text="7" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
+                <TextBlock Margin="365,44,0,0" Text="8" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
+                <TextBlock Margin="415,44,0,0" Text="9" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
+                <TextBlock Margin="465,44,0,0" Text="0" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold" FontSize="18"/>
+                <Grid x:Name="RuleGrid" Grid.Column="0" Margin="0,69,0,0" MouseDown="RuleGrid_MouseDown" MouseMove="RuleGrid_MouseMove" MouseUp="RuleGrid_MouseUp" MouseLeave="RuleGrid_MouseLeave" VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <skia:SKElement x:Name="Canvas" Panel.ZIndex="0" IgnorePixelScaling="True" PaintSurface="SKElement_PaintSurface" Tag="newRule" Margin="0,100,0,10" HorizontalAlignment="Left" VerticalAlignment="Top" />                        
                 </Grid>
             </Grid>
-        </ScrollViewer>
+        </Grid>
+        <!--</ScrollViewer>-->
 
         <!--<TextBlock Grid.Column="1" TextWrapping="Wrap" Padding="5,5,5,5">                
                 You can create rule representations using the following fields.
