@@ -9,4 +9,4 @@ makeStats: True
 activeRules: False
 checkerArea: True
 checkerBoard: True
-references: 2024_0716;2025_0720_1;2026_0304_4
+references: 2024_0727_3;2024_0626;2026_0302_6

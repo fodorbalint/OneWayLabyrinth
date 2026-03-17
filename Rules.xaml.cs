@@ -39,9 +39,9 @@ namespace OneWayLabyrinth
         int xSize;
         int ySize;
         string grid;
-        string[] ruleElements = new string[] { "liveEnd", "emptyField", "takenOrBorderField", "takenField", "takenLeftField", "takenRightField", "takenUpField", "takenDownField", "futureLineField" }; //, "forbiddenField", "futureStartField", "futureEndField", "notCornerField", "countAreaPairStartField", "countAreaPairEndField", "countAreaPairBorderField", "countAreaImpairStartField", "countAreaImpairEndField", "countAreaImpairBorderField", "countAreaImpairDeterminedStartField", "countAreaImpairDeterminedEndField", "countAreaImpairDeterminedBorderField", "countAreaImpairDeterminedEntryField" };      
-        string liveEnd, emptyField, takenOrBorderField, takenField, takenLeftField, takenRightField, takenUpField, takenDownField, futureLineField, futureLineField1; // forbiddenField, futureStartField, futureEndField, notCornerField, countAreaPairStartField, countAreaPairEndField, countAreaPairBorderField, countAreaImpairStartField, countAreaImpairEndField, countAreaImpairBorderField, countAreaImpairDeterminedStartField, countAreaImpairDeterminedEndField, countAreaImpairDeterminedBorderField, countAreaImpairDeterminedEntryField;
-        int elementsInRow = 9;
+        string[] ruleElements = new string[] { "liveEnd", "emptyField", "takenOrBorderField", "takenField", "takenLeftField", "takenRightField", "takenUpField", "takenDownField", "futureLineField", "futureLineDirField" }; //, "forbiddenField", "futureStartField", "futureEndField", "notCornerField", "countAreaPairStartField", "countAreaPairEndField", "countAreaPairBorderField", "countAreaImpairStartField", "countAreaImpairEndField", "countAreaImpairBorderField", "countAreaImpairDeterminedStartField", "countAreaImpairDeterminedEndField", "countAreaImpairDeterminedBorderField", "countAreaImpairDeterminedEntryField" };      
+        string liveEnd, emptyField, takenOrBorderField, takenField, takenLeftField, takenRightField, takenUpField, takenDownField, futureLineField, futureLineField1, futureLineDirField, futureLineDirField1; // forbiddenField, futureStartField, futureEndField, notCornerField, countAreaPairStartField, countAreaPairEndField, countAreaPairBorderField, countAreaImpairStartField, countAreaImpairEndField, countAreaImpairBorderField, countAreaImpairDeterminedStartField, countAreaImpairDeterminedEndField, countAreaImpairDeterminedBorderField, countAreaImpairDeterminedEntryField;
+        int elementsInRow = 10;
 
         string newRule;
         int draggedElement = 0;
@@ -64,6 +64,7 @@ namespace OneWayLabyrinth
         List<int[]> directions = new() { new int[] { 0, 1 }, new int[] { 1, 0 }, new int[] { 0, -1 }, new int[] { -1, 0 } };
         public string baseDir = AppDomain.CurrentDomain.BaseDirectory;
         bool futureLineMoving = false;
+        bool futureLineDirMoving = false;
         List<int[]> futureLine;
         int futureLineCurrentX = 0;
         int futureLineCurrentY = 0;
@@ -82,6 +83,8 @@ namespace OneWayLabyrinth
                 loadExisting = true;
                 CreateNew_Click(null, null);
             }
+            // Enables button navigation by highlight when later we press the right arrow. Left arrow puts focus on the RuleName field.
+            FocusButton.Focus();
         }
 
         private void SaveSizeSetting()
@@ -181,32 +184,39 @@ namespace OneWayLabyrinth
 
             color = "#ff0000";
             opacity = "0.15";
-            takenLeftField = "<path d=\"M 0 0 h 1 v 1 h -1 z\" fill=\"" + color + "\" fill-opacity=\"" + opacity + "\" />\n" + "\t<path d=\"M 0.8 0.5 h -0.6 l 0.2 -0.2 l -0.2 0.2 l 0.2 0.2\" fill=\"white\" fill-opacity=\"0\" stroke=\"black\" stroke-width=\"0.05\" stroke-linecap=\"round\" />";
+            takenLeftField = "<path d=\"M 0 0 h 1 v 1 h -1 z\" fill=\"" + color + "\" fill-opacity=\"" + opacity + "\" />\n" + "\t<path d=\"M 0.8 0.5 h -0.6 m 0.2 -0.2 l -0.2 0.2 m 0 0 l 0.2 0.2\" fill=\"white\" fill-opacity=\"0\" stroke=\"black\" stroke-width=\"0.05\" stroke-linecap=\"round\" />";
             content = singleGrid.Replace("<!---->", takenLeftField);
             if (!File.Exists(baseDir + "takenLeftField.svg")) File.WriteAllText(baseDir + "takenLeftField.svg", content);
 
             color = "#ff0000";
             opacity = "0.15";
-            takenRightField = "<path d=\"M 0 0 h 1 v 1 h -1 z\" fill=\"" + color + "\" fill-opacity=\"" + opacity + "\" />\n" + "\t<path d=\"M 0.2 0.5 h 0.6 l -0.2 -0.2 l 0.2 0.2 l -0.2 0.2\" fill=\"white\" fill-opacity=\"0\" stroke=\"black\" stroke-width=\"0.05\" stroke-linecap=\"round\" />";
+            takenRightField = "<path d=\"M 0 0 h 1 v 1 h -1 z\" fill=\"" + color + "\" fill-opacity=\"" + opacity + "\" />\n" + "\t<path d=\"M 0.2 0.5 h 0.6 m -0.2 -0.2 l 0.2 0.2 m 0 0 l -0.2 0.2\" fill=\"white\" fill-opacity=\"0\" stroke=\"black\" stroke-width=\"0.05\" stroke-linecap=\"round\" />";
             content = singleGrid.Replace("<!---->", takenRightField);
             if (!File.Exists(baseDir + "takenRightField.svg")) File.WriteAllText(baseDir + "takenRightField.svg", content);
 
             color = "#ff0000";
             opacity = "0.15";
-            takenUpField = "<path d=\"M 0 0 h 1 v 1 h -1 z\" fill=\"" + color + "\" fill-opacity=\"" + opacity + "\" />\n" + "\t<path d=\"M 0.5 0.8 v -0.6 l -0.2 0.2 l 0.2 -0.2 l 0.2 0.2\" fill=\"white\" fill-opacity=\"0\" stroke=\"black\" stroke-width=\"0.05\" stroke-linecap=\"round\" />";
+            takenUpField = "<path d=\"M 0 0 h 1 v 1 h -1 z\" fill=\"" + color + "\" fill-opacity=\"" + opacity + "\" />\n" + "\t<path d=\"M 0.5 0.8 v -0.6 m -0.2 0.2 l 0.2 -0.2 m 0 0 l 0.2 0.2\" fill=\"white\" fill-opacity=\"0\" stroke=\"black\" stroke-width=\"0.05\" stroke-linecap=\"round\" />";
             content = singleGrid.Replace("<!---->", takenUpField);
             if (!File.Exists(baseDir + "takenUpField.svg")) File.WriteAllText(baseDir + "takenUpField.svg", content);
 
             color = "#ff0000";
             opacity = "0.15";
-            takenDownField = "<path d=\"M 0 0 h 1 v 1 h -1 z\" fill=\"" + color + "\" fill-opacity=\"" + opacity + "\" />\n" + "\t<path d=\"M 0.5 0.2 v 0.6 l -0.2 -0.2 l 0.2 0.2 l 0.2 -0.2\" fill=\"white\" fill-opacity=\"0\" stroke=\"black\" stroke-width=\"0.05\" stroke-linecap=\"round\" />";
+            takenDownField = "<path d=\"M 0 0 h 1 v 1 h -1 z\" fill=\"" + color + "\" fill-opacity=\"" + opacity + "\" />\n" + "\t<path d=\"M 0.5 0.2 v 0.6 m -0.2 -0.2 l 0.2 0.2 m 0 0 l 0.2 -0.2\" fill=\"white\" fill-opacity=\"0\" stroke=\"black\" stroke-width=\"0.05\" stroke-linecap=\"round\" />";
             content = singleGrid.Replace("<!---->", takenDownField);
             if (!File.Exists(baseDir + "takenDownField.svg")) File.WriteAllText(baseDir + "takenDownField.svg", content);
 
-            futureLineField = "<path d=\"M 0 0 h 1 v 1 h -1 z\" fill=\"white\" fill-opacity=\"0\" />\n" + "\t<path d=\"M 0.3 0.5 h 0.4 M 0.5 0.3 v 0.4\" fill=\"white\" fill-opacity=\"0\" stroke=\"white\" stroke-width=\"0.1\" stroke-linecap=\"round\" />\n\t<path d=\"M 0.3 0.5 h 0.4 M 0.5 0.3 v 0.4\" fill=\"white\" fill-opacity=\"0\" stroke=\"blue\" stroke-width=\"0.05\" stroke-linecap=\"round\" />";
-            futureLineField1 = "<!--4--><path d=\"M 0.3 0.5 h 0.4 M 0.5 0.3 v 0.4\" fill=\"white\" fill-opacity=\"0\" stroke=\"white\" stroke-width=\"0.1\" stroke-linecap=\"round\" />\n" + "<path d=\"M 0.3 0.5 h 0.4 M 0.5 0.3 v 0.4\" fill=\"white\" fill-opacity=\"0\" stroke=\"blue\" stroke-width=\"0.05\" stroke-linecap=\"round\" /><!--5-->";
+            futureLineField = "<path d=\"M 0.3 0.5 h 0.4 M 0.5 0.3 v 0.4\" fill=\"white\" fill-opacity=\"0\" stroke=\"white\" stroke-width=\"0.1\" stroke-linecap=\"round\" />\n\t<path d=\"M 0.3 0.5 h 0.4 M 0.5 0.3 v 0.4\" fill=\"white\" fill-opacity=\"0\" stroke=\"blue\" stroke-width=\"0.05\" stroke-linecap=\"round\" />";
+            futureLineField1 = "<!--4-->" + futureLineField + "<!--5-->";
+            futureLineField = "<path d=\"M 0 0 h 1 v 1 h -1 z\" fill=\"white\" fill-opacity=\"0\" />\n\t" + futureLineField;
             content = singleGrid.Replace("<!---->", futureLineField);
             if (!File.Exists(baseDir + "futureLineField.svg")) File.WriteAllText(baseDir + "futureLineField.svg", content);
+
+            futureLineDirField = "<path d=\"M 0.3 0.5 h 0.4 M 0.5 0.3 v 0.4 M 0.5 0.1 l -0.1 0.1 M 0.5 0.1 l 0.1 0.1 M 0.9 0.5 l -0.1 -0.1 M 0.9 0.5 l -0.1 0.1 M 0.5 0.9 l 0.1 -0.1 M 0.5 0.9 l -0.1 -0.1 M 0.1 0.5 l 0.1 0.1 M 0.1 0.5 l 0.1 -0.1\" fill=\"white\" fill-opacity=\"0\" stroke=\"white\" stroke-width=\"0.1\" stroke-linecap=\"round\" />\n\t<path d=\"M 0.3 0.5 h 0.4 M 0.5 0.3 v 0.4 M 0.5 0.1 l -0.1 0.1 M 0.5 0.1 l 0.1 0.1 M 0.9 0.5 l -0.1 -0.1 M 0.9 0.5 l -0.1 0.1 M 0.5 0.9 l 0.1 -0.1 M 0.5 0.9 l -0.1 -0.1 M 0.1 0.5 l 0.1 0.1 M 0.1 0.5 l 0.1 -0.1\" fill=\"white\" fill-opacity=\"0\" stroke=\"blue\" stroke-width=\"0.05\" stroke-linecap=\"round\" />";
+            futureLineDirField1 = "<!--4-->" + futureLineDirField + "<!--5-->";
+            futureLineDirField = "<path d=\"M 0 0 h 1 v 1 h -1 z\" fill=\"white\" fill-opacity=\"0\" />\n\t" + futureLineDirField;
+            content = singleGrid.Replace("<!---->", futureLineDirField);
+            if (!File.Exists(baseDir + "futureLineDirField.svg")) File.WriteAllText(baseDir + "futureLineDirField.svg", content);
 
             /*forbiddenField = "<path d=\"M 0.2 0.2 l 0.6 0.6 M 0.2 0.8 l 0.6 -0.6\" fill=\"white\" fill-opacity=\"0\" stroke=\"red\" stroke-width=\"0.05\" stroke-linecap=\"round\" />";
             content = singleGrid.Replace("<!---->", forbiddenField);
@@ -324,7 +334,7 @@ namespace OneWayLabyrinth
 
             DrawGrid();
 
-            newRule = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 " + xSize + " " + ySize + "\">\n\t<style>\n\t\tsvg { background-color: white; }\n\t</style>\n\t<!--1-->\n\t<!--2-->\n" + grid + "\n\t<!--3-->\n</svg>";
+            newRule = "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 " + xSize + " " + ySize + "\">\n\t<style>\n\t\tsvg { background-color: white; }\n\t</style>\n\t<!--1-->\n\t<!--2-->\n" + grid + "\t<!--3-->\n</svg>";
             File.WriteAllText(baseDir + svgName, newRule);
             takenCoordinates = new();
             forbiddenCoordinates = new();
@@ -412,6 +422,14 @@ namespace OneWayLabyrinth
                 }
 
                 grid += "\t<path fill=\"transparent\" stroke=\"gray\" stroke-width=\"0.02\" d=\"M 0 " + i2 + " h " + xSize + "\" />\n";
+            }
+        }
+
+        private void RuleName_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                FocusButton.Focus();
             }
         }
 
@@ -797,6 +815,13 @@ namespace OneWayLabyrinth
                     futureLineCurrentY = coordY;
                     futureLine = new List<int[]> { new int[] { coordX, coordY } };
                 }
+                else if (draggedElement == 10)
+                {
+                    futureLineDirMoving = true;
+                    futureLineCurrentX = coordX;
+                    futureLineCurrentY = coordY;
+                    futureLine = new List<int[]> { new int[] { coordX, coordY } };
+                }
                 else
                 {
                     if (draggedElement == 1)
@@ -940,6 +965,9 @@ namespace OneWayLabyrinth
                     case 9:
                         addField = futureLineField1.Replace("M 0.3 0.5", "M " + (coordX - 0.7f) + " " + (coordY - 0.5f)).Replace("M 0.5 0.3", "M " + (coordX - 0.5f) + " " + (coordY - 0.7f));
                         break;
+                    case 10:
+                        addField = futureLineDirField1.Replace("M 0.3 0.5", "M " + (coordX - 0.7f) + " " + (coordY - 0.5f)).Replace("M 0.5 0.3", "M " + (coordX - 0.5f) + " " + (coordY - 0.7f)).Replace("M 0.5 0.1", "M " + (coordX - 0.5f) + " " + (coordY - 0.9f)).Replace("M 0.9 0.5", "M " + (coordX - 0.1f) + " " + (coordY - 0.5f)).Replace("M 0.5 0.9", "M " + (coordX - 0.5f) + " " + (coordY - 0.1f)).Replace("M 0.1 0.5", "M " + (coordX - 0.9f) + " " + (coordY - 0.5f));
+                        break;
                         /*case 10:
                             addField = forbiddenField.Replace("M 0 0", "M " + (coordX - 1) + " " + (coordY - 1)).Replace("M 0.2 0.2", "M " + (coordX - 1 + 0.2f) + " " + (coordY - 1 + 0.2f)).Replace("M 0.2 0.8", "M " + (coordX - 1 + 0.2f) + " " + (coordY - 1 + 0.8f));
                             break;
@@ -985,9 +1013,9 @@ namespace OneWayLabyrinth
                                 break;*/
                 }
 
-                if (draggedElement == 9)
+                if (draggedElement == 9 || draggedElement == 10)
                 {
-                    newRule = newRule.Replace("<!--3-->", "<!--3-->\n\t<!-- " + coordX + " " + coordY + " " + draggedElement + " -->\n\t" + addField);
+                    newRule = newRule.Replace("</svg>", "\t<!-- " + coordX + " " + coordY + " " + draggedElement + " -->\n\t" + addField + "\n</svg>");
                 }
                 /*else if (draggedElement == 10)
                 {
@@ -1011,7 +1039,7 @@ namespace OneWayLabyrinth
 
         private void Window_PreviewKeyDown(object sender, KeyEventArgs e) // with normal KeyDown, event does not fire after calling FocusButton.Focus();
         {
-            if ((XSize.IsFocused || YSize.IsFocused) && e.Key != Key.Enter) return;
+            if ((XSize.IsFocused || YSize.IsFocused || RuleName.IsFocused) && e.Key != Key.Enter) return;
 
             if (e.Key == Key.Enter || e.Key == Key.Escape)
             {
@@ -1019,7 +1047,7 @@ namespace OneWayLabyrinth
                 return;
             }
 
-            if (!futureLineMoving)
+            if (!futureLineMoving && !futureLineDirMoving)
             {
                 switch (e.Key)
                 {
@@ -1059,11 +1087,18 @@ namespace OneWayLabyrinth
                     case Key.NumPad9:
                         draggedElement = 9;
                         break;
+                    case Key.D0:
+                    case Key.NumPad0:
+                        draggedElement = 10;
+                        break;
                 }
                 RuleGrid_MouseUp(null, null);
             }
             else
             {
+                // no highlight on buttons while we draw a future line
+                FocusButton.Focus();
+
                 directions = new List<int[]> { new int[] { 0, 1 }, new int[] { 1, 0 }, new int[] { 0, -1 }, new int[] { -1, 0 } };
                 int index = -1;
 
@@ -1086,6 +1121,8 @@ namespace OneWayLabyrinth
 
                 if (futureLinePrevDir != -1 && index != futureLinePrevDir && Math.Abs(index - futureLinePrevDir) == 2)
                 {
+                    // pressing the Left arrow will otherwise put focus into the RuleName field
+                    e.Handled = true;
                     return;
                 }
                 else futureLinePrevDir = index;
@@ -1109,9 +1146,10 @@ namespace OneWayLabyrinth
             int startY = futureLine[0][1];
             float posX = startX - 0.5f;
             float posY = startY - 0.5f;
-            string path = "M " + posX + " " + posY + "\r\n";
+            string path = "M " + posX + " " + posY + "\n";
             int newX = 0;
             int newY = 0;
+            int dir0 = 0;
 
             for (int i = 1; i < futureLine.Count; i++)
             {
@@ -1122,13 +1160,14 @@ namespace OneWayLabyrinth
                 float prevX = posX;
                 float prevY = posY;
 
-                if (startY == newY)
+                dir0 = FindDirection(newX - startX, newY - startY);
 
+                if (startY == newY)
                 {
                     posX = (float)(startX + newX) / 2 - 0.5f;
                     posY = newY - 0.5f;
-                }
 
+                }
                 else
                 {
                     posY = (float)(startY + newY) / 2 - 0.5f;
@@ -1137,7 +1176,7 @@ namespace OneWayLabyrinth
 
                 if (prevX == posX || prevY == posY)
                 {
-                    path += "L " + posX + " " + posY + "\r\n";
+                    path += "L " + posX + " " + posY + "\n";
                 }
                 else
                 {
@@ -1171,18 +1210,37 @@ namespace OneWayLabyrinth
                             dir = 1;
                         }
                     }
-                    path += "A 0.5 0.5 0 0 " + dir + " " + posX + " " + posY + "\r\n";
+                    path += "A 0.5 0.5 0 0 " + dir + " " + posX + " " + posY + "\n";
                 }
 
                 startX = newX;
                 startY = newY;
             }
 
-            path += "L " + (newX - 0.5f) + " " + (newY - 0.5f) + "\r\n";
+            path += "L " + (newX - 0.5f) + " " + (newY - 0.5f) + "\n";
+            // place an arrow to the end
+            if (futureLineDirMoving)
+            {
+                switch (dir0)
+                {
+                    case 0:
+                        path += "l 0 0.3 m -0.2 -0.2 l 0.2 0.2 m 0 0 l 0.2 -0.2\n";
+                        break;
+                    case 1:
+                        path += "l 0.3 0 m -0.2 -0.2 l 0.2 0.2 m 0 0 l -0.2 0.2\n";
+                        break;
+                    case 2:
+                        path += "l 0 -0.3 m -0.2 0.2 l 0.2 -0.2 m 0 0 l 0.2 0.2\n";
+                        break;
+                    case 3:
+                        path += "l -0.3 0 m 0.2 -0.2 l -0.2 0.2 m 0 0 l 0.2 0.2\n";
+                        break;
+                }
+            }
 
             int startPos = newRule.IndexOf("<!--4-->");
             int endPos = newRule.IndexOf("<!--5-->");
-            newRule = newRule.Substring(0, startPos) + "<!--4--><path d=\"" + path + "\" fill=\"white\" fill-opacity=\"0\" stroke=\"white\" stroke-width=\"0.1\" stroke-linecap=\"round\" />\n" + "<path d=\"" + path + "\" fill=\"white\" fill-opacity=\"0\" stroke=\"blue\" stroke-width=\"0.05\" stroke-linecap=\"round\" />" + newRule.Substring(endPos);
+            newRule = newRule.Substring(0, startPos) + "<!--4--><path d=\"" + path + "\" fill=\"white\" fill-opacity=\"0\" stroke=\"white\" stroke-width=\"0.15\" stroke-linecap=\"round\" />\n" + "<path d=\"" + path + "\" fill=\"white\" fill-opacity=\"0\" stroke=\"blue\" stroke-width=\"0.05\" stroke-linecap=\"round\" />" + newRule.Substring(endPos);
 
             File.WriteAllText(baseDir + svgName, newRule);
             Canvas.InvalidateVisual();
@@ -1191,6 +1249,7 @@ namespace OneWayLabyrinth
         private void CloseFutureLine()
         {
             futureLineMoving = false;
+            futureLineDirMoving = false;
             futureLinePrevDir = -1;
 
             if (newRule != null)
