@@ -217,7 +217,7 @@ namespace OneWayLabyrinth
                     Ref3.Text = arr2[2];
                     saveRef = true;
                 }
-                
+
                 CheckSize();
                 Size.Text = size.ToString();
             }
@@ -1285,7 +1285,7 @@ namespace OneWayLabyrinth
             if (File.Exists(baseDir + "settings.txt"))
             {
                 string fileContent = File.ReadAllText(baseDir + "settings.txt");
-                int pos = fileContent.IndexOf("appliedSize");
+                int pos = fileContent.IndexOf("ruleXSize");
 
                 if (pos != -1)
                 {

@@ -185,7 +185,6 @@ Again, the area is 1W. There is a field between the entry and the exit field, an
 The area is 1W here as well.</div><div class="num">172</div></td></tr>
 <tr><td><div class="border"></div><div>And here is the case for 2 distance, with 1W area:<br />
 <br />
-<br />
 <img align="top" src="References/2024_0717_4.svg" width="52.380952380952%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/straight small 2 double obstacle inside.svg" width="19.047619047619%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/straight small 2 double obstacle inside 2.svg" width="19.047619047619%" /></div><div class="num">173</div></td>
 <td><div class="border"></div><div><b>4. Double obstacle outside</b><br />
 <br />
@@ -586,10 +585,136 @@ When we finished the 7&nbsp;x&nbsp;7 grid, the statistics gave us 5.7 walkthroug
 By developing the algorithm further, we have solved 99% of the cases we could not at that time. We get a little less ratio on a 21&nbsp;x&nbsp;21 grid, but of a similar order of magnitude: 9 vs. 0.2.<br />
 <br />
 Taking into account all discovered rules, there is no unsolved case on the 11 x 11 board after running 1 million random cases. For 13 x 13, the error rate is 1 in 4000.</div><div class="num">227</div></td>
-<td><div class="border"></div><div>The 16 rule categories is as simple as the algorithm gets at this point. So far, every case has been solvable using them, and I expect it to continue like that. The new errors should point to missing cases in the algorithm or a finite amount of new, similar patterns will emerge.<br />
-Maybe some of them can be grouped to simplify things, but the ideal solution would be something that is based on a single idea, even if several cases have to be examined due to the number of directions and rotations available. The single area rule, where we counted the number of black and white fields and compared them to the border line, met these criteria, but it was not enough.<br />
-If the solution involves examing a multitude of patterns, there will be no way to prove that we have covered all cases either. We have just found an algorithm that reliably goes through a square grid.</div><div class="num">228</div></td></tr>
-<tr><td><div class="border"></div><div>An unsolved case that does not easily fit into the system:<br />
+<td><div class="border"></div><div>The system can be refined beyond these 16 rule categories. In fact, one idea - examining an area with a stair-shape borderline and secondary obstacles - can go a long way, even if, once in a while, some cases come up that are not solvable using it. But it is important not to get stuck with them - find more cases, and your understanding gets better.<br />
+<br />
+There are of course a multitude of subcategories to work out. They look like this:<br />
+<br />
+<b>Stair at (start|end) (convex|concave) (in|straight|out) (3|4|5|6) ([black-white square count difference])</b><br />
+<br />
+Start or end describes where the flat top is in relation to the live end:<br />
+<br />
+<img align="top" src="References/_StairAtStartConvexOut3.svg" width="19.047619047619%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/_StairAtEnd.svg" width="28.571428571429%" /></div><div class="num">228</div></td></tr>
+<tr><td><div class="border"></div><div>Convex or concave can be determined by examining obstacle direction:<br />
+<br />
+<img align="top" src="References/_StairAtStartConvexOut3.svg" width="19.047619047619%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/_StairAtStartConcave.svg" width="19.047619047619%" /><br />
+<br />
+In, straight or out relates to the obstacle or the live end placement at the flat top.<br />
+<br />
+<img align="top" src="References/_StairAtStartConvexIn.svg" width="19.047619047619%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/_StairAtStartConvexStraight.svg" width="19.047619047619%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/_StairAtStartConvexOut3.svg" width="19.047619047619%" /></div><div class="num">229</div></td>
+<td><div class="border"></div><div>3, 4, 5 or 6 is the length of the flat top. For every 4n length added to it, the difference between the black and white fields has to increase by 1 in order for the rule to apply.<br />
+<br />
+<img align="top" src="References/_StairAtStartConvexOut3.svg" width="19.047619047619%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/_StairAtStartConvexOut4.svg" width="19.047619047619%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/_StairAtStartConvexOut5.svg" width="19.047619047619%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/_StairAtStartConvexOut6.svg" width="19.047619047619%" /></div><div class="num">230</div></td></tr>
+<tr><td><div class="border"></div><div>For square count, look at Stair at end convex in 3.<br />
+Here, black must be equal to white, and due to the secondary obstacles, we cannot enter later. Whether we enter or exit at the white field, one of the obstacles gets in the way.<br />
+<br />
+<img align="top" src="References/StairAtEndConvexIn3.svg" width="28.571428571429%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtEndConvexIn3_1.svg" width="28.571428571429%" /><br />
+<br />
+While here, black equals white plus the vertical offset of the stair top (2B), and if the secondary obstacles are present, we cannot enter now. The reason is that entering now would happen on a white field, and if we exit at one of the blacks on the flat top in order to fill the other two as corners, there are close obstacles on either side.<br />
+<br />
+<img align="top" src="References/StairAtEndConvexIn3_(vp1)B.svg" width="28.571428571429%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtEndConvexIn3_(vp1)B_1.svg" width="28.571428571429%" /><br />
+<br />
+For simplicity, all representations place the first obstacle in the upper-left quarter and mark it as the obstacle going in the left direction (instead of down).</div><div class="num">231</div></td>
+<td><div class="border"></div><div><b>Next, I will describe each and every case in this system, based on real examples.</b><br />
+<br />
+[StairAtStartConvexIn3()] 0725_5, 0726_1, 0726_2; Stair at start convex in 3 (h+1)B<br />
+<br />
+<img align="top" src="References/StairAtStartConvexIn3_(hp1)B.svg" width="23.809523809524%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtStartConvexIn3_(hp1)B_1.svg" width="23.809523809524%" /><br />
+<br />
+[StairAtStartConvexIn4()] 2024_0626_1, 2024_0729_3, 2024_0730; Stair at start convex in 4 (h+1)W<br />
+<br />
+<img align="top" src="References/StairAtStartConvexIn4_(hp1)W.svg" width="23.809523809524%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtStartConvexIn4_(hp1)W_1.svg" width="23.809523809524%" /></div><div class="num">232</div></td></tr>
+<tr><td><div class="border"></div><div>[StairAtStartConvexStraight3()] 2024_0710, 2026_0301_1 Stair at start convex straight 3 W=B<br />
+2024_0611 needs extension<br />
+<br />
+<img align="top" src="References/StairAtStartConvexStraight3_E.svg" width="28.571428571429%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtStartConvexStraight3_E_1.svg" width="23.809523809524%" /><br />
+<br />
+[StairAtStartConvexStraight4()] 2024_0618_2, 2026_0302_6, 2026_0304_1, 2026_0304_5; Stair at start convex straight 4 1W<br />
+2024_0727_4, 2024_0725: start obstacle outside as well <br />
+<br />
+<img align="top" src="References/StairAtStartConvexStraight4_1W.svg" width="28.571428571429%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtStartConvexStraight4_1W_1.svg" width="23.809523809524%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtStartConvexStraight4_1W_2.svg" width="19.047619047619%" /></div><div class="num">233</div></td>
+<td><div class="border"></div><div>2024_0610_4, 2024_0610_5, 2024_1012_1, 121670752, 0627; hB:<br />
+<br />
+<img align="top" src="References/StairAtStartConvexStraight4_hB.svg" width="28.571428571429%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtStartConvexStraight4_hB_1.svg" width="23.809523809524%" /><br />
+<br />
+[StairAtStartConvexStraight5()] 2024_0626; Stair at start convex straight 5 (h+1)W<br />
+2024_0727_3; start obstacle outside<br />
+<br />
+<img align="top" src="References/StairAtStartConvexStraight5_(hp1)W.svg" width="23.809523809524%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtStartConvexStraight5_(hp1)W_1.svg" width="19.047619047619%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtStartConvexStraight5_(hp1)W_2.svg" width="23.809523809524%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtStartConvexStraight5_(hp1)W_3.svg" width="19.047619047619%" /></div><div class="num">234</div></td></tr>
+<tr><td><div class="border"></div><div>Stair at end convex in 3<br />
+<br />
+[StairAtEndConvexIn3()] W=B; 2024_0718, 2024_0720_2, 2024_0709, 2024_0727<br />
+<br />
+<img align="top" src="References/StairAtEndConvexIn3.svg" width="28.571428571429%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtEndConvexIn3_1.svg" width="28.571428571429%" /></div><div class="num">235</div></td>
+<td><div class="border"></div><div>[not yet added to this function] 3 obstacles; 2024_0731, 2024_0725_4, 2024_0731_1<br />
+<br />
+<img align="top" src="References/StairAtEndConvexIn4.svg" width="33.333333333333%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtEndConvexIn4_1.svg" width="33.333333333333%" /><br />
+<img src="References/spacer.svg" height="19.047619047619px" /><br />
+<img align="top" src="References/StairAtEndConvexIn3_2.svg" width="38.095238095238%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtEndConvexIn3_3.svg" width="38.095238095238%" /><br />
+<br />
+(v+1)B; 2024_0516_2, 2024_1012<br />
+<br />
+<img align="top" src="References/StairAtEndConvexIn3_(vp1)B.svg" width="28.571428571429%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtEndConvexIn3_(vp1)B_1.svg" width="28.571428571429%" /></div><div class="num">236</div></td></tr>
+<tr><td><div class="border"></div><div>Stair at end convex in 4 (theoretical):<br />
+<br />
+<img align="top" src="References/StairAtEndConvexIn4_1W.svg" width="33.333333333333%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtEndConvexIn4_1W_1.svg" width="33.333333333333%" /><br />
+<br />
+[StairAtEndConvexStraight3()] 2024_0905, 2024_0706, 2024_1008, 2024_0916; Stair at end convex straight 3 vB:<br />
+Rewrite obstacle discovery, so the loop is finished in the beginning. Stair addition cases are double stair cases.<br />
+<br />
+<img align="top" src="References/StairAtEndConvexStraight3_vB.svg" width="28.571428571429%" /><br />
+<br />
+[StairAtEndConvexStraight4()] (Page 182) 2024_0624; Stair at end convex straight 4 1W:<br />
+<br />
+<img align="top" src="References/StairAtEndConvexStraight4_1W.svg" width="33.333333333333%" /></div><div class="num">237</div></td>
+<td><div class="border"></div><div>[StairAtEndConvexOut4()] 2025_0525_1; Stair at end convex out 4 1W:<br />
+<br />
+<img align="top" src="References/StairAtEndConvexOut4_1W.svg" width="33.333333333333%" /></div><div class="num">238</div></td></tr>
+<tr><td><div class="border"></div><div>[StairAtEndConcaveIn2()] (Page 173) 2024_0717_4; Stair at end concave in 2 1W:<br />
+<br />
+<img align="top" src="References/StairAtEndConcaveIn2_1W.svg" width="28.571428571429%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtEndConcaveIn2_1W_1.svg" width="28.571428571429%" /><br />
+<br />
+[StairAtEndConcaveIn3()] 2024_0716; Stair at end concave in 3 1W:<br />
+<br />
+<img align="top" src="References/StairAtEndConcaveIn3_1W.svg" width="28.571428571429%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtEndConcaveIn3_1W_1.svg" width="28.571428571429%" /><br />
+<br />
+[StairAtEndConcaveIn4()] (Page 207) 2024_0814, 2024_0619_1, 2024_0729_1, 2024_0729_4, 2024_0820; Stair at end concave in 4 1W:<br />
+<br />
+<img align="top" src="References/StairAtEndConcaveIn4_1W.svg" width="33.333333333333%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtEndConcaveIn4_1W_1.svg" width="33.333333333333%" /></div><div class="num">239</div></td>
+<td><div class="border"></div><div>[StairAtEndConcaveIn5()] 2024_0714; Stair at end concave in 5 1W:<br />
+<br />
+<img align="top" src="References/StairAtEndConcaveIn5_1W.svg" width="38.095238095238%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtEndConcaveIn5_1W_1.svg" width="38.095238095238%" /><br />
+<br />
+[StairAtEndConcaveStraight3()] 2024_0619, 2024_0717_2, 2025_0527, 2026_0302_4, 2026_0302_5; Stair at end concave straight 3 1W:<br />
+<br />
+<img align="top" src="References/StairAtEndConcaveStraight3_1W.svg" width="33.333333333333%" /><br />
+<br />
+[StairAtEndConcaveStraight4()] 2025_0522_1; Stair at end concave straight 4:<br />
+<br />
+<img align="top" src="References/StairAtEndConcaveStraight4_vW.svg" width="28.571428571429%" /></div><div class="num">240</div></td></tr>
+<tr><td><div class="border"></div><div>[StairAtEndConcaveStraight5()] 2024_0618, 2024_0717_1, 2024_0818, 2025_0525, 2025_0720_1, 2026_0304_4, 2026_0301, 2026_0302_1, 2026_0304_7; Stair at end concave straight 5 is rewritten for vertical position.<br />
+<br />
+<img align="top" src="References/StairAtEndConcaveStraight5_1W.svg" width="38.095238095238%" /><br />
+<br />
+[StairAtEndConcaveStraight6()] 2026_0302 Stair at end concave straight 6<br />
+<br />
+<img align="top" src="References/StairAtEndConcaveStraight6_vB.svg" width="42.857142857143%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtEndConcaveStraight6_vB_1.svg" width="42.857142857143%" /><br />
+<br />
+Area is vB. If we enter now and exit at the nearest blue line, the area with the obstacle outside is 1B and cannot be filled. We cannot first exit at the farthest blue line either due to the obstacle inside that does not leave space to get there.</div><div class="num">241</div></td>
+<td><div class="border"></div><div>[StairAtEndConcaveOut3()] 2024_0811; Stair at end concave out 3 1W:<br />
+<br />
+<img align="top" src="References/StairAtEndConcaveOut3_1W.svg" width="33.333333333333%" /><br />
+<br />
+[StairAtEndConcaveOut5()] Obstacle inside: 2024_0817, outside: 2026_0304_2, 2026_0304_6; Stair at end concave out 5 1W:<br />
+<br />
+<img align="top" src="References/StairAtEndConcaveOut5_1W.svg" width="38.095238095238%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtEndConcaveOut5_1W_1.svg" width="38.095238095238%" /></div><div class="num">242</div></td></tr>
+<tr><td><div class="border"></div><div>[DoubleStair()] 2024_0516_4, 2024_0516_5, 2024_0706_1, 2024_1006_1, 2024_0711, Double stair<br />
+<br />
+<img align="top" src="References/Double stair_1.svg" width="38.095238095238%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/Double stair_2.svg" width="38.095238095238%" /><br />
+<br />
+[DoubleStairReversed()] 2026_0124, 2026_0304, Double stair reversed<br />
+<br />
+<img align="top" src="References/Double stair reversed.svg" width="38.095238095238%" /></div><div class="num">243</div></td>
+<td><div class="border"></div><div>An unsolved case that does not easily fit into the system:<br />
 <br />
 <img align="top" src="References/2025_0528.svg" width="61.904761904762%" /><br />
 <br />
@@ -597,50 +722,11 @@ Observable patterns:<br />
 <br />
 <img align="top" src="References/2025_0528_rule.svg" width="38.095238095238%" /><br />
 <br />
-The concave area is 3B. There are 2 corner black fields and 3 non-corner black fields, so if we enter now, the border movement has to be as shown on the picture. But due to the internal wall shape, a second line is drawn, which start we cannot get to.</div><div class="num">229</div></td>
-<td><div class="border"></div><div>If the other way were chosen:<br />
+The concave area is 3B. There are 2 corner black fields and 3 non-corner black fields, so if we enter now, the border movement has to be as shown on the picture. But due to the internal wall shape, a second line is drawn, which start we cannot get to.</div><div class="num">244</div></td></tr>
+<tr><td><div class="border"></div><div>If the other way were chosen:<br />
 <br />
-<img align="top" src="References/2025_0528_correct.svg" width="61.904761904762%" /></div><div class="num">230</div></td></tr>
-<tr><td><div class="border"></div><div><b>New cases and solutions that need classification</b><br />
-<br />
-2926_0302_7; Stair at start convex 3 uses CheckNearFieldSmallRel that is not valid to far corners, but this scenario could exist. CheckCorner1 could also be rewritten to be valid for C-shapes as in this example. Rule: <br />
-<br />
-<img align="top" src="References/StairAtStartConvex3.svg" width="19.047619047619%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtStartConvex3_1.svg" width="19.047619047619%" /><br />
-<br />
-2024_0710, 2026_0301_1 Stair at start convex straight 3<br />
-2024_0611 needs extension<br />
-<br />
-<img align="top" src="References/StairAtStartConvexStraight3.svg" width="28.571428571429%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtStartConvexStraight3_1.svg" width="23.809523809524%" /></div><div class="num">231</div></td>
-<td><div class="border"></div><div>2024_0618_2, 2026_0302_6, 2026_0304_1, 2026_0304_5; Stair at start convex straight 4 1W<br />
-2024_0727_4, 2024_0725: start obstacle outside as well <br />
-<br />
-<img align="top" src="References/StairAtStartConvexStraight4_1W.svg" width="23.809523809524%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtStartConvexStraight4_1W_1.svg" width="28.571428571429%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtStartConvexStraight4_1W_2.svg" width="19.047619047619%" /><br />
-<br />
-2024_0610_4, 2024_0610_5, 121670752, 0627; 1B (currently LeftRightAreaUpExtended ex % 4 = 0):<br />
-<br />
-<img align="top" src="References/StairAtStartConvexStraight4_1B.svg" width="23.809523809524%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtStartConvexStraight4_1B_1.svg" width="28.571428571429%" /></div><div class="num">232</div></td></tr>
-<tr><td><div class="border"></div><div>2024_0626; Start at start convex 5<br />
-2024_0727_3; start obstacle outside<br />
-<br />
-<img align="top" src="References/StairAtStartConvexStraight5.svg" width="19.047619047619%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtStartConvexStraight5_1.svg" width="19.047619047619%" /><br />
-<br />
-2025_0527, 2026_0302_4, 2026_0302_5; Stair at end concave straight 3:<br />
-<br />
-<img align="top" src="References/StairAtEndConcaveStraight3.svg" width="28.571428571429%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtEndConcaveStraight3_1.svg" width="33.333333333333%" /><br />
-<br />
-2026_0304_2, 2026_0304_6; Stair at end concave 5:<br />
-<br />
-<img align="top" src="References/StairAtEndConcave5.svg" width="19.047619047619%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtEndConcave5_1.svg" width="23.809523809524%" /> <br />
-<br />
-2026_0304_4, 2026_0301, 2026_0302_1, 2026_0304_7; Stair at end concave straight 5 is rewritten for vertical position.<br />
-<br />
-<img align="top" src="References/StairAtEndConcaveStraight5.svg" width="23.809523809524%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtEndConcaveStraight5_1.svg" width="28.571428571429%" /></div><div class="num">233</div></td>
-<td><div class="border"></div><div>2026_0302 Stair at end concave straight 6<br />
-<br />
-<img align="top" src="References/StairAtEndConcaveStraight6.svg" width="28.571428571429%" /><br />
-<br />
-Area is 1B. If we enter now and exit at the nearest blue line, the area with the second obstacle is still 1B and cannot be filled. We cannot first exit at the farthest blue line due to the obstacle inside that does not leave space to get there.</div><div class="num">234</div></td></tr>
-<tr><td><div class="border"></div><div><b>Program hotkeys</b><br />
+<img align="top" src="References/2025_0528_correct.svg" width="61.904761904762%" /></div><div class="num">245</div></td>
+<td><div class="border"></div><div><b>Program hotkeys</b><br />
 <br />
 Main window:<br />
 <br />
@@ -664,8 +750,8 @@ Rules window:<br />
 <br />
 To create a rule, drag and drop the squares into the grid, or press their corresponding numbers while the mouse points at the desired position in the grid.<br />
 Click on a placed square to delete it.<br />
-In case of future line (number 9), press the arrows after placing the start and finish by Esc or Enter.</div><div class="num">235</div></td>
-<td><div class="border"></div><div><span class="header">11&nbsp;x&nbsp;11 estimates</span><br />
+In case of future line (number 9), press the arrows after placing the start and finish by Esc or Enter.</div><div class="num">246</div></td></tr>
+<tr><td><div class="border"></div><div><span class="header">11&nbsp;x&nbsp;11 estimates</span><br />
 <br />
 9&nbsp;x&nbsp;9 total: 2 688 307 514<br />
 <br />
@@ -691,10 +777,10 @@ Differences of bases:<br />
 Next difference estimate: 0.0331&nbsp;*&nbsp;331/574 = 0.0191<br />
 Next base: 1.3897<br />
 <br />
-2 688 307 514&nbsp;*&nbsp;1.3897 ^ 40 = 1402 trillion (Actual value according to OEIS: 1445 trillion)</div><div class="num">236</div></td></tr>
-<tr><td><div class="border"></div><div>Exact calculation line:<br />
-2688307514 * ((2688307514/111712) ^ (1/32) + ((2688307514/111712) ^ (1/32) - (111712/104) ^ (1/24)) * ((2688307514/111712) ^ (1/32) - (111712/104) ^ (1/24)) / ((111712/104) ^ (1/24) - (104/2) ^ (1/16))) ^ 40</div><div class="num">237</div></td>
-<td><div class="border"></div><div><span class="header">Development / correction notes</span><br />
+2 688 307 514&nbsp;*&nbsp;1.3897 ^ 40 = 1402 trillion (Actual value according to OEIS: 1445 trillion)</div><div class="num">247</div></td>
+<td><div class="border"></div><div>Exact calculation line:<br />
+2688307514 * ((2688307514/111712) ^ (1/32) + ((2688307514/111712) ^ (1/32) - (111712/104) ^ (1/24)) * ((2688307514/111712) ^ (1/32) - (111712/104) ^ (1/24)) / ((111712/104) ^ (1/24) - (104/2) ^ (1/16))) ^ 40</div><div class="num">248</div></td></tr>
+<tr><td><div class="border"></div><div><span class="header">Development / correction notes</span><br />
 <br />
 Current statitics: 1 error in 8288 random walkthroughs, averaged from 50 runs. <br />
 <br />
@@ -704,8 +790,8 @@ Current statitics: 1 error in 8288 random walkthroughs, averaged from 50 runs. <
 For all stair at start/end rules, extend to any distance beyond 3-6.<br />
 Calculate next step enter left and right for any AreaUp and Corner distance. (page 129)<br />
 Extend 0720_3 case to any horizontal distance (page 180)<br />
-Check if opposite empty fields should be disabled at certain rotations of the 4 single area rule groups. (fx. LeftRightAreaUpExtended closed corner 4: Cannot step down). A safety check can be impelmented: if the left and right direction is available but the straight direction is disabled, and there is not a close obstacle/corner on both sides, it is an error.</div><div class="num">238</div></td></tr>
-<tr><td><div class="border"></div><div><b>Improvements:</b><br />
+Check if opposite empty fields should be disabled at certain rotations of the 4 single area rule groups. (fx. LeftRightAreaUpExtended closed corner 4: Cannot step down). A safety check can be impelmented: if the left and right direction is available but the straight direction is disabled, and there is not a close obstacle/corner on both sides, it is an error.</div><div class="num">249</div></td>
+<td><div class="border"></div><div><b>Improvements:</b><br />
 <br />
 Use new CornerDiscovery function everywhere<br />
 Review rules if they have unnecessary rotations when disabling a field, fx. straight j = 2 enter later<br />
@@ -713,6 +799,8 @@ Review CountArea old and new algorithms<br />
 Do not disable a possible field (and display the area) if the field is taken anyway (0725_4, 0731 step straight)<br />
 All Sequence patterns should be replaced with stair-area rules like 0725_5. Is it possible? At 0726_2, applying sequence is unnecessary. <br />
 In CheckStairAtEndConcaveStraight5, the index of (hori, vert) is compared to (hori, vert + 1) to determine obstacle direction. Does (hori, vert + 1) always exist, or can it be empty or go out of the board?<br />
+Can straight discovery algorithm terminate early, by finding an obstacle which would be within a larger area?<br />
+StairAtEndConvexStraight4 uses InCornerRel after discovery. But the row at vert + 1 can not only be border but taken too.<br />
 <br />
 <b>Display:</b><br />
 <br />
@@ -723,8 +811,8 @@ Indicate needed disabled fields in 11&nbsp;x&nbsp;11 rule representations?<br />
 New pictures where areas were displayed incorrectly.<br />
 Cite page numbers when mentioning a rule<br />
 Next step left/right areas could be shown in program<br />
-Specify future line extension and connection rules on page 3?</div><div class="num">239</div></td>
-<td><div class="border"></div><div>The corner discovery head can be in any of the 4 quarters and the area is still closed at the right position. Only stop when reaching the corner or passing by the live end.<br />
+Specify future line extension and connection rules on page 3?</div><div class="num">250</div></td></tr>
+<tr><td><div class="border"></div><div>The corner discovery head can be in any of the 4 quarters and the area is still closed at the right position. Only stop when reaching the corner or passing by the live end.<br />
 <br />
 <b>Find example:</b><br />
 <br />
@@ -740,8 +828,8 @@ In the rules for 2025_0522 to 2025_0527, the second obstacle is always mid acros
 Review page number references<br />
 Remove unnecessary markings in the five 1005 examples (sequence walkthrough)<br />
 When loading a file, possible fields are not displayed as numbers on the top. Does it only happen when the calculated moves are not the same as in the file?<br />
-CheckStairAtEndConvexStraight3 Stair: Can the down field be free in rotation 1?</div><div class="num">240</div></td></tr>
-<tr><td><div class="border"></div><div>Checking corner is not implemented in CheckStairAtEndConvexStraight3 4, 2 start obstacle before an example is found.<br />
+CheckStairAtEndConvexStraight3 Stair: Can the down field be free in rotation 1?</div><div class="num">251</div></td>
+<td><div class="border"></div><div>Checking corner is not implemented in CheckStairAtEndConvexStraight3 4, 2 start obstacle before an example is found.<br />
 0727_5 is added to Sequence2, but we need to think about a general UpExtended start area where distance to the obstacle % 4 = 3.<br />
 Display relevant area rules in examples or clean them up where unnecessary rules are displayed. (For example 1012_1)<br />
 StairAtStart: are there 5 and 6-distance top stairs?<br />
@@ -824,7 +912,6 @@ Big area:<br />
 <img src="References/spacer.svg" height="19.047619047619px" /><br />
 <img align="top" src="References/side straight big 3.svg" width="23.809523809524%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/side straight big 4.svg" width="28.571428571429%" /><br />
 <img src="References/spacer.svg" height="19.047619047619px" /><br />
-<img align="top" src="References/side straight big 5.svg" width="33.333333333333%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/side straight big 6.svg" width="38.095238095238%" />--></div><div class="num">241</div></td>
-<td class="right"><div class="border"></div></td></tr>
+<img align="top" src="References/side straight big 5.svg" width="33.333333333333%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/side straight big 6.svg" width="38.095238095238%" />--></div><div class="num">252</div></td></tr>
  
 </table>

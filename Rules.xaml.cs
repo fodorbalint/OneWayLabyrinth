@@ -1534,7 +1534,7 @@ namespace OneWayLabyrinth
 
             T("Save: " + fullName);
             File.Copy(baseDir + "newRule.svg", baseDir + fullName);
-            ResetRule_Click(null, null);
+            //ResetRule_Click(null, null);
             //LoadDir();
         }
 

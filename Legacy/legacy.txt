@@ -1,0 +1,113 @@
+This collection contains my topical mathematical, programming, electronical and mechanical design projects.
+It is put together with the intention of me being able to continue my work in a next lifetime, but anyone who finds it interesting can of course freely use it.
+When choosing what to back up, I adopted a minimalist approach where I use as little space as possible, while keeping them easily discoverable and reconstructable.
+
+I have also included a diary I wrote at one point in my life. This is not supposed to be accessible by a casual reader with regards to the confidentiality of the people I was in contact with at that time, but I preserve it for the future, because it provides insight about who I was in my personal life. The names of all characters are changed, except mine.
+It is encoded using today's cryptographic standards, and to decode it, one must present mathematical understading and programming skills. The key is namely derived from my research.
+More precisely, find the representation string of the 100 millionth walkthrough pattern of a 9 x 9 grid. 
+The first would be "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", the second "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaac" where:
+- "a" means the leftmost possible field at a step where more than one is available
+- "c" is the rightmost available field
+- "b" is always the field straight ahead when all three directions are available.
+Once you have set up the program, you will get there in approximately 16 hours on a slow laptop.
+
+Install openSSL, then add "c:\Program Files\OpenSSL-Win64\bin\" to the Path environment variable
+
+Decrypt:
+openssl enc -d -aes-256-cbc -pbkdf2 -in Partx.enc -out Partx.txt
+It will ask for the key now.
+
+Note:
+The diary spans over 14 months. It is in the process of being reviewed, so right now, only a portion of it is uploaded.
+
+Balint Fodor
+Born on 1986. december 19. in Nagykanizsa, Hungary
+Moved to Copenhagen, Denmark in 2009.
+
+----------
+
+Description of projects:
+
+-----
+
+One-way labyrinth algorithm
+OneWayLabyrinth
+
+The mathematical research that tries to find a non-exponential algorithm for generating a random path between the opposite corners of a square grid.
+I have found all such paths on the 9 x 9 square, and statistically 11 x 11 is solved too. On 13 x 13 I run into an unsolved case about every 8000 attempts.
+
+-----
+
+Oscilloscope
+
+It contains a Raspberry Pi mini-computer, an Adafruit HDMI 7" 800x480 screen, an AD7606 analog-to-digital converter module and two 21700 Li-ion batteries.
+
+KiCad/pi hat
+This is the power control module that, instead of disconnecting the battery at once, ensures file-safe shutdown when a switch is turned off. A real-time clock is added to the board too, as well as connectors for the measurement channels and an USB switch. For explanation on how it works, refer to KiCad/pi hat/schematic.pdf
+
+3D/Raspberry Pi box
+Casing for the hardware, including power switch and signal switch
+
+Voltage graph/python_graph.py
+This is the program's visual interface. It is capable of acquiring 50 000 samples per second for all 4 channels by utilizing low-level C code (located in the ad/ subfolder). You can set time range, trigger conditions and ground options for each channel, so the measurements will be the positive or negative difference of any two channels. Saving a graph or loading it is supported too. In addition, it can calculate the number of oscillations beyond two voltage limits.
+By default, you see a running graph. By switching on the signal button (either on the side of the box or the connected switch), the high-resolution measurement is initiated, and when it is finished, its graph is displayed, which you can zoom and pan.
+
+Voltage graph/capacity_graph.py
+While the previous program is designed for up to 30 s high-speed measurement, this is for measuring battery capacity during a discharge with one-second resolution. It takes input on two channels: the total or divided battery voltage and shunt voltage. From these, power and energy can be calculated. Like the previous program, this also has trigger setting. Below I describe the external hardware I designed for it.
+
+KiCad/capacity tester
+It can be set to measure battery voltages of 48, 24 or 3.7 (and lower) by connecting a resistor divider at appropriate points. A current-sensing resistor provides data for the second output channel.
+Connect a power source, a load resistor and apply the correct setting by placing jumpers on the 2x6-pin connector.
+- First pair: 48 V (13s Li-ion) 
+- Second pair: 24 V (7s Li-ion)
+- Second pair: 3.7 V (1s Li-ion) or lower
+- Fourth pair: Connecting these bypasses the MOSFET that controls discharge. By leaving it open, discharge will be cut off according to how the potentiometer is set. Typically, you would aim for 2.5 V per cell for LiFePo4 and 2.8 V for Li-ion. For the former, set it to 3.02 kOhm, and for the latter, 2.6 kOhm, with the sixth pair being disconnected.
+This acts as a safety mechanism if you discharge a battery that has no BMS.
+- Fifth pair: Must be connected when you use 48 or 24 V. It takes the output of an op-amp to provide the voltage equivalent to its input, but without being affected by the LED and the logic resistors. The 
+- Sixth pair: Use it for single cells (3.7 V or lower). The op-amp does not supply the full battery voltage, because its supply comes from a 5 V regulator.
+
+-----
+
+Electric bicycles and scooters
+
+Since I started driving rickshaw soon after moving to Denmark, I built or modified several bikes and trikes. Therefore, there are several mechanical designs are found in this collection.
+
+3D/Tri scooter.FCStd
+This is the most recent vehicle. It is a three-wheeled electric scooter that is made of wood pieces screwed together.
+
+KiCad/speed limiter
+One of my two-wheeled and the three-wheeled scooter uses a 24 V 350 W DC motor (MY1016) with chain transmission. Because the motor's maximum speed changes with battery voltage, and the transmission ratio is constant, it was necessary to design a circuit that sinks throttle signal when the set speed limit is reached. As a result, I can fully press the throttle and not drive faster than 20 or 15 km/h.
+It uses a frequency-to-voltage converter to determine actual speed. For this, a ring with 16 magnets is installed on the motor shaft, and a Hall-sensor switches between high and low state when the magnets pass. The output voltage of the IC is compared against a reference voltage by an op-amp, and the output controls an N-MOSFET to discharge the throttle.
+Several components had to be adjusted for the perfect result, hundreds of tests had to be done. This project was the primary incentive to developing the oscilloscope. 
+
+3D/ChainScreen/ChainScreen80_2.py
+Python script for producing two-dimensional shapes programatically that are used as various components. They will either be laser cut or used in 3D-designs.
+
+3D/Bearing house.FCStd
+Two of these 3D-printed holders are used in the steering column in the three-wheeled scooter. The bearings have to be glued in, otherwise they can slide out vertically.
+
+3D/Bearing seal.FCStd
+- Body: This is the holder for the Hall-sensor for the speed limiter system and is glued on the motor. The screw hole connects to the chainguard. Use a specialized high-quality glue like JB Weld Steel Epoxy. Normal epoxys will not hold and even drip due to the cyclic heating of the motor.
+- Body001: Another design where the Hall-sensor is orientated differently. This is the standard way, but of them work.
+- Cut-14.1: The magnet ring.
+- Revolve and Revolve001: Lower water block on the steering column, it prevents rainwater from getting into the bearing.
+- Revolve002 and Revolve003: Water block on the top end of the steering column
+- Ring aligner: Used for positioning the Hall-sensor holder around the axle while glueing.
+
+3D/Chain aligner.FCStd
+Screwed on the front fork of the three-wheeled scooter to prevent chain derailing.
+
+3D/Chain screen 80T.FCStd
+The chain guard for the three-wheeled scooter. The screw hole that connects to the Hall-sensor holder has a slot shape to allow vertical adjustment of the motor at chain elongation. This has to be updated to a vertical slot as chain tensioning now happens by moving the motor horizontally.
+
+3D/Magnet holder.FCStd
+Bicycle computer magnet holder, glued on the rim.
+
+3D/Turning pad spacer.FCStd
+There is a long screw all the way through the steering column. This is the nut on the bottom end, which also serves as a threaded hole when installing the mudguard.
+
+3D/Wheel sprocket mount.FCStd
+- BodyPad007 and Body001Pad010: Aid for drilling 4 symmetrical holes in a 80T sprocket, with different holes sizes for incremental drilling.
+- Body004Hole.3mf, Common002, Cut003: Sidewalls of the chain guard on the two-wheeled scooter. The plates are produced by ChainScreen80_2.py for laser cutting: plate big 80T.svg and plate small 80T.svg
+- Body005Pad015.3mf: Rear fender holder for the two-wheeled scooter.
+The rest of the file contains both preliminary sketches (aid for measurements) for the python script or generated shapes that are to be exported to dxf format for the metal laser cutter.

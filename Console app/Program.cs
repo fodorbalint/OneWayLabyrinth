@@ -668,7 +668,7 @@ void NextStepPossibilities2()
                     // T("StairAtStartConvexStraight5 " + ShowForbidden());
                     StairAtStartConvexStraight5();
                     // T("StairAtStartEqual " + ShowForbidden());
-                    StairAtStartEqual();
+                    // StairAtStartEqual();
                     // T("StairAtEndConvex " + ShowForbidden());
                     StairAtEndConvex(); // 0718, reverse stair 1/2, 0720_2, 0731: 3 obstacles                                 
                     // T("StairAtEndConvexStraight3 " + ShowForbidden());
