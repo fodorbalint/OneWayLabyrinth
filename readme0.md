@@ -94,7 +94,7 @@ It is because if we do so, an enclosed area is created, with one way to go out o
 The explanation is simple: Imagine if the table was a chess board. In order to step from white to black, you would need to take an impair amount of steps - the color changes at every step. Here, the entry of the area would be (4,3) and the exit (5,3). An impair amount of steps means pair amount of cells.
 In the example, you can also say that we cannot step right, because there is a future line start 2 to straight and an end 2 to straight and 2 to right. On 7&nbsp;x&nbsp;7, there will be examples where this is the rule we have to apply, because area counting is not getting triggered: 
 
-<img src="References/1001.svg" width="7" />
+<img src="References/2023_1001.svg" width="7" />
 
 <!---->
 
@@ -108,7 +108,7 @@ In other situations, there is a 1-thin future line next to the live end that can
 
 <!---->
 
-<img src="References/0901.svg" width="7" />
+<img src="References/2023_0901.svg" width="7" />
 
 - Just like moving near the edge, we need to disable some fields if we are approaching an older section of the main line. In order to determine on which side the enclosed area is created, we need to examine the direction of the line at the connection point.
 
@@ -212,7 +212,7 @@ To discover 9-specific patterns, I run the program keeping it left as long as th
 
 Let's simplify the pattern. Which will be impossible to fill?
 
-<img align="top" src="References/1008.svg" width="9" />[spacer]<img align="top" src="References/1008_1.svg" width="9" />
+<img align="top" src="References/2023_1008.svg" width="9" />[spacer]<img align="top" src="References/2023_1008_1.svg" width="9" />
 
 It is the picture on the left. Since the yellow-bordered area is impair, adding the (4,2) (4,3) (4,4) fields will be pair. We enter the area at (4,4), so we will exit at (4,3). Now we enter the 3&nbsp;x&nbsp;3 area in the top left corner at its side, (3,3) and will exit at (2,4). The result is two C-shapes on each side:
 
@@ -777,7 +777,7 @@ When the count area middle + end field is omitted, the possible exit is the coun
 
 <!---->
 
-By now, we are able to group some rules and even solve the original 213&nbsp;x&nbsp;21 example. Previously, we have covered all of the cases where an obstacle is 2 distance away from the live end. Let's examine distances of 3, 4 and so on in this constellation:
+By now, we are able to group some rules and even solve the original 21&nbsp;x&nbsp;21 example. Previously, we have covered all of the cases where an obstacle is 2 distance away from the live end. Let's examine distances of 3, 4 and so on in this constellation:
 
 <img align="top" src="References/3pair.svg" width="5" />[spacer]<img align="top" src="References/4pair.svg" width="6" />
 
@@ -1791,7 +1791,7 @@ Reviewing those 2-distance rules, we can see that many of them has a double area
 
 Per our expectation, the program stops at the next double area case.
 
-<img align="top" src="References/2024_22328.svg" width="9" />[spacer]<img align="top" src="References/2024_22328_1.svg" width="9" />
+<img align="top" src="References/9_22328.svg" width="9" />[spacer]<img align="top" src="References/9_22328_1.svg" width="9" />
 
 What is common in these rules?
 
@@ -2231,7 +2231,6 @@ The area is 1W here as well.
 <!---->
 
 And here is the case for 2 distance, with 1W area:
-
 
 <img align="top" src="References/2024_0717_4.svg" width="11" />[spacer]<img align="top" src="References/straight small 2 double obstacle inside.svg" width="4" />[spacer]<img align="top" src="References/straight small 2 double obstacle inside 2.svg" width="4" />
 
@@ -2799,9 +2798,200 @@ Taking into account all discovered rules, there is no unsolved case on the 11 x 
 
 <!---->
 
-The 16 rule categories is as simple as the algorithm gets at this point. So far, every case has been solvable using them, and I expect it to continue like that. The new errors should point to missing cases in the algorithm or a finite amount of new, similar patterns will emerge.
-Maybe some of them can be grouped to simplify things, but the ideal solution would be something that is based on a single idea, even if several cases have to be examined due to the number of directions and rotations available. The single area rule, where we counted the number of black and white fields and compared them to the border line, met these criteria, but it was not enough.
-If the solution involves examing a multitude of patterns, there will be no way to prove that we have covered all cases either. We have just found an algorithm that reliably goes through a square grid.
+The system can be refined beyond these 16 rule categories. In fact, one idea - examining an area with a stair-shape borderline and secondary obstacles - can go a long way, even if, once in a while, some cases come up that are not solvable using it. But it is important not to get stuck with them - find more cases, and your understanding gets better.
+
+There are of course a multitude of subcategories to work out. They look like this:
+
+<b>Stair at (start|end) (convex|concave) (in|straight|out) (3|4|5|6) ([black-white square count difference])</b>
+
+Start or end describes where the flat top is in relation to the live end:
+
+<img align="top" src="References/_StairAtStartConvexOut3.svg" width="4" />[spacer]<img align="top" src="References/_StairAtEnd.svg" width="6" />
+
+<!---->
+
+Convex or concave can be determined by examining obstacle direction:
+
+<img align="top" src="References/_StairAtStartConvexOut3.svg" width="4" />[spacer]<img align="top" src="References/_StairAtStartConcave.svg" width="4" />
+
+In, straight or out relates to the obstacle or the live end placement at the flat top.
+
+<img align="top" src="References/_StairAtStartConvexIn.svg" width="4" />[spacer]<img align="top" src="References/_StairAtStartConvexStraight.svg" width="4" />[spacer]<img align="top" src="References/_StairAtStartConvexOut3.svg" width="4" />
+
+<!---->
+
+3, 4, 5 or 6 is the length of the flat top. For every 4n length added to it, the difference between the black and white fields has to increase by 1 in order for the rule to apply.
+
+<img align="top" src="References/_StairAtStartConvexOut3.svg" width="4" />[spacer]<img align="top" src="References/_StairAtStartConvexOut4.svg" width="4" />[spacer]<img align="top" src="References/_StairAtStartConvexOut5.svg" width="4" />[spacer]<img align="top" src="References/_StairAtStartConvexOut6.svg" width="4" />
+
+<!---->
+
+For square count, look at Stair at end convex in 3.
+Here, black must be equal to white, and due to the secondary obstacles, we cannot enter later. Whether we enter or exit at the white field, one of the obstacles gets in the way.
+
+<img align="top" src="References/StairAtEndConvexIn3.svg" width="6" />[spacer]<img align="top" src="References/StairAtEndConvexIn3_1.svg" width="6" />
+
+While here, black equals white plus the vertical offset of the stair top (2B), and if the secondary obstacles are present, we cannot enter now. The reason is that entering now would happen on a white field, and if we exit at one of the blacks on the flat top in order to fill the other two as corners, there are close obstacles on either side.
+
+<img align="top" src="References/StairAtEndConvexIn3_(vp1)B.svg" width="6" />[spacer]<img align="top" src="References/StairAtEndConvexIn3_(vp1)B_1.svg" width="6" />
+
+For simplicity, all representations place the first obstacle in the upper-left quarter and mark it as the obstacle going in the left direction (instead of down).
+
+<!---->
+
+Next, I will describe every case in this system, based on the found examples. For clarity, only the rules will be shown, and the examples are listed by filename.
+
+[StairAtStartConvexIn2()] 2024_0724; Stair at start convex in 2 Equal
+
+<img align="top" src="References/StairAtStartConvexIn2_E.svg" width="5" />[spacer]<img align="top" src="References/StairAtStartConvexIn2_E_1.svg" width="5" />
+
+[StairAtStartConvexIn3()] 0725_5, 0726_1, 0726_2; Stair at start convex in 3 (h+1)B
+
+<img align="top" src="References/StairAtStartConvexIn3_(hp1)B.svg" width="5" />[spacer]<img align="top" src="References/StairAtStartConvexIn3_(hp1)B_1.svg" width="5" />
+
+<!---->
+
+2026_0410; E
+
+<img align="top" src="References/StairAtStartConvexIn3_E.svg" width="5" />[spacer]<img align="top" src="References/StairAtStartConvexIn3_E_1.svg" width="5" />
+
+[StairAtStartConvexIn4()] Currently, all cases are applied StairAtEndConvexIn4 to, because there is no stair; Stair at start convex in 4 (h+1)W
+
+<img align="top" src="References/StairAtStartConvexIn4_(hp1)W.svg" width="5" />[spacer]<img align="top" src="References/StairAtStartConvexIn4_(hp1)W_1.svg" width="5" />
+
+[StairAtStartConvexStraight3()] 2024_0710, 2026_0301_1 Stair at start convex straight 3 E
+2024_0611 needs extension
+
+<img align="top" src="References/StairAtStartConvexStraight3_E.svg" width="6" />[spacer]<img align="top" src="References/StairAtStartConvexStraight3_E_1.svg" width="5" />
+
+<!---->
+
+[StairAtStartConvexStraight4()] 2024_0618_2, 2026_0302_6, 2026_0304_1, 2026_0304_5; Stair at start convex straight 4 1W
+2024_0727_4, 2024_0725: start obstacle outside as well 
+
+<img align="top" src="References/StairAtStartConvexStraight4_1W.svg" width="6" />[spacer]<img align="top" src="References/StairAtStartConvexStraight4_1W_1.svg" width="5" />[spacer]<img align="top" src="References/StairAtStartConvexStraight4_1W_2.svg" width="4" />
+
+2024_0610_4, 2024_0610_5, 2024_1012_1, 121670752, 2024_0627; hB:
+
+<img align="top" src="References/StairAtStartConvexStraight4_hB.svg" width="6" />[spacer]<img align="top" src="References/StairAtStartConvexStraight4_hB_1.svg" width="5" />
+
+<!---->
+
+[StairAtStartConvexStraight5()] 2024_0626; Stair at start convex straight 5 (h+1)W
+2024_0727_3; start obstacle outside
+
+<img align="top" src="References/StairAtStartConvexStraight5_(hp1)W.svg" width="5" />[spacer]<img align="top" src="References/StairAtStartConvexStraight5_(hp1)W_1.svg" width="4" />[spacer]<img align="top" src="References/StairAtStartConvexStraight5_(hp1)W_2.svg" width="5" />[spacer]<img align="top" src="References/StairAtStartConvexStraight5_(hp1)W_3.svg" width="4" />
+
+[StairAtEndConvexIn2()] 2026_0404, 2026_0408_1; Stair at end convex in 2 vB; cannot enter now
+
+<img align="top" src="References/StairAtEndConvexIn2_vB.svg" width="6" />[spacer]<img align="top" src="References/StairAtEndConvexIn2_vB_1.svg" width="6" />
+
+2024_0805, 2024_0808; hori >= 4, vB; cannot enter later
+
+<img align="top" src="References/StairAtEndConvexIn2_vB_2.svg" width="7" />[spacer]<img align="top" src="References/StairAtEndConvexIn2_vB_3.svg" width="7" />
+
+<!---->
+
+[StairAtEndConvexIn3()] 2024_0718, 2024_0720_2, 2024_0709, 2024_0727; Stair at end convex in 3 E; cannot enter later
+
+<img align="top" src="References/StairAtEndConvexIn3_E.svg" width="6" />[spacer]<img align="top" src="References/StairAtEndConvexIn3_E_1.svg" width="6" />
+
+2024_0731, 2024_0811_3; hori >= 4, vB; cannot enter later
+
+<img align="top" src="References/StairAtEndConvexIn3_E_2.svg" width="7" />[spacer]<img align="top" src="References/StairAtEndConvexIn3_E_3.svg" width="7" />
+
+(v+1)B; 2024_0516_2, 2024_1012; cannot enter now
+
+<img align="top" src="References/StairAtEndConvexIn3_(vp1)B.svg" width="6" />[spacer]<img align="top" src="References/StairAtEndConvexIn3_(vp1)B_1.svg" width="6" />
+
+<!---->
+
+[StairAtEndConvexIn4()] 2024_0626_1, 2026_0404_1, 2024_0730, 2024_0729_3, 2026_0404_3; Stair at end convex in 4 1W; cannot enter later
+
+<img align="top" src="References/StairAtEndConvexIn4_1W.svg" width="7" />[spacer]<img align="top" src="References/StairAtEndConvexIn4_1W_1.svg" width="7" />
+
+[StairAtEndConvexStraight3()] 2024_0905, 2024_0706, 2024_2024_1001, 2024_1008, 2024_0916; Stair at end convex straight 3 vB:
+Rewrite obstacle discovery, so the loop is finished in the beginning. Stair addition cases are double stair cases.
+
+<img align="top" src="References/StairAtEndConvexStraight3_vB.svg" width="6" />
+
+[StairAtEndConvexStraight4()] (Page 182) 2024_0624; Stair at end convex straight 4 1W:
+
+<img align="top" src="References/StairAtEndConvexStraight4_1W.svg" width="7" />
+
+<!---->
+
+[StairAtEndConvexOut4()] 2025_0525_1; Stair at end convex out 4 1W:
+
+<img align="top" src="References/StairAtEndConvexOut4_1W.svg" width="7" />
+
+[StairAtEndConcaveIn2()] (Page 173) 2024_0717_4; Stair at end concave in 2 1W:
+
+<img align="top" src="References/StairAtEndConcaveIn2_1W.svg" width="6" />[spacer]<img align="top" src="References/StairAtEndConcaveIn2_1W_1.svg" width="6" />
+
+[StairAtEndConcaveIn3()] 2024_0716; Stair at end concave in 3 1W:
+
+<img align="top" src="References/StairAtEndConcaveIn3_1W.svg" width="6" />[spacer]<img align="top" src="References/StairAtEndConcaveIn3_1W_1.svg" width="6" />
+
+<!---->
+
+[StairAtEndConcaveIn4()] (Page 207) 2024_0814, 2024_0619_1, 2024_0729_1, 2024_0729_4, 2024_0820; Stair at end concave in 4 1W:
+
+<img align="top" src="References/StairAtEndConcaveIn4_1W.svg" width="7" />[spacer]<img align="top" src="References/StairAtEndConcaveIn4_1W_1.svg" width="7" />
+
+[StairAtEndConcaveIn5()] 2024_0714, 2026_0410_6; Stair at end concave in 5 1W:
+
+<img align="top" src="References/StairAtEndConcaveIn5_1W.svg" width="8" />[spacer]<img align="top" src="References/StairAtEndConcaveIn5_1W_1.svg" width="8" />
+
+<!---->
+
+2026_0408_8; (v+1)B
+
+<img align="top" src="References/StairAtEndConcaveIn5_(vp1)B.svg" width="8" />[spacer]<img align="top" src="References/StairAtEndConcaveIn5_(vp1)B_1.svg" width="8" />
+
+In the first rule, we could exit at the farthest black field first, but there is a mid across obstacle on the left side. The second will take care of that obstacle, but when we re-enter, there will be another mid across obstacle on the right, so we could not have got to the farthest black field previously. And if we exit at the closest black field on the stair top, it will have an across obstacle on the right.
+
+[StairAtEndConcaveStraight3()] 2024_0619, 2024_0717_2, 2025_0527, 2026_0302_4, 2026_0302_5; Stair at end concave straight 3 1W:
+
+<img align="top" src="References/StairAtEndConcaveStraight3_1W.svg" width="7" />
+
+<!---->
+
+[StairAtEndConcaveStraight4()] 2025_0522_1; Stair at end concave straight 4:
+
+<img align="top" src="References/StairAtEndConcaveStraight4_vW.svg" width="6" />
+
+[StairAtEndConcaveStraight5()] 2024_0618, 2024_0717_1, 2024_0818, 2025_0525, 2025_0720_1, 2026_0304_4, 2026_0301, 2026_0302_1, 2026_0304_7; Stair at end concave straight 5 is rewritten for vertical position.
+
+<img align="top" src="References/StairAtEndConcaveStraight5_1W.svg" width="8" />
+
+<!---->
+
+[StairAtEndConcaveStraight6()] 2026_0302 Stair at end concave straight 6
+
+<img align="top" src="References/StairAtEndConcaveStraight6_vB.svg" width="9" />[spacer]<img align="top" src="References/StairAtEndConcaveStraight6_vB_1.svg" width="9" />
+
+Area is vB. If we enter now and exit at the nearest blue line, the area with the obstacle outside is 1B and cannot be filled. We cannot first exit at the farthest blue line either due to the obstacle inside that does not leave space to get there.
+
+[StairAtEndConcaveOut3()] 2024_0811; Stair at end concave out 3 1W:
+
+<img align="top" src="References/StairAtEndConcaveOut3_1W.svg" width="7" />
+
+<!---->
+
+[StairAtEndConcaveOut5()] Obstacle inside: 2024_0817, 2026_0408, outside: 2026_0304_2, 2026_0304_6; Stair at end concave out 5 1W:
+
+<img align="top" src="References/StairAtEndConcaveOut5_1W.svg" width="8" />[spacer]<img align="top" src="References/StairAtEndConcaveOut5_1W_1.svg" width="8" />
+
+[DoubleStair()] 2024_0516_4, 2024_0516_5, 2024_0706_1, 2024_0727_5, 2024_1006_1, 2024_0711, Double stair
+
+<img align="top" src="References/Double stair_1.svg" width="8" />[spacer]<img align="top" src="References/Double stair_2.svg" width="8" />
+
+<!---->
+
+[DoubleStairReversed()] 2026_0124, 2026_0304, Double stair reversed
+
+<img align="top" src="References/Double stair reversed.svg" width="8" />
 
 <!---->
 
@@ -2813,64 +3003,13 @@ Observable patterns:
 
 <img align="top" src="References/2025_0528_rule.svg" width="8" />
 
-The concave area is 3B. There are 2 corner black fields and 3 non-corner black fields, so if we enter now, the border movement has to be as shown on the picture. But due to the internal wall shape, a second line is drawn, which start we cannot get to.  
+The concave area is 3B. There are 2 corner black fields and 3 non-corner black fields, so if we enter now, the border movement has to be as shown on the picture. But due to the internal wall shape, a second line is drawn, which start we cannot get to. 
 
 <!---->
 
 If the other way were chosen:
 
 <img align="top" src="References/2025_0528_correct.svg" width="13" />
-
-<!---->
-
-<b>New cases and solutions that need classification</b>
-
-2926_0302_7; Stair at start convex 3 uses CheckNearFieldSmallRel that is not valid to far corners, but this scenario could exist. CheckCorner1 could also be rewritten to be valid for C-shapes as in this example. Rule: 
-
-<img align="top" src="References/StairAtStartConvex3.svg" width="4" />[spacer]<img align="top" src="References/StairAtStartConvex3_1.svg" width="4" />
-
-2024_0710, 2026_0301_1 Stair at start convex straight 3
-2024_0611 needs extension
-
-<img align="top" src="References/StairAtStartConvexStraight3.svg" width="6" />[spacer]<img align="top" src="References/StairAtStartConvexStraight3_1.svg" width="5" />
-
-<!---->
-
-2024_0618_2, 2026_0302_6, 2026_0304_1, 2026_0304_5; Stair at start convex straight 4 1W
-2024_0727_4, 2024_0725: start obstacle outside as well 
-
-<img align="top" src="References/StairAtStartConvexStraight4_1W.svg" width="5" />[spacer]<img align="top" src="References/StairAtStartConvexStraight4_1W_1.svg" width="6" />[spacer]<img align="top" src="References/StairAtStartConvexStraight4_1W_2.svg" width="4" />
-
-2024_0610_4, 2024_0610_5, 121670752, 0627; 1B (currently LeftRightAreaUpExtended ex % 4 = 0):
-
-<img align="top" src="References/StairAtStartConvexStraight4_1B.svg" width="5" />[spacer]<img align="top" src="References/StairAtStartConvexStraight4_1B_1.svg" width="6" />
-
-<!---->
-
-2024_0626; Stair at start convex 5
-2024_0727_3; start obstacle outside
-
-<img align="top" src="References/StairAtStartConvexStraight5.svg" width="4" />[spacer]<img align="top" src="References/StairAtStartConvexStraight5_1.svg" width="4" />
-
-2025_0527, 2026_0302_4, 2026_0302_5; Stair at end concave straight 3:
-
-<img align="top" src="References/StairAtEndConcaveStraight3.svg" width="6" />[spacer]<img align="top" src="References/StairAtEndConcaveStraight3_1.svg" width="7" />
-
-2026_0304_2, 2026_0304_6; Stair at end concave 5:
-
-<img align="top" src="References/StairAtEndConcave5.svg" width="4" />[spacer]<img align="top" src="References/StairAtEndConcave5_1.svg" width="5" /> 
-
-2026_0304_4, 2026_0301, 2026_0302_1, 2026_0304_7; Stair at end concave straight 5 is rewritten for vertical position.
-
-<img align="top" src="References/StairAtEndConcaveStraight5.svg" width="5" />[spacer]<img align="top" src="References/StairAtEndConcaveStraight5_1.svg" width="6" />
-
-<!---->
-
-2026_0302 Stair at end concave straight 6
-
-<img align="top" src="References/StairAtEndConcaveStraight6.svg" width="6" />
-
-Area is 1B. If we enter now and exit at the nearest blue line, the area with the second obstacle is still 1B and cannot be filled. We cannot first exit at the farthest blue line due to the obstacle inside that does not leave space to get there.
 
 <!---->
 
@@ -2959,12 +3098,21 @@ Review CountArea old and new algorithms
 Do not disable a possible field (and display the area) if the field is taken anyway (0725_4, 0731 step straight)
 All Sequence patterns should be replaced with stair-area rules like 0725_5. Is it possible? At 0726_2, applying sequence is unnecessary. 
 In CheckStairAtEndConcaveStraight5, the index of (hori, vert) is compared to (hori, vert + 1) to determine obstacle direction. Does (hori, vert + 1) always exist, or can it be empty or go out of the board?
+Can straight discovery algorithm terminate early, by finding an obstacle which would be within a larger area?
+StairAtEndConvexStraight4 uses InCornerRel after discovery. But the row at vert + 1 can not only be border but taken too.
+Construct case for DoubleStairReversed close obstacle at 3, -1
+Re-check / format stair functions:
+- Disable only one field in one of the rotations
+- CheckNearFieldSmallRel 0 / 1 / - should only be used minimally, based on the existing examples
+- Specify enter whether entering now or later is disabled in the beginning the function
+- Use AddEnd and RemoveEnd functions
+Consturct case for StairAtStartConvexIn4 that is not StairAtEndConvexIn4.
 
 <b>Display:</b>
 
 Make an arrow at the end of the blue lines, to indicate direction. Important at Stair at end concave straight 6.
 Clean up 2025_0522_1, 2025_0525 for irrelevant area rules.
-Should we display non-critical border movements in rules? Fx. 0624 vs 0727_1 solutions (page 177-178)
+Should we display non-critical border movements in rules? Fx. 0624 vs 2024_0727_1 solutions (page 177-178)
 Indicate needed disabled fields in 11&nbsp;x&nbsp;11 rule representations?
 New pictures where areas were displayed incorrectly.
 Cite page numbers when mentioning a rule
@@ -2977,7 +3125,7 @@ The corner discovery head can be in any of the 4 quarters and the area is still 
 
 <b>Find example:</b>
 
-StartObstacleInside corner (nextY - nextX) % 4 = 2 (0619 extension, page 207)
+StartObstacleInside corner (nextY - nextX) % 4 = 2 (2024_0619 extension, page 207)
 RemoteStair across (0818_1, page 207)
 Stair extensions: flat top far away (0725_6) where the end obstacle is far away. 
 StraightSmall 2 and 3 with stair leg, like StairAtEndConcave5 and 6.
@@ -2987,7 +3135,7 @@ StairAtEndConcave6 with other than 2 x mid across obstacles
 
 In the rules for 2025_0522 to 2025_0527, the second obstacle is always mid across, but I used CheckNearFieldSmallRel1 which also solves the across cases. They might never occur.
 Review page number references
-Remove unnecessary markings in the five 1005 examples (sequence walkthrough)
+Remove unnecessary markings in the five 2024_1005 examples (sequence walkthrough)
 When loading a file, possible fields are not displayed as numbers on the top. Does it only happen when the calculated moves are not the same as in the file?
 CheckStairAtEndConvexStraight3 Stair: Can the down field be free in rotation 1?
 

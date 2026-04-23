@@ -217,7 +217,7 @@ namespace OneWayLabyrinth
                     Ref3.Text = arr2[2];
                     saveRef = true;
                 }
-                
+
                 CheckSize();
                 Size.Text = size.ToString();
             }
@@ -274,7 +274,7 @@ namespace OneWayLabyrinth
 
             if (taken != null && possibleDirections.Count != taken.path.Count + 1) // null checking is only needed for removing warning
             {
-                M("Error in file.", 0);
+                M("Error in file.");
                 return;
             }
             DrawPath(true);
@@ -468,34 +468,9 @@ namespace OneWayLabyrinth
             string file1, file2, file3;
 
             int yOffset = 0;
-            string yearPrefix = "2024_";
-
-            if (Ref1.Text.Length <= 5 || Ref1.Text.Length > 5 && Ref1.Text.Substring(0, 2) != "20")
-            {
-                file1 = yearPrefix + Ref1.Text;
-            }
-            else
-            {
-                file1 = Ref1.Text;
-            }
-
-            if (Ref2.Text.Length <= 5 || Ref2.Text.Length > 5 && Ref2.Text.Substring(0, 2) != "20")
-            {
-                file2 = yearPrefix + Ref2.Text;
-            }
-            else
-            {
-                file2 = Ref2.Text;
-            }
-
-            if (Ref3.Text.Length <= 5 || Ref3.Text.Length > 5 && Ref3.Text.Substring(0, 2) != "20")
-            {
-                file3 = yearPrefix + Ref3.Text;
-            }
-            else
-            {
-                file3 = Ref3.Text;
-            }
+            file1 = Ref1.Text;
+            file2 = Ref2.Text;
+            file3 = Ref3.Text;
 
             string saveFile1 = "", saveFile2 = "", saveFile3 = "";
 
@@ -506,8 +481,8 @@ namespace OneWayLabyrinth
                 Ref1.SelectionLength = 0;
                 saveFile1 = file1;
 
-                DrawSVG(file1, 240, 240, 20, 40);
-                yOffset += 260;
+                DrawSVG(file1, 240, 240, 20, 47);
+                yOffset += 255;
             }
 
             if (File.Exists(baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "References\\" + file2 + ".svg"))
@@ -517,8 +492,8 @@ namespace OneWayLabyrinth
                 Ref2.SelectionLength = 0;
                 saveFile2 = file2;
 
-                DrawSVG(file2, 240, 240, 20, yOffset + 40);
-                yOffset += 260;
+                DrawSVG(file2, 240, 240, 20, yOffset + 47);
+                yOffset += 255;
             }
 
             if (File.Exists(baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "References\\" + file3 + ".svg"))
@@ -528,7 +503,7 @@ namespace OneWayLabyrinth
                 Ref3.SelectionLength = 0;
                 saveFile3 = file3;
 
-                DrawSVG(file3, 240, 240, 20, yOffset + 40);
+                DrawSVG(file3, 240, 240, 20, yOffset + 47);
             }
 
             if (saveRef)
@@ -555,11 +530,13 @@ namespace OneWayLabyrinth
 
         private void SkElement_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            string source = ((SKElement)sender).Tag.ToString().Replace(".svg", ".txt");
-            if (File.Exists(source))
+            string source = ((SKElement)sender).Tag.ToString();
+            source = source.Substring(0, source.Length - 4) + ".txt";
+            if (!File.Exists(source))
             {
-                Reload(true, source);
+                MessageBox.Show("Text file should be created.");
             }
+            Reload(true, source);
         }
 
         private void ReadDir()
@@ -582,18 +559,47 @@ namespace OneWayLabyrinth
 
         private void LoadFromFile()
         {
-            string content;
-            if (File.Exists(loadFile))
+            string content = "";
+            List<string> loadPath = new();
+            List<int[]> nextCoordinates = new List<int[]>();
+
+            if (File.Exists(loadFile)) // txt in references
             {
                 content = File.ReadAllText(loadFile);
             }
-            else
+            else if (File.Exists(loadFile.Substring(0, loadFile.Length - 4) + ".svg")) // svg in references
+            {
+                content = File.ReadAllText(loadFile.Substring(0, loadFile.Length - 4) + ".svg");
+                var matches = Regex.Matches(content, @"x=""(\d+)"" y=""(\d+)"" fill=""(#e2bcbc|#ff0000)"""); // the older files use red color with opacity 0.15
+                foreach (Match m in matches)
+                {
+                    // Group[1] er x, Group[2] er y
+                    int x = int.Parse(m.Groups[1].Value);
+                    int y = int.Parse(m.Groups[2].Value);
+
+                    loadPath.Add((x + 1) + "," + (y + 1));
+                }
+                matches = Regex.Matches(content, @"x=""(\d+)"" y=""(\d+)"" fill=""#000000""");
+                foreach (Match m in matches)
+                {
+                    // Group[1] er x, Group[2] er y
+                    int x = int.Parse(m.Groups[1].Value);
+                    int y = int.Parse(m.Groups[2].Value);
+
+                    nextCoordinates.Add(new int[] { x + 1, y + 1 });
+                }
+                Match match = Regex.Match(content, @"d=""M 0.01 0 v (\d+)""");
+                size = int.Parse(match.Groups[1].Value);
+            }
+            else // txt in program directory
             {
                 content = File.ReadAllText(baseDir + loadFile);
             }
 
-            string[] loadPath;
-            bool circleDirectionLeft = true;
+            T("loadPath.Count" + loadPath.Count);
+            T("nextCoordinates.Count" + nextCoordinates.Count);
+            T("size " + size);
+
             inFuture = false;
             selectedSection = -1;
 
@@ -605,7 +611,8 @@ namespace OneWayLabyrinth
                 content = arr[1];
             }
 
-            /*if (content.IndexOf(":") != -1)
+            /*bool circleDirectionLeft = true;
+            if (content.IndexOf(":") != -1)
             {
                 string[] sections = content.Split(":");
                 loadPath = sections[0].Split(";");
@@ -624,7 +631,10 @@ namespace OneWayLabyrinth
             }
             else
             {*/
-            loadPath = content.Split(";");
+            if (loadPath.Count == 0)
+            {
+                loadPath = content.Split(";").ToList<string>();
+            }
             //}
 
             taken = new Path(this, size, new List<int[]>(), null, true);
@@ -632,116 +642,180 @@ namespace OneWayLabyrinth
 
             //taken.circleDirectionLeft = circleDirectionLeft;
 
-            if (content.IndexOf("-") != -1) // normal mode, with possibilities
+            bool normalMode = false; // only coordinates
+            if (loadPath[0].IndexOf("-") != -1)
             {
-                // each unit contains the possible directions and then the field stepped on.
-                possibleDirections = new List<int[]> { new int[] { 1 }, new int[] { 0, 1 } };
-                taken.suppressLogs = true;
+                normalMode = true; // with possibilities
+            }
 
-                foreach (string coords in loadPath)
+            // each unit contains the possible directions and then the field stepped on.
+            possibleDirections = new List<int[]> { new int[] { 1 }, new int[] { 0, 1 } };
+            taken.suppressLogs = true;
+
+            List<int[]> takenPossible;
+            foreach (string coords in loadPath)
+            {
+                int[] possibles = new int[0];
+                int[] field = new int[0];
+                takenPossible = new();
+
+                if (normalMode)
                 {
                     string[] sections = coords.Split("-");
-                    int[] possibles = Array.ConvertAll(sections[0].Split(","), s => int.Parse(s));
-
-                    if (!(taken.x == 1 && taken.y == 1)) // check saved directions against new calculated directions
+                    if (sections[0] != "") // enables loading incorrect paths, where there were in fact no possibility to get there, like in 2024_0101_1
                     {
-                        List<int[]> takenPossible = new();
-                        foreach (int direction in possibles)
-                        {
-                            takenPossible.Add(new int[] { taken.x + directions[direction][0], taken.y + directions[direction][1] });
-                        }
-
-                        taken.areaLines = new();
-                        taken.areaLineTypes = new();
-                        taken.areaLineDirections = new();
-                        taken.areaPairFields = new();
-                        taken.areaLineSecondary = new();
-
-                        // Uncomment the next two lines to disable file analysis.
-
-                        //possibleDirections.Add(new int[] {});
-                        //ReplaceLastPossible(takenPossible);
-
-                        NextStepPossibilities();
-
-                        if (!rulesDisabled)
-                        {
-                            if (taken.possible.Count != takenPossible.Count)
-                            {
-                                // replace possible absolute coordinates with values from file
-                                ReplaceLastPossible(takenPossible);
-
-                                T("Number of possibles do not match at step " + taken.path.Count + ".");
-                                M("Number of possibles do not match at step " + taken.path.Count + ".", 0);
-
-                                break;
-                            }
-                            else
-                            {
-                                bool toBreak = false;
-                                for (int i = 0; i < taken.possible.Count; i++)
-                                {
-                                    if (!(taken.possible[i][0] == takenPossible[i][0] && taken.possible[i][1] == takenPossible[i][1]))
-                                    {
-                                        ReplaceLastPossible(takenPossible);
-
-                                        T("Wrong possible movements at step " + taken.path.Count + ".");
-                                        M("Wrong possible movements at step " + taken.path.Count + ".", 0);
-                                        toBreak = true;
-                                        break;
-                                    }
-                                }
-
-                                if (toBreak) break;
-                            }
-                        }
+                        possibles = Array.ConvertAll(sections[0].Split(","), s => int.Parse(s));
                     }
-
-                    if (sections.Length == 2)
+                    if (sections.Length == 2) // all except last
                     {
-                        int[] field = Array.ConvertAll(sections[1].Split(","), s => int.Parse(s));
-                        taken.path.Add(field);
-                        int x = field[0];
-                        int y = field[1];
-                        taken.x = x;
-                        taken.y = y;
-
-                        if (calculateFuture) CheckFutureLine(x, y);
+                        field = Array.ConvertAll(sections[1].Split(","), s => int.Parse(s));
                     }
                 }
-
-                taken.areaLines = new();
-                taken.areaLineTypes = new();
-                taken.areaLineDirections = new();
-                taken.areaPairFields = new();
-                taken.areaLineSecondary = new();
-
-                taken.suppressLogs = false;
-            }
-            else // only coordinates
-            {
-                int startX = 0;
-                int startY = 1;
-                possibleDirections = new();
-
-                foreach (string coords in loadPath)
+                else
                 {
-                    int[] field = Array.ConvertAll(coords.Split(","), s => int.Parse(s));
+                    field = Array.ConvertAll(coords.Split(","), s => int.Parse(s));
+                }
+
+                if (!(taken.x == 1 && taken.y == 1)) // check saved directions against new calculated directions
+                {
+                    foreach (int direction in possibles)
+                    {
+                        takenPossible.Add(new int[] { taken.x + directions[direction][0], taken.y + directions[direction][1] });
+                    }
+
+                    taken.areaLines = new();
+                    taken.areaLineTypes = new();
+                    taken.areaLineDirections = new();
+                    taken.areaPairFields = new();
+                    taken.areaLineSecondary = new();
+
+                    // Uncomment the next two lines to disable file analysis, and comment the third.
+
+                    //possibleDirections.Add(new int[] {});
+                    //ReplaceLastPossible(takenPossible);
+                    NextStepPossibilities();
+
+                    if (normalMode && !rulesDisabled) // normal mode
+                    {
+                        if (taken.possible.Count != takenPossible.Count)
+                        {
+                            // replace possible absolute coordinates with values from file
+                            ReplaceLastPossible(takenPossible);
+
+                            T("Number of possibles do not match at step " + taken.path.Count + ".");
+                            M("Number of possibles do not match at step " + taken.path.Count + ".");
+
+                            break;
+                        }
+                        else
+                        {
+                            bool toBreak = false;
+                            for (int i = 0; i < taken.possible.Count; i++)
+                            {
+                                if (!(taken.possible[i][0] == takenPossible[i][0] && taken.possible[i][1] == takenPossible[i][1]))
+                                {
+                                    ReplaceLastPossible(takenPossible);
+
+                                    T("Wrong possible movements at step " + taken.path.Count + ".");
+                                    M("Wrong possible movements at step " + taken.path.Count + ".");
+                                    toBreak = true;
+                                    break;
+                                }
+                            }
+
+                            if (toBreak) break;
+                        }
+                    }
+
+                    // T("x " + taken.x + " y " + taken.y + " path.count " + taken.path.Count + " possibleDirections.Count " + possibleDirections.Count + " loadPath.Count " + loadPath.Count);
+                }
+
+                if (field.Length == 2)
+                {
                     taken.path.Add(field);
                     int x = field[0];
                     int y = field[1];
                     taken.x = x;
                     taken.y = y;
 
-                    possibleDirections.Add(new int[] { FindDirection(x - startX, y - startY) });
-                    startX = x;
-                    startY = y;
-
                     if (calculateFuture) CheckFutureLine(x, y);
                 }
             }
 
-            T("Loading " + loadFile + ", taken count " + taken.path.Count + ", possibledir count " + possibleDirections.Count);
+            // last possible steps are known, compare
+            if (!normalMode && !rulesDisabled)
+            {
+                takenPossible = new();
+                foreach (int[] coord in nextCoordinates)
+                {
+                    takenPossible.Add(coord);
+                }
+                taken.areaLines = new();
+                taken.areaLineTypes = new();
+                taken.areaLineDirections = new();
+                taken.areaPairFields = new();
+                taken.areaLineSecondary = new();
+                NextStepPossibilities();
+
+                if (taken.possible.Count != takenPossible.Count)
+                {
+                    // replace possible absolute coordinates with values from file
+                    ReplaceLastPossible(takenPossible);
+
+                    T("Number of possibles do not match at step " + taken.path.Count + ".");
+                    M("Number of possibles do not match at step " + taken.path.Count + ".");
+                }
+                else
+                {
+                    for (int i = 0; i < taken.possible.Count; i++)
+                    {
+                        if (!(taken.possible[i][0] == takenPossible[i][0] && taken.possible[i][1] == takenPossible[i][1]))
+                        {
+                            ReplaceLastPossible(takenPossible);
+
+                            T("Wrong possible movements at step " + taken.path.Count + ".");
+                            M("Wrong possible movements at step " + taken.path.Count + ".");
+                            break;
+                        }
+                    }
+                }
+            }
+
+            taken.areaLines = new();
+            taken.areaLineTypes = new();
+            taken.areaLineDirections = new();
+            taken.areaPairFields = new();
+            taken.areaLineSecondary = new();
+
+            taken.suppressLogs = false;
+
+            /*// only coordinates - no possibility checking, with future line
+            int startX = 0;
+            int startY = 1;
+            possibleDirections = new();
+
+            foreach (string coords in loadPath)
+            {
+                int[] field = Array.ConvertAll(coords.Split(","), s => int.Parse(s));
+                taken.path.Add(field);
+                int x = field[0];
+                int y = field[1];
+                taken.x = x;
+                taken.y = y;
+
+                possibleDirections.Add(new int[] { FindDirection(x - startX, y - startY) });
+                startX = x;
+                startY = y;
+
+                if (calculateFuture) CheckFutureLine(x, y);
+            }*/
+
+            if (File.Exists(loadFile))
+                T("Loading " + loadFile + ", taken count " + taken.path.Count + ", possibledir count " + possibleDirections.Count);
+            else
+            {
+                T("Loading " + loadFile.Substring(0, loadFile.Length - 4) + ".svg" + ", taken count " + taken.path.Count + ", possibledir count " + possibleDirections.Count);
+            }
 
             nextDirection = -2;
 
@@ -762,7 +836,11 @@ namespace OneWayLabyrinth
                 arr[1] = arr[1].Replace(".txt", "");
                 if (!int.TryParse(arr[1], out int result))
                 {
-                    fileCompletedCount = long.Parse(arr[0]);
+                    // do not apply to references, which will have the full absolute filename. Only files in the program directory
+                    if (int.TryParse(arr[0], out int result2))
+                    {
+                        fileCompletedCount = long.Parse(arr[0]);
+                    }
                 }
             }
 
@@ -850,17 +928,17 @@ namespace OneWayLabyrinth
         {
             if (size > 99)
             {
-                M("Size should be between 3 and 99.", 0);
+                M("Size should be between 3 and 99.");
                 size = 99;
             }
             else if (size < 3)
             {
-                M("Size should be between 3 and 99.", 0);
+                M("Size should be between 3 and 99.");
                 size = 3;
             }
             else if (size % 2 == 0)
             {
-                M("Size cannot be pair.", 0);
+                M("Size cannot be pair.");
                 size = size - 1;
             }
         }
@@ -978,7 +1056,7 @@ namespace OneWayLabyrinth
 
             if (possibleDirections.Count != taken.path.Count + 1)
             {
-                M("Error in file", 0);
+                M("Error in file");
                 return;
             }
 
@@ -1229,9 +1307,9 @@ namespace OneWayLabyrinth
                     }
                     else
                     {
-                        if (completedWalkthrough) M("The number of walkthroughs are " + completedCount + ".", 0);
-                        else if (!errorInWalkthrough) M(completedCount + " walkthroughs are completed.", 0);
-                        else M("Error at " + completedCount + ": " + errorString, 0);
+                        if (completedWalkthrough) M("The number of walkthroughs are " + completedCount + ".");
+                        else if (!errorInWalkthrough) M(completedCount + " walkthroughs are completed.");
+                        else M("Error at " + completedCount + ": " + errorString);
                         DrawPath();
                     }
 
@@ -1285,7 +1363,7 @@ namespace OneWayLabyrinth
             if (File.Exists(baseDir + "settings.txt"))
             {
                 string fileContent = File.ReadAllText(baseDir + "settings.txt");
-                int pos = fileContent.IndexOf("appliedSize");
+                int pos = fileContent.IndexOf("ruleXSize");
 
                 if (pos != -1)
                 {
@@ -1811,7 +1889,7 @@ namespace OneWayLabyrinth
                             ExtendFutureLine(false, foundIndex, farEndIndex, selectedSection, lastMerged, true);
                         }
 
-                        // adding other future lines can be timely, as in 0811
+                        // adding other future lines can be timely, as in 2023_0811
                         if (!AddFutureLines()) return false;
                     }
                     //not stepped on a future field
@@ -2051,7 +2129,7 @@ namespace OneWayLabyrinth
                             //last clause is needed for 0927_3
                             if (!InTakenRel2(1, 0) && !InFutureRel2(1, 0) && InFutureStartRel2(2, 0) && (InTakenRel2(1, -1) || InBorderRel2(1, -1) || (InFutureRel2(1, -1) && (!InFutureEndRel2(1, -1) || InFutureEndRel2(1, -1) && foundSectionStart == foundSectionEnd))))
                             {
-                                // Similar to the Left/right future start, here is an example where the two connect: 0903_3
+                                // Similar to the Left/right future start, here is an example where the two connect: 0902_3
                                 // But the previous function extends and connect to the section on the right side befure this function is called. Condition of !InFutureRel2(1, 1) is not needed in this example.
                                 // If !InFutureRel2(1, 0) is omitted, this will go wrong: 0916_2, upper line will extend even though field below is filled with a future line.
 
@@ -2328,7 +2406,7 @@ namespace OneWayLabyrinth
                             future.path.Add(new int[] { x + 3 * lx, y + 3 * ly });
                             future.path.Add(new int[] { x + 2 * lx, y + 2 * ly });
                             future.path.Add(new int[] { x + lx, y + ly });
-                            if (!InFutureRel2(1, 1)) // 1006_1
+                            if (!InFutureRel2(1, 1)) // 2023_1006_1
                             {
                                 future.path.Add(new int[] { x + lx + sx, y + ly + sy });
                                 addCount++;
@@ -2529,7 +2607,7 @@ namespace OneWayLabyrinth
 						startIndex++;
 
 						//Suppose the end of the future line is 2 to the left or right of the start end, as in 0415
-						if (future.path[endIndex][0] == x + 2 * rx + sx && future.path[endIndex][1] == y + 2 * ry + sy)
+                        if (future.path[endIndex][0] == x + 2 * rx + sx && future.path[endIndex][1] == y + 2 * ry + sy)
 						{
 							future.path.Insert(startIndex, new int[] { x + sx + lx, y + sy + ly });
 						}
@@ -2576,7 +2654,7 @@ namespace OneWayLabyrinth
                 int index = (isNearEnd) ? nearEndIndex : farEndIndex;
                 T("ExtendFuture isNearEnd " + isNearEnd + " index " + index + " nearEndIndex " + nearEndIndex + " farEndIndex " + farEndIndex + " nearSection " + nearSection + " farSection " + farSection);
 
-                // In 0814, future line is already extended to the end
+                // In 2023_0814, future line is already extended to the end
                 if (!isNearEnd && future.path[index][0] == size && future.path[index][1] == size)
                 {
                     farExtDone = true;
@@ -2597,7 +2675,7 @@ namespace OneWayLabyrinth
 
                 T("ExtendFutureLine, future.possible.Count " + future.possible.Count);
 
-                // 0811_1: When the near end of a future line can only connect to the main line, the far end, when presented with the possibility of entering the corner and another field, it has to choose the other field.
+                // 2023_0811_1: When the near end of a future line can only connect to the main line, the far end, when presented with the possibility of entering the corner and another field, it has to choose the other field.
                 // A future line on the edge cannot have 3 possibilities
                 if (nearEndDone && future.possible.Count == 2)
                 {
@@ -2649,7 +2727,7 @@ namespace OneWayLabyrinth
                     //is counting area needed?					
 
                     // The far end might be connecting to an older section now, but we cannot merge the sections, because there might be a future line in between, like in 0714_2. Instead, we mark the connection.                      
-                    // Not only far end can connect to the near end of an older section, but also near end to the far end of the older section, as i n 0730_1 
+                    // Not only far end can connect to the near end of an older section, but also near end to the far end of the older section, as in 2023_0730_1 
 
                     // If, after a merge, the line connected to extends, but it ends already in the corner, is it okay to just return, or should we try to extend the near end? Find an example.
                     for (int i = 0; i < futureSections.Count; i++)
@@ -2932,7 +3010,7 @@ namespace OneWayLabyrinth
             if (future.possible.Count == 0)
             {
                 T("Possible count: 0");
-                // in 0811_4 it can happen that after stepping on the future line, the other line gets extended and merges into the line being stepped on.
+                // in 0811_4, it can happen that after stepping on the future line, the other line gets extended and merges into the line being stepped on.
                 if (!(isNearEnd && future.path[nearEndIndex][0] == taken.x && future.path[nearEndIndex][1] == taken.y))
                 {
                     return false;
@@ -3026,7 +3104,7 @@ namespace OneWayLabyrinth
                 if (!isTaskRunning)
                 {
                     StopTimer();
-                    M(errorString, 0);
+                    M(errorString);
                 }
                 return;
             }
@@ -3047,7 +3125,7 @@ namespace OneWayLabyrinth
                 {
                     if (calculateFuture && future.InTaken(fx, fy) && !InFutureStart(fx, fy))
                     {
-                        M("Possible field in future.", 0);
+                        M("Possible field in future.");
                     }
 
                     if (!isTaskRunning) PossibleCoords.Text += fx + " " + fy + "\n";
@@ -3953,7 +4031,11 @@ namespace OneWayLabyrinth
                 {
                     savePath += direction + ",";
                 }
-                savePath = savePath.Substring(0, savePath.Length - 1);
+                // truncating should be avoided for creating text files of old svg images where, in the last steps, there were no options, like 2024_0101_1 
+                if (possibleDirections[i].Count() > 0)
+                {
+                    savePath = savePath.Substring(0, savePath.Length - 1);
+                }
                 savePath += "-" + newX + "," + newY + ";";
 
                 if (saveCheck == true && lineFinished)
@@ -4791,7 +4873,9 @@ namespace OneWayLabyrinth
         private void SKElement_PaintSurface3(object sender, SKPaintSurfaceEventArgs e)
         {
             string fileName = (string)((SKElement)sender).Tag;
+            T("SKElement_PaintSurface3 " + fileName);
             if (!File.Exists(fileName)) return;
+            T("exists");
             var canvas = e.Surface.Canvas;
             canvas.Clear(SKColors.White);
 
@@ -5021,6 +5105,7 @@ namespace OneWayLabyrinth
         private void CopyConsole_Click(object sender, RoutedEventArgs e)
         {
             string file1 = File.ReadAllText(baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "Path.cs");
+            string file_control = File.ReadAllText(baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "Path_control.cs");
             string file2 = File.ReadAllText(baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "Console app\\Program.cs");
 
             int pos1 = 0;
@@ -5028,7 +5113,7 @@ namespace OneWayLabyrinth
             int pos3 = 0;
             int pos4 = 0;
 
-            List<int> sectionTabs = new() { 3, 2 };
+            List<int> sectionTabs = new() { 3, 2, 2 };
             int counter = 0;
             while (pos1 != -1)
             {
@@ -5048,6 +5133,33 @@ namespace OneWayLabyrinth
                     }
                     string section = file1.Substring(pos1, pos2 - pos1).Replace("\n" + spaces, "\n");
                     file2 = file2.Substring(0, pos3) + section + file2.Substring(pos4);
+                    pos4 = file2.IndexOf("// ----- copy end -----", pos3);
+                    counter++;
+                }
+            }
+
+            pos1 = 0;
+            pos2 = 0;
+
+            while (pos1 != -1)
+            {
+                pos1 = file_control.IndexOf("// ----- copy start -----", pos2);
+
+                if (pos1 != -1)
+                {
+                    pos2 = file_control.IndexOf("// ----- copy end -----", pos1);
+
+                    pos3 = file2.IndexOf("// ----- copy start -----", pos4);
+                    pos4 = file2.IndexOf("// ----- copy end -----", pos3);
+
+                    string spaces = "";
+                    for (int i = 0; i < sectionTabs[counter]; i++)
+                    {
+                        spaces += "    ";
+                    }
+                    string section = file_control.Substring(pos1, pos2 - pos1).Replace("\n" + spaces, "\n");
+                    file2 = file2.Substring(0, pos3) + section + file2.Substring(pos4);
+                    pos4 = file2.IndexOf("// ----- copy end -----", pos3);
                 }
                 counter++;
             }
@@ -5062,7 +5174,6 @@ namespace OneWayLabyrinth
             MessageBox.Show("File copied.");
         }
 
-
         // ----- Logging -----
 
         public void L(string s)
@@ -5070,7 +5181,7 @@ namespace OneWayLabyrinth
             File.AppendAllText(baseDir + "log_stats.txt", s + "\n");
         }
 
-        public void M(object o, int code)
+        public void M(object o, int code = 0)
         {
             Dispatcher.Invoke(() =>
             {
@@ -5180,7 +5291,7 @@ namespace OneWayLabyrinth
                         i++;
                     }
                 }
-                M(count + " differences extracted.", 0);
+                M(count + " differences extracted.");
             }
         }
     }

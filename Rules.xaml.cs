@@ -1461,7 +1461,9 @@ namespace OneWayLabyrinth
 
         private void SaveRule_Click(object sender, RoutedEventArgs e)
         {
+            T("close future line");
             CloseFutureLine();
+            T("save size setting");
             SaveSizeSetting();
 
             /*if (countAreaStartCoordinates.Count != countAreaEndCoordinates.Count)
@@ -1520,21 +1522,24 @@ namespace OneWayLabyrinth
             {
                 fileName = RuleName.Text.Substring(RuleName.Text.Length - 4) == ".svg" ? RuleName.Text : RuleName.Text + ".svg";
             }
-
+            // StairAtEndConvexIn2_vB_2.svg
             string fullName = fileName;
+            T("fullName " + fullName);
             if (File.Exists(baseDir + fullName))
             {
                 int i = 1;
-                while (File.Exists(fullName.Replace(".svg", "_" + i + ".svg")))
+                T("exists? " + fullName.Replace(".svg", "_" + i + ".svg"));
+                while (i < 10 && File.Exists(baseDir + fullName.Replace(".svg", "_" + i + ".svg")))
                 {
                     i++;
+                    T("exists2? " + fullName.Replace(".svg", "_" + i + ".svg"));
                 }
                 fullName = fullName.Replace(".svg", "_" + i + ".svg");
             }
 
             T("Save: " + fullName);
             File.Copy(baseDir + "newRule.svg", baseDir + fullName);
-            ResetRule_Click(null, null);
+            //ResetRule_Click(null, null);
             //LoadDir();
         }
 

@@ -1,22 +1,74 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11 11">
 	<path d="M0,0 h11 v11 h-11 z" fill="#dddddd" />
-	<rect x="7.25" y="1.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
-	<rect x="9.25" y="1.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
-	<rect x="6.25" y="2.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
-	<rect x="8.25" y="2.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
-	<rect x="7.25" y="3.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
-	<rect x="9.25" y="3.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
-	<rect x="6.25" y="4.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
-	<rect x="8.25" y="4.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
-	<rect x="7.25" y="1.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
-	<rect x="9.25" y="1.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
-	<rect x="6.25" y="2.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
-	<rect x="8.25" y="2.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
-	<rect x="7.25" y="3.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
-	<rect x="9.25" y="3.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
-	<rect x="6.25" y="4.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
-	<rect x="8.25" y="4.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
-	<rect x="7.25" y="5.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="8.25" y="1.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="7.25" y="2.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="9.25" y="2.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="6.25" y="3.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="8.25" y="3.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="7.25" y="4.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="9.25" y="4.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="6.25" y="5.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="8.25" y="5.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="0.25" y="1.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="0.25" y="3.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="0.25" y="5.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="0.25" y="7.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="0.25" y="9.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="1.25" y="0.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="1.25" y="2.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="1.25" y="4.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="1.25" y="6.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="1.25" y="8.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="1.25" y="10.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="2.25" y="1.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="2.25" y="3.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="2.25" y="5.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="2.25" y="7.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="2.25" y="9.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="3.25" y="0.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="3.25" y="2.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="3.25" y="4.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="3.25" y="6.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="3.25" y="8.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="3.25" y="10.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="4.25" y="1.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="4.25" y="3.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="4.25" y="5.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="4.25" y="7.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="4.25" y="9.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="5.25" y="0.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="5.25" y="2.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="5.25" y="4.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="5.25" y="6.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="5.25" y="8.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="5.25" y="10.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="6.25" y="1.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="6.25" y="3.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="6.25" y="5.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="6.25" y="7.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="6.25" y="9.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="7.25" y="0.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="7.25" y="2.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="7.25" y="4.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="7.25" y="6.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="7.25" y="8.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="7.25" y="10.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="8.25" y="1.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="8.25" y="3.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="8.25" y="5.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="8.25" y="7.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="8.25" y="9.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="9.25" y="0.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="9.25" y="2.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="9.25" y="4.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="9.25" y="6.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="9.25" y="8.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="9.25" y="10.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="10.25" y="1.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="10.25" y="3.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="10.25" y="5.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="10.25" y="7.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="10.25" y="9.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
 	<rect width="1" height="1" x="0" y="0" fill="#e2bcbc" fill-opacity="1" />
 	<rect width="1" height="1" x="1" y="0" fill="#e2bcbc" fill-opacity="1" />
 	<rect width="1" height="1" x="1" y="1" fill="#e2bcbc" fill-opacity="1" />
@@ -97,21 +149,7 @@
 	<rect width="1" height="1" x="10" y="1" fill="#e2bcbc" fill-opacity="1" />
 	<rect width="1" height="1" x="10" y="2" fill="#e2bcbc" fill-opacity="1" />
 	<rect width="1" height="1" x="10" y="3" fill="#e2bcbc" fill-opacity="1" />
-	<rect width="1" height="1" x="10" y="4" fill="#bcbce2" fill-opacity="1" />
-	<rect width="1" height="1" x="10" y="5" fill="#bcbce2" fill-opacity="1" />
-	<rect width="1" height="1" x="9" y="5" fill="#bcbce2" fill-opacity="1" />
-	<rect width="1" height="0.25" x="7" y="4.75" fill="#FF4000" fill-opacity="0.25" />
-	<rect width="1" height="0.25" x="8" y="4.75" fill="#FF4000" fill-opacity="0.25" />
-	<path d="M 10 5 h -1 v -0.25 h 0.75 v -0.75 h 0.25 z" fill="#FF4000" fill-opacity="0.25" />
-	<rect width="0.25" height="1" x="9.75" y="3" fill="#FF4000" fill-opacity="0.25" />
-	<rect width="0.25" height="1" x="9.75" y="2" fill="#FF4000" fill-opacity="0.25" />
-	<path d="M 10 1 v 1 h -0.25 v -0.75 h -0.75 v -0.25 z" fill="#FF4000" fill-opacity="0.25" />
-	<rect width="1" height="0.25" x="8" y="1" fill="#FF4000" fill-opacity="0.25" />
-	<path d="M 7 1 h 1 v 0.25 h -0.75 v 0.75 h -0.25 z" fill="#FF4000" fill-opacity="0.25" />
-	<rect width="0.25" height="0.25" x="7" y="2" fill="#FF4000" fill-opacity="0.25" />
-	<path d="M 6 2 h 1 v 0.25 h -0.75 v 0.75 h -0.25 z" fill="#FF4000" fill-opacity="0.25" />
-	<rect width="0.25" height="1" x="6" y="3" fill="#FF4000" fill-opacity="0.25" />
-	<path d="M 6 5 v -1 h 0.25 v 0.75 h 0.75 v 0.25 z" fill="#FF4000" fill-opacity="0.25" />
+	<rect width="1" height="1" x="9" y="3" fill="#000000" fill-opacity="0.1" />
 	<rect width="1" height="0.25" x="7" y="5.75" fill="#FF4000" fill-opacity="0.25" />
 	<path d="M 9 6 h -1 v -0.25 h 0.75 v -0.75 h 0.25 z" fill="#FF4000" fill-opacity="0.25" />
 	<rect width="0.25" height="0.25" x="8.75" y="4.75" fill="#FF4000" fill-opacity="0.25" />
@@ -230,8 +268,5 @@ L 10 0.5
 A 0.5 0.5 0 0 1 10.5 1
 L 10.5 2
 L 10.5 3
-L 10.5 4
-L 10.5 5
-A 0.5 0.5 0 0 1 10 5.5
-L 9.5 5.5" fill="white" fill-opacity="0" stroke="black" stroke-width="0.05" stroke-linecap="round" />
+L 10.5 3.5" fill="white" fill-opacity="0" stroke="black" stroke-width="0.05" stroke-linecap="round" />
 </svg>

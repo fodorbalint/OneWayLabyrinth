@@ -9,10 +9,14 @@
 
   <ItemGroup>
     <Compile Remove="Console app\Program.cs" />
+    <Compile Remove="Path_old.cs" />  
+    <Compile Remove="Path_old2.cs" />  
   </ItemGroup>
 
   <ItemGroup>
     <None Include="Console app\Program.cs" />
+    <None Include="Path_old.cs" />
+    <None Include="Path_old2.cs" />
   </ItemGroup>
 
 	<ItemGroup>
