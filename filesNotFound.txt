@@ -1,0 +1,165 @@
+References/2023_0901_1.svg
+References/2023_0902.svg
+References/2023_0902_1.svg
+References/2023_0907.svg
+References/2023_0910.svg
+References/2023_0911_1.svg
+References/2023_0911_2.svg
+References/2023_0913_1.svg
+References/2023_0917.svg
+References/2023_0917_1.svg
+References/2023_0917_2.svg
+References/2023_0917_3.svg
+References/2023_0917_4.svg
+References/2023_0919.svg
+References/2023_0927.svg
+References/2023_0928_1.svg
+References/2023_0929.svg
+References/2023_1005.svg
+References/2023_1010.svg
+References/2023_1010_3.svg
+References/2023_1017.svg
+References/2023_1017_1.svg
+References/2023_1019_2.svg
+References/2023_1021_10.svg
+References/2023_1021_9.svg
+References/2023_1119_1.svg
+References/2023_1215.svg
+References/2023_1215_1.svg
+References/2023_1218.svg
+References/2023_1220.svg
+References/2023_1228.svg
+References/2024_0101_2.svg
+References/2024_0107_1.svg
+References/2024_0327.svg
+References/2024_0328.svg
+References/2024_0328_1.svg
+References/2024_0411.svg
+References/2024_0421.svg
+References/2024_0421_1.svg
+References/2024_0421_2.svg
+References/2024_0502.svg
+References/2024_0507.svg
+References/2024_0513.svg
+References/2024_0514.svg
+References/2024_0515.svg
+References/2024_0528_1.svg
+References/2024_0529_5.svg
+References/2024_0530.svg
+References/2024_0605.svg
+References/2024_0609.svg
+References/2024_0611_4_2.svg
+References/2024_0611_5_2.svg
+References/2024_0611_6_2.svg
+References/2024_0612.svg
+References/2024_0613.svg
+References/2024_0624_1.svg
+References/2024_0710_1.svg
+References/2024_0712_1.svg
+References/2024_0717_5.svg
+References/2024_0720_4.svg
+References/2024_0723_1.svg
+References/2024_0727_6.svg
+References/2024_0731_2.svg
+References/2024_0731_3.svg
+References/2024_0929.svg
+References/2024_1008_1.svg
+References/2024_1014_1.svg
+References/2025_0527_future.svg
+References/2025_0719.svg
+References/2025_0719_0_2.svg
+References/2025_0720.svg
+References/2026_0301_2.svg
+References/2026_0301_3.svg
+References/2026_0302_2.svg
+References/2026_0302_3.svg
+References/2026_0302_7.svg
+References/2026_0304_3.svg
+References/2026_0404_2.svg
+References/2026_0404_4.svg
+References/2026_0408_2.svg
+References/2026_0408_3.svg
+References/2026_0408_4.svg
+References/2026_0408_5.svg
+References/2026_0408_6.svg
+References/2026_0408_7.svg
+References/2026_0409.svg
+References/2026_0410_1.svg
+References/2026_0410_2.svg
+References/2026_0410_3.svg
+References/2026_0410_5.svg
+References/2026_0410_7.svg
+References/2026_0410_8.svg
+References/2026_0811_3.svg
+References/7_2558.svg
+References/7_266.svg
+References/7_3627.svg
+References/9_112885.svg
+References/9_1317297.svg
+References/9_22326.svg
+References/9_22328_2.svg
+References/9_22328_3.svg
+References/9_22362.svg
+References/9_227250.svg
+References/9_23347853.svg
+References/9_3.svg
+References/9_328.svg
+References/9_478361_1.svg
+References/9_635248.svg
+References/9_641261.svg
+References/9_725325.svg
+References/9_802973_1.svg
+References/countarea/9_74.svg
+References/rules/1-3 corner small inside close.svg
+References/rules/2023_1008_rule.svg
+References/rules/2024_0611_3_area.svg
+References/rules/2024_0722_rule1.svg
+References/rules/2024_0722_rule2.svg
+References/rules/2024_0722_rule3.svg
+References/rules/2024_0724_1_rule.svg
+References/rules/2024_0724_1_rule2.svg
+References/rules/2025_0522_1_rule2.svg
+References/rules/2025_0525_rule.svg
+References/rules/2025_0525_rule2.svg
+References/rules/2025_0527_1_rule1.svg
+References/rules/2025_0527_1_rule2.svg
+References/rules/2025_0527_1_rule3.svg
+References/rules/2025_0527_rule.svg
+References/rules/2025_0719_rule.svg
+References/rules/2025_0720_rule.svg
+References/rules/7_450_rotated.svg
+References/rules/CheckDirectionalArea_old.svg
+References/rules/corner 2 4 stair.svg
+References/rules/double area case 1 rotated.svg
+References/rules/double area case 3 border.svg
+References/rules/double obstacle outside 3 stair 1.svg
+References/rules/double obstacle outside 3 stair 2.svg
+References/rules/h1 v2 double area.svg
+References/rules/newRule_1115.svg
+References/rules/reverse stair 1.svg
+References/rules/reverse stair 2.svg
+References/rules/SideStair straight.svg
+References/rules/SideStair.svg
+References/rules/stair area end.svg
+References/rules/StairAtEndConcaveStraight3_vW.svg
+References/rules/StairAtEndConvex 3 Stair.svg
+References/rules/StairAtEndConvexIn2_vB_4.svg
+References/rules/StairAtEndConvexIn2_vB_5.svg
+References/rules/StairAtEndConvexStraight 3 nowup exception 2.svg
+References/rules/StairAtEndConvexStraight 3 nowup exception.svg
+References/rules/StairAtEndConvexStraight 3 nowup.svg
+References/rules/StairAtStartConvexOut3_E.svg
+References/rules/StairAtStartConvexOut3_E_1.svg
+References/rules/StairAtStartConvexOut3_E_2.svg
+References/rules/StairAtStartEqual 3.svg
+References/rules/start obstacle inside 1 4 straight.svg
+References/rules/start obstacle inside 1 6 straight.svg
+References/rules/straight right small.svg
+References/rules/unsolved part 1.svg
+References/rules/unsolved part 2.svg
+References/rules/unsolved part 3.svg
+References/rules/unsolved part 4.svg
+References/rules/unsolved part 5.svg
+References/rules/unsolved part 6.svg
+References/rules/up 3 sequence.svg
+References/rules/up 4 sequence.svg

@@ -61,7 +61,7 @@ Decide possibilities without relying on future lines, new rules will be necessar
 2023_0430: previously used CheckLeftRightFuture to determine that we must step towards the future line.
 Implement right side of connecting to a loop
 Implement CheckNearFutureEnd on 21x21
-Test C-shape on 2023_0620_2, one step forward, the near end extends. The future line does not create a C shape if the end of the main line is the empty field to the left.
+Test C-shape on 2023_0620_1, one step forward, the near end extends. The future line does not create a C shape if the end of the main line is the empty field to the left.
 CountArea needs to be implemented upon closed loop with future ?
 2023_0430: When we step on the right field, future line cannot be completed. It is right, but not because of C shape left and straight. The straight C shape is not right, because the field 2 ahead is a section start. We should also consider that the actual end to the right cannot go anywhere else.
 2023_0425: Challenge to complete
@@ -2004,7 +2004,7 @@ namespace OneWayLabyrinth
                 }
 
                 // If there was a future start left or right to the head of the line in the previous step, that future line may be extended now if it has no other options to move.
-                // Example: 2023_0430_2. All 4 directions of needs to be examined, so that O618 works too.
+                // Example: 2023_0430_2. All 4 directions of needs to be examined, so that 2023_0618 works too.
                 // minimum size: 5
 
                 x = taken.path[count - 2][0];
@@ -2726,7 +2726,7 @@ namespace OneWayLabyrinth
 
                     //is counting area needed?					
 
-                    // The far end might be connecting to an older section now, but we cannot merge the sections, because there might be a future line in between, like in 2023_0714_2. Instead, we mark the connection.                      
+                    // The far end might be connecting to an older section now, but we cannot merge the sections, because there might be a future line in between, like in 2023_0714_1. Instead, we mark the connection.                      
                     // Not only far end can connect to the near end of an older section, but also near end to the far end of the older section, as in 2023_0730_1 
 
                     // If, after a merge, the line connected to extends, but it ends already in the corner, is it okay to just return, or should we try to extend the near end? Find an example.
@@ -2739,7 +2739,7 @@ namespace OneWayLabyrinth
                         {
                             T("Connecting to section " + i);
 
-                            if (isNearEnd) // extend near end. Example: 2023_0911_2. A 2x2 line is created on the right side, the far end extends to the corner, and then the near end extends and want to connect.
+                            if (isNearEnd) // extend near end. Example: 2023_0911_3. A 2x2 line is created on the right side, the far end extends to the corner, and then the near end extends and want to connect.
                             {
                                 if (nearSection == farSection) // single line connects to a merged or another single line
                                 {
@@ -3010,7 +3010,7 @@ namespace OneWayLabyrinth
             if (future.possible.Count == 0)
             {
                 T("Possible count: 0");
-                // in 2023_0811_4, it can happen that after stepping on the future line, the other line gets extended and merges into the line being stepped on.
+                // in 2023_0811_3, it can happen that after stepping on the future line, the other line gets extended and merges into the line being stepped on.
                 if (!(isNearEnd && future.path[nearEndIndex][0] == taken.x && future.path[nearEndIndex][1] == taken.y))
                 {
                     return false;
@@ -3357,7 +3357,7 @@ namespace OneWayLabyrinth
                 futureSections[i][0]++;
                 futureSections[i][1]++;
             }
-            // In 2023_0811_4, other future line is extended after we stepped on one
+            // In 2023_0811_3, other future line is extended after we stepped on one
             // inFutureIndex can also be within the current section when we step on one, so it just needs to be larger than its far end.
             if (inFutureIndex > futureSections[section][1])
             {

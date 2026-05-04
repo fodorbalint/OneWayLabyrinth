@@ -193,7 +193,7 @@ If the far end was near the end corner, it has to choose the other empty field.<
 The explanation is simple: Imagine if the table was a chess board. In order to step from white to black, you would need to take an impair amount of steps - the color changes at every step. Here, the entry of the area would be (4,3) and the exit (5,3). An impair amount of steps means pair amount of cells.<br />
 In the example, you can also say that we cannot step right, because there is a future line start 2 to straight and an end 2 to straight and 2 to right. On 7&nbsp;x&nbsp;7, there will be examples where this is the rule we have to apply, because area counting is not getting triggered: <br />
 <br />
-<img src="References/1001.svg" width="33.333333333333%" /></div><div class="num">8</div></td></tr>
+<img src="References/2023_1001.svg" width="33.333333333333%" /></div><div class="num">8</div></td></tr>
 <tr><td><div class="border"></div><div>But let's start with the simpler rules:<br />
 <br />
 - Future line extension: When a near end is at 2 distance left or right from the live end, it will fill the field between them if the live end steps elsewhere. That's what happened in the 5&nbsp;x&nbsp;5 example above before the line failed.<br />
@@ -201,7 +201,7 @@ In the example, you can also say that we cannot step right, because there is a f
 <img src="References/0911.svg" width="33.333333333333%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img src="References/0911_0_1.svg" width="33.333333333333%" /><br />
 <br />
 In other situations, there is a 1-thin future line next to the live end that can be extended if its far end is at the corner. Though disabling this rule does not affect the total amount of walkthroughs on a 7&nbsp;x&nbsp;7 grid, I chose to include it in the project on the basis that if a future line can be extended, we should do it. It can make a considerable difference. The left picture is without the rule, the right is with it.</div><div class="num">9</div></td>
-<td><div class="border"></div><div><img src="References/0901.svg" width="33.333333333333%" /><br />
+<td><div class="border"></div><div><img src="References/2023_0901.svg" width="33.333333333333%" /><br />
 <br />
 - Just like moving near the edge, we need to disable some fields if we are approaching an older section of the main line. In order to determine on which side the enclosed area is created, we need to examine the direction of the line at the connection point.<br />
 <br />
@@ -281,7 +281,7 @@ I have made statistics about how many random walkthroughs you can complete on di
 <img align="top" src="References/1007.svg" width="42.857142857143%" /></div><div class="num">17</div></td>
 <td><div class="border"></div><div>Let's simplify the pattern. Which will be impossible to fill?<br />
 <br />
-<img align="top" src="References/1008.svg" width="42.857142857143%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/1008_1.svg" width="42.857142857143%" /><br />
+<img align="top" src="References/2023_1008.svg" width="42.857142857143%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/2023_1008_1.svg" width="42.857142857143%" /><br />
 <br />
 It is the picture on the left. Since the yellow-bordered area is impair, adding the (4,2) (4,3) (4,4) fields will be pair. We enter the area at (4,4), so we will exit at (4,3). Now we enter the 3&nbsp;x&nbsp;3 area in the top left corner at its side, (3,3) and will exit at (2,4). The result is two C-shapes on each side:<br />
 <br />
@@ -687,7 +687,7 @@ If we step left in the impair area, we can only exit at the count area middle fi
 And no fields can be omitted from the area for entry and exit later.<br />
 When the count area start field + middle field is omitted (subtracting a pair amount of cells from the area), the possible exit is the count area end field, which has a different parity than the field to the left.<br />
 When the count area middle + end field is omitted, the possible exit is the count area start field, which has again different parity.</div><div class="num">70</div></td></tr>
-<tr><td><div class="border"></div><div>By now, we are able to group some rules and even solve the original 213&nbsp;x&nbsp;21 example. Previously, we have covered all of the cases where an obstacle is 2 distance away from the live end. Let's examine distances of 3, 4 and so on in this constellation:<br />
+<tr><td><div class="border"></div><div>By now, we are able to group some rules and even solve the original 21&nbsp;x&nbsp;21 example. Previously, we have covered all of the cases where an obstacle is 2 distance away from the live end. Let's examine distances of 3, 4 and so on in this constellation:<br />
 <br />
 <img align="top" src="References/3pair.svg" width="23.809523809524%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/4pair.svg" width="28.571428571429%" /><br />
 <br />
@@ -2291,7 +2291,7 @@ For simplicity, all representations place the first obstacle in the upper-left q
 <br />
 <img align="top" src="References/StairAtStartConvexStraight4_1W.svg" width="28.571428571429%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtStartConvexStraight4_1W_1.svg" width="23.809523809524%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtStartConvexStraight4_1W_2.svg" width="19.047619047619%" /><br />
 <br />
-2024_0610_4, 2024_0610_5, 2024_1012_1, 121670752, 0627; hB:<br />
+2024_0610_4, 2024_0610_5, 2024_1012_1, 121670752, 2024_0627; hB:<br />
 <br />
 <img align="top" src="References/StairAtStartConvexStraight4_hB.svg" width="28.571428571429%" /><img src="References/spacer.svg" width="4.7619047619048%" /><img align="top" src="References/StairAtStartConvexStraight4_hB_1.svg" width="23.809523809524%" /></div><div class="num">234</div></td></tr>
 <tr><td><div class="border"></div><div>[StairAtStartConvexStraight5()] 2024_0626; Stair at start convex straight 5 (h+1)W<br />
@@ -2481,7 +2481,7 @@ Consturct case for StairAtStartConvexIn4 that is not StairAtEndConvexIn4.<br />
 <br />
 Make an arrow at the end of the blue lines, to indicate direction. Important at Stair at end concave straight 6.<br />
 Clean up 2025_0522_1, 2025_0525 for irrelevant area rules.<br />
-Should we display non-critical border movements in rules? Fx. 0624 vs 0727_1 solutions (page 177-178)<br />
+Should we display non-critical border movements in rules? Fx. 0624 vs 2024_0727_1 solutions (page 177-178)<br />
 Indicate needed disabled fields in 11&nbsp;x&nbsp;11 rule representations?<br />
 New pictures where areas were displayed incorrectly.<br />
 Cite page numbers when mentioning a rule<br />
@@ -2491,7 +2491,7 @@ Specify future line extension and connection rules on page 3?</div><div class="n
 <br />
 <b>Find example:</b><br />
 <br />
-StartObstacleInside corner (nextY - nextX) % 4 = 2 (0619 extension, page 207)<br />
+StartObstacleInside corner (nextY - nextX) % 4 = 2 (2024_0619 extension, page 207)<br />
 RemoteStair across (0818_1, page 207)<br />
 Stair extensions: flat top far away (0725_6) where the end obstacle is far away. <br />
 StraightSmall 2 and 3 with stair leg, like StairAtEndConcave5 and 6.<br />
@@ -2501,7 +2501,7 @@ StairAtEndConcave6 with other than 2 x mid across obstacles <br />
 <br />
 In the rules for 2025_0522 to 2025_0527, the second obstacle is always mid across, but I used CheckNearFieldSmallRel1 which also solves the across cases. They might never occur.<br />
 Review page number references<br />
-Remove unnecessary markings in the five 1005 examples (sequence walkthrough)<br />
+Remove unnecessary markings in the five 2024_1005 examples (sequence walkthrough)<br />
 When loading a file, possible fields are not displayed as numbers on the top. Does it only happen when the calculated moves are not the same as in the file?<br />
 CheckStairAtEndConvexStraight3 Stair: Can the down field be free in rotation 1?</div><div class="num">252</div></td></tr>
 <tr><td><div class="border"></div><div>Checking corner is not implemented in CheckStairAtEndConvexStraight3 4, 2 start obstacle before an example is found.<br />

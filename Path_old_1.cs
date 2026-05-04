@@ -49,7 +49,7 @@ namespace OneWayLabyrinth
         closeStraightLarge = false;
         closeMidAcrossLarge = false;
 
-        // needed for far left and right case 234320
+        // needed for far left and right case 9_234320
         //CheckNearField();
 
         if (closeStraightSmall || closeMidAcrossSmall || closeAcrossSmall || closeStraightLarge || closeMidAcrossLarge) break;
@@ -88,16 +88,16 @@ namespace OneWayLabyrinth
             * Side front
             * Side front L
             * Future L
-            0827, 0827_1
-            the start and end fields have to be in the same section, otherwise they can connect, like in 0913
-            conditions are true already on 5x5 at 0831_1, but it is handled in CheckNearCorner
+            2023_0827, 2023_0827_1
+            the start and end fields have to be in the same section, otherwise they can connect, like in 2023_0913
+            conditions are true already on 5x5 at 2023_0831_1, but it is handled in CheckNearCorner
 
             * Future 2 x 2 Start End
-            * 0909_1, 0909_2
+            * 2023_0909_1, 2023_0909_2
             * On boards larger than 7 x 7, is it possible to apply the rule in straight left/right directions? It means that in the original example, the line is coming downwards instead of heading right.
 
             * Future 2 x 3 Start End
-                0915
+                2023_0915
                 Is there a situation where the start and end fields are not part of one future line?
                 On boards larger than 7 x 7, is it possible to apply the rule in straight left/right directions? It means that in the original example, the line is coming downwards instead of heading right.
 
@@ -106,13 +106,13 @@ namespace OneWayLabyrinth
 
         * Notes for 9 x 9:
 
-        * if there is a close across large obstacle leading to a large area, there can be valid rules on the other side, see 2707632
-        * CheckAreaNearBorder() uses countarea, see 0909. A 2x2 area would be created with one way to go in and out
+        * if there is a close across large obstacle leading to a large area, there can be valid rules on the other side, see 9_2707632
+        * CheckAreaNearBorder() uses countarea, see 2023_0909. A 2x2 area would be created with one way to go in and out
         * With the exception of closeAcross large area, all near field rules disable two fields, leaving only one option. Running further rules are not necessary. 
-        * Example of interference: 1031_1
-        * CountArea3x3 2,2: 1021_1
+        * Example of interference: 2023_1031_1
+        * CountArea3x3 2,2: 2023_1021_1
 
-        Check1x3: 0430_2 */
+        Check1x3: 2023_0430_2 */
 
         public void RunRules()
         {
@@ -511,8 +511,8 @@ namespace OneWayLabyrinth
             lx = thisLx;
             ly = thisLy;
 
-            // Far rules shouldn't be checked until close rules are checked on both sides, see 305112. Here, close straight is only true on the right side, but left side far rules get checked before.
-            // A close rule may be true on one side, but on the other side there can be a far rule, like in 1307639. The close rule has to be large in this case.
+            // Far rules shouldn't be checked until close rules are checked on both sides, see 9_305112. Here, close straight is only true on the right side, but left side far rules get checked before.
+            // A close rule may be true on one side, but on the other side there can be a far rule, like in 9_1307639. The close rule has to be large in this case.
 
             // A large close mid across on one side can have a small far across on the other side.
             // A large close across on one side can have a small far mid across / across on the other side.
@@ -525,7 +525,7 @@ namespace OneWayLabyrinth
                     bool farStraight = false;
                     bool farMidAcross = false;
 
-                    if (InTakenRel(0, 3) && InTakenRel(1, 3) && !InTakenRel(0, 2) && !InTakenRel(0, 1)) // 0, 2: 1225; 0, 1: 1226
+                    if (InTakenRel(0, 3) && InTakenRel(1, 3) && !InTakenRel(0, 2) && !InTakenRel(0, 1)) // 0, 2: 2023_1225; 0, 1: 2023_1226
                     {
                         T("Far straight");
                         farStraight = true;
@@ -534,7 +534,7 @@ namespace OneWayLabyrinth
                         int sideIndex = InTakenIndexRel(1, 3);
                         if (sideIndex > middleIndex) // area on left
                         {
-                            if (!InTakenRel(1, 2) && !InTakenRel(2, 2)) // 1,2: 1019_4, 2,2: 1019_5
+                            if (!InTakenRel(1, 2) && !InTakenRel(2, 2)) // 1,2: 2023_1019_4, 2,2: 2023_1019_5
                             {
                                 T("Far straight small");
                                 if (i == 0) farStraightLeft = true; else farStraightRight = true;
@@ -553,7 +553,7 @@ namespace OneWayLabyrinth
                         }
                         else // area on right
                         {
-                            if (!InTakenRel(-1, 2) && !InTakenRel(-2, 2)) // -1, 2: 1019_6, -2, 2: 1019_7
+                            if (!InTakenRel(-1, 2) && !InTakenRel(-2, 2)) // -1, 2: 2023_1019_6, -2, 2: 2023_1019_7
                             {
                                 T("Far straight large");
                                 bool circleDirectionLeft = i == 0 ? false : true;
@@ -572,7 +572,7 @@ namespace OneWayLabyrinth
 
                     if (!farStraight)
                     {
-                        if (InTakenRel(1, 3) && InTakenRel(2, 3) && !InTakenRel(0, 2) && !InTakenRel(1, 2) && !InTakenRel(0, 1)) // 0, 2; 1, 2: 1019_3
+                        if (InTakenRel(1, 3) && InTakenRel(2, 3) && !InTakenRel(0, 2) && !InTakenRel(1, 2) && !InTakenRel(0, 1)) // 0, 2; 1, 2: 2023_1019_3
                         {
                             T("Far mid across");
                             farMidAcross = true;
@@ -581,7 +581,7 @@ namespace OneWayLabyrinth
                             int sideIndex = InTakenIndexRel(2, 3);
                             if (sideIndex > middleIndex) // area on left
                             {
-                                if (!InTakenRel(2, 2)) // 2, 2: 1019
+                                if (!InTakenRel(2, 2)) // 2, 2: 2023_1019
                                 {
                                     T("Far mid across small");
                                     if (i == 0) farStraightLeft = true; else farStraightRight = true;
@@ -599,7 +599,7 @@ namespace OneWayLabyrinth
                             }
                             else // area on right
                             {
-                                if (!InTakenRel(-1, 2)) // -1, 2: 1019_1
+                                if (!InTakenRel(-1, 2)) // -1, 2: 2023_1019_1
                                 {
                                     T("Far mid across large");
                                     bool circleDirectionLeft = i == 0 ? false : true;
@@ -679,7 +679,7 @@ namespace OneWayLabyrinth
             }
 
             // left/right side rules
-            // When any of the close rules are present, even close across large, examining side rules is not necessary. Example: 1019_8
+            // When any of the close rules are present, even close across large, examining side rules is not necessary. Example: 2023_1019_8
             if (!closeStraightSmall && !closeMidAcrossSmall && !closeAcrossSmall && !closeStraightLarge && !closeMidAcrossLarge && !closeAcrossLarge)
             {
                 for (int i = 0; i < 2; i++)
@@ -797,7 +797,7 @@ namespace OneWayLabyrinth
                                 }
                             }
 
-                            if (InTakenRel(3, -1) && InTakenRel(3, -2) && !InTakenRel(1, -1) && !InTakenRel(1, 0) && !InTakenRel(1, 1)) // mid across down, 1,1: 1021_8
+                            if (InTakenRel(3, -1) && InTakenRel(3, -2) && !InTakenRel(1, -1) && !InTakenRel(1, 0) && !InTakenRel(1, 1)) // mid across down, 1,1: 2023_1021_8
                             {
                                 T("farSideMidAcross down");
                                 farSideMidAcrossDown = true;
@@ -823,7 +823,7 @@ namespace OneWayLabyrinth
                         }
 
                         // there can be a far side across in the opposite direction of a far side straight or mid across situation
-                        if (!farSideStraightUp && !farSideMidAcrossUp && InTakenRel(3, 2) && InTakenRel(3, 3) && !InTakenRel(1, 0) && !InTakenRel(1, 1) && !InTakenRel(1, 2)) // 1,2: 1021
+                        if (!farSideStraightUp && !farSideMidAcrossUp && InTakenRel(3, 2) && InTakenRel(3, 3) && !InTakenRel(1, 0) && !InTakenRel(1, 1) && !InTakenRel(1, 2)) // 1,2: 2023_1021
                         {
                             T("farSideAcross up");
 
@@ -851,7 +851,7 @@ namespace OneWayLabyrinth
                             }
                         }
 
-                        if (!farSideStraightDown && !farSideMidAcrossDown && InTakenRel(3, -2) && InTakenRel(3, -3) && !InTakenRel(1, -1) && !InTakenRel(1, 0) && !InTakenRel(1, 1) && !InTakenRel(2, -2)) // 2,-2: 630259
+                        if (!farSideStraightDown && !farSideMidAcrossDown && InTakenRel(3, -2) && InTakenRel(3, -3) && !InTakenRel(1, -1) && !InTakenRel(1, 0) && !InTakenRel(1, 1) && !InTakenRel(2, -2)) // 2,-2: 9_630259
                         {
                             T("farSideAcross down");
 
@@ -952,9 +952,9 @@ namespace OneWayLabyrinth
         }
 
         // May not be needed, countarea on the border takes care of it
-        void CheckCOnFarBorder() // 0831
+        void CheckCOnFarBorder() // 2023_0831
         {
-            // Applies from 7x7, see 0831. Similar to CheckNearCorner, it is just not at the corner.
+            // Applies from 7x7, see 2023_0831. Similar to CheckNearCorner, it is just not at the corner.
             if (x == size - 2 && rightField[0] == size - 1 && !InTakenRel(-1, -1) && InTakenRel(-1, -2))
             {
                 T("COnFarBorder horizontal");
@@ -967,7 +967,7 @@ namespace OneWayLabyrinth
             }
         }
 
-        void CheckAreaNearBorder() // 0909. Check both straight approach and side.
+        void CheckAreaNearBorder() // 2023_0909. Check both straight approach and side.
         {
             if (x == 3 && straightField[0] == 2 && !InTakenAbs(straightField) && !InTakenAbs(rightField) && !InTaken(1, y))
             {
@@ -1195,7 +1195,7 @@ namespace OneWayLabyrinth
             ly = thisLy;
         }
 
-        bool CheckDownStair(int side = -1, int nLx = 0, int nLy = 0, int nSx = 0, int nSy = 0) // 51015231, 53144883
+        bool CheckDownStair(int side = -1, int nLx = 0, int nLy = 0, int nSx = 0, int nSy = 0) // 9_51015231, 9_53144883
         {
             for (int i = 0; i < 2; i++)
             {
@@ -1306,9 +1306,9 @@ namespace OneWayLabyrinth
                         int tempSx = sx;
                         int tempSy = sy;
 
-                        // Both: 18677343
+                        // Both: 9_18677343
 
-                        // Double Area only: 59434452
+                        // Double Area only: 9_59434452
                         if (Check3DoubleAreaRotated(i))
                         {
                             T("Check3DoubleAreaRotated true", i, j);
@@ -1441,7 +1441,7 @@ namespace OneWayLabyrinth
             return false;
         }
 
-        bool CheckNearFieldSmall1() // for use only with Double Area case 1, 2, 3 and 1 rotated, and Down Stair. Across is needed at 53144883
+        bool CheckNearFieldSmall1() // for use only with Double Area case 1, 2, 3 and 1 rotated, and Down Stair. Across is needed at 9_53144883
                                     // Sequence case 1 right side
         {
             // close mid across. In DirectionalArea, the empty fields are already checked.
@@ -1593,13 +1593,13 @@ namespace OneWayLabyrinth
         // StairAtStart 3 1 / 3 2 / 4 1 / 4 2
 
         // 3 distance on top:
-        // 0725_5: mid across down, mid across up
-        // 0726_1: across, mid across
-        // 0726_2: mid across, area
+        // 2024_0725_5: mid across down, mid across up
+        // 2024_0726_1: across, mid across
+        // 2024_0726_2: mid across, area
 
         // 4 distance on top:
-        // 0626_1: mid across down, mid across up, no stair
-        // 0729_3: across, mid across
+        // 2024_0626_1: mid across down, mid across up, no stair
+        // 2024_0729_3: across, mid across
         // 2024_0730: across down, mid across up
         {
             for (int i = 0; i < 2; i++)
@@ -1708,9 +1708,9 @@ namespace OneWayLabyrinth
                                         int black = (int)info[1];
                                         int white = (int)info[2];
 
-                                        // 0725_5: mid across down, mid across up
-                                        // 0726_1: across, mid across
-                                        // 0726_2: mid across, area
+                                        // 2024_0725_5: mid across down, mid across up
+                                        // 2024_0726_1: across, mid across
+                                        // 2024_0726_2: mid across, area
 
                                         if (topDist == 3 && black == white + ex - 2)
                                         {
@@ -1746,8 +1746,8 @@ namespace OneWayLabyrinth
                                                 }
                                             }
                                         }
-                                        // 0626_1: mid across down, mid across up, no stair
-                                        // 0729_3: across, mid across
+                                        // 2024_0626_1: mid across down, mid across up, no stair
+                                        // 2024_0729_3: across, mid across
                                         // 2024_0730: across down, mid across up
                                         else if (topDist == 4 && white == black + ex - 3)
                                         {
@@ -1865,9 +1865,9 @@ namespace OneWayLabyrinth
                                         switch (ex % 4)
                                         {
                                             case 0:
-                                                // 0610_4, 0610_5: across
-                                                // 121670752: mid across
-                                                // 0627: area
+                                                // 2024_0610_4, 2024_0610_5: across
+                                                // 9_121670752: mid across
+                                                // 2024_0627: area
                                                 if (-whiteDiff == ex / 4 && (j == 0 || j == 3))
                                                 {
                                                     // Add field so that a second circle can be drawn
@@ -1888,7 +1888,7 @@ namespace OneWayLabyrinth
                                                     }
                                                 }
                                                 // 2024_0618_2: end obstacle (across)
-                                                // 0725: double obstacle outside 
+                                                // 2024_0725: double obstacle outside 
                                                 else if (whiteDiff == ex / 4)
                                                 {
                                                     if (CheckNearFieldSmallRel1(0, ex, 0, 2, true))
@@ -1902,8 +1902,8 @@ namespace OneWayLabyrinth
                                                             AddForbidden(0, -1);
                                                         }
 
-                                                        // 0725: double obstacle outside, 2 x mid across
-                                                        // 0727_4: up mid across, down across
+                                                        // 2024_0725: double obstacle outside, 2 x mid across
+                                                        // 2024_0727_4: up mid across, down across
                                                         if (CheckNearFieldSmallRel1(0, 2, 1, 1, false))
                                                         {
                                                             T("LeftRightAreaUpExtended 4 dist double obstacle outside: Cannot step straight");
@@ -1913,7 +1913,7 @@ namespace OneWayLabyrinth
                                                 }
                                                 break;
                                             case 1:
-                                                // 0626, across
+                                                // 2024_0626, across
                                                 if (whiteDiff == (ex + 3) / 4 && CheckNearFieldSmallRel1(0, ex - 1, 0, 2, true))
                                                 {
                                                     ruleTrue = true;
@@ -1926,7 +1926,7 @@ namespace OneWayLabyrinth
                                                         AddForbidden(0, -1);
                                                     }
 
-                                                    // 0727_3: double obstacle outside: mid across x 2 
+                                                    // 2024_0727_3: double obstacle outside: mid across x 2 
                                                     if (CheckNearFieldSmallRel0(0, 2, 1, 1, false))
                                                     {
                                                         T("LeftRightAreaUpExtended 5 dist double obstacle outside: Cannot step straight");
@@ -1935,7 +1935,7 @@ namespace OneWayLabyrinth
                                                 }
                                                 break;
                                             case 2:
-                                                // We cannot get to the 2- or 6-distance case if the other rules are applied. 0611_1
+                                                // We cannot get to the 2- or 6-distance case if the other rules are applied. 2024_0611_1
                                                 break;
                                             case 3:
                                                 // Can we get here?
@@ -1945,7 +1945,7 @@ namespace OneWayLabyrinth
                                                     T("LeftRightAreaUpExtended open corner 3: Cannot step left");
                                                     AddForbidden(1, 0);
                                                 }*/
-                                                // 0611, 2024_0710
+                                                // 2024_0611, 2024_0710
                                                 if (-whiteDiff == (ex + 1) / 4 - 1 && (j == 0 || j == 3))
                                                 {
                                                     if (CheckCorner1(0, ex, 0, 2, circleDirectionLeft, true))
@@ -1959,10 +1959,10 @@ namespace OneWayLabyrinth
 
                                                 // Sequence sixth case
                                                 // Sequence can only exist at a short distance (max 3) where the line cannot exit and enter again.
-                                                // 0724: up across, down mid across
-                                                // 0725_2: up area, down mid across
-                                                // 0727_2: up mid across, down across
-                                                // 0727_5: sequence up
+                                                // 2024_0724: up across, down mid across
+                                                // 2024_0725_2: up area, down mid across
+                                                // 2024_0727_2: up mid across, down across
+                                                // 2024_0727_5: sequence up
 
                                                 /*if (ex == 3 && (j == 0 || j == 3) && white == black)
                                                 {
@@ -2034,7 +2034,7 @@ namespace OneWayLabyrinth
         void StairAtStartEqual()
         {
             // B = W area, corner obstacle at return stair
-            // 1012_1
+            // 2024_1012_1
             // Find case where first obstacle is a corner relative to the area
 
             for (int i = 0; i < 2; i++)
@@ -2168,17 +2168,17 @@ namespace OneWayLabyrinth
 
         // Enter later, 0B area:
         // StairAtEndConvex 3 1 / 3 2 later
-        // 0718: across down, mid across up
-        // 18677343, 59434452: mid across x 2, no stair
-        // 0720_2: mid across x 2
-        // 0709: mid across down, C-shape up, no stair
+        // 2024_0718: across down, mid across up
+        // 9_18677343, 9_59434452: mid across x 2, no stair
+        // 2024_0720_2: mid across x 2
+        // 2024_0709: mid across down, C-shape up, no stair
         // 2024_0727: mid across down, C-shape up
-        // 0731: 3 obstacles
+        // 2024_0731: 3 obstacles
 
         // Enter now, 1B -> xB area:
         // StairAtEndConvex 3 1 / 3 2 now nostair
-        // 0516_2: across up, mid across down
-        // 1012: mid across up, across down
+        // 2024_0516_2: across up, mid across down
+        // 2024_1012: mid across up, across down
 
         // Corner for convex and concave area can both exist at the same time (2024_0831), so they need two separate functions
         {
@@ -2311,12 +2311,12 @@ namespace OneWayLabyrinth
                                         int black = (int)info[1];
                                         int white = (int)info[2];
 
-                                        // 0718: across down, mid across up
-                                        // 18677343, 59434452: mid across x 2, no stair
-                                        // 0720_2: mid across x 2
-                                        // 0709: mid across down, C-shape up, no stair
+                                        // 2024_0718: across down, mid across up
+                                        // 9_18677343, 9_59434452: mid across x 2, no stair
+                                        // 2024_0720_2: mid across x 2
+                                        // 2024_0709: mid across down, C-shape up, no stair
                                         // 2024_0727: mid across down, C-shape up
-                                        // 0731: 3 obstacles
+                                        // 2024_0731: 3 obstacles
                                         T(CheckNearFieldSmallRel(hori - 1, vert + 1, 0, 0, true)); // ma, a, c
                                         T(CheckNearFieldSmallRel1(hori - 3, vert + 1, 1, 0, false)); // ma, a
                                         T(CheckNearFieldSmallRel(hori - 4, vert + 2, 1, 0, true));
@@ -2334,8 +2334,8 @@ namespace OneWayLabyrinth
                                                 AddForbidden(-1, 0);
                                             }
                                         }
-                                        // 0516_2: across up, mid across down
-                                        // 1012: mid across up, across down
+                                        // 2024_0516_2: across up, mid across down
+                                        // 2024_1012: mid across up, across down
                                         else if (black == white + vert + 1)
                                         {
                                             if (CheckNearFieldSmallRel1(hori - 2, vert + 1, 0, 0, true) && CheckNearFieldSmallRel1(hori - 2, vert + 1, 1, 0, true))
@@ -2377,7 +2377,7 @@ namespace OneWayLabyrinth
         }
 
         void StairAtEnd3Obtacles2()
-        // 0805: start 2 dist, 2024_0808: start 3 dist, 2024_0811_3: nextX = 4
+        // 2024_0805: start 2 dist, 2024_0808: start 3 dist, 2024_0811_3: nextX = 4
         {
             for (int i = 0; i < 2; i++)
             {
@@ -2589,7 +2589,7 @@ namespace OneWayLabyrinth
                             switch (ex % 4)
                             {
                                 case 1:
-                                    if (j <= 1 && whiteDiff == (ex - 1) / 4 && CheckNearFieldSmallRel1(1, 2, 0, 1, true)) // Mid across: 2024_0618, Across: 0717_1
+                                    if (j <= 1 && whiteDiff == (ex - 1) / 4 && CheckNearFieldSmallRel1(1, 2, 0, 1, true)) // Mid across: 2024_0618, Across: 2024_0717_1
                                     {
                                         ruleTrue = true;
                                         T("AreaUpStartObstacleInside % 4 = 1: Cannot step straight and right");
@@ -2601,7 +2601,7 @@ namespace OneWayLabyrinth
                                     }
                                     break;
                                 case 3:
-                                    if (j >= 1 && whiteDiff == (ex + 1) / 4 && CheckNearFieldSmallRel1(1, 0, 0, 1, true)) // Mid across: 2024_0619, Across: 0717_2, area up 3 start obstacle
+                                    if (j >= 1 && whiteDiff == (ex + 1) / 4 && CheckNearFieldSmallRel1(1, 0, 0, 1, true)) // Mid across: 2024_0619, Across: 2024_0717_2, area up 3 start obstacle
                                     {
                                         ruleTrue = true;
                                         T("AreaUpStartObstacleInside % 4 = 3: Cannot step left");
@@ -2808,8 +2808,8 @@ namespace OneWayLabyrinth
                                             {
                                                 case 0:
                                                     if (j <= 1 && whiteDiff == (vert - hori) / 4 && CheckNearFieldSmallRel1(1, 2, 0, 1, true))
-                                                    // Mid across: 2024_0618, 0817, 0818
-                                                    // Across: 0717_1
+                                                    // Mid across: 2024_0618, 2024_0817, 2024_0818
+                                                    // Across: 2024_0717_1
                                                     {
                                                         ruleTrue = true;
                                                         T("StartObstacleInside % 4 = 0: Cannot step straight");
@@ -2825,7 +2825,7 @@ namespace OneWayLabyrinth
                                                 case 2:
                                                     if (j >= 1 && whiteDiff == (vert - hori + 2) / 4 && CheckNearFieldSmallRel1(1, 0, 0, 1, true))
                                                     // Mid across: 2024_0619
-                                                    // Across: 0717_2, area up 3 start obstacle
+                                                    // Across: 2024_0717_2, area up 3 start obstacle
                                                     {
                                                         ruleTrue = true;
                                                         T("StartObstacleInside % 4 = 2: Cannot step left");
@@ -2936,7 +2936,7 @@ namespace OneWayLabyrinth
                                 int white = (int)info[2];
 
                                 if (j >= 1 && ex == 2 && white == black + 1)
-                                // 0717_4: across down, mid across up
+                                // 2024_0717_4: across down, mid across up
                                 // 2024_0729_2: mid across down, across up
                                 {
                                     if (CheckNearFieldSmallRel1(1, 0, 0, 1, true) && CheckNearFieldSmallRel1(1, 2, 1, 2, false))
@@ -2963,9 +2963,9 @@ namespace OneWayLabyrinth
                                 }
 
                                 if (j <= 1 && ex == 4 && white == black + 1)
-                                // 0619_1: mid across x 2
+                                // 2024_0619_1: mid across x 2
                                 // 2024_0729_1: across down, mid across up
-                                // 0729_4: mid across down, across up
+                                // 2024_0729_4: mid across down, across up
                                 // 2024_0820: mid across down, C-shape up
                                 {
                                     if (CheckNearFieldSmallRel1(1, 2, 0, 1, true) && CheckNearFieldSmallRel(1, 4, 1, 2, false))
@@ -3020,7 +3020,7 @@ namespace OneWayLabyrinth
             ly = thisLy;
         }
 
-        void CheckLeftRightAreaUpBigExtended() // Area as in the first area case of documentation. That area is taken care of in UpBig and Striaght. This is about a border movement close obstacle: 0624
+        void CheckLeftRightAreaUpBigExtended() // Area as in the first area case of documentation. That area is taken care of in UpBig and Striaght. This is about a border movement close obstacle: 2024_0624
         {
             for (int i = 0; i < 2; i++)
             {
@@ -3096,8 +3096,8 @@ namespace OneWayLabyrinth
                                     laterBCount = ex / 4;
 
                                     if (whiteDiff == laterWCount && CheckNearFieldSmallRel1(1, 1, 0, 1, false))
-                                    // 0624: mid across
-                                    // 0730_2: across
+                                    // 2024_0624: mid across
+                                    // 2024_0730_2: across
                                     // When entering at the first white field, we have to step down to the first black and then left to enter
                                     {
                                         ruleTrue = true;
@@ -3173,7 +3173,7 @@ namespace OneWayLabyrinth
             ly = thisLy;
         }
 
-        void CheckStraightBig() // 18677343 -> StairAtEndConvex, 59434452 -> StairAtEndConvex, 0626_1 -> StairAtStart 4, 0516_2 -> StairAtEndConvex
+        void CheckStraightBig() // 9_18677343 -> StairAtEndConvex, 9_59434452 -> StairAtEndConvex, 2024_0626_1 -> StairAtStart 4, 2024_0516_2 -> StairAtEndConvex
         {
             for (int i = 0; i < 2; i++)
             {
@@ -3217,8 +3217,8 @@ namespace OneWayLabyrinth
                                     int black = (int)info[1];
                                     int white = (int)info[2];
 
-                                    /*// 18677343, 59434452: mid across x 2
-                                    // 0709: mid across down, C-shape up 
+                                    /*// 9_18677343, 9_59434452: mid across x 2
+                                    // 2024_0709: mid across down, C-shape up 
                                     if (white == black)
                                     {
                                         if (CheckNearFieldSmallRel0(-1, 1, 1, 1, false) && CheckNearFieldSmallRel(-1, 3, 0, 2, true))
@@ -3230,7 +3230,7 @@ namespace OneWayLabyrinth
                                             AddExamAreas();
                                         }
                                     }*/
-                                    // 0516_2
+                                    // 2024_0516_2
                                     /*else if (black == white + 1)
                                     {
                                         if (CheckNearFieldSmallRel1(-1, 2, 0, 2, true) && CheckNearFieldSmallRel0(-1, 2, 1, 1, true))
@@ -3244,8 +3244,8 @@ namespace OneWayLabyrinth
                                     }*/
                                 }
                             }
-                            /*// 0626_1: mid across x 2
-                            // 0729_3: mid across down, across up
+                            /*// 2024_0626_1: mid across x 2
+                            // 2024_0729_3: mid across down, across up
                             // 2024_0730: across down, mid across up
                             else if (ex == 4)
                             {
@@ -3303,7 +3303,7 @@ namespace OneWayLabyrinth
                     // 2024_0516_2
                     // Rotated: 2024_0516_3
 
-                    // See also 665575 for alternative start obstacle placement
+                    // See also 9_665575 for alternative start obstacle placement
 
                     bool circleValid = false;
 
@@ -3651,7 +3651,7 @@ namespace OneWayLabyrinth
             lx = thisLx;
             ly = thisLy;
 
-            // Fifth case, 0724_1: Step right next step C-shape. There is an obstacle 2 distance to the right to start with.
+            // Fifth case, 2024_0724_1: Step right next step C-shape. There is an obstacle 2 distance to the right to start with.
 
             /*for (int i = 0; i < 2; i++)
             {
@@ -3727,10 +3727,10 @@ namespace OneWayLabyrinth
             ly = thisLy;*/
 
 
-            // Sixth case: 0727_5, implemented in UpExtended
+            // Sixth case: 2024_0727_5, implemented in UpExtended
         }
 
-        void CheckNearStair() // 0726, 0713, nearStair 1/2/3
+        void CheckNearStair() // 2024_0726, 2024_0713, nearStair 1/2/3
         {
             for (int i = 0; i < 2; i++)
             {
@@ -3779,7 +3779,7 @@ namespace OneWayLabyrinth
         }
 
         void CheckSideStair()
-        // Start at -1 vertical. 0516_6, 0516_7, 0516_8 -> Sequence2
+        // Start at -1 vertical. 2024_0516_6, 2024_0516_7, 2024_0516_8 -> Sequence2
         {
             for (int i = 0; i < 2; i++)
             {
@@ -3944,7 +3944,7 @@ namespace OneWayLabyrinth
             bool leftSideClose = CheckNearFieldSmall2(); // contains exit points for next call but only works for c-shapes and close obstacles.
             lx2 = -lx2;
             ly2 = -ly2;
-            bool rightSideClose = CheckNearFieldSmall3(); // 0722, 2024_0811
+            bool rightSideClose = CheckNearFieldSmall3(); // 2024_0722, 2024_0811
             int tempSequenceLeftIndex = sequenceLeftObstacleIndex;
             sequenceLeftObstacleIndex = -1;
             bool rightSideEnterNow = CheckCorner2(1 - side, true);
@@ -3959,13 +3959,13 @@ namespace OneWayLabyrinth
                 return true;
             }
             // right side close can happen with the future line
-            // for now, we only take the right side C-shape into account as it happens in 740293. Other close obstacles we don't check.
+            // for now, we only take the right side C-shape into account as it happens in 9_740293. Other close obstacles we don't check.
             else if (leftSideClose)
             //else if ((leftSideClose || rightSideClose) && newExitField[0] != 0)
             {
                 T("CheckSequenceRecursive left side only x2 " + newExitField[0] + " y2 " + newExitField[1] + " direction rotated " + newDirectionRotated);
 
-                // at 0723, it is important that both fields are added, because the sequence relies on the first when determining the direction of the obstacle.
+                // at 2024_0723, it is important that both fields are added, because the sequence relies on the first when determining the direction of the obstacle.
                 bool firstAdded = false;
                 x2 = newExitField0[0];
                 y2 = newExitField0[1];
@@ -4060,7 +4060,7 @@ namespace OneWayLabyrinth
 
             // C-Shape, only left side should have it
             // Checking for InTakenRel2(1, -1) is not possible, because in Sequence first case, we are exiting the area at the middle border field.
-            // But when it comes to the right side (if it was checked), it is necessary, otherwise we can detect a C-shape with the live end as in 213.
+            // But when it comes to the right side (if it was checked), it is necessary, otherwise we can detect a C-shape with the live end as in 9_213.
             if ((InTakenRel2(2, 0) || InBorderRelExact2(2, 0)) && !InTakenRel2(1, 0) && !InBorderRelExact2(1, 0))
             {
                 T("CheckNearFieldSmall2 C-Shape, left side");
@@ -4101,7 +4101,7 @@ namespace OneWayLabyrinth
                 }
             }
 
-            // close across. Checking empty fields necessary, see 29558469
+            // close across. Checking empty fields necessary, see 9_29558469
             if (InTakenRel2(2, 2) && !InTakenRel2(1, 2) && !InTakenRel2(2, 1))
             {
                 int middleIndex = InTakenIndexRel2(2, 2);
@@ -4135,7 +4135,7 @@ namespace OneWayLabyrinth
                 // newexitfield not necessary for now, Sequence will be true.
             }
 
-            // 0722
+            // 2024_0722
             // close mid across
             if (InTakenRel2(1, 2) && !InTakenRel2(0, 2) && !InTakenRel2(1, 1))
             {
@@ -4178,8 +4178,8 @@ namespace OneWayLabyrinth
                 //T("nextX", nextX, nextY, circleDirectionLeft, x2, y2, lx2, ly2);
                 while (!(nextX < 0 && nextY >= 1) && !InCornerRel2(nextX, nextY) && !(counter > 0 && nextX == horiStart - 1 && nextY == 1))
                 { // First condition: Includes AreaUp. The closed area might go below and to -1 horizontal position.
-                  // Second condition: 0708_1: Finish corner is reached, there cannot be small area from there.
-                  // Third condition: 0708_2: We never get to -1 horizontal position, the area is closed. When we get to the first square again, break the cycle.
+                  // Second condition: 2024_0708_1: Finish corner is reached, there cannot be small area from there.
+                  // Third condition: 2024_0708_2: We never get to -1 horizontal position, the area is closed. When we get to the first square again, break the cycle.
 
                     //T("nextX", nextX, nextY);
                     counter++;
@@ -4306,7 +4306,7 @@ namespace OneWayLabyrinth
                                     }
                                 }*/
                             }
-                            else // Corner 0627
+                            else // Corner 2024_0627
                             {
                                 bool takenFound = false;
                                 int left1 = 1;
@@ -4559,7 +4559,7 @@ namespace OneWayLabyrinth
             // Can we have an area with a corner if this field is taken? It isn't in the border line.
             if (!InTakenRel(startX, startY) && !InBorderRel(startX, startY))
             {
-                // checking taken fields from the middle to side is incomplete: 17699719
+                // checking taken fields from the middle to side is incomplete: 9_17699719
                 // instead, we check fields in the first row until an obstacle is found, then we walk around the first (top-left) quarter.
                 if (toLeft)
                 {
@@ -4578,7 +4578,7 @@ namespace OneWayLabyrinth
                     int counter = 0;
 
                     // area walls can be found in any of the four quarters. Therefore, we only stop when we have reached the corner or passed by the live end.
-                    // If we terminate the walkthrough at startX and startY, a close across obstacle will might be missed (0822). Therefore, we shift the x coordinate. 
+                    // If we terminate the walkthrough at startX and startY, a close across obstacle will might be missed (2024_0822). Therefore, we shift the x coordinate. 
                     while (!InCornerRel(nextX, nextY) && !(nextX == startX - 1 && nextY == startY))
                     {
                         //T("Corner discovery nextX " + nextX, "nextY " + nextY);
@@ -4621,7 +4621,7 @@ namespace OneWayLabyrinth
                         }
 
                         // if we have turned left from a right direction (to upwards), a corner is found
-                        // It has to be left and up. In 0619_2 the walking edge goes below the current position.
+                        // It has to be left and up. In 2024_0619_2 the walking edge goes below the current position.
                         // minEndCoord is 2 for across corner, 1 for up left, 0 for corner straight ahead
 
                         if (nextX >= minEndCoord - 1 && nextY >= 0)
@@ -4728,7 +4728,7 @@ namespace OneWayLabyrinth
         }
 
         bool CountAreaNew(int startX, int startY, int endX, int endY, List<int[]>? borderFields, bool circleDirectionLeft, int circleType, bool getInfo = false)
-        // compareColors is for the starting situation of 1119, where we mark an impair area and know the entry and the exit field. We count the number of white and black cells of a checkered pattern, the color of the entry and exit should be one more than the other color.
+        // compareColors is for the starting situation of 2023_1119, where we mark an impair area and know the entry and the exit field. We count the number of white and black cells of a checkered pattern, the color of the entry and exit should be one more than the other color.
         {
             bool debug = false;
             bool debug2 = false;
@@ -4895,7 +4895,7 @@ namespace OneWayLabyrinth
                 }
 
                 // not actual with C-shape allowed when checking other rules
-                // We may go through the same field twice as in 1208 side across down checking, but that field is a count area border field.
+                // We may go through the same field twice as in 2023_1208 side across down checking, but that field is a count area border field.
                 /*foreach (int[] field in areaLine)
                 {
                     if (field[0] == nextX && field[1] == nextY)
@@ -5035,8 +5035,8 @@ namespace OneWayLabyrinth
                     i++;
                 }
 
-                // 214111, first row should not be added to start and end squares
-                // crossing over the live end is only a problem if we return. An L-shape like 31817 is no problem.
+                // 9_214111, first row should not be added to start and end squares
+                // crossing over the live end is only a problem if we return. An L-shape like 9_31817 is no problem.
                 if (startRepeat && (!circleDirectionLeft && limitX < this.x && otherX > this.x || circleDirectionLeft && limitX > this.x && otherX < this.x) && minY == this.y - 1 && !InTakenAbs(leftField) && !InTakenAbs(rightField))
                 {
                     startRepeat1 = true;
@@ -5090,15 +5090,15 @@ namespace OneWayLabyrinth
                                 // we descend first
                                 if (startSquares.Count == 0 && endSquares.Count == 0)
                                 {
-                                    // In case of 214111, we add the first field to the start square. It will be removed in the end to prevent a duplicate, but an ascension needs a start field to be present.
-                                    // Second condition is to prevent 22495 where the after the start, we step down.
+                                    // In case of 9_214111, we add the first field to the start square. It will be removed in the end to prevent a duplicate, but an ascension needs a start field to be present.
+                                    // Second condition is to prevent 9_22495 where the after the start, we step down.
                                     if (!startRepeat1 || startRepeat1 && x == limitX)
                                     {
                                         if (singleField)
                                         {
                                             startSquares.Add(startCandidate);
                                         }
-                                        // 348, first row is walked through when we descend. But 198 should not add end square.
+                                        // 9_348, first row is walked through when we descend. But 9_198 should not add end square.
                                         else if (startCandidate[0] != endCandidate[0] && x == limitX)
                                         {
                                             startSquares.Add(startCandidate);
@@ -5182,15 +5182,15 @@ namespace OneWayLabyrinth
                             {
                                 if (startSquares.Count == 0 && endSquares.Count == 0)
                                 {
-                                    // In case of 214111, we add the first field to the start square. It will be removed in the end to prevent a duplicate, but an ascension needs a start field to be present.
-                                    // Second condition is to prevent 22495 where the after the start, we step down.
+                                    // In case of 9_214111, we add the first field to the start square. It will be removed in the end to prevent a duplicate, but an ascension needs a start field to be present.
+                                    // Second condition is to prevent 9_22495 where the after the start, we step down.
                                     if (!startRepeat1 || startRepeat1 && x == limitX)
                                     {
                                         if (singleField)
                                         {
                                             endSquares.Add(endCandidate);
                                         }
-                                        // 348, first row is walked through when we descend. But 198 should not add end square.
+                                        // 9_348, first row is walked through when we descend. But 9_198 should not add end square.
                                         else if (startCandidate[0] != endCandidate[0] && x == limitX)
                                         {
                                             endSquares.Add(endCandidate);
@@ -5410,9 +5410,9 @@ namespace OneWayLabyrinth
                     //add last field
                     if (circleDirectionLeft)
                     {
-                        // 0611_8, checkstraight straight: we finish on the left side of the top row. End should not be added as it is the same as the first end field.
+                        // 2024_0611_8, checkstraight straight: we finish on the left side of the top row. End should not be added as it is the same as the first end field.
 
-                        // 350: checkstraight straight: end row is a bottom row, it acts as a closed peak, so end square should be added.
+                        // 9_350: checkstraight straight: end row is a bottom row, it acts as a closed peak, so end square should be added.
                         if (x < endCandidate[0] && y == minY + 1)
                         {
                             int[] square = endSquares[endSquares.Count - 1];
@@ -5425,7 +5425,7 @@ namespace OneWayLabyrinth
                             }
                         }
 
-                        // 1273: L-shape, end row finishes on the right, below minY. We need to add a closed bottom peak. The last end square should be above and at the same x position or right.
+                        // 9_1273: L-shape, end row finishes on the right, below minY. We need to add a closed bottom peak. The last end square should be above and at the same x position or right.
                         if (x == endCandidate[0] && y == minY + 1)
                         {
                             int[] square = endSquares[endSquares.Count - 1];
@@ -5448,9 +5448,9 @@ namespace OneWayLabyrinth
                     else
                     {
 
-                        // 0611_8, checkstraight straight: we finish on the left side of the top row. End should not be added as it is the same as the first end field.
+                        // 2024_0611_8, checkstraight straight: we finish on the left side of the top row. End should not be added as it is the same as the first end field.
 
-                        // 350: checkstraight straight: end row is a bottom row, it acts as a closed peak, so end square should be added.
+                        // 9_350: checkstraight straight: end row is a bottom row, it acts as a closed peak, so end square should be added.
                         if (x > startCandidate[0] && y == minY + 1)
                         {
                             int[] square = startSquares[startSquares.Count - 1];
@@ -5463,7 +5463,7 @@ namespace OneWayLabyrinth
                             }
                         }
 
-                        // 1273: L-shape, end row finishes on the left, below minY. We need to add a closed bottom peak. The last end square should be above and at the same x position or left.
+                        // 9_1273: L-shape, end row finishes on the left, below minY. We need to add a closed bottom peak. The last end square should be above and at the same x position or left.
                         if (x == startCandidate[0] && y == minY + 1)
                         {
                             int[] square = startSquares[startSquares.Count - 1];
