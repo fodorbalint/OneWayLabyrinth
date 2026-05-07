@@ -121,15 +121,42 @@
 	<rect width="1" height="1" x="17" y="11" fill="#ff0000" fill-opacity="0.15" />
 	<rect width="1" height="1" x="18" y="11" fill="#ff0000" fill-opacity="0.15" />
 	<rect width="1" height="1" x="18" y="10" fill="#ff0000" fill-opacity="0.15" />
-	<rect width="1" height="1" x="19" y="10" fill="#ff0000" fill-opacity="0.15" />
-	<rect width="1" height="1" x="20" y="9" fill="#00ff00" fill-opacity="0.4" />
-	<rect width="1" height="1" x="19" y="9" fill="#0000ff" fill-opacity="0.15" />
-	<rect width="1" height="1" x="18" y="9" fill="#0000ff" fill-opacity="0.15" />
-	<rect width="1" height="1" x="17" y="9" fill="#0000ff" fill-opacity="0.15" />
-	<rect width="1" height="1" x="16" y="9" fill="#0000ff" fill-opacity="0.15" />
-	<rect width="1" height="1" x="16" y="8" fill="#0000ff" fill-opacity="0.15" />
-	<rect width="1" height="1" x="17" y="8" fill="#0000ff" fill-opacity="0.15" />
-	<rect width="1" height="1" x="18" y="8" fill="#0000ff" fill-opacity="0.15" />
+	<rect width="1" height="1" x="18" y="9" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="17" y="9" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="16" y="9" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="16" y="8" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="17" y="8" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="18" y="8" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="18" y="7" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="19" y="7" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="19" y="6" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="18" y="6" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="18" y="5" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="19" y="5" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="19" y="4" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="19" y="3" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="19" y="2" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="19" y="1" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="18" y="1" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="18" y="2" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="18" y="3" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="18" y="4" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="17" y="4" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="16" y="4" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="16" y="3" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="17" y="3" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="17" y="2" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="17" y="1" fill="#ff0000" fill-opacity="0.15" />
+	<rect width="1" height="1" x="16" y="1" fill="#000000" fill-opacity="0.25" />
+	<rect width="1" height="1" x="16" y="2" fill="#000000" fill-opacity="0.25" />
+	<rect width="1" height="1" x="15" y="2" fill="#000000" fill-opacity="0.25" />
+	<rect width="1" height="1" x="15" y="3" fill="#000000" fill-opacity="0.25" />
+	<rect width="1" height="1" x="15" y="4" fill="#000000" fill-opacity="0.25" />
+	<rect width="1" height="1" x="14" y="4" fill="#000000" fill-opacity="0.25" />
+	<rect width="1" height="1" x="20" y="6" fill="#00ff00" fill-opacity="0.4" />
+	<rect width="1" height="1" x="20" y="4" fill="#00ff00" fill-opacity="0.4" />
+	<rect width="1" height="1" x="18" y="0" fill="#00ff00" fill-opacity="0.4" />
+	<rect width="1" height="1" x="16" y="0" fill="#00ff00" fill-opacity="0.4" />
 	<rect width="1" height="1" x="12" y="2" fill="#0000ff" fill-opacity="0.15" />
 	<rect width="1" height="1" x="11" y="2" fill="#0000ff" fill-opacity="0.15" />
 	<rect width="1" height="1" x="11" y="1" fill="#0000ff" fill-opacity="0.15" />
@@ -137,7 +164,8 @@
 	<rect width="1" height="1" x="10" y="0" fill="#0000ff" fill-opacity="0.15" />
 	<rect width="1" height="1" x="11" y="0" fill="#0000ff" fill-opacity="0.15" />
 	<rect width="1" height="1" x="12" y="0" fill="#0000ff" fill-opacity="0.15" />
-	<rect width="1" height="1" x="19" y="9" fill="#000000" fill-opacity="0.1" />
+	<rect width="1" height="1" x="13" y="4" fill="#000000" fill-opacity="0.1" />
+	<rect width="1" height="1" x="14" y="3" fill="#000000" fill-opacity="0.1" />
 	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0.01 0 v 21" />
 	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 0.01 h 21" />
 	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 1 0 v 21" />
@@ -303,15 +331,38 @@ L 17 10.5
 A 0.5 0.5 0 0 1 17.5 11
 A 0.5 0.5 0 0 0 18 11.5
 A 0.5 0.5 0 0 0 18.5 11
-A 0.5 0.5 0 0 1 19 10.5" fill="white" fill-opacity="0" stroke="black" stroke-width="0.05" />
-	<path d="M 19.5 9.5
-L 19 9.5
-L 18 9.5
+L 18.5 10
+A 0.5 0.5 0 0 0 18 9.5
 L 17 9.5
 A 0.5 0.5 0 0 1 16.5 9
 A 0.5 0.5 0 0 1 17 8.5
 L 18 8.5
-" fill="white" fill-opacity="0" stroke="blue" stroke-width="0.05" />
+A 0.5 0.5 0 0 0 18.5 8
+A 0.5 0.5 0 0 1 19 7.5
+A 0.5 0.5 0 0 0 19.5 7
+A 0.5 0.5 0 0 0 19 6.5
+A 0.5 0.5 0 0 1 18.5 6
+A 0.5 0.5 0 0 1 19 5.5
+A 0.5 0.5 0 0 0 19.5 5
+L 19.5 4
+L 19.5 3
+L 19.5 2
+A 0.5 0.5 0 0 0 19 1.5
+A 0.5 0.5 0 0 0 18.5 2
+L 18.5 3
+L 18.5 4
+A 0.5 0.5 0 0 1 18 4.5
+L 17 4.5
+A 0.5 0.5 0 0 1 16.5 4
+A 0.5 0.5 0 0 1 17 3.5
+A 0.5 0.5 0 0 0 17.5 3
+L 17.5 2
+A 0.5 0.5 0 0 0 17 1.5
+A 0.5 0.5 0 0 0 16.5 2
+A 0.5 0.5 0 0 1 16 2.5
+A 0.5 0.5 0 0 0 15.5 3
+L 15.5 4
+A 0.5 0.5 0 0 1 15 4.5" fill="white" fill-opacity="0" stroke="black" stroke-width="0.05" />
 	<path d="M 12.5 2.5
 L 12 2.5
 A 0.5 0.5 0 0 1 11.5 2

@@ -5,7 +5,7 @@ This research aims to solve the following problem:<br />
 
 At first sight it may look easy. But look at the following example:
 
-<img src="References/0701_1.svg"/>
+<img src="References/2024_0701_1.svg"/>
 
 <!---->
 
@@ -25,9 +25,9 @@ The project contains the source code for use with Visual Studio. To start the pr
 
 Screenshots:
 
-<img align="top" src="References/screenshot_main2.png" width="100%"/><br />
-<img src="References/spacer.svg" height="54"/><br />
-<img align="top" src="References/screenshot_rules2.png" width="100%"/>
+<img align="top" src="References/book/screenshot_main2.png" width="100%"/><br />
+<img src="References/book/spacer.svg" height="54"/><br />
+<img align="top" src="References/book/screenshot_rules2.png" width="100%"/>
 
 ---
 

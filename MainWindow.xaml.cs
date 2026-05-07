@@ -50,25 +50,25 @@ Reset farStraight = false; and farMidAcross = false; within 2-cycle?
 
 Write about creating future line at the corner
 
-Decide possibilities without relying on future lines, new rules will be necessary, as in 19717655
+Decide possibilities without relying on future lines, new rules will be necessary, as in 9_19717655
 
 ----- 21 x 21 -----
 
-0413: Path.CheckFutureSide: check case when both sides are true simultaneously, draw future line on left side to start with. See 0430_2
-0415_1: Future line start can be extended, but there is mistakenly no possibilities because of right across check.
+2023_0413: Path.CheckFutureSide: check case when both sides are true simultaneously, draw future line on left side to start with. See 2023_0430_2
+2023_0415_1: Future line start can be extended, but there is mistakenly no possibilities because of right across check.
 	Right now, forbidden fields only apply on the main line when the across field goes up. Are all across checks invalid for future line?
-0521: Future line start can be extended now. Taken is connecting to future, but since the left and right fields are not simultaneously empty, future line cannot be extended. In this case, the end of the selected future line cannot fill the empty space next to the main line, unlike it would be the case when connecting to the future section on the top.
-0430: previously used CheckLeftRightFuture to determine that we must step towards the future line.
+2023_0521: Future line start can be extended now. Taken is connecting to future, but since the left and right fields are not simultaneously empty, future line cannot be extended. In this case, the end of the selected future line cannot fill the empty space next to the main line, unlike it would be the case when connecting to the future section on the top.
+2023_0430: previously used CheckLeftRightFuture to determine that we must step towards the future line.
 Implement right side of connecting to a loop
 Implement CheckNearFutureEnd on 21x21
-Test C-shape on 0620_1, one step forward, the near end extends. The future line does not create a C shape if the end of the main line is the empty field to the left.
+Test C-shape on 2023_0620_1, one step forward, the near end extends. The future line does not create a C shape if the end of the main line is the empty field to the left.
 CountArea needs to be implemented upon closed loop with future ?
-0430: When we step on the right field, future line cannot be completed. It is right, but not because of C shape left and straight. The straight C shape is not right, because the field 2 ahead is a section start. We should also consider that the actual end to the right cannot go anywhere else.
-0425: Challenge to complete
+2023_0430: When we step on the right field, future line cannot be completed. It is right, but not because of C shape left and straight. The straight C shape is not right, because the field 2 ahead is a section start. We should also consider that the actual end to the right cannot go anywhere else.
+2023_0425: Challenge to complete
 
 ----- 25 x 25 -----
 
-1212: Stepped on future, other end cannot be completed.
+2023_1212: Stepped on future, other end cannot be completed.
 
 ----- UNKNOWN SIZE -----
 
@@ -315,7 +315,7 @@ namespace OneWayLabyrinth
 
             int i;
 
-            if (isTaskRunning) // only record new rule when its forbidden fields were not created by other rules. More complicated rules can be true together with simpler rules that already added the necessary forbidden fields, like in 349170
+            if (isTaskRunning) // only record new rule when its forbidden fields were not created by other rules. More complicated rules can be true together with simpler rules that already added the necessary forbidden fields, like in 9_349170
             {
                 /*i = 0;
                 foreach (List<int[]> forbiddenField in forbiddenFields)
@@ -1478,7 +1478,7 @@ namespace OneWayLabyrinth
                         {
                             if (direction != secondDir && direction % 2 == secondDir % 2) // two difference
                             {
-                                // opposite is found, but we don't know yet if it is on the left or right side. First example 19802714.
+                                // opposite is found, but we don't know yet if it is on the left or right side. First example 9_19802714.
 
                                 if (secondDir == firstDir + 1 || firstDir == 3 && secondDir == 0)
                                 { // line turned to left. The opposite direction is on the right side
@@ -1857,7 +1857,7 @@ namespace OneWayLabyrinth
                                 return false; //to prevent NextStepPossibilities from running
                             }
                         }
-                        // 1021_3. Only if C-shape is created.
+                        // 2023_1021_3. Only if C-shape is created.
                         if (Math.Abs(x - endX) == 1 && Math.Abs(y - endY) == 1)
                         {
                             future.path2 = taken.path;
@@ -1922,7 +1922,7 @@ namespace OneWayLabyrinth
             {
                 future.path2 = taken.path;
 
-                // 0911: Future line on the right can be extended
+                // 2023_0911, 2023_0911_1: Future line on the right can be extended
 
                 taken.sx = taken.x - taken.path[count - 2][0];
                 taken.sy = taken.y - taken.path[count - 2][1];
@@ -2004,7 +2004,7 @@ namespace OneWayLabyrinth
                 }
 
                 // If there was a future start left or right to the head of the line in the previous step, that future line may be extended now if it has no other options to move.
-                // Example: 0430_2. All 4 directions of needs to be examined, so that 2023_0618 works too.
+                // Example: 2023_0430_2. All 4 directions of needs to be examined, so that 2023_0618 works too.
                 // minimum size: 5
 
                 x = taken.path[count - 2][0];
@@ -2038,13 +2038,13 @@ namespace OneWayLabyrinth
                         int lx = taken.lx;
                         int ly = taken.ly;
 
-                        // Future lines does not always extend from a 2x2 shape. 0901_2 has a one-wide line.
-                        // Checking InFutureEndRel2(2, 0) gets important in 0928
+                        // Future lines does not always extend from a 2x2 shape. 2023_0901_1 has a one-wide line.
+                        // Checking InFutureEndRel2(2, 0) gets important in 2023_0928
                         if (InFutureStartRel2(1, 0) && (InTakenRel2(2, 0) || InBorderRel2(2, 0) || (InFutureRel2(2, 0) && (!InFutureEndRel2(2, 0) || InFutureEndRel2(2, 0) && foundSectionStart == foundSectionEnd))) && (InTakenRel2(1, -1) || InBorderRel2(1, -1) || (InFutureRel2(1, -1) && !InFutureEndRel2(1, -1))))
                         {
                             T("Left/right future start valid at x " + x + " y " + y + ", start x " + (x + lx) + " y " + (y + ly));
 
-                            if (!InFutureRel2(1, 1)) // Example: 0902_2
+                            if (!InFutureRel2(1, 1)) // Example: 2023_0902
                             {
                                 int addIndex = futureSections[foundSection][0] + 1;
                                 future.path.Insert(addIndex, new int[] { x + lx + sx, y + ly + sy });
@@ -2111,8 +2111,8 @@ namespace OneWayLabyrinth
                 taken.lx = taken.thisLx;
                 taken.ly = taken.thisLy;
 
-                // When there is a future start 2 to the left or right (due to the extension of the originally created C shape), and the live end goes straight or the other way (example: 0430_1), the start end can be extended. It will in some cases act as 1x3 C shape checking 
-                // The future line is not necessarily the newest. Example: 0427, 0427_1
+                // When there is a future start 2 to the left or right (due to the extension of the originally created C shape), and the live end goes straight or the other way (example: 2023_0430_1), the start end can be extended. It will in some cases act as 1x3 C shape checking 
+                // The future line is not necessarily the newest. Example: 2023_0427, 2023_0427_1
 
                 if (size >= 7)
                 {
@@ -2125,13 +2125,13 @@ namespace OneWayLabyrinth
                             int sx = taken.sx;
                             int sy = taken.sy;
 
-                            //!InFutureRel2(1, 0) is needed for 0927_2
-                            //last clause is needed for 0927_3
+                            //!InFutureRel2(1, 0) is needed for 2023_0927_1
+                            //last clause is needed for 2023_0927_2
                             if (!InTakenRel2(1, 0) && !InFutureRel2(1, 0) && InFutureStartRel2(2, 0) && (InTakenRel2(1, -1) || InBorderRel2(1, -1) || (InFutureRel2(1, -1) && (!InFutureEndRel2(1, -1) || InFutureEndRel2(1, -1) && foundSectionStart == foundSectionEnd))))
                             {
-                                // Similar to the Left/right future start, here is an example where the two connect: 0902_3
+                                // Similar to the Left/right future start, here is an example where the two connect: 2023_0902_1
                                 // But the previous function extends and connect to the section on the right side befure this function is called. Condition of !InFutureRel2(1, 1) is not needed in this example.
-                                // If !InFutureRel2(1, 0) is omitted, this will go wrong: 0916_2, upper line will extend even though field below is filled with a future line.
+                                // If !InFutureRel2(1, 0) is omitted, this will go wrong: 2023_0916_2, upper line will extend even though field below is filled with a future line.
 
                                 T("Left/right to 2 future start valid at x " + x + " y " + y + ", start x " + (x + lx) + " y " + (y + ly));
 
@@ -2151,7 +2151,7 @@ namespace OneWayLabyrinth
 
                                 //check if this section is merged with another one, to prevent duplicate merging.
                                 //this section is the first of a possible merge.
-                                for (int k = 0; k < futureSectionMerges.Count; k++) // 0916_1 happens if it is not checked
+                                for (int k = 0; k < futureSectionMerges.Count; k++) // 2023_0916_1 happens if it is not checked
                                 {
                                     int[] merge = futureSectionMerges[k];
                                     if (merge[0] == foundSection)
@@ -2317,14 +2317,14 @@ namespace OneWayLabyrinth
 
                         int addCount = 2;
 
-                        if (!InFutureRel2(2, 1)) //This is not added in 0803:
+                        if (!InFutureRel2(2, 1)) //This is not added in 2023_0803:
                         {
                             future.path.Add(new int[] { x + 2 * lx + sx, y + 2 * ly + sy });
                             addCount++;
                         }
                         future.path.Add(new int[] { x + 2 * lx, y + 2 * ly });
                         future.path.Add(new int[] { x + lx, y + ly });
-                        if (!InFutureRel2(1, 1)) //0919_4
+                        if (!InFutureRel2(1, 1)) //2023_0919_3
                         {
                             future.path.Add(new int[] { x + lx + sx, y + ly + sy });
                             addCount++;
@@ -2389,7 +2389,7 @@ namespace OneWayLabyrinth
                         int lx = taken.lx;
                         int ly = taken.ly;
 
-                        //InFutureRel2(2, 0) is to prevent a duplicate line as in 0927_1
+                        //InFutureRel2(2, 0) is to prevent a duplicate line as in 2023_0927
                         if (!InTakenRel2(1, 0) && !InTakenRel2(2, 0) && !InTakenRel2(3, 0) &&
                             (InTakenRel2(1, -1) || InBorderRel2(1, -1)) && (InTakenRel2(2, -1) || InBorderRel2(2, -1)) && (InTakenRel2(3, -1) || InBorderRel2(3, -1)) && (InTakenRel2(4, 0) || InBorderRel2(4, 0)) && !InFutureRel2(2, 0) && !InCornerRel2(3, 0) && !InCornerRel2(3, 1))
                         {
@@ -2398,7 +2398,7 @@ namespace OneWayLabyrinth
 
                             int addCount = 3;
 
-                            if (!InFutureRel2(3, 1)) // 1006_2
+                            if (!InFutureRel2(3, 1)) // 2023_1006_2
                             {
                                 future.path.Add(new int[] { x + 3 * lx + sx, y + 3 * ly + sy });
                                 addCount++;
@@ -2501,7 +2501,7 @@ namespace OneWayLabyrinth
                                 return false;
                             }
 
-                            /*See 0701_1:
+                            /*See 2024_0701_1:
     This situation is not possible. When the start of the left future section and the end of the right future section gets connected, it will go through the field in the middle, 11x11, because it is next to the main line. From there we can extend this mid section to either both sides or one side and up.
 	In the first case, the near end will be 12x11, 12x10 and 13x10, the far end the same mirrored. There will be a C shape, 11x10 cannot be filled.
 	In the second case, the near end being the same as above, the far end can be 11x10. The start of the left future line will extend to 10x11 and 10x10. 9x10 cannot be filled. The second case can be mirrored, so that 13x10 is the field that cannot be filled.*/
@@ -2606,7 +2606,7 @@ namespace OneWayLabyrinth
 					{
 						startIndex++;
 
-						//Suppose the end of the future line is 2 to the left or right of the start end, as in 0415
+						//Suppose the end of the future line is 2 to the left or right of the start end, as in 2023_0415
                         if (future.path[endIndex][0] == x + 2 * rx + sx && future.path[endIndex][1] == y + 2 * ry + sy)
 						{
 							future.path.Insert(startIndex, new int[] { x + sx + lx, y + sy + ly });
@@ -2662,7 +2662,7 @@ namespace OneWayLabyrinth
                     if (nearExtDone) return true;
                     break;
                 }
-                // In 0919_4, the newly created 1x2 line extends to the corner and then connects to the line on the left that is already stepped on.
+                // In 2023_0919_3, the newly created 1x2 line extends to the corner and then connects to the line on the left that is already stepped on.
                 if (isNearEnd && InTaken(future.path[index][0], future.path[index][1]))
                 {
                     nearExtDone = true;
@@ -2691,7 +2691,7 @@ namespace OneWayLabyrinth
                     }
                 }
 
-                // 0911: If the far end has reached the corner, the near end has to choose the other option besides connecting to the live end.
+                // 2023_0911, 2023_0911_1: If the far end has reached the corner, the near end has to choose the other option besides connecting to the live end.
                 if (farEndDone && future.possible.Count == 2)
                 {
                     for (int i = 0; i < future.possible.Count; i++)
@@ -2726,7 +2726,7 @@ namespace OneWayLabyrinth
 
                     //is counting area needed?					
 
-                    // The far end might be connecting to an older section now, but we cannot merge the sections, because there might be a future line in between, like in 0714_1. Instead, we mark the connection.                      
+                    // The far end might be connecting to an older section now, but we cannot merge the sections, because there might be a future line in between, like in 2023_0714_1. Instead, we mark the connection.                      
                     // Not only far end can connect to the near end of an older section, but also near end to the far end of the older section, as in 2023_0730_1 
 
                     // If, after a merge, the line connected to extends, but it ends already in the corner, is it okay to just return, or should we try to extend the near end? Find an example.
@@ -2739,7 +2739,7 @@ namespace OneWayLabyrinth
                         {
                             T("Connecting to section " + i);
 
-                            if (isNearEnd) // extend near end. Example: 0911_3. A 2x2 line is created on the right side, the far end extends to the corner, and then the near end extends and want to connect.
+                            if (isNearEnd) // extend near end. Example: 2023_0911_2. A 2x2 line is created on the right side, the far end extends to the corner, and then the near end extends and want to connect.
                             {
                                 if (nearSection == farSection) // single line connects to a merged or another single line
                                 {
@@ -2782,7 +2782,7 @@ namespace OneWayLabyrinth
                                         {
                                             return ExtendFutureLine(isNearEnd, nearEndIndex, farEndIndex, nearSection, farSection, once);
                                         }
-                                        else // extend far end after the connection, the farExtDone may have been canceled, as in 0919_3
+                                        else // extend far end after the connection, the farExtDone may have been canceled, as in 2023_0919_2
                                         {
                                             return ExtendFutureLine(!isNearEnd, nearEndIndex, farEndIndex, nearSection, farSection, once);
                                         }
@@ -2996,7 +2996,7 @@ namespace OneWayLabyrinth
                     if (future.x == size && future.y == size)
                     {
                         T("Far end done");
-                        if (nearEndDone) return true; //only return if the near end can only connect to the main line. Otherwise extend the near end again, it might connect to another section now as in 0919_2
+                        if (nearEndDone) return true; //only return if the near end can only connect to the main line. Otherwise extend the near end again, it might connect to another section now as in 2023_0919_1
                         farExtDone = true;
                         farEndDone = true;
                         nearExtDone = false;
@@ -3010,7 +3010,7 @@ namespace OneWayLabyrinth
             if (future.possible.Count == 0)
             {
                 T("Possible count: 0");
-                // in 0811_3, it can happen that after stepping on the future line, the other line gets extended and merges into the line being stepped on.
+                // in 2023_0811_3, it can happen that after stepping on the future line, the other line gets extended and merges into the line being stepped on.
                 if (!(isNearEnd && future.path[nearEndIndex][0] == taken.x && future.path[nearEndIndex][1] == taken.y))
                 {
                     return false;
@@ -3034,7 +3034,7 @@ namespace OneWayLabyrinth
                 T("Future path reached the end, stepCount " + stepCount);
             }
 
-            // only return if no steps were taken on either end. It is not enough to check if the possibilities of an end were taken by the other end, a C-shape can be created as in 1002 where the near and the far end are next to each other at one point.
+            // only return if no steps were taken on either end. It is not enough to check if the possibilities of an end were taken by the other end, a C-shape can be created as in 2023_1002 where the near and the far end are next to each other at one point.
             if (stepCount == 0)
             {
                 if (isNearEnd)
@@ -3357,7 +3357,7 @@ namespace OneWayLabyrinth
                 futureSections[i][0]++;
                 futureSections[i][1]++;
             }
-            // In 0811_3, other future line is extended after we stepped on one
+            // In 2023_0811_3, other future line is extended after we stepped on one
             // inFutureIndex can also be within the current section when we step on one, so it just needs to be larger than its far end.
             if (inFutureIndex > futureSections[section][1])
             {
@@ -3369,7 +3369,7 @@ namespace OneWayLabyrinth
         {
             if (futureSectionMergesHistory.Count > 0)
             {
-                // There can be more than one future line merges in one step, like in 0913. Removing only the last one is not correct.
+                // There can be more than one future line merges in one step, like in 2023_0913. Removing only the last one is not correct.
                 for (int i = futureSectionMergesHistory.Count - 1; i >= 0; i--)
                 {
                     if ((int)futureSectionMergesHistory[i][0] == index)
@@ -3544,7 +3544,7 @@ namespace OneWayLabyrinth
             int x = taken.x + left * taken.lx + straight * taken.sx;
             int y = taken.y + left * taken.ly + straight * taken.sy;
 
-            //In 0913_2 it can happen that after stepping on the future line, the 1-thin rule is true if we don't check that the coordinates are within size.
+            //In 2023_0913_2 it can happen that after stepping on the future line, the 1-thin rule is true if we don't check that the coordinates are within size.
             if (x > size || y > size) return true;
 
             return InFuture(x, y);

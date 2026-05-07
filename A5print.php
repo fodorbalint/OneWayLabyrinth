@@ -146,8 +146,9 @@ document.addEventListener('visibilitychange', function() {
 <table width="<?php print $order < 2 ? 1040 : 520 ?>" align="center">
 <?php
     $content = str_replace("\r", "", str_replace("<br />", "", file_get_contents("readme0.md")));
-    $content = str_replace("[spacer]", '<img src="References/spacer.svg" width="1" />', $content);
-    $content = str_replace("[spacer_h]", '<img src="References/spacer.svg" height="1" />', $content);
+    $content = str_replace("[spacer]", '<img src="References/book/spacer.svg" width="1" />', $content);
+    $content = str_replace("[spacer4]", '<img src="References/book/spacer.svg" width="4" />', $content);
+    $content = str_replace("[spacer_h]", '<img src="References/book/spacer.svg" height="1" />', $content);
     
     $pos1 = strpos($content, "#");
     $pos2 = strpos($content, "\n",  $pos1);
@@ -221,7 +222,7 @@ document.addEventListener('visibilitychange', function() {
     else if ($order == 2) {
         ?>
         <tr><td><div class="border_sample">Page: 130 x 205 mm<br />Screen resolution: 520 x 820 px</div><div class="content_sample">Content: 100 x 160 mm<br />Screen resolution: 400 x 640 px<br />Font: 16 px Garamond</div><div class="num_sample">Number box height: 4 mm / 16 px</div></td></tr>
-        <tr><td><img class="cover" src="References/cover.svg"/></td></tr>
+        <tr><td><img class="cover" src="References/book/cover.svg"/></td></tr>
         <tr><td><div class="border"></div><div>Do you know in how many different ways you can fill a square grid, visiting each point once?<br />
         What is the recipe of generating them all without ever getting stuck?<br />
         <br />

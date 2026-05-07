@@ -321,7 +321,7 @@ for contentName in contentList:
                 if searchPrefix != contextPrefix:
                     # add subfolder
                     if contextPrefix[len(contextPrefix) - 11:] == "References/":
-                        content = content[0:pos - 9] + searchPrefix + content[pos:]
+                        content = content[0:pos - 11] + searchPrefix + content[pos:]
                         pos += len(searchPrefix) - 11
                         print(f" => {searchPrefix}", end="")
                     else:
@@ -398,5 +398,4 @@ for i in range (0, len(all_files_full)):
 with open("filesNotFound.txt", "w", encoding="utf-8") as file:
     file.write("\n".join(noCountFiles))
 
-print(f"Global inCount {inCount} noCount {noCount}\n")
-
+print(f"Global inCount {inCount} noCount {noCount}")

@@ -58,7 +58,7 @@ namespace OneWayLabyrinth
             closeStraightLarge = false;
             closeMidAcrossLarge = false;
 
-            // needed for far left and right case 234320
+            // needed for far left and right case 9_234320
             CheckNearField();
 
             if (closeStraightSmall || closeMidAcrossSmall || closeAcrossSmall || closeStraightLarge || closeMidAcrossLarge) return;
@@ -239,8 +239,8 @@ namespace OneWayLabyrinth
             lx = thisLx;
             ly = thisLy;
 
-            // Far rules shouldn't be checked until close rules are checked on both sides, see 305112. Here, close straight is only true on the right side, but left side far rules get checked before.
-            // A close rule may be true on one side, but on the other side there can be a far rule, like in 1307639. The close rule has to be large in this case.
+            // Far rules shouldn't be checked until close rules are checked on both sides, see 9_305112. Here, close straight is only true on the right side, but left side far rules get checked before.
+            // A close rule may be true on one side, but on the other side there can be a far rule, like in 9_1307639. The close rule has to be large in this case.
 
             // A large close mid across on one side can have a small far across on the other side.
             // A large close across on one side can have a small far mid across / across on the other side.
@@ -253,7 +253,7 @@ namespace OneWayLabyrinth
                     bool farStraight = false;
                     bool farMidAcross = false;
 
-                    if (InTakenRel(0, 3) && InTakenRel(1, 3) && !InTakenRel(0, 2) && !InTakenRel(0, 1)) // 0, 2: 1225; 0, 1: 1226
+                    if (InTakenRel(0, 3) && InTakenRel(1, 3) && !InTakenRel(0, 2) && !InTakenRel(0, 1)) // 0, 2: 2023_1225; 0, 1: 2023_1226
                     {
                         farStraight = true;
 
@@ -261,7 +261,7 @@ namespace OneWayLabyrinth
                         int sideIndex = InTakenIndexRel(1, 3);
                         if (sideIndex > middleIndex) // area on left
                         {
-                            if (!InTakenRel(1, 2) && !InTakenRel(2, 2)) // 1,2: 1019_4, 2,2: 1019_5
+                            if (!InTakenRel(1, 2) && !InTakenRel(2, 2)) // 1,2: 2023_1019_3, 2,2: 2023_1019_4
                             {
                                 if (i == 0) farStraightLeft = true; else farStraightRight = true;
 
@@ -279,7 +279,7 @@ namespace OneWayLabyrinth
                         }
                         else // area on right
                         {
-                            if (!InTakenRel(-1, 2) && !InTakenRel(-2, 2)) // -1, 2: 1019_6, -2, 2: 1019_7
+                            if (!InTakenRel(-1, 2) && !InTakenRel(-2, 2)) // -1, 2: 2023_1019_5, -2, 2: 2023_1019_6
                             {
                                 bool circleDirectionLeft = i == 0 ? false : true;
                                 if (CountAreaRel(-1, 1, -1, 2, null, circleDirectionLeft, 1))
@@ -297,7 +297,7 @@ namespace OneWayLabyrinth
 
                     if (!farStraight)
                     {
-                        if (InTakenRel(1, 3) && InTakenRel(2, 3) && !InTakenRel(0, 2) && !InTakenRel(1, 2) && !InTakenRel(0, 1)) // 0, 2; 1, 2: 1019_3
+                        if (InTakenRel(1, 3) && InTakenRel(2, 3) && !InTakenRel(0, 2) && !InTakenRel(1, 2) && !InTakenRel(0, 1)) // 0, 2; 1, 2: 2023_1019_2
                         {
                             farMidAcross = true;
 
@@ -305,7 +305,7 @@ namespace OneWayLabyrinth
                             int sideIndex = InTakenIndexRel(2, 3);
                             if (sideIndex > middleIndex) // area on left
                             {
-                                if (!InTakenRel(2, 2)) // 2, 2: 1019
+                                if (!InTakenRel(2, 2)) // 2, 2: 2023_1019
                                 {
                                     if (i == 0) farStraightLeft = true; else farStraightRight = true;
                                     bool circleDirectionLeft = i == 0 ? true : false;
@@ -322,7 +322,7 @@ namespace OneWayLabyrinth
                             }
                             else // area on right
                             {
-                                if (!InTakenRel(-1, 2)) // -1, 2: 1019_1
+                                if (!InTakenRel(-1, 2)) // -1, 2: 2023_1019_1
                                 {
                                     bool circleDirectionLeft = i == 0 ? false : true;
                                     if (CountAreaRel(0, 1, 0, 2, null, circleDirectionLeft, 1))
@@ -397,7 +397,7 @@ namespace OneWayLabyrinth
             }
 
             // left/right side rules
-            // When any of the close rules are present, even close across large, examining side rules is not necessary. Example: 1019_8
+            // When any of the close rules are present, even close across large, examining side rules is not necessary. Example: 2023_1019_7
             if (!closeStraightSmall && !closeMidAcrossSmall && !closeAcrossSmall && !closeStraightLarge && !closeMidAcrossLarge && !closeAcrossLarge)
             {
                 for (int i = 0; i < 2; i++)
@@ -512,7 +512,7 @@ namespace OneWayLabyrinth
                                 }
                             }
 
-                            if (InTakenRel(3, -1) && InTakenRel(3, -2) && !InTakenRel(1, -1) && !InTakenRel(1, 0) && !InTakenRel(1, 1)) // mid across down, 1,1: 1021_8
+                            if (InTakenRel(3, -1) && InTakenRel(3, -2) && !InTakenRel(1, -1) && !InTakenRel(1, 0) && !InTakenRel(1, 1)) // mid across down, 1,1: 2023_1021_7
                             {
                                 farSideMidAcrossDown = true;
 
@@ -537,7 +537,7 @@ namespace OneWayLabyrinth
                         }
 
                         // there can be a far side across in the opposite direction of a far side straight or mid across situation
-                        if (!farSideStraightUp && !farSideMidAcrossUp && InTakenRel(3, 2) && InTakenRel(3, 3) && !InTakenRel(1, 0) && !InTakenRel(1, 1) && !InTakenRel(1, 2)) // 1,2: 1021
+                        if (!farSideStraightUp && !farSideMidAcrossUp && InTakenRel(3, 2) && InTakenRel(3, 3) && !InTakenRel(1, 0) && !InTakenRel(1, 1) && !InTakenRel(1, 2)) // 1,2: 2023_1021
                         {
                             int middleIndex = InTakenIndexRel(3, 2);
                             int sideIndex = InTakenIndexRel(3, 3);
@@ -563,7 +563,7 @@ namespace OneWayLabyrinth
                             }
                         }
 
-                        if (!farSideStraightDown && !farSideMidAcrossDown && InTakenRel(3, -2) && InTakenRel(3, -3) && !InTakenRel(1, -1) && !InTakenRel(1, 0) && !InTakenRel(1, 1) && !InTakenRel(2, -2)) // 2,-2: 630259
+                        if (!farSideStraightDown && !farSideMidAcrossDown && InTakenRel(3, -2) && InTakenRel(3, -3) && !InTakenRel(1, -1) && !InTakenRel(1, 0) && !InTakenRel(1, 1) && !InTakenRel(2, -2)) // 2,-2: 9_630259
                         {
                             int middleIndex = InTakenIndexRel(3, -2);
                             int sideIndex = InTakenIndexRel(3, -3);
@@ -660,7 +660,7 @@ namespace OneWayLabyrinth
             }
         }
 
-        void CheckAreaNearBorder() // 0909. Check both straight approach and side.
+        void CheckAreaNearBorder() // 2023_0909. Check both straight approach and side.
         {
             if (x == 3 && straightField[0] == 2 && !InTakenAbs(straightField) && !InTakenAbs(rightField) && !InTaken(1, y))
             {
@@ -1046,7 +1046,7 @@ namespace OneWayLabyrinth
                                     forbidden.Add(new int[] { x - lx, y - ly });
                                 }
                                 else // We can enter later, check for start C on the opposite side (if the obstacle is up on the left, we check the straight field for next step C, not the right field.) 
-                                // 466
+                                // 9_466
                                 {
                                     if (ex == 2 && !InTakenRel(-1, 1) && (InTakenRel(-2, 1) || InBorderRel(-2, 1)) && InTakenRel(-1, 0))
                                     {
@@ -1225,7 +1225,7 @@ namespace OneWayLabyrinth
             ly = thisLy;
         }
 
-        void CheckLeftRightCornerBig() // rotate down (CCW): 59438645 for behind and up for small area 
+        void CheckLeftRightCornerBig() // rotate down (CCW): 9_59438645 for behind and up for small area 
         {
             for (int i = 0; i < 2; i++)
             {
@@ -1667,7 +1667,7 @@ namespace OneWayLabyrinth
                                 {
                                     switch (caseNumber)
                                     {
-                                        case 1: // 0601
+                                        case 1: // 2024_0601
                                             DoubleArea1 = true;
                                             activeRules.Add("Double Area first case");
                                             activeRuleSizes.Add(new int[] { 4, 6 });
@@ -1814,7 +1814,7 @@ namespace OneWayLabyrinth
                     // 2024_0516_2
                     // Rotated: 2024_0516_3
 
-                    // See also 665575 for alternative start obstacle placement
+                    // See also 9_665575 for alternative start obstacle placement
                     bool circleValid = false;
 
                     if (((InBorderRelExact(0, 4) && !InCornerRel(0, 3)) || InTakenRel(0, 4) || InTakenRel(-1, 4)) && !InTakenRel(0, 1) && !InTakenRel(0, 2) && !InTakenRel(0, 3) && !InTakenRel(1, 1) && !InTakenRel(1, 3) && !InTakenRel(-1, 3))
@@ -2124,7 +2124,7 @@ namespace OneWayLabyrinth
                 return true;
             }
             // right side close can happen with the future line
-            // for now, we only take the right side C-shape into account as it happens in 740293. Other close obstacles we don't check.
+            // for now, we only take the right side C-shape into account as it happens in 9_740293. Other close obstacles we don't check.
             else if (leftSideClose)
             //else if ((leftSideClose || rightSideClose) && newExitField[0] != 0)
             {
@@ -2259,9 +2259,9 @@ namespace OneWayLabyrinth
                         int tempSx = sx;
                         int tempSy = sy;
 
-                        // Both: 18677343
+                        // Both: 9_18677343
 
-                        // Double Area only: 59434452
+                        // Double Area only: 9_59434452
                         if (Check3DoubleAreaRotated(i))
                         {
                             DoubleAreaFirstCaseRotatedNext = true;
@@ -2316,7 +2316,7 @@ namespace OneWayLabyrinth
             ly = thisLy;
         }
 
-        bool CheckNearFieldSmall1() // for use only with Double Area case 1, 2, 3 and 1 rotated, and Down Stair. Across is needed at 53144883
+        bool CheckNearFieldSmall1() // for use only with Double Area case 1, 2, 3 and 1 rotated, and Down Stair. Across is needed at 9_53144883
         {
             // close mid across. In DirectionalArea, the empty fields are already checked.
             if (InTakenRel(1, 2) && !InTakenRel(0, 2) && !InTakenRel(1, 1))
@@ -2395,7 +2395,7 @@ namespace OneWayLabyrinth
             {
                 // C-Shape, only left side should have it
                 // Checking for InTakenRel(1, -1) is not possible, because in Sequence first case, we are exiting the area at the middle border field.
-                // But when it comes to the right side (if it was checked), it is necessary, otherwise we can detect a C-shape with the live end as in 213.
+                // But when it comes to the right side (if it was checked), it is necessary, otherwise we can detect a C-shape with the live end as in 9_213.
                 if (InTakenRel(2, 0) && !InTakenRel(1, 0))
                 {
                     ret = true;
@@ -2433,7 +2433,7 @@ namespace OneWayLabyrinth
                 }
             }
 
-            // close across. Checking empty fields necessary, see 29558469
+            // close across. Checking empty fields necessary, see 9_29558469
             if (InTakenRel(2, 2) && !InTakenRel(1, 2) && !InTakenRel(2, 1))
             {
                 int middleIndex = InTakenIndexRel(2, 2);
