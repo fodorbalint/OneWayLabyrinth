@@ -559,6 +559,7 @@ namespace OneWayLabyrinth
         }
 
         void CheckStraight()
+        // 7_266: Close straight 
         {
             for (int i = 0; i < 2; i++)
             {
@@ -780,6 +781,8 @@ namespace OneWayLabyrinth
         }
 
         void CheckLeftRightAreaUp()
+        // 7_3627: Close mid across
+        // 7_2558: Close mid across big
         {
             for (int i = 0; i < 2; i++)
             {
@@ -4491,7 +4494,7 @@ namespace OneWayLabyrinth
         void StairAtEndConcaveStraight5()
         {
             // 2024_0618, 2024_0717_1, 2025_0525, 2026_0304_4: obstacle is closed corner
-            // 2024_0818, 2025_0720_1, 2026_0301, 2026_0302_1, 2026_0304_7: obstacle is straight wall
+            // 2024_0818, 2025_0720, 2026_0301, 2026_0302_1, 2026_0304_7: obstacle is straight wall
             // Second obstacle is inside and seen at the first white field where we enter the area if we should enter it later.
 
             for (int i = 0; i < 2; i++)

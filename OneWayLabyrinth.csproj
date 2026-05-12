@@ -10,13 +10,17 @@
   <ItemGroup>
     <Compile Remove="Console app\Program.cs" />
     <Compile Remove="Path_old.cs" />  
-    <Compile Remove="Path_old2.cs" />  
+    <Compile Remove="Path_old2.cs" />
+    <Compile Remove="MainWindow.xaml_white.cs" />  
+    <Compile Remove="MainWindow_white.xaml" />  
   </ItemGroup>
 
   <ItemGroup>
     <None Include="Console app\Program.cs" />
     <None Include="Path_old.cs" />
     <None Include="Path_old2.cs" />
+    <None Include="MainWindow.xaml_white.cs" />
+    <None Include="MainWindow_white.xaml" />
   </ItemGroup>
 
 	<ItemGroup>

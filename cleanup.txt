@@ -112,8 +112,11 @@ Path.cs
 "/ 2024_0611_5, 2024_0611_6, 2024_0611_7, 2024"    0611_6
 ", 2024_0611_6, 2024_0611_7, 2024_0611_8      "    0611_7
 ", 2024_0611_7, 2024_0611_8         {         "    0611_8
+"ight()         // 7_266: Close straight      "    266
 " nowWCount) // 2024_0715                     "    0715
 " not possible. 2024_0610_6                   "    0610_6
+"eaUp()         // 7_3627: Close mid across   "    3627
+"across         // 7_2558: Close mid across bi"    2558
 "urn in case of 2024_0623 where the area would"    0623
 "               // 9_466                      "    466
 "3 && j < 2) // 2024_0610, 2024_0610_1, 2024_0"    0610
@@ -224,10 +227,10 @@ Path.cs
 " // 2024_0618, 2024_0717_1, 2025_0525, 2026_0"    0717_1
 ", 2024_0717_1, 2025_0525, 2026_0304_4: obstac"    0525
 "_1, 2025_0525, 2026_0304_4: obstacle is close"    0304_4
-"            // 2024_0818, 2025_0720_1, 2026_0"    0818
-" // 2024_0818, 2025_0720_1, 2026_0301, 2026_0"    0720_1
-", 2025_0720_1, 2026_0301, 2026_0302_1, 2026_0"    0301
-"_1, 2026_0301, 2026_0302_1, 2026_0304_7: obst"    0302_1
+"            // 2024_0818, 2025_0720, 2026_030"    0818
+" // 2024_0818, 2025_0720, 2026_0301, 2026_030"    0720
+"18, 2025_0720, 2026_0301, 2026_0302_1, 2026_0"    0301
+"20, 2026_0301, 2026_0302_1, 2026_0304_7: obst"    0302_1
 ", 2026_0302_1, 2026_0304_7: obstacle is strai"    0304_7
 "            // 2026_0302             // Secon"    0302
 "3()         // 2024_0811         {           "    0811
@@ -320,7 +323,7 @@ Path.cs
 "ld twice as in 2023_1208 side across down che"    1208
 "ield[1]) // In 2023_0919 (step right, the nea"    0919
 
-241 matches found, 0 needs to be replaced.
+244 matches found, 0 needs to be replaced.
 
 Path_control.cs
 
@@ -624,6 +627,7 @@ readme0.md
 "rc="References/2023_0930_1.svg" width="5" /> "    0930_1
 "rc="References/2023_1001.svg" width="7" />  <"    1001
 "rc="References/2023_0911.svg" width="7" />[sp"    0911
+"rc="References/2023_0911_1.svg" width="7" /> "    0911_1
 "rc="References/2023_0901.svg" width="7" />  -"    0901
 "rc="References/2023_0929.svg" width="7" />  I"    0929
 "rc="References/2023_1019_7.svg" width="9" />["    1019_7
@@ -664,7 +668,7 @@ readme0.md
 "" src="References/9_641019.svg" width="9" />["    641019
 "" src="References/9_641019_1.svg" width="9" /"    641019_1
 "" src="References/9_641019_2.svg" width="9" /"    641019_2
-"" src="References/9_725325_1.svg" width="9" /"    725325_1
+"" src="References/9_725325.svg" width="9" /> "    725325
 "" src="References/9_740039.svg" width="9" />["    740039
 "" src="References/9_740039_1.svg" width="9" /"    740039_1
 "" src="References/9_811808.svg" width="9" />["    811808
@@ -699,8 +703,8 @@ readme0.md
 "" src="References/9_462.svg" width="9" />[spa"    462
 "" src="References/9_1861.svg" width="9" />[sp"    1861
 "" src="References/9_9121.svg" width="9" />[sp"    9121
-"" src="References/9_22328.svg" width="9" />[s"    22328
-"" src="References/9_22328_1.svg" width="9" />"    22328_1
+"" src="References/9_22328_2.svg" width="9" />"    22328_2
+"" src="References/9_22328_3.svg" width="9" />"    22328_3
 "" src="References/9_25153.svg" width="9" />[s"    25153
 "" src="References/9_227130.svg" width="9" />["    227130
 "" src="References/9_231960.svg" width="9" />["    231960
@@ -738,7 +742,7 @@ readme0.md
 "rc="References/2024_0330_2.svg" width="10" />"    0330_2
 "rc="References/2024_0331_1.svg" width="10" />"    0331_1
 "rc="References/2024_0331.svg" width="10" />  "    0331
-"rc="References/2024_0410.svg" width="7" /> <i"    0410
+"rc="References/2024_0410.svg" width="7" /> [s"    0410
 "" src="References/9_464.svg" width="9" />  As"    464
 "" src="References/9_462.svg" width="9" />[spa"    462
 "rc="References/2024_0419.svg" width="9" />[sp"    0419
@@ -749,16 +753,16 @@ readme0.md
 "" src="References/9_743059.svg" width="9" /> "    743059
 "rc="References/2024_0530.svg" width="7" />  <"    0530
 "rc="References/2024_0530_1.svg" width="8" /> "    0530_1
-"rc="References/2024_0516.svg" width="9" /><im"    0516
+"rc="References/2024_0516.svg" width="9" />[sp"    0516
 "rc="References/2024_0516_1.svg" width="9" /> "    0516_1
-"rc="References/2024_0531_5.svg" width="8" /><"    0531_5
+"rc="References/2024_0531_5.svg" width="8" />["    0531_5
 "rc="References/2024_0531_3.svg" width="9" /> "    0531_3
-"" src="References/9_665575.svg" width="9" /><"    665575
-"rc="References/2024_0531_1.svg" width="7" /><"    0531_1
+"" src="References/9_665575.svg" width="9" />["    665575
+"rc="References/2024_0531_1.svg" width="7" />["    0531_1
 "rc="References/2024_0531_2.svg" width="7" /> "    0531_2
 "" src="References/9_2034760.svg" width="9" />"    2034760
 "rc="References/2024_0516_6.svg" width="8" /> "    0516_6
-"rc="References/2024_0516_7.svg" width="8" /><"    0516_7
+"rc="References/2024_0516_7.svg" width="8" />["    0516_7
 "rc="References/2024_0516_8.svg" width="8" /> "    0516_8
 "" src="References/9_641027.svg" width="9" />["    641027
 "" src="References/9_641027_1.svg" width="9" /"    641027_1
@@ -826,7 +830,7 @@ readme0.md
 "rc="References/2025_0716_1.svg" width="13" />"    0716_1
 "rc="References/2025_0522_1.svg" width="13" />"    0522_1
 "rc="References/2025_0525.svg" width="13" /> ["    0525
-"rc="References/2025_0720_1.svg" width="13" />"    0720_1
+"rc="References/2025_0720.svg" width="13" />  "    0720
 "rc="References/2025_0522.svg" width="13" />  "    0522
 "rc="References/2024_0818_1.svg" width="13" />"    0818_1
 "rc="References/2024_0706.svg" width="11" />  "    0706
@@ -914,9 +918,9 @@ readme0.md
 "veStraight5()] 2024_0618, 2024_0717_1, 2024_0"    0618
 "()] 2024_0618, 2024_0717_1, 2024_0818, 2025_0"    0717_1
 ", 2024_0717_1, 2024_0818, 2025_0525, 2025_072"    0818
-"_1, 2024_0818, 2025_0525, 2025_0720_1, 2026_0"    0525
-"18, 2025_0525, 2025_0720_1, 2026_0304_4, 2026"    0720_1
-", 2025_0720_1, 2026_0304_4, 2026_0301, 2026_0"    0304_4
+"_1, 2024_0818, 2025_0525, 2025_0720, 2026_030"    0525
+"18, 2025_0525, 2025_0720, 2026_0304_4, 2026_0"    0720
+"25, 2025_0720, 2026_0304_4, 2026_0301, 2026_0"    0304_4
 ", 2026_0304_4, 2026_0301, 2026_0302_1, 2026_0"    0301
 "_4, 2026_0301, 2026_0302_1, 2026_0304_7; Stai"    0302_1
 ", 2026_0302_1, 2026_0304_7; Stair at end conc"    0304_7
@@ -955,10 +959,14 @@ readme0.md
 "gs in the five 2024_1005 examples (sequence w"    1005
 "mple is found. 2024_0727_6 is added to Sequen"    0727_6
 ". (For example 2024_1012_1) StairAtStart: are"    1012_1
-"nvex straight. 2024_0516_2 is both StairAtEnd"    0516_2
+"ght.  <!---->  2024_0516_2 is both StairAtEnd"    0516_2
 "epresentation: 2024_0625 can be extended vert"    0625
 "an happen with 2024_0625_1, which is just one"    0625_1
-"air extension: 2024_0712)  <!-- <img align="t"    0712
+"air extension: 2024_0712) LeftRightCorner() h"    0712
+"() has a case (2024_0611_2) that should be so"    0611_2
+"closed corner" 2025_0522 is solved by LeftRig"    0522
+" concave. Also 2025_0527_2 close obstacle ins"    0527_2
+"nside-outside. 2025_0527_2   <!-- <img align="    0527_2
 "" src="References/9_18665383.svg" width="9" /"    18665383
 "cross obstacle 2024_0529: Double Area first c"    0529
 "ot need left C 2024_0529_1: Double Area secon"    0529_1
@@ -972,11 +980,11 @@ readme0.md
 ", across right 2024_0531: Directional Area is"    0531
 " across right  2024_0531_4: New sequence case"    0531_4
 
-364 matches found, 0 needs to be replaced.
+369 matches found, 0 needs to be replaced.
 
 ----- Check if references are found in content -----
 
-MainWindow.xaml.cs 223999
+MainWindow.xaml.cs 224530
 
 "---- 21 x 21 -----  2023_0413: Path.CheckFutu"
 "he start end, as in 2023_0415                "
@@ -1034,9 +1042,9 @@ MainWindow.xaml.cs 223999
 
 53 matches found, 0 replaced.
 
-New length 223999 inCount 46 noCount 793
+New length 224530 inCount 46 noCount 747
 
-Path.cs 391885
+Path.cs 391993
 
 "ed for border as in 2023_0714. Find out the m"
 "other section as in 2023_0714_1 when we step "
@@ -1192,7 +1200,7 @@ Path.cs 391885
 "EndConcaveIn4(); // 2024_0814, ...           "
 "vert + 5         // 2024_0814: stair, mid acr"
 "rt obstalce inside: 2024_0817 mid across, 202"
-"rner             // 2024_0818, 2025_0720_1, 2"
+"rner             // 2024_0818, 2025_0720, 202"
 "eStair()         // 2024_0818_1         // Fi"
 "cross up         // 2024_0820: mid across dow"
 "kthrough start. See 2024_0823             coo"
@@ -1228,12 +1236,12 @@ Path.cs 391885
 "t3(); // 2025_0527, 2025_0527_1 open corner  "
 "_0717_2, 2025_0527, 2025_0527_1, 2026_0302_4,"
 "                 // 2025_0527_2: close obstac"
-"      // 2024_0818, 2025_0720_1, 2026_0301, 2"
+"      // 2024_0818, 2025_0720, 2026_0301, 202"
 "versed()         // 2026_0124, 2026_0304     "
-"_0818, 2025_0720_1, 2026_0301, 2026_0302_1, 2"
+"24_0818, 2025_0720, 2026_0301, 2026_0302_1, 2"
 "_1: area         // 2026_0301_1: area        "
 "   {             // 2026_0302             // "
-"_0720_1, 2026_0301, 2026_0302_1, 2026_0304_7:"
+"25_0720, 2026_0301, 2026_0302_1, 2026_0304_7:"
 " case 1:         // 2026_0302_3 mid across le"
 "_0527, 2025_0527_1, 2026_0302_4, 2026_0302_5 "
 "527_1, 2026_0302_4, 2026_0302_5         {    "
@@ -1261,6 +1269,9 @@ Path.cs 391885
 "    // E         // 2026_0410: mid across, mi"
 "ss right         // 2026_0410_4: corner left,"
 "ross x 2         // 2026_0410_6: left mid acr"
+"d across         // 7_2558: Close mid across "
+"raight()         // 7_266: Close straight    "
+"AreaUp()         // 7_3627: Close mid across "
 " point of the area. 9_1023055626             "
 " point of the area. 9_1023055626             "
 " point of the area. 9_1023055626             "
@@ -1330,9 +1341,9 @@ Path.cs 391885
 "                 T("StairAtEndConvexStraight3"
 "024_1001: corner -> StairAtEndConvexStraight3"
 
-291 matches found, 0 replaced.
+294 matches found, 0 replaced.
 
-New length 391885 inCount 181 noCount 658
+New length 391993 inCount 184 noCount 609
 
 Path_control.cs 108350
 
@@ -1400,7 +1411,7 @@ Path_control.cs 108350
 
 61 matches found, 0 replaced.
 
-New length 108350 inCount 51 noCount 788
+New length 108350 inCount 51 noCount 742
 
 Path_old.cs 258598
 
@@ -1592,7 +1603,6 @@ Path_old.cs 258598
 "hen we descend. But 9_198 should not add end "
 "hen we descend. But 9_198 should not add end "
 " the live end as in 9_213.             if ((I"
-"                  * 9_22323                  "
 "arStraightRight) // 9_234256             {   "
 " && farSideDown) // 9_234256                 "
 "left and right case 9_234320         //CheckN"
@@ -1664,15 +1674,15 @@ Path_old.cs 258598
 "o apply the rule in straight left/right direc"
 "o apply the rule in straight left/right direc"
 
-259 matches found, 0 replaced.
+258 matches found, 0 replaced.
 
-New length 258598 inCount 155 noCount 684
+New length 258598 inCount 154 noCount 639
 
 Path_old2.cs 54935
 
 0 matches found, 0 replaced.
 
-New length 54935 inCount 0 noCount 839
+New length 54935 inCount 0 noCount 793
 
 Rules.xaml.cs 117076
 
@@ -1680,7 +1690,7 @@ Rules.xaml.cs 117076
 
 1 matches found, 0 replaced.
 
-New length 117076 inCount 1 noCount 838
+New length 117076 inCount 1 noCount 792
 
 readme.md 2269
 
@@ -1688,9 +1698,9 @@ readme.md 2269
 
 1 matches found, 0 replaced.
 
-New length 2269 inCount 1 noCount 838
+New length 2269 inCount 1 noCount 792
 
-readme0.md 160479
+readme0.md 159777
 
 "img src="References/2023_0806.svg" width="5" "
 "img src="References/2023_0821.svg" width="5" "
@@ -1699,6 +1709,7 @@ readme0.md 160479
 "img src="References/2023_0821_3.svg" width="5"
 "img src="References/2023_0901.svg" width="7" "
 "img src="References/2023_0911.svg" width="7" "
+"img src="References/2023_0911_1.svg" width="7"
 "img src="References/2023_0929.svg" width="7" "
 "img src="References/2023_0930.svg" width="5" "
 "img src="References/2023_0930_1.svg" width="5"
@@ -1759,7 +1770,7 @@ readme0.md 160479
 "op" src="References/2024_0516.svg" width="9" "
 "op" src="References/2024_0516_1.svg" width="9"
 "dth="7" />  (v+1)B; 2024_0516_2, 2024_1012; c"
-"nd convex straight. 2024_0516_2 is both Stair"
+"straight.  <!---->  2024_0516_2 is both Stair"
 "/>  [DoubleStair()] 2024_0516_4, 2024_0516_5,"
 "air()] 2024_0516_4, 2024_0516_5, 2024_0706_1,"
 "op" src="References/2024_0516_6.svg" width="8"
@@ -1794,6 +1805,7 @@ readme0.md 160479
 ".svg" width="4" />  2024_0610_4, 2024_0610_5,"
 "4" />  2024_0610_4, 2024_0610_5, 2024_1012_1,"
 "convex straight 3 E 2024_0611 needs extension"
+"orner() has a case (2024_0611_2) that should "
 "op" src="References/2024_0618.svg" width="11""
 "ConcaveStraight5()] 2024_0618, 2024_0717_1, 2"
 "op" src="References/2024_0618_2.svg" width="1"
@@ -1829,7 +1841,7 @@ readme0.md 160479
 "op" src="References/2024_0711.svg" width="13""
 "727_6, 2024_1006_1, 2024_0711, Double stair  "
 "op" src="References/2024_0712.svg" width="11""
-". (Stair extension: 2024_0712)  <!-- <img ali"
+". (Stair extension: 2024_0712) LeftRightCorne"
 "op" src="References/2024_0713.svg" width="11""
 "op" src="References/2024_0714.svg" width="11""
 "rAtEndConcaveIn5()] 2024_0714, 2026_0410_6; S"
@@ -1926,11 +1938,12 @@ readme0.md 160479
 "op" src="References/2025_0516.svg" width="13""
 "op" src="References/2025_0522.svg" width="13""
 ">  In the rules for 2025_0522 to 2025_0527, 2"
+"ing "closed corner" 2025_0522 is solved by Le"
 "op" src="References/2025_0522_1.svg" width="1"
 "ConcaveStraight4()] 2025_0522_1; Stair at end"
 "traight 6. Clean up 2025_0522_1, 2025_0525 fo"
 "op" src="References/2025_0525.svg" width="13""
-"_0717_1, 2024_0818, 2025_0525, 2025_0720_1, 2"
+"_0717_1, 2024_0818, 2025_0525, 2025_0720, 202"
 "ean up 2025_0522_1, 2025_0525 for irrelevant "
 "op" src="References/2025_0525_1.svg" width="1"
 "rAtEndConvexOut4()] 2025_0525_1; Stair at end"
@@ -1938,14 +1951,16 @@ readme0.md 160479
 "es for 2025_0522 to 2025_0527, 2025_0527_1, t"
 "_0717_2, 2025_0527, 2025_0527_1, 2026_0302_4,"
 "_0522 to 2025_0527, 2025_0527_1, the second o"
+"start concave. Also 2025_0527_2 close obstacl"
+"cle inside-outside. 2025_0527_2   <!-- <img a"
 "op" src="References/2025_0528.svg" width="13""
 "op" src="References/2025_0528_1.svg" width="1"
 "op" src="References/2025_0716.svg" width="13""
 "op" src="References/2025_0716_1.svg" width="1"
-"op" src="References/2025_0720_1.svg" width="1"
-"24_0818, 2025_0525, 2025_0720_1, 2026_0304_4,"
+"op" src="References/2025_0720.svg" width="13""
+"24_0818, 2025_0525, 2025_0720, 2026_0304_4, 2"
 "bleStairReversed()] 2026_0124, 2026_0304, Dou"
-"720_1, 2026_0304_4, 2026_0301, 2026_0302_1, 2"
+"_0720, 2026_0304_4, 2026_0301, 2026_0302_1, 2"
 "ight3()] 2024_0710, 2026_0301_1 Stair at star"
 "ConcaveStraight6()] 2026_0302 Stair at end co"
 "_0304_4, 2026_0301, 2026_0302_1, 2026_0304_7;"
@@ -1955,7 +1970,7 @@ readme0.md 160479
 "ersed()] 2026_0124, 2026_0304, Double stair r"
 "618_2, 2026_0302_6, 2026_0304_1, 2026_0304_5;"
 "2026_0408, outside: 2026_0304_2, 2026_0304_6;"
-"_0525, 2025_0720_1, 2026_0304_4, 2026_0301, 2"
+"25_0525, 2025_0720, 2026_0304_4, 2026_0301, 2"
 "302_6, 2026_0304_1, 2026_0304_5; Stair at sta"
 "tside: 2026_0304_2, 2026_0304_6; Stair at end"
 "_0301, 2026_0302_1, 2026_0304_7; Stair at end"
@@ -2001,9 +2016,9 @@ readme0.md 160479
 "while task running  9_2034760 Is a Directiona"
 "op" src="References/9_2059934.svg" width="9" "
 "op" src="References/9_22328.svg" width="9" />"
-"op" src="References/9_22328.svg" width="9" />"
 "op" src="References/9_22328_1.svg" width="9" "
-"op" src="References/9_22328_1.svg" width="9" "
+"op" src="References/9_22328_2.svg" width="9" "
+"op" src="References/9_22328_3.svg" width="9" "
 "op" src="References/9_227130.svg" width="9" /"
 "op" src="References/9_227200.svg" width="9" /"
 "op" src="References/9_227200_1.svg" width="9""
@@ -2040,7 +2055,7 @@ readme0.md 160479
 "op" src="References/9_641027.svg" width="9" /"
 "op" src="References/9_641027_1.svg" width="9""
 "op" src="References/9_665575.svg" width="9" /"
-"op" src="References/9_725325_1.svg" width="9""
+"op" src="References/9_725325.svg" width="9" /"
 "op" src="References/9_740039.svg" width="9" /"
 "op" src="References/9_740039_1.svg" width="9""
 "op" src="References/9_740129.svg" width="9" /"
@@ -2357,11 +2372,10 @@ readme0.md 160479
 "_0727_6 is added to Sequence2, but we need to"
 "c="References/rules/Square 4 x 2 orig.svg" wi"
 "c="References/rules/Square 4 x 2 orig.svg" wi"
-" next case uses the stair area described in t"
 "c="References/rules/Stair at end convex rule "
 "c="References/rules/Stair at end convex rule."
 "c="References/rules/Stair at start equal.svg""
-"p" src="References/_StairAtEnd.svg" width="6""
+"c="References/rules/StairAtEnd.svg" width="6""
 "c="References/rules/StairAtEndConcaveIn2_1W.s"
 "c="References/rules/StairAtEndConcaveIn2_1W_1"
 "c="References/rules/StairAtEndConcaveIn3_1W.s"
@@ -2416,8 +2430,8 @@ readme0.md 160479
 "c="References/rules/StairAtStart 3 2.svg" wid"
 "c="References/rules/StairAtStart 4 1.svg" wid"
 "c="References/rules/StairAtStart 4 2.svg" wid"
-"p" src="References/_StairAtStartConcave.svg" "
-"p" src="References/_StairAtStartConvexIn.svg""
+"c="References/rules/StairAtStartConcave.svg" "
+"c="References/rules/StairAtStartConvexIn.svg""
 "c="References/rules/StairAtStartConvexIn2_E.s"
 "c="References/rules/StairAtStartConvexIn2_E_1"
 "c="References/rules/StairAtStartConvexIn3_(hp"
@@ -2426,14 +2440,14 @@ readme0.md 160479
 "c="References/rules/StairAtStartConvexIn3_E_1"
 "c="References/rules/StairAtStartConvexIn4_(hp"
 "c="References/rules/StairAtStartConvexIn4_(hp"
-"p" src="References/_StairAtStartConvexOut3.sv"
-"p" src="References/_StairAtStartConvexOut3.sv"
-"p" src="References/_StairAtStartConvexOut3.sv"
-"p" src="References/_StairAtStartConvexOut3.sv"
-"p" src="References/_StairAtStartConvexOut4.sv"
-"p" src="References/_StairAtStartConvexOut5.sv"
-"p" src="References/_StairAtStartConvexOut6.sv"
-"p" src="References/_StairAtStartConvexStraigh"
+"c="References/rules/StairAtStartConvexOut3.sv"
+"c="References/rules/StairAtStartConvexOut3.sv"
+"c="References/rules/StairAtStartConvexOut3.sv"
+"c="References/rules/StairAtStartConvexOut3.sv"
+"c="References/rules/StairAtStartConvexOut4.sv"
+"c="References/rules/StairAtStartConvexOut5.sv"
+"c="References/rules/StairAtStartConvexOut6.sv"
+"c="References/rules/StairAtStartConvexStraigh"
 "c="References/rules/StairAtStartConvexStraigh"
 "c="References/rules/StairAtStartConvexStraigh"
 "c="References/rules/StairAtStartConvexStraigh"
@@ -2516,9 +2530,9 @@ readme0.md 160479
 "c="References/rules/xdist.svg" width="6" />  "
 "c="References/rules/xdist_closed.svg" width=""
 
-823 matches found, 0 replaced.
+827 matches found, 0 replaced.
 
-New length 160479 inCount 613 noCount 226
+New length 159777 inCount 617 noCount 176
 
 MainWindow.xaml.cs: Arrays equal
 Path.cs: Arrays equal
@@ -2529,4 +2543,4 @@ Rules.xaml.cs: Arrays equal
 readme.md: Arrays equal
 readme0.md: Arrays equal
 
-Global inCount 767 noCount 72
+Global inCount 770 noCount 23

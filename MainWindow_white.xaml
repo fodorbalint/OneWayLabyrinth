@@ -6,16 +6,6 @@
         xmlns:skia="clr-namespace:SkiaSharp.Views.WPF;assembly=SkiaSharp.Views.WPF"
         mc:Ignorable="d" Title="One-way labyrinth" x:Name="ContainerWindow" Height="851" Width="968" Left="950" Top="181" Focusable="True" PreviewKeyDown="MWindow_PreviewKeyDown" PreviewMouseDown="Window_PreviewMouseDown">
     <Window.Resources>
-        <Style TargetType="Label">
-            <Setter Property="Foreground" Value="White" />
-        </Style>
-        <Style TargetType="CheckBox">
-            <Setter Property="Foreground" Value="White" />
-        </Style>
-        <Style TargetType="TextBox">
-            <Setter Property="Foreground" Value="White" />
-            <Setter Property="Background" Value="Black" />
-        </Style>
         <Style x:Key="GreenButton" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="LightGreen" />
             <!-- LightGreen: #90EE90, LightPink: #FFB6C1 -->
@@ -52,7 +42,7 @@
             </Style.Triggers>
         </Style>
     </Window.Resources>
-    <Grid x:Name="MainGrid" Background="Black">
+    <Grid x:Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="280" />
@@ -81,7 +71,7 @@
 1, 2<LineBreak />
 2, 1
             </TextBlock>
-            <Label x:Name="CoordinateLabel" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" BorderThickness="1" BorderBrush="Black" Foreground="Black" Background="White" Visibility="Hidden" IsHitTestVisible="False" ClipToBounds="False" />
+            <Label x:Name="CoordinateLabel" Content="" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" BorderThickness="1" BorderBrush="Black" Background="White" Visibility="Hidden" IsHitTestVisible="False" ClipToBounds="False" />
             <Label x:Name="MessageLine" Content="" HorizontalAlignment="Left" Margin="20,108,0,0" VerticalAlignment="Top" Visibility="Hidden"/>
             <Button x:Name="OKButton" Content="OK" Background="LightPink" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,112,299,0" Width="50" Height="21" Visibility="Hidden" Click="OK_Click" />
             <Button Content="Settings" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,112,216,0" Width="70" Height="21" Focusable="False" Click="OpenSettings_Click" />

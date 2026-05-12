@@ -499,7 +499,7 @@ The rule will be now symmetrical. It is similar to the square obstacle pattern.
 
 The same concept we encounter at 725 325. We have seen this previously, just with C-shape, not an area.
 
-<img align="top" src="References/9_725325_1.svg" width="9" />
+<img align="top" src="References/9_725325.svg" width="9" />
 
 The rule is now:
 
@@ -680,13 +680,13 @@ Still, the number of completed walkthroughs before the appereance of the rule ma
 
 22 328, Straight Mid Across 3 End Area
 
-<img align="top" src="References/9_22328.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9_old/Straight Mid Across 3 End Area.svg" width="4" />
+<img align="top" src="References/9_22328_2.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9_old/Straight Mid Across 3 End Area.svg" width="4" />
 
 <!---->
 
 22 328, Straight Across End Area
 
-<img align="top" src="References/9_22328_1.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9_old/Straight Across End Area.svg" width="4" />
+<img align="top" src="References/9_22328_3.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9_old/Straight Across End Area.svg" width="4" />
 
 25 153, Straight Across End C
 
@@ -2629,7 +2629,7 @@ And here, the second obstacle is not a close one, but the area it creates is 1B,
 
 The following case is similar, only the first obstacle is not a corner but a straight wall:
 
-<img align="top" src="References/2025_0720_1.svg" width="13" />
+<img align="top" src="References/2025_0720.svg" width="13" />
 
 <!---->
 
@@ -2961,7 +2961,7 @@ In the first rule, we could exit at the farthest black field first, but there is
 
 <img align="top" src="References/rules/StairAtEndConcaveStraight4_vW.svg" width="6" />
 
-[StairAtEndConcaveStraight5()] 2024_0618, 2024_0717_1, 2024_0818, 2025_0525, 2025_0720_1, 2026_0304_4, 2026_0301, 2026_0302_1, 2026_0304_7; Stair at end concave straight 5 is rewritten for vertical position.
+[StairAtEndConcaveStraight5()] 2024_0618, 2024_0717_1, 2024_0818, 2025_0525, 2025_0720, 2026_0304_4, 2026_0301, 2026_0302_1, 2026_0304_7; Stair at end concave straight 5 is rewritten for vertical position.
 
 <img align="top" src="References/rules/StairAtEndConcaveStraight5_1W.svg" width="8" />
 
@@ -3151,6 +3151,9 @@ Page 180: rewrite corner 5 1 extended stair 2.svg for stair at end convex straig
 
 2024_0516_2 is both StairAtEndConvex and StairAtStart (representation: StairAtEndConvex 3 1 now nostair.svg and StairAtEndConvex 3 2 now nostair.svg)
 Make pattern set representation: 2024_0625 can be extended vertically, holding a fixed 2 horizontal distance, or in a stair at the far end, so that vert = hori + 2. The two can also be combined. The same can happen with 2024_0625_1, which is just one vertical distance shorter. (Stair extension: 2024_0712)
+LeftRightCorner() has a case (2024_0611_2) that should be solved with StairAtStart, instead of using "closed corner"
+2025_0522 is solved by LeftRightCorner close obstacle inside instead of Stair at start concave. Also 2025_0527_2 close obstacle inside-outside.
+2025_0527_2 
 
 <!--
 <img align="top" src="References/9_18665383.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9/Triple Area Exit Down.svg" width="6" />

@@ -87,6 +87,7 @@
         width: 100%;
         height: 100%;
         box-shadow: inset 0 0 0 1px var(--border);
+        pointer-events: none;
     }
     div.num {
         position: absolute;

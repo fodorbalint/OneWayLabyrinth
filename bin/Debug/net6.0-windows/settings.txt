@@ -9,6 +9,6 @@ makeStats: True
 activeRules: False
 checkerArea: True
 checkerBoard: True
-references: 9_9121;2024_1005_3;2024_1005_5
-ruleXSize: 5
-ruleYSize: 6
+references: 2025_0527;2025_0527_1;2025_0527_2
+ruleXSize: 7
+ruleYSize: 4

@@ -31,8 +31,6 @@ using SkiaSharp.Views.WPF;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.RegularExpressions;
-using System.Runtime.InteropServices;
-using System.Windows.Interop;
 
 /*
 
@@ -161,11 +159,6 @@ namespace OneWayLabyrinth
         public string baseDir = AppDomain.CurrentDomain.BaseDirectory;
         public static bool rulesDisabled = false;
 
-        [DllImport("dwmapi.dll")]
-        private static extern int DwmSetWindowAttribute(IntPtr hwnd, int attr, ref int attrValue, int attrSize);
-
-        private const int DWMWA_USE_IMMERSIVE_DARK_MODE = 20;
-
         // ----- Initialize -----
 
         public MainWindow()
@@ -174,11 +167,6 @@ namespace OneWayLabyrinth
             Thread.CurrentThread.CurrentCulture = CultureInfo.InvariantCulture;
 
             InitializeComponent();
-
-            IntPtr hWnd = new WindowInteropHelper(this).EnsureHandle();
-            int useImmersiveDarkMode = 1; // 1 = Til, 0 = Fra
-
-            DwmSetWindowAttribute(hWnd, DWMWA_USE_IMMERSIVE_DARK_MODE, ref useImmersiveDarkMode, sizeof(int));
 
             timer = new DispatcherTimer();
             timer.Tick += Timer_Tick;
@@ -719,7 +707,7 @@ namespace OneWayLabyrinth
 
                             break;
                         }
-                        else if (taken.possible.Count < 3)
+                        else
                         {
                             bool toBreak = false;
                             for (int i = 0; i < taken.possible.Count; i++)
