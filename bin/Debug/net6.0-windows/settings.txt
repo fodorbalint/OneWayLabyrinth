@@ -8,7 +8,7 @@ displayArea: True
 makeStats: True
 activeRules: False
 checkerArea: True
-checkerBoard: True
-references: 2025_0527;2025_0527_1;2025_0527_2
+checkerBoard: False
+references: 2026_0405;2024_0516_8;2024_0516_6
 ruleXSize: 7
 ruleYSize: 4

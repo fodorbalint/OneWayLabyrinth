@@ -16,6 +16,22 @@ References/rules/
 
 0 files to be renamed.
 
+References/rules_sorted/5-grid/
+
+0 files to be renamed.
+
+References/rules_sorted/7-grid/
+
+0 files to be renamed.
+
+References/rules_sorted/9-grid/
+
+0 files to be renamed.
+
+References/rules_sorted/13-grid/
+
+0 files to be renamed.
+
 ----- List references in content -----
 
 MainWindow.xaml.cs
@@ -159,8 +175,9 @@ Path.cs
 " // 2024_0710, 2024_0710_1: area         // 2"    0710_1
 "rea         // 2026_0301_1: area         // 2"    0301_1
 "rea         // 2024_0611: [needs extension] c"    0611
-"4()         // 2024_0618_2, 2026_0302_6, 2026"    0618_2
-"/ 2024_0618_2, 2026_0302_6, 2026_0304_1, 2026"    0302_6
+"4()         // 2024_0601, 2024_0618_2, 2026_0"    0601
+" // 2024_0601, 2024_0618_2, 2026_0302_6, 2026"    0618_2
+", 2024_0618_2, 2026_0302_6, 2026_0304_1, 2026"    0302_6
 ", 2026_0302_6, 2026_0304_1, 2026_0304_5: 1W  "    0304_1
 ", 2026_0304_1, 2026_0304_5: 1W         // 202"    0304_5
 " 1W         // 2024_0610_4, 2024_0610_5, 9_12"    0610_4
@@ -175,9 +192,11 @@ Path.cs
 "ght         // 2026_0404 across left, mid acr"    0404
 "ght         // 2026_0408_1 C-shape left, acro"    0408_1
 "ght         // 2026_0408_9 area left, mid acr"    0408_9
-"ce:         // 2024_0516: mid across left, ac"    0516
+" also:         // 9_231960, 2024_0516: mid ac"    231960
+"  // 9_231960, 2024_0516: mid across left, ac"    0516
 "ght         // 2024_0704, 2024_1014: area lef"    0704
 " // 2024_0704, 2024_1014: area left, mid acro"    1014
+"ght         // 2024_0531: C-shape left, mid a"    0531
 "    // case 2: 2024_0805, 2024_0808          "    0805
 " 2: 2024_0805, 2024_0808          {          "    0808
 "               // 9_22325 shows that dist mus"    22325
@@ -197,10 +216,13 @@ Path.cs
 "oss         // 2024_0730: mid across left, ac"    0730
 "ght         // 2024_0729_3: across left, mid "    0729_3
 "ght         // 2026_0404_3 area left, mid acr"    0404_3
-"ll:         // 2024_0905 mid across         /"    0905
-"oss         // 2024_0706, 2024_1001 (also Seq"    0706
-" // 2024_0706, 2024_1001 (also Sequence2), 20"    1001
-"so Sequence2), 2024_1008 corner          // C"    1008
+" wall:         // 9_227130 across         // "    227130
+"oss         // 2024_0905 mid across         /"    0905
+"oss         // 2024_0531 mid across (also Sta"    0531
+"ce)         // 2024_0706, 2024_1001 (also Seq"    0706
+" // 2024_0706, 2024_1001 (also Sequence), 202"    1001
+"lso Sequence), 2024_1008 corner         // 20"    1008
+"ner         // 2024_0531          // Closed c"    0531
 "er:         // 2024_0916 across         // 9_"    0916
 "across         // 9_665575 mid across        "    665575
 "4()         // 2024_0624         {           "    0624
@@ -241,8 +263,10 @@ Path.cs
 "r()         // 2024_0706_1, 2024_1006_1, 2024"    0706_1
 "/ 2024_0706_1, 2024_1006_1, 2024_0711        "    1006_1
 ", 2024_1006_1, 2024_0711         // Also Sequ"    0711
-"lso Sequence2: 2024_0516_4, 2024_0516_5, 2024"    0516_4
-": 2024_0516_4, 2024_0516_5, 2024_0727_6      "    0516_5
+"// Also Sequence: 9_2022763, 9_19720122, 2024"    2022763
+"uence: 9_2022763, 9_19720122, 2024_0516_4, 20"    19720122
+"3, 9_19720122, 2024_0516_4, 2024_0516_5, 2024"    0516_4
+", 2024_0516_4, 2024_0516_5, 2024_0727_6      "    0516_5
 ", 2024_0516_5, 2024_0727_6         {         "    0727_6
 "            // 2024_1006_1 shows that (1, -1)"    1006_1
 "e two corners (2024_0706_1) or close obstacle"    0706_1
@@ -267,10 +291,15 @@ Path.cs
 "air         // 2024_1006: across on the left "    1006
 "air         // 2024_0704, 2024_1014: area on "    0704
 " // 2024_0704, 2024_1014: area on left, close"    1014
-" // [no stair] 2024_0516_6, 2024_0516_7, 2024"    0516_6
-"] 2024_0516_6, 2024_0516_7, 2024_0516_8: acro"    0516_7
-", 2024_0516_7, 2024_0516_8: across         //"    0516_8
-"oss         // 2026_0405 -> Next step double "    0405
+"In2         // 2024_0531 C-shape left, mid ac"    0531
+"xIn2()         // 9_2022763 C-shape left, acr"    2022763
+"ft, across right, 9_19720122 mid across left,"    19720122
+"    // [no stair] 9_2023198, 2024_0516_6, 202"    2023198
+"ir] 9_2023198, 2024_0516_6, 2024_0516_7, 2024"    0516_6
+", 2024_0516_6, 2024_0516_7, 2024_0516_8: C-sh"    0516_7
+", 2024_0516_7, 2024_0516_8: C-shape left, acr"    0516_8
+" right         // 9_19720614: mid across left"    19720614
+"ght         // 2026_0405 -> Next step double "    0405
 ", 0         // 2024_1115: mid across -> Doubl"    1115
 " -1         // 2024_0727_6: across, horizonta"    0727_6
 "air         // 2024_0724: left across, right "    0724
@@ -323,7 +352,7 @@ Path.cs
 "ld twice as in 2023_1208 side across down che"    1208
 "ield[1]) // In 2023_0919 (step right, the nea"    0919
 
-244 matches found, 0 needs to be replaced.
+257 matches found, 0 needs to be replaced.
 
 Path_control.cs
 
@@ -348,8 +377,13 @@ Path_control.cs
 "earBorder() // 2023_0909. Check both straight"    0909
 "               // 9_466                      "    466
 "otate down (CCW): 9_59438645 for behind and u"    59438645
+"// First case: 2024_0529_4 across         // "    0529_4
+"/ Second case: 2024_0529_5 across         // "    0529_5
+"// Third case: 2024_0529_3 across          //"    0529_3
+"or first case: 2024_0529, 2024_0529_2 is solv"    0529
+"se: 2024_0529, 2024_0529_2 is solved by the s"    0529_2
+"r second case: 2024_0529_1 is solved by the s"    0529_1
 "ly true, as in 2024_0505. If the bigger area "    0505
-"    case 1: // 2024_0601                     "    0601
 "            // 2024_0516_2                   "    0516_2
 "   // Rotated: 2024_0516_3                   "    0516_3
 "      // See also 9_665575 for alternative st"    665575
@@ -368,7 +402,7 @@ Path_control.cs
 "he live end as in 9_213.                 if ("    213
 "ds necessary, see 9_29558469             if ("    29558469
 
-40 matches found, 0 needs to be replaced.
+45 matches found, 0 needs to be replaced.
 
 Path_old.cs
 
@@ -407,6 +441,8 @@ Path_old.cs
 "FarBorder() // 2023_0831         {           "    0831
 " from 7x7, see 2023_0831. Similar to CheckNea"    0831
 "earBorder() // 2023_0909. Check both straight"    0909
+"t3             // 9_462, 9_2034760           "    462
+"        // 9_462, 9_2034760             for ("    2034760
 ", int nSy = 0) // 9_51015231, 9_53144883     "    51015231
 "0) // 9_51015231, 9_53144883         {       "    53144883
 "         // Both: 9_18677343                 "    18677343
@@ -592,7 +628,7 @@ Path_old.cs
 "               // 9_350: checkstraight straig"    350
 "               // 9_1273: L-shape, end row fi"    1273
 
-219 matches found, 0 needs to be replaced.
+221 matches found, 0 needs to be replaced.
 
 Path_old2.cs
 
@@ -861,8 +897,9 @@ readme0.md
 "exStraight3()] 2024_0710, 2026_0301_1 Stair a"    0710
 "()] 2024_0710, 2026_0301_1 Stair at start con"    0301_1
 "x straight 3 E 2024_0611 needs extension  <im"    0611
-"exStraight4()] 2024_0618_2, 2026_0302_6, 2026"    0618_2
-"] 2024_0618_2, 2026_0302_6, 2026_0304_1, 2026"    0302_6
+"exStraight4()] 2024_0601, 2024_0618_2, 2026_0"    0601
+"()] 2024_0601, 2024_0618_2, 2026_0302_6, 2026"    0618_2
+", 2024_0618_2, 2026_0302_6, 2026_0304_1, 2026"    0302_6
 ", 2026_0302_6, 2026_0304_1, 2026_0304_5; Stai"    0304_1
 ", 2026_0304_1, 2026_0304_5; Stair at start co"    0304_5
 " straight 4 1W 2024_0727_5, 2024_0725: start "    0727_5
@@ -874,8 +911,14 @@ readme0.md
 ", 9_121670752, 2024_0627; hB:  <img align="to"    0627
 "exStraight5()] 2024_0626; Stair at start conv"    0626
 "aight 5 (h+1)W 2024_0727_4; start obstacle ou"    0727_4
-"ndConvexIn2()] 2026_0404, 2026_0408_1; Stair "    0404
-"()] 2026_0404, 2026_0408_1; Stair at end conv"    0408_1
+"ndConvexIn2()] 2026_0302_3, 2026_0404, 2026_0"    0302_3
+"] 2026_0302_3, 2026_0404, 2026_0408_1, 2026_0"    0404
+"_3, 2026_0404, 2026_0408_1, 2026_0408_9, 9_23"    0408_1
+", 2026_0408_1, 2026_0408_9, 9_231960, 2024_05"    0408_9
+"8_1, 2026_0408_9, 9_231960, 2024_0516, 2024_0"    231960
+"8_9, 9_231960, 2024_0516, 2024_0704, 2024_101"    0516
+"60, 2024_0516, 2024_0704, 2024_1014; Stair at"    0704
+"16, 2024_0704, 2024_1014; Stair at end convex"    1014
 " width="6" />  2024_0805, 2024_0808; hori >= "    0805
 "/>  2024_0805, 2024_0808; hori >= 4, vB; cann"    0808
 "ndConvexIn3()] 2024_0718, 2024_0720_2, 2024_0"    0718
@@ -891,8 +934,9 @@ readme0.md
 ", 2026_0404_1, 2024_0730, 2024_0729_3, 2026_0"    0730
 "_1, 2024_0730, 2024_0729_3, 2026_0404_3; Stai"    0729_3
 ", 2024_0729_3, 2026_0404_3; Stair at end conv"    0404_3
-"exStraight3()] 2024_0905, 2024_0706, 2024_202"    0905
-"()] 2024_0905, 2024_0706, 2024_2024_1001, 202"    0706
+"onvexStraight3()] 9_227130, 2024_0905, 2024_0"    227130
+"3()] 9_227130, 2024_0905, 2024_0706, 2024_202"    0905
+"30, 2024_0905, 2024_0706, 2024_2024_1001, 202"    0706
 "024_0706, 2024_2024_1001, 2024_1008, 2024_091"    1001
 "024_2024_1001, 2024_1008, 2024_0916; Stair at"    1008
 "01, 2024_1008, 2024_0916; Stair at end convex"    0916
@@ -930,8 +974,9 @@ readme0.md
 "de: 2024_0817, 2026_0408, outside: 2026_0304_"    0408
 "0408, outside: 2026_0304_2, 2026_0304_6; Stai"    0304_2
 ": 2026_0304_2, 2026_0304_6; Stair at end conc"    0304_6
-"DoubleStair()] 2024_0516_4, 2024_0516_5, 2024"    0516_4
-"] 2024_0516_4, 2024_0516_5, 2024_0706_1, 2024"    0516_5
+"  [DoubleStair()] 9_2022763, 2024_0516_4, 202"    2022763
+"()] 9_2022763, 2024_0516_4, 2024_0516_5, 2024"    0516_4
+", 2024_0516_4, 2024_0516_5, 2024_0706_1, 2024"    0516_5
 ", 2024_0516_5, 2024_0706_1, 2024_0727_6, 2024"    0706_1
 ", 2024_0706_1, 2024_0727_6, 2024_1006_1, 2024"    0727_6
 ", 2024_0727_6, 2024_1006_1, 2024_0711, Double"    1006_1
@@ -963,24 +1008,17 @@ readme0.md
 "epresentation: 2024_0625 can be extended vert"    0625
 "an happen with 2024_0625_1, which is just one"    0625_1
 "air extension: 2024_0712) LeftRightCorner() h"    0712
-"() has a case (2024_0611_2) that should be so"    0611_2
+"() has a case (2024_0611_2, 2024_0611_2_area."    0611_2
 "closed corner" 2025_0522 is solved by LeftRig"    0522
 " concave. Also 2025_0527_2 close obstacle ins"    0527_2
-"nside-outside. 2025_0527_2   <!-- <img align="    0527_2
-"" src="References/9_18665383.svg" width="9" /"    18665383
-"cross obstacle 2024_0529: Double Area first c"    0529
-"ot need left C 2024_0529_1: Double Area secon"    0529_1
-"ot need left C 2024_0529_2: Double Area first"    0529_2
-"ot need left C 2024_0529_3: Double Area third"    0529_3
-"ending left C) 2024_0529_4: Double Area third"    0529_4
-"e needs across 2024_0529_5: Double Area first"    0529_5
-"cross + across 2024_0529_6: Double Area secon"    0529_6
-"cross + across 2024_0602: Double Area second "    0602
-"ile task running  9_2034760 Is a Directional "    2034760
-", across right 2024_0531: Directional Area is"    0531
-" across right  2024_0531_4: New sequence case"    0531_4
+"nside-outside. 2025_0527_2  Is it worth check"    0527_2
+"e rules first. 2024_0530 does not match 9_743"    0530
+"30 does not match 9_743059 and is incorrect, "    743059
+"ot step there. 2024_0529_3 and is solved by L"    0529_3
+"of new system. 2024_0529_5 is solved by LeftR"    0529_5
+"of new system. 2024_0602 is solved by LeftRig"    0602
 
-369 matches found, 0 needs to be replaced.
+371 matches found, 0 needs to be replaced.
 
 ----- Check if references are found in content -----
 
@@ -1039,12 +1077,14 @@ MainWindow.xaml.cs 224530
 "be necessary, as in 9_19717655  ----- 21 x 21"
 "side. First example 9_19802714.              "
 "den fields, like in 9_349170             {   "
+" to begin the other C-Shape.                 "
+"                 M("Future L: " + completedCo"
 
-53 matches found, 0 replaced.
+55 matches found, 0 replaced.
 
-New length 224530 inCount 46 noCount 747
+New length 224530 inCount 48 noCount 757
 
-Path.cs 391993
+Path.cs 392475
 
 "ed for border as in 2023_0714. Find out the m"
 "other section as in 2023_0714_1 when we step "
@@ -1056,18 +1096,23 @@ Path.cs 391993
 "tion. Can happen in 2023_1006                "
 "arting situation of 2023_1119, where we mark "
 "e field twice as in 2023_1208 side across dow"
-"equence:         // 2024_0516: mid across lef"
+"       // 9_231960, 2024_0516: mid across lef"
 "d across         // 2024_0516, 2024_0516_1: o"
 "      // 2024_0516, 2024_0516_1: one step acr"
 "/ (v+1)B         // 2024_0516_2: across up, m"
-" // Also Sequence2: 2024_0516_4, 2024_0516_5,"
+"022763, 9_19720122, 2024_0516_4, 2024_0516_5,"
 " or close obstacle (2024_0516_4) or area (202"
 "onvexIn2         // 2024_0516_4, 2024_0516_5:"
-"ence2: 2024_0516_4, 2024_0516_5, 2024_0727_6 "
+"20122, 2024_0516_4, 2024_0516_5, 2024_0727_6 "
 "    // 2024_0516_4, 2024_0516_5: multiple ste"
-"      // [no stair] 2024_0516_6, 2024_0516_7,"
-"stair] 2024_0516_6, 2024_0516_7, 2024_0516_8:"
-"516_6, 2024_0516_7, 2024_0516_8: across      "
+"o stair] 9_2023198, 2024_0516_6, 2024_0516_7,"
+"23198, 2024_0516_6, 2024_0516_7, 2024_0516_8:"
+"516_6, 2024_0516_7, 2024_0516_8: C-shape left"
+"ss right         // 2024_0531: C-shape left, "
+"d across         // 2024_0531 mid across (als"
+"8 corner         // 2024_0531          // Clo"
+"onvexIn2         // 2024_0531 C-shape left, m"
+"aight4()         // 2024_0601, 2024_0618_2, 2"
 "4 == 3 && j < 2) // 2024_0610, 2024_0610_1, 2"
 " < 2) // 2024_0610, 2024_0610_1, 2024_0625_1,"
 " 1)  // 9_743059_1, 2024_0610_2, 2024_0610_3,"
@@ -1093,7 +1138,7 @@ Path.cs 391993
 "    // 2024_0611_7, 2024_0611_8              "
 "   {             // 2024_0618, 2024_0717_1, 2"
 "          // Due to 2024_0618_1, new algorith"
-"aight4()         // 2024_0618_2, 2026_0302_6,"
+"      // 2024_0601, 2024_0618_2, 2026_0302_6,"
 "aight3()         // 2024_0619, 2024_0717_2, 2"
 "ross x 2         // 2024_0619_1: mid across x"
 "t return in case of 2024_0623 where the area "
@@ -1111,7 +1156,7 @@ Path.cs 391993
 "uleStair         // 2024_0704, 2024_1014: are"
 "                 // 2024_0704, 2024_1014, 202"
 "if (!stairStart) // 2024_0704, 2024_1014, 202"
-"d across         // 2024_0706, 2024_1001 (als"
+"equence)         // 2024_0706, 2024_1001 (als"
 "ossible.         // 2024_0706, 2024_1001: cor"
 "eStair()         // 2024_0706_1, 2024_1006_1,"
 "of the two corners (2024_0706_1) or close obs"
@@ -1204,9 +1249,9 @@ Path.cs 391993
 "eStair()         // 2024_0818_1         // Fi"
 "cross up         // 2024_0820: mid across dow"
 "kthrough start. See 2024_0823             coo"
-"ht wall:         // 2024_0905 mid across     "
+"0 across         // 2024_0905 mid across     "
 " corner:         // 2024_0916 across         "
-"      // 2024_0706, 2024_1001 (also Sequence2"
+"      // 2024_0706, 2024_1001 (also Sequence)"
 "      // 2024_0706, 2024_1001: corner -> Stai"
 "      // [no stair] 2024_1005: mid across    "
 "bleStair         // 2024_1006: across on the "
@@ -1215,7 +1260,7 @@ Path.cs 391993
 "_0724, 2024_0725_2, 2024_1006, 2026_0404, 202"
 "    // 2024_0706_1, 2024_1006_1, 2024_0711   "
 "                 // 2024_1006_1 shows that (1"
-"1 (also Sequence2), 2024_1008 corner         "
+"01 (also Sequence), 2024_1008 corner         "
 "oss down         // 2024_1012: mid across up,"
 "      // 2024_0704, 2024_1014: area left, mid"
 "      // 2024_0704, 2024_1014: area on left, "
@@ -1245,7 +1290,7 @@ Path.cs 391993
 " case 1:         // 2026_0302_3 mid across le"
 "_0527, 2025_0527_1, 2026_0302_4, 2026_0302_5 "
 "527_1, 2026_0302_4, 2026_0302_5         {    "
-"    // 2024_0618_2, 2026_0302_6, 2026_0304_1,"
+"_0601, 2024_0618_2, 2026_0302_6, 2026_0304_1,"
 "      // 2026_0124, 2026_0304         // 2024"
 "618_2, 2026_0302_6, 2026_0304_1, 2026_0304_5:"
 "ndConcaveOut5(); // 2026_0304_2, 2026_0304_6 "
@@ -1259,7 +1304,7 @@ Path.cs 391993
 "_0725_2, 2024_1006, 2026_0404, 2026_0405     "
 "    // 2024_0626_1, 2026_0404_1 mid across, m"
 "ss right         // 2026_0404_3 area left, mi"
-": across         // 2026_0405 -> Next step do"
+"ss right         // 2026_0405 -> Next step do"
 "24_1006, 2026_0404, 2026_0405                "
 "ld not be disabled: 2026_0405                "
 "24_0817 mid across, 2026_0408 across         "
@@ -1276,9 +1321,17 @@ Path.cs 391993
 " point of the area. 9_1023055626             "
 " point of the area. 9_1023055626             "
 "610_4, 2024_0610_5, 9_121670752, 2024_0627: 1"
+"equence: 9_2022763, 9_19720122, 2024_0516_4, "
+"left, across right, 9_19720122 mid across lef"
+"ss right         // 9_19720614: mid across le"
 "1 (See 9_802973 and 9_2020799)             if"
+"  // Also Sequence: 9_2022763, 9_19720122, 20"
+"vexIn2()         // 9_2022763 C-shape left, a"
+"      // [no stair] 9_2023198, 2024_0516_6, 2"
 "                 // 9_22325 shows that dist m"
 "last condition, see 9_22325                  "
+"ht wall:         // 9_227130 across         /"
+"ce also:         // 9_231960, 2024_0516: mid "
 "o enter.         // 9_234212, 9_522267       "
 "611_7, 2024_0611_8, 9_234212, 9_522267       "
 "irst condition, see 9_25691                  "
@@ -1312,13 +1365,6 @@ Path.cs 391993
 "        T("possible future connection right")"
 "        T("possible future connection left");"
 "uarter, mirrored of remote stair.svg. Rotate "
-"06, 2024_1001 (also Sequence2), 2024_1008 cor"
-"711         // Also Sequence2: 2024_0516_4, 2"
-"0714             T("StairAtEndConcaveStraight"
-"den());             StairAtEndConcaveStraight"
-"    }          void StairAtEndConcaveStraight"
-"                 T("StairAtEndConcaveStraight"
-"                 T("StairAtEndConcaveStraight"
 "4();             T("StairAtEndConcaveStraight"
 "den());             StairAtEndConcaveStraight"
 "    }          void StairAtEndConcaveStraight"
@@ -1341,11 +1387,11 @@ Path.cs 391993
 "                 T("StairAtEndConvexStraight3"
 "024_1001: corner -> StairAtEndConvexStraight3"
 
-294 matches found, 0 replaced.
+300 matches found, 0 replaced.
 
-New length 391993 inCount 184 noCount 609
+New length 392475 inCount 190 noCount 615
 
-Path_control.cs 108350
+Path_control.cs 108728
 
 "AreaNearBorder() // 2023_0909. Check both str"
 "Rel(2, 2)) // 2, 2: 2023_1019                "
@@ -1370,7 +1416,12 @@ Path_control.cs 108350
 "ir 2             // 2024_0516_6             /"
 " Rotated both ways: 2024_0516_7, 2024_0516_8 "
 " ways: 2024_0516_7, 2024_0516_8              "
-"         case 1: // 2024_0601                "
+"ary for first case: 2024_0529, 2024_0529_2 is"
+"ry for second case: 2024_0529_1 is solved by "
+"st case: 2024_0529, 2024_0529_2 is solved by "
+"     // Third case: 2024_0529_3 across       "
+"     // First case: 2024_0529_4 across       "
+"    // Second case: 2024_0529_5 across       "
 "     // Stair only: 2024_0604                "
 "a far rule, like in 9_1307639. The close rule"
 "           // Both: 9_18677343               "
@@ -1408,12 +1459,23 @@ Path_control.cs 108350
 "   activeRules.Add("Sequence second case");  "
 "   activeRules.Add("Sequence third case");   "
 "Rotated, Sequence1, Sequence2, Sequence3, Dow"
+"       // needed if C-Shape precondition is d"
+"        // Checking C-Shape not necessary, si"
+"                 // C-Shape, only left side s"
+"                  //C-Shape up               "
+"     // Third case, Double Area Stair 2      "
+"                 // Double Area Stair        "
+"are 4 x 2 C-Shape / Square 4 x 2 Area        "
+"                 // Square 4 x 2 C-Shape / Sq"
+"                 // Square 4 x 2 C-Shape / Sq"
+"are 4 x 2 C-Shape / Square 4 x 2 Area        "
+"                 // Triple Area              "
 
-61 matches found, 0 replaced.
+77 matches found, 0 replaced.
 
-New length 108350 inCount 51 noCount 742
+New length 108728 inCount 63 noCount 742
 
-Path_old.cs 258598
+Path_old.cs 258675
 
 "          Check1x3: 2023_0430_2 */          p"
 "TakenRel2(0, 1)) // 2023_0708 Field in front "
@@ -1602,6 +1664,7 @@ Path_old.cs 258598
 "                  * 9_198                    "
 "hen we descend. But 9_198 should not add end "
 "hen we descend. But 9_198 should not add end "
+"          // 9_462, 9_2034760             for"
 " the live end as in 9_213.             if ((I"
 "arStraightRight) // 9_234256             {   "
 " && farSideDown) // 9_234256                 "
@@ -1612,6 +1675,7 @@ Path_old.cs 258598
 "                  * 9_348                    "
 "                 // 9_348, first row is walke"
 "                 // 9_348, first row is walke"
+"ght3             // 9_462, 9_2034760         "
 " 0, int nSy = 0) // 9_51015231, 9_53144883   "
 "= 0) // 9_51015231, 9_53144883         {     "
 "Across is needed at 9_53144883               "
@@ -1667,22 +1731,108 @@ Path_old.cs 258598
 "" + "Sequence2: " + Sequence2 + "\n" + "Seque"
 "       // Solved by Sequence2         // 2024"
 "6_7, 2024_0516_8 -> Sequence2         {      "
+"             // Now StairAtEndConvexStraight3"
 "Start()          // StairAtStart 3 1 / 3 2 / "
 "                 T("StairAtStart 4: cannot st"
 "                 T("StairAtStart 4: cannot st"
 "vex, 2024_0626_1 -> StairAtStart 4, 2024_0516"
 "o apply the rule in straight left/right direc"
 "o apply the rule in straight left/right direc"
+"ion, we check for a C-Shape and close obstacl"
+"                 // C-Shape                 /"
+"       // needed if C-Shape precondition is d"
+"        // Checking C-Shape not necessary, si"
+"se;              // C-Shape, only left side s"
+"   }              //C-Shape up             if"
+"rner              * Future 2 x 2 Start End   "
+"                 // Future 2 x 2 Start End   "
+"   activeRules.Add("Future 2 x 2 Start End");"
+"ght.              * Future 2 x 3 Start End   "
+"                 // Future 2 x 3 Start End   "
+"   activeRules.Add("Future 2 x 3 Start End");"
+"ght.              * Future 3 x 3 Start End   "
+"                 // Future 3 x 3 Start End   "
+"   activeRules.Add("Future 3 x 3 Start End");"
+"ont L             * Future L             2023"
+"                 // Future L                 "
+"   activeRules.Add("Future L");              "
+"     // Third case, Double Area Stair 2      "
+"                 // Double Area Stair        "
+"are 4 x 2 C-Shape / Square 4 x 2 Area        "
+"                 // Square 4 x 2 C-Shape / Sq"
+"                 // Square 4 x 2 C-Shape / Sq"
+"are 4 x 2 C-Shape / Square 4 x 2 Area        "
+"                 // Triple Area Exit Down    "
+"   activeRules.Add("Triple Area Exit Down"); "
+"                 // Triple Area Exit Down    "
+"   activeRules.Add("Triple Area Exit Down"); "
+"                 // Triple Area              "
 
-258 matches found, 0 replaced.
+290 matches found, 0 replaced.
 
-New length 258598 inCount 154 noCount 639
+New length 258675 inCount 169 noCount 636
 
 Path_old2.cs 54935
 
-0 matches found, 0 replaced.
+"e == 5) 			{ 				// C-Shape 				// Embedded i"
+" 				// Double Area C-Shape 				for (int i = "
+"es.Add("Double Area C-Shape"); 								active"
+"sLy;  				// Double C-Shape Start C 				for ("
+"veRules.Add("Double C-Shape Start C"); 						"
+"e == 7) 			{ 				// Future 2 x 2 Start End 		"
+"			activeRules.Add("Future 2 x 2 Start End");"
+"y = thisLy;  				// Future 2 x 3 Start End 		"
+"			activeRules.Add("Future 2 x 3 Start End");"
+"y = thisLy;  				// Future 3 x 3 Start End 		"
+"			activeRules.Add("Future 3 x 3 Start End");"
+"y = thisLy;  				// Future L 				for (int i ="
+"			activeRules.Add("Future L"); 							active"
+"e >= 9) 			{ 				// Double Area C-Shape 				f"
+"			activeRules.Add("Double Area C-Shape"); 		"
+"y = thisLy;  				// Double Area Stair 2 				f"
+"			activeRules.Add("Double Area Stair 2"); 		"
+"y = thisLy;  				// Double Area Stair Area 		"
+"			activeRules.Add("Double Area Stair Area");"
+"y = thisLy;  				// Double Area Stair Area 		"
+"			activeRules.Add("Double Area Stair Area");"
+"y = thisLy;  				// Double Area Stair 				for"
+"			activeRules.Add("Double Area Stair"); 				"
+"y = thisLy;  				// Double C-Shape Start C 		"
+"			activeRules.Add("Double C-Shape Start C");"
+"y = thisLy;  				// Double C-Shape Start C 		"
+"			activeRules.Add("Double C-Shape Start C");"
+"y = thisLy;  				// Square 4 x 2 Area 				for"
+"			activeRules.Add("Square 4 x 2 Area"); 				"
+"y = thisLy;  				// Square 4 x 2 C-Shape 				"
+"			activeRules.Add("Square 4 x 2 C-Shape"); 	"
+"y = thisLy;  				// Square 4 x 2 Area 				for"
+"			activeRules.Add("Square 4 x 2 Area"); 				"
+"y = thisLy;  				// Square 4 x 2 C-Shape 				"
+"			activeRules.Add("Square 4 x 2 C-Shape"); 	"
+"y = thisLy;  				// Straight Across 3 End Are"
+"			activeRules.Add("Straight Across 3 End Are"
+"y = thisLy;  				// Straight Across End Area "
+"			activeRules.Add("Straight Across End Area""
+"y = thisLy;  				// Straight Across End C 			"
+"			activeRules.Add("Straight Across End C"); "
+"y = thisLy;  				// Straight Mid Across 3 End"
+"			activeRules.Add("Straight Mid Across 3 End"
+"y = thisLy;  				// Straight Mid Across 3 End"
+"			activeRules.Add("Straight Mid Across 3 End"
+"y = thisLy;  				// Triple Area Exit Down 			"
+"			activeRules.Add("Triple Area Exit Down"); "
+"y = thisLy;  				// Triple Area Stair 				for"
+"			activeRules.Add("Triple Area Stair"); 				"
+"y = thisLy;  				// Triple Area Exit Down 			"
+"			activeRules.Add("Triple Area Exit Down"); "
+"y = thisLy;  				// Triple Area Stair 				for"
+"			activeRules.Add("Triple Area Stair"); 				"
+"y = thisLy;  				// Triple Area 				for (int "
+"			activeRules.Add("Triple Area"); 								ac"
 
-New length 54935 inCount 0 noCount 793
+55 matches found, 0 replaced.
+
+New length 54935 inCount 22 noCount 783
 
 Rules.xaml.cs 117076
 
@@ -1690,7 +1840,7 @@ Rules.xaml.cs 117076
 
 1 matches found, 0 replaced.
 
-New length 117076 inCount 1 noCount 792
+New length 117076 inCount 1 noCount 804
 
 readme.md 2269
 
@@ -1698,9 +1848,9 @@ readme.md 2269
 
 1 matches found, 0 replaced.
 
-New length 2269 inCount 1 noCount 792
+New length 2269 inCount 1 noCount 804
 
-readme0.md 159777
+readme0.md 157436
 
 "img src="References/2023_0806.svg" width="5" "
 "img src="References/2023_0821.svg" width="5" "
@@ -1768,33 +1918,29 @@ readme0.md 159777
 "op" src="References/2024_0419.svg" width="9" "
 "op" src="References/2024_0419_1.svg" width="9"
 "op" src="References/2024_0516.svg" width="9" "
+"6_0408_9, 9_231960, 2024_0516, 2024_0704, 202"
 "op" src="References/2024_0516_1.svg" width="9"
 "dth="7" />  (v+1)B; 2024_0516_2, 2024_1012; c"
 "straight.  <!---->  2024_0516_2 is both Stair"
-"/>  [DoubleStair()] 2024_0516_4, 2024_0516_5,"
-"air()] 2024_0516_4, 2024_0516_5, 2024_0706_1,"
+"Stair()] 9_2022763, 2024_0516_4, 2024_0516_5,"
+"22763, 2024_0516_4, 2024_0516_5, 2024_0706_1,"
 "op" src="References/2024_0516_6.svg" width="8"
 "op" src="References/2024_0516_6.svg" width="8"
 "op" src="References/2024_0516_7.svg" width="8"
 "op" src="References/2024_0516_8.svg" width="8"
 "op" src="References/2024_0517.svg" width="6" "
 "op" src="References/2024_0528.svg" width="8" "
-"mid across obstacle 2024_0529: Double Area fi"
-"oes not need left C 2024_0529_1: Double Area "
-"oes not need left C 2024_0529_2: Double Area "
-"oes not need left C 2024_0529_3: Double Area "
-" (intending left C) 2024_0529_4: Double Area "
-"d case needs across 2024_0529_5: Double Area "
-"mid across + across 2024_0529_6: Double Area "
+" cannot step there. 2024_0529_3 and is solved"
+"tead of new system. 2024_0529_5 is solved by "
 "op" src="References/2024_0530.svg" width="7" "
+" close rules first. 2024_0530 does not match "
 "op" src="References/2024_0530_1.svg" width="8"
-" left, across right 2024_0531: Directional Ar"
 "op" src="References/2024_0531_1.svg" width="7"
 "op" src="References/2024_0531_2.svg" width="7"
 "op" src="References/2024_0531_3.svg" width="9"
-"left, across right  2024_0531_4: New sequence"
 "op" src="References/2024_0531_5.svg" width="8"
-"mid across + across 2024_0602: Double Area se"
+"tConvexStraight4()] 2024_0601, 2024_0618_2, 2"
+"tead of new system. 2024_0602 is solved by Le"
 "op" src="References/2024_0604.svg" width="8" "
 "op" src="References/2024_0604_1.svg" width="7"
 "op" src="References/2024_0607.svg" width="6" "
@@ -1805,11 +1951,11 @@ readme0.md 159777
 ".svg" width="4" />  2024_0610_4, 2024_0610_5,"
 "4" />  2024_0610_4, 2024_0610_5, 2024_1012_1,"
 "convex straight 3 E 2024_0611 needs extension"
-"orner() has a case (2024_0611_2) that should "
+"orner() has a case (2024_0611_2, 2024_0611_2_"
 "op" src="References/2024_0618.svg" width="11""
 "ConcaveStraight5()] 2024_0618, 2024_0717_1, 2"
 "op" src="References/2024_0618_2.svg" width="1"
-"tConvexStraight4()] 2024_0618_2, 2026_0302_6,"
+"ight4()] 2024_0601, 2024_0618_2, 2026_0302_6,"
 "op" src="References/2024_0619.svg" width="11""
 "ConcaveStraight3()] 2024_0619, 2024_0717_2, 2"
 "Y - nextX) % 4 = 2 (2024_0619 extension, page"
@@ -1830,8 +1976,9 @@ readme0.md 159777
 "op" src="References/2024_0630.svg" width="11""
 "img src="References/2024_0701_1.svg" />  Base"
 "op" src="References/2024_0704.svg" width="11""
+"_231960, 2024_0516, 2024_0704, 2024_1014; Sta"
 "op" src="References/2024_0706.svg" width="11""
-"ight3()] 2024_0905, 2024_0706, 2024_2024_1001"
+"_227130, 2024_0905, 2024_0706, 2024_2024_1001"
 "op" src="References/2024_0706_1.svg" width="1"
 "516_4, 2024_0516_5, 2024_0706_1, 2024_0727_6,"
 "op" src="References/2024_0709.svg" width="11""
@@ -1916,7 +2063,7 @@ readme0.md 159777
 "op" src="References/2024_0820.svg" width="13""
 "729_1, 2024_0729_4, 2024_0820; Stair at end c"
 "op" src="References/2024_0905.svg" width="11""
-"dConvexStraight3()] 2024_0905, 2024_0706, 202"
+"aight3()] 9_227130, 2024_0905, 2024_0706, 202"
 "24_1001, 2024_1008, 2024_0916; Stair at end c"
 "05, 2024_0706, 2024_2024_1001, 2024_1008, 202"
 "op" src="References/2024_1005.svg" width="13""
@@ -1934,6 +2081,7 @@ readme0.md 159777
 "op" src="References/2024_1012_1.svg" width="1"
 "610_4, 2024_0610_5, 2024_1012_1, 9_121670752,"
 "layed. (For example 2024_1012_1) StairAtStart"
+"24_0516, 2024_0704, 2024_1014; Stair at end c"
 "op" src="References/2024_1115.svg" width="13""
 "op" src="References/2025_0516.svg" width="13""
 "op" src="References/2025_0522.svg" width="13""
@@ -1952,7 +2100,7 @@ readme0.md 159777
 "_0717_2, 2025_0527, 2025_0527_1, 2026_0302_4,"
 "_0522 to 2025_0527, 2025_0527_1, the second o"
 "start concave. Also 2025_0527_2 close obstacl"
-"cle inside-outside. 2025_0527_2   <!-- <img a"
+"cle inside-outside. 2025_0527_2  Is it worth "
 "op" src="References/2025_0528.svg" width="13""
 "op" src="References/2025_0528_1.svg" width="1"
 "op" src="References/2025_0716.svg" width="13""
@@ -1964,9 +2112,10 @@ readme0.md 159777
 "ight3()] 2024_0710, 2026_0301_1 Stair at star"
 "ConcaveStraight6()] 2026_0302 Stair at end co"
 "_0304_4, 2026_0301, 2026_0302_1, 2026_0304_7;"
+"irAtEndConvexIn2()] 2026_0302_3, 2026_0404, 2"
 "_0527, 2025_0527_1, 2026_0302_4, 2026_0302_5;"
 "527_1, 2026_0302_4, 2026_0302_5; Stair at end"
-"ht4()] 2024_0618_2, 2026_0302_6, 2026_0304_1,"
+"_0601, 2024_0618_2, 2026_0302_6, 2026_0304_1,"
 "ersed()] 2026_0124, 2026_0304, Double stair r"
 "618_2, 2026_0302_6, 2026_0304_1, 2026_0304_5;"
 "2026_0408, outside: 2026_0304_2, 2026_0304_6;"
@@ -1974,12 +2123,13 @@ readme0.md 159777
 "302_6, 2026_0304_1, 2026_0304_5; Stair at sta"
 "tside: 2026_0304_2, 2026_0304_6; Stair at end"
 "_0301, 2026_0302_1, 2026_0304_7; Stair at end"
-"irAtEndConvexIn2()] 2026_0404, 2026_0408_1; S"
+"In2()] 2026_0302_3, 2026_0404, 2026_0408_1, 2"
 "In4()] 2024_0626_1, 2026_0404_1, 2024_0730, 2"
 "_0730, 2024_0729_3, 2026_0404_3; Stair at end"
 " inside: 2024_0817, 2026_0408, outside: 2026_"
-"exIn2()] 2026_0404, 2026_0408_1; Stair at end"
+"_0302_3, 2026_0404, 2026_0408_1, 2026_0408_9,"
 "th="8" />  <!---->  2026_0408_8; (v+1)B  <img"
+"_0404, 2026_0408_1, 2026_0408_9, 9_231960, 20"
 "th="5" />  <!---->  2026_0410; E  <img align="
 "veIn5()] 2024_0714, 2026_0410_6; Stair at end"
 "op" src="References/7_1861.svg" width="7" /> "
@@ -1991,7 +2141,6 @@ readme0.md 159777
 "op" src="References/9_1261580.svg" width="9" "
 "op" src="References/9_1261580_1.svg" width="9"
 "op" src="References/9_1861.svg" width="9" />["
-"op" src="References/9_18665383.svg" width="9""
 "op" src="References/9_18665383.svg" width="9""
 "op" src="References/9_18677343.svg" width="9""
 "op" src="References/9_18677343_1.svg" width=""
@@ -2006,6 +2155,7 @@ readme0.md 159777
 "op" src="References/9_2022337.svg" width="9" "
 "op" src="References/9_2022337_1.svg" width="9"
 "op" src="References/9_2022763.svg" width="9" "
+"/>  [DoubleStair()] 9_2022763, 2024_0516_4, 2"
 "op" src="References/9_2022773.svg" width="9" "
 "op" src="References/9_2022773_1.svg" width="9"
 "op" src="References/9_2023198.svg" width="9" "
@@ -2013,16 +2163,17 @@ readme0.md 159777
 "op" src="References/9_2034575.svg" width="9" "
 "op" src="References/9_2034575_1.svg" width="9"
 "op" src="References/9_2034760.svg" width="9" "
-"while task running  9_2034760 Is a Directiona"
 "op" src="References/9_2059934.svg" width="9" "
 "op" src="References/9_22328.svg" width="9" />"
 "op" src="References/9_22328_1.svg" width="9" "
 "op" src="References/9_22328_2.svg" width="9" "
 "op" src="References/9_22328_3.svg" width="9" "
 "op" src="References/9_227130.svg" width="9" /"
+"dConvexStraight3()] 9_227130, 2024_0905, 2024"
 "op" src="References/9_227200.svg" width="9" /"
 "op" src="References/9_227200_1.svg" width="9""
 "op" src="References/9_231960.svg" width="9" /"
+"408_1, 2026_0408_9, 9_231960, 2024_0516, 2024"
 "op" src="References/9_23310321.svg" width="9""
 "op" src="References/9_23310321_1.svg" width=""
 "op" src="References/9_23350320.svg" width="9""
@@ -2061,6 +2212,7 @@ readme0.md 159777
 "op" src="References/9_740129.svg" width="9" /"
 "op" src="References/9_740363.svg" width="9" /"
 "op" src="References/9_743059.svg" width="9" /"
+"0530 does not match 9_743059 and is incorrect"
 "op" src="References/9_743059_1.svg" width="9""
 "op" src="References/9_8076012.svg" width="9" "
 "op" src="References/9_8076012_1.svg" width="9"
@@ -2141,6 +2293,7 @@ readme0.md 159777
 "nces/checknearfield/far straight right.svg" w"
 "nces/checknearfield/far straight right.svg" w"
 "nces/checknearfield/far straight right start "
+" case (2024_0611_2, 2024_0611_2_area.svg) tha"
 "c="References/rules/2024_0711_rule 2.svg" wid"
 "c="References/rules/2024_0711_rule.svg" width"
 "c="References/rules/2025_0522_1_rule.svg" wid"
@@ -2269,10 +2422,6 @@ readme0.md 159777
 "aight, 1 right, the Directional Area will be "
 "c="References/rules/Directional Area.svg" wid"
 " okay to deactivate Directional Area until we"
-" to be rotated CCW  Directional Area rule has"
-"ing  9_2034760 Is a Directional Area, where t"
-"s not activated. Is Directional Area activate"
-"ss right 2024_0531: Directional Area is the s"
 "c="References/rules/double area 4 dist.svg" w"
 "c="References/rules/double area case 1 line 3"
 "c="References/rules/double area case 1 line 7"
@@ -2296,23 +2445,12 @@ readme0.md 159777
 "c="References/rules/Double Area first case ro"
 "c="References/rules/Double Area first case ro"
 "c="References/rules/Double Area first case ro"
-"ecause area is 1B.  Double Area first case ro"
-"obstacle 2024_0529: Double Area first case ro"
 "c="References/rules/Double Area first case.sv"
 "c="References/rules/Double Area first case ro"
 "c="References/rules/Double Area first case ro"
-"ecause area is 1B.  Double Area first case ro"
-"obstacle 2024_0529: Double Area first case ro"
-"left C 2024_0529_2: Double Area first case do"
-"across 2024_0529_5: Double Area first case an"
 "c="References/rules/Double Area second case.s"
-"left C 2024_0529_1: Double Area second case d"
-"across 2024_0529_6: Double Area second case n"
-"+ across 2024_0602: Double Area second case n"
 "c="References/rules/Double Area Stair numbere"
 "c="References/rules/Double Area third case.sv"
-"left C 2024_0529_3: Double Area third case be"
-"eft C) 2024_0529_4: Double Area third case ne"
 " many of them has a double area (one of which"
 "m stops at the next double area case.  <img a"
 "c="References/rules/double area case 1.svg" w"
@@ -2348,7 +2486,6 @@ readme0.md 159777
 "c="References/rules/down stair 2 4.svg" width"
 "c="References/rules/down stair 2 5.svg" width"
 "c="References/rules/Down Stair.svg" width="8""
-"ated is the same as Down Stair when there is "
 "c="References/rules/future connection.svg" wi"
 "c="References/rules/near border.svg" width="5"
 "c="References/rules/nearStair 1.svg" width="6"
@@ -2363,12 +2500,8 @@ readme0.md 159777
 "c="References/rules/Reverse Stair 3 Obstacles"
 "c="References/rules/Reverse Stair 3 Obstacles"
 "c="References/rules/Sequence first case.svg" "
-"igger example where Sequence first case is no"
 "c="References/rules/Sequence second case.svg""
-"he decision point.  Sequence second case:  22"
-"Area is the same as Sequence second case (wit"
 "c="References/rules/Sequence third case.svg" "
-"xist on the right)  Sequence third case:  2 0"
 "_0727_6 is added to Sequence2, but we need to"
 "c="References/rules/Square 4 x 2 orig.svg" wi"
 "c="References/rules/Square 4 x 2 orig.svg" wi"
@@ -2389,7 +2522,6 @@ readme0.md 159777
 "c="References/rules/StairAtEndConcaveOut3_1W."
 "c="References/rules/StairAtEndConcaveOut5_1W."
 "c="References/rules/StairAtEndConcaveOut5_1W_"
-"cle on the right.  [StairAtEndConcaveStraight"
 "c="References/rules/StairAtEndConcaveStraight"
 "c="References/rules/StairAtEndConcaveStraight"
 "c="References/rules/StairAtEndConcaveStraight"
@@ -2460,6 +2592,8 @@ readme0.md 159777
 "c="References/rules/StairAtStartConvexStraigh"
 "c="References/rules/StairAtStartConvexStraigh"
 "c="References/rules/start obstacle inside 1 4"
+"c="References/rules/start obstacle inside 1 4"
+"c="References/rules/start obstacle inside 1 6"
 "c="References/rules/start obstacle inside 1 6"
 "c="References/rules/straight 3 extended 2.svg"
 "c="References/rules/straight 3 extended C.svg"
@@ -2473,14 +2607,12 @@ readme0.md 159777
 "c="References/rules/straight 3 extended C.svg"
 "air at start convex straight 3 E 2024_0611 ne"
 "Stair at end convex straight 3 vB: Rewrite ob"
-"rc="References/side straight 3.svg" width="5""
 "c="References/rules/straight 4 extended 2.svg"
 "c="References/rules/straight 4 extended.svg" "
 "c="References/rules/straight 4.svg" width="3""
 "c="References/rules/straight 4 extended.svg" "
 "c="References/rules/straight 4 extended 2.svg"
 "tair at end concave straight 4:  <img align=""
-"rc="References/side straight 4.svg" width="6""
 "c="References/rules/straight 5 dist start obs"
 "c="References/rules/straight 5 small area mov"
 "c="References/rules/straight 5 small area mov"
@@ -2490,11 +2622,9 @@ readme0.md 159777
 "c="References/rules/straight 5 dist start obs"
 "air at start convex straight 5 (h+1)W 2024_07"
 "tair at end concave straight 5 is rewritten f"
-"rc="References/side straight 5.svg" width="7""
 "c="References/rules/straight 6.svg" width="3""
 "tair at end concave straight 6  <img align="t"
 "tair at end concave straight 6. Clean up 2025"
-"rc="References/side straight 6.svg" width="8""
 "hecknearfield/close straight left right.svg" "
 "hecknearfield/close straight left left.svg" w"
 "/checknearfield/far straight left.svg" width="
@@ -2527,12 +2657,199 @@ readme0.md 159777
 "c="References/rules/x 2n 1.svg" width="10" />"
 "c="References/rules/x 2n.svg" width="10" />[s"
 "c="References/rules/xdist.svg" width="6" />  "
-"c="References/rules/xdist.svg" width="6" />  "
-"c="References/rules/xdist_closed.svg" width=""
+"ecking an area like xdist.svg, just with a co"
+"er (two obstacles): xdist_closed.svg Write ab"
+"rules_sorted/5-grid/C-Shape.svg" width="4" al"
+"c="References/rules/C-Shape example.svg" widt"
+"- and y-distance. A C-Shape is not always cre"
+"rences/rules/Double C-Shape orig.svg" width=""
+"rences/rules/Double C-Shape orig.svg" width=""
+"orted/9-grid/Double C-Shape.svg" width="3" />"
+"/9-grid/Double Area C-Shape.svg" width="5" />"
+"orted/9-grid/Double C-Shape rotated.svg" widt"
+"orted/9-grid/Double C-Shape Start C.svg" widt"
+"orted/9-grid/Double C-Shape Determined.svg" w"
+" 9_462, Double Area C-Shape   <img align="top"
+"/9-grid/Double Area C-Shape.svg" width="5" />"
+"" />  1 861, Double C-Shape  <img align="top""
+"orted/9-grid/Double C-Shape rotated.svg" widt"
+"  8 076 706, Double C-Shape Start C  <img ali"
+"orted/9-grid/Double C-Shape Start C.svg" widt"
+"  8 076 762, Double C-Shape Determined  <img "
+"orted/9-grid/Double C-Shape Determined.svg" w"
+"orted/9-grid/Double C-Shape Determined.svg" w"
+"orted/9-grid/Double C-Shape.svg" width="3" />"
+"/>  <!---->  Double C-Shape Determined:  <img"
+"orted/9-grid/Double C-Shape Determined.svg" w"
+"sed upon the Double C-Shape. If we stepped st"
+"use when the Double C-Shape Determined rule i"
+"ngle area pattern.  C-Shape Next:  <img align"
+"c="References/rules/C-Shape Next.svg" width=""
+"ously called Double C-Shape.) Adding 4 extra "
+"/9-grid/Double Area C-Shape.svg" width="5" />"
+"en it will create a C-Shape on one side and a"
+", and then we get a C-Shape with it when we e"
+" solved with Double C-Shape.  <img align="top"
+"rules_sorted/7-grid/Future 2 x 2 Start End ro"
+"rules_sorted/7-grid/Future 2 x 2 Start End.sv"
+"rules_sorted/7-grid/Future 2 x 2 Start End ro"
+"rules_sorted/7-grid/Future 2 x 3 Start End.sv"
+"rules_sorted/7-grid/Future 3 x 3 Start End.sv"
+"rules_sorted/7-grid/Future L.svg" width="4" /"
+"ith. I will call it Future L.  <!---->  <img "
+"th the exception of Future L. Here the future"
+"rules_sorted/9-grid/Count Area 2 Across.svg" "
+"rules_sorted/9-grid/Count Area 2 Across.svg" "
+"/>  <!---->  9 121, Count Area 2 Across  <img"
+"rules_sorted/9-grid/Count Area 2 Across.svg" "
+"here an example for Count Area Across Border "
+"rules_sorted/9-grid/Double Area C-Shape.svg" "
+"t.  <!---->  9_462, Double Area C-Shape   <im"
+"rules_sorted/9-grid/Double Area C-Shape.svg" "
+"rules_sorted/9-grid/Double Area C-Shape.svg" "
+"rules_sorted/9-grid/Double Area Stair 2.svg" "
+"rules_sorted/9-grid/Double Area Stair 2.svg" "
+"="7" />  2 023 198, Double Area Stair 2  <img"
+"rules_sorted/9-grid/Double Area Stair 2.svg" "
+"lgorithm.  <!---->  Double Area Stair 2 - alt"
+"rules_sorted/9-grid/Double Area Stair 2.svg" "
+"rules_sorted/9-grid/Double Area Stair Area.sv"
+""7" />  19 720 614, Double Area Stair Area  <"
+"rules_sorted/9-grid/Double Area Stair Area.sv"
+"rules_sorted/9-grid/Double Area Stair.svg" wi"
+"rules_sorted/9-grid/Double Area Stair Area.sv"
+"<!---->  2 022 763, Double Area Stair  <img a"
+"rules_sorted/9-grid/Double Area Stair.svg" wi"
+""7" />  19 720 614, Double Area Stair Area  <"
+"rules_sorted/9-grid/Double Area Stair Area.sv"
+"of the lack of it.  Double Area Stair will be"
+"c="References/rules/Double Area Stair numbere"
+"rules_sorted/9-grid/Double C-Shape Determined"
+"<!---->  8 076 762, Double C-Shape Determined"
+"rules_sorted/9-grid/Double C-Shape Determined"
+"rules_sorted/9-grid/Double C-Shape Determined"
+"1.svg" />  <!---->  Double C-Shape Determined"
+"rules_sorted/9-grid/Double C-Shape Determined"
+" is of use when the Double C-Shape Determined"
+"rules_sorted/9-grid/Double C-Shape rotated.sv"
+"rules_sorted/9-grid/Double C-Shape rotated.sv"
+"rules_sorted/9-grid/Double C-Shape Start C.sv"
+"="2" />  8 076 706, Double C-Shape Start C  <"
+"rules_sorted/9-grid/Double C-Shape Start C.sv"
+"c="References/rules/Double C-Shape orig.svg" "
+"c="References/rules/Double C-Shape orig.svg" "
+"rules_sorted/9-grid/Double C-Shape.svg" width"
+"rules_sorted/9-grid/Double C-Shape rotated.sv"
+"rules_sorted/9-grid/Double C-Shape Start C.sv"
+"rules_sorted/9-grid/Double C-Shape Determined"
+"idth="5" />  1 861, Double C-Shape  <img alig"
+"rules_sorted/9-grid/Double C-Shape rotated.sv"
+"="2" />  8 076 706, Double C-Shape Start C  <"
+"rules_sorted/9-grid/Double C-Shape Start C.sv"
+"<!---->  8 076 762, Double C-Shape Determined"
+"rules_sorted/9-grid/Double C-Shape Determined"
+"rules_sorted/9-grid/Double C-Shape Determined"
+"rules_sorted/9-grid/Double C-Shape.svg" width"
+"1.svg" />  <!---->  Double C-Shape Determined"
+"rules_sorted/9-grid/Double C-Shape Determined"
+"e is based upon the Double C-Shape. If we ste"
+" is of use when the Double C-Shape Determined"
+"e previously called Double C-Shape.) Adding 4"
+"viously solved with Double C-Shape.  <img ali"
+"rules_sorted/9-grid/Future 2 x 2 Start End 9."
+"rules_sorted/9-grid/Future 2 x 3 Start End 9."
+"rules_sorted/9-grid/Future 3 x 3 Start End 9."
+"rules_sorted/9-grid/Mid Across 3 Impair Deter"
+"rules_sorted/9-grid/Mid Across 3 Impair Deter"
+"rules_sorted/9-grid/Mid Across 3 Impair Deter"
+"rules_sorted/9-grid/Mid Across 3 Impair Deter"
+"s 3 Determined (and Mid Across 3 Impair Deter"
+"="5" />  2 059 934, Mid Across 3 Impair Deter"
+"rules_sorted/9-grid/Mid Across 3 Impair Deter"
+"s similarity to the Mid Across 3 Impair Deter"
+"rules_sorted/9-grid/Mid Across 3 Impair Deter"
+"rules_sorted/9-grid/Mid Across 3 Impair Deter"
+"rules_sorted/9-grid/Mid Across 3 Impair Deter"
+"rules_sorted/9-grid/Mid Mid Across 3 Determin"
+"<!---->  2 034 435, Mid Mid Across 3 Determin"
+"rules_sorted/9-grid/Mid Mid Across 3 Determin"
+"rules_sorted/9-grid/Mid Mid Across 3 Determin"
+"rules_sorted/9-grid/Mid Mid Across 3 Determin"
+"rules_sorted/9-grid/Square 4 x 2 Area.svg" wi"
+"rules_sorted/9-grid/Square 4 x 2 Area.svg" wi"
+"rules_sorted/9-grid/Square 4 x 2 Area.svg" wi"
+"rules_sorted/9-grid/Square 4 x 2 C-Shape.svg""
+"rules_sorted/9-grid/Square 4 x 2 C-Shape.svg""
+"rules_sorted/9-grid/Square 4 x 2 C-Shape.svg""
+"c="References/rules/Square 4 x 2 orig.svg" wi"
+"c="References/rules/Square 4 x 2 orig.svg" wi"
+"rules_sorted/9-grid/Square 4 x 2.svg" width=""
+"rules_sorted/9-grid/Square 4 x 2 C-Shape.svg""
+"rules_sorted/9-grid/Square 4 x 2 Area.svg" wi"
+"rules_sorted/9-grid/Square 4 x 2 C-Shape.svg""
+"rules_sorted/9-grid/Square 4 x 2 Area.svg" wi"
+"rules_sorted/9-grid/Square 4 x 2 C-Shape.svg""
+"rules_sorted/9-grid/Square 4 x 2 Area.svg" wi"
+"rules_sorted/9-grid/Square 4 x 2_2.svg" width"
+"rules_sorted/9-grid/Straight Across 3 End Are"
+"  <!---->  740 129, Straight Across 3 End Are"
+"rules_sorted/9-grid/Straight Across 3 End Are"
+"rules_sorted/9-grid/Straight Across 3 End Are"
+"rules_sorted/9-grid/Straight Across End Area."
+">  <!---->  22 328, Straight Across End Area "
+"rules_sorted/9-grid/Straight Across End Area."
+"rules_sorted/9-grid/Straight Across End Area."
+"dth="4" />  25 153, Straight Across End C  <i"
+"rules_sorted/9-grid/Straight Across End C.svg"
+"rules_sorted/9-grid/Straight Across End C.svg"
+"rules_sorted/9-grid/Straight Mid Across 3 End"
+"dth="5" />  22 328, Straight Mid Across 3 End"
+"rules_sorted/9-grid/Straight Mid Across 3 End"
+"rules_sorted/9-grid/Straight Mid Across 3 End"
+"rules_sorted/9-grid/Straight Mid Across 3 End"
+"<!---->  8 076 202, Straight Mid Across 3 End"
+"rules_sorted/9-grid/Straight Mid Across 3 End"
+"rules_sorted/9-grid/Straight Mid Across 3 End"
+"rules_sorted/9-grid/Triple Area Exit Down.svg"
+""3" />  18 665 383, Triple Area Exit Down  <i"
+"rules_sorted/9-grid/Triple Area Exit Down.svg"
+"t is the well-known Triple Area Exit Down, at"
+"  To accomodate the Triple Area Exit Down cas"
+"uld have solved the Triple Area Exit Down as "
+"distance will solve Triple Area Exit Down, ma"
+"rules_sorted/9-grid/Triple Area Stair.svg" wi"
+"!---->  19 720 122, Triple Area Stair  <img a"
+"rules_sorted/9-grid/Triple Area Stair.svg" wi"
+"rules_sorted/9-grid/Triple Area.svg" width="5"
+"rules_sorted/9-grid/Triple Area Stair.svg" wi"
+"rules_sorted/9-grid/Triple Area Exit Down.svg"
+"th="4" />  740 363, Triple Area  <img align=""
+"rules_sorted/9-grid/Triple Area.svg" width="5"
+""3" />  18 665 383, Triple Area Exit Down  <i"
+"rules_sorted/9-grid/Triple Area Exit Down.svg"
+"!---->  19 720 122, Triple Area Stair  <img a"
+"rules_sorted/9-grid/Triple Area Stair.svg" wi"
+"s. The second case, Triple Area, uses an area"
+"rules_sorted/9-grid/Triple Area.svg" width="5"
+"ht  In the original Triple Area case, we had "
+"t is the well-known Triple Area Exit Down, at"
+"  To accomodate the Triple Area Exit Down cas"
+"uld have solved the Triple Area Exit Down as "
+"distance will solve Triple Area Exit Down, ma"
+"s_sorted/9-grid/Mid Across 3 Impair Determine"
+"Determined (and Mid Across 3 Impair Determine"
+" />  2 059 934, Mid Across 3 Impair Determine"
+"s_sorted/9-grid/Mid Across 3 Impair Determine"
+"milarity to the Mid Across 3 Impair Determine"
+"s_sorted/9-grid/Mid Across 3 Impair Determine"
+"s_sorted/9-grid/Mid Across 3 Impair Determine"
+"ules_sorted/13-grid/Across 3 Impair Determine"
+"ules_sorted/13-grid/Across 3 Impair Determine"
+"s_sorted/9-grid/Mid Across 3 Impair Determine"
 
-827 matches found, 0 replaced.
+994 matches found, 0 replaced.
 
-New length 159777 inCount 617 noCount 176
+New length 157436 inCount 651 noCount 154
 
 MainWindow.xaml.cs: Arrays equal
 Path.cs: Arrays equal
@@ -2543,4 +2860,4 @@ Rules.xaml.cs: Arrays equal
 readme.md: Arrays equal
 readme0.md: Arrays equal
 
-Global inCount 770 noCount 23
+Global inCount 805 noCount 0

@@ -2215,7 +2215,7 @@ namespace OneWayLabyrinth
         }
 
         void StairAtStartConvexStraight4()
-        // 2024_0618_2, 2026_0302_6, 2026_0304_1, 2026_0304_5: 1W
+        // 2024_0601, 2024_0618_2, 2026_0302_6, 2026_0304_1, 2026_0304_5: 1W
         // 2024_0610_4, 2024_0610_5, 9_121670752, 2024_0627: 1B
         // 2024_0725, 2024_0727_5: start obstacle as well
         {
@@ -2520,10 +2520,11 @@ namespace OneWayLabyrinth
         // 2026_0404 across left, mid across right
         // 2026_0408_1 C-shape left, across right
         // 2026_0408_9 area left, mid across right
-        // Sequence:
-        // 2024_0516: mid across left, across right
+        // Sequence also:
+        // 9_231960, 2024_0516: mid across left, across right
         // 2024_0704, 2024_1014: area left, mid across right
-        //
+        // 2024_0531: C-shape left, mid across right
+
         // CW, cannot enter now
 
         // case 2: 2024_0805, 2024_0808
@@ -2641,7 +2642,7 @@ namespace OneWayLabyrinth
                                             if (CheckNearFieldSmallRel1(hori - 1, vert + 1, 1, 0, true))
                                             {
                                                 AddExamAreas();
-                                                T("StairAtEndConvexIn2 vB at " + hori + " " + vert + ": Cannot step left");
+                                                T("StairAtEndConvexIn2 vB case 1 at " + hori + " " + vert + ": Cannot step left");
                                                 AddForbidden(1, 0);
 
                                                 if (j == 1)
@@ -3081,8 +3082,11 @@ namespace OneWayLabyrinth
 
         void StairAtEndConvexStraight3()
         // Straight wall:
+        // 9_227130 across
         // 2024_0905 mid across
-        // 2024_0706, 2024_1001 (also Sequence2), 2024_1008 corner
+        // 2024_0531 mid across (also StairAtEndConvexIn2, Sequence)
+        // 2024_0706, 2024_1001 (also Sequence), 2024_1008 corner
+        // 2024_0531
 
         // Closed corner:
         // 2024_0916 across
@@ -5124,7 +5128,7 @@ namespace OneWayLabyrinth
 
         void DoubleStair()
         // 2024_0706_1, 2024_1006_1, 2024_0711
-        // Also Sequence2: 2024_0516_4, 2024_0516_5, 2024_0727_6
+        // Also Sequence: 9_2022763, 9_19720122, 2024_0516_4, 2024_0516_5, 2024_0727_6
         {
             for (int i = 0; i < 2; i++)
             {
@@ -5749,9 +5753,12 @@ namespace OneWayLabyrinth
         // 2024_0516_4, 2024_0516_5: multiple step across -> DoubleStair
         // 2024_1006: across on the left at the end of the sequence -> DobuleStair
         // 2024_0704, 2024_1014: area on left, close mid across on right -> StairAtEndConvexIn2
+        // 2024_0531 C-shape left, mid across right -> StairAtEndConvexIn2()
+        // 9_2022763 C-shape left, across right, 9_19720122 mid across left, across right -> DoubleStair()
 
         // Start at 3, -1. 3 rotations possible.
-        // [no stair] 2024_0516_6, 2024_0516_7, 2024_0516_8: across
+        // [no stair] 9_2023198, 2024_0516_6, 2024_0516_7, 2024_0516_8: C-shape left, across right
+        // 9_19720614: mid across left, across right
         // 2026_0405 -> Next step double area
 
         // Start at 4, 0

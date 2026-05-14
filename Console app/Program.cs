@@ -1,5 +1,6 @@
 using System.Diagnostics;
 
+int targetCompletedCount = int.MaxValue;
 bool debug = false, debug2 = false;
 string loadFile;
 int size = 0;
@@ -375,6 +376,9 @@ void NextClick()
                 }
                 else
                 {
+                    if (completedCount == targetCompletedCount)
+                        SavePath();
+
                     if (completedCount % 1000 == 0)
                         Console.Write("\r{0} completed.", completedCount);
 

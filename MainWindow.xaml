@@ -88,9 +88,9 @@
             <Button Content="Rule editor" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,112,133,0" Width="70" Height="21" Focusable="False" Click="Rules_Click"  />
             <Button Content="Copy to console" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,112,20,0" Width="100" Height="21" Focusable="False" Click="CopyConsole_Click" />
 
-            <Grid x:Name="SettingsGrid" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#80FFFFFF" Visibility="Hidden" >
+            <Grid x:Name="SettingsGrid" Margin="0,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#80000000" Visibility="Hidden" >
                 <Border BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                    <Grid x:Name="SettingsContentGrid" Background="#FFFFFF">
+                    <Grid x:Name="SettingsContentGrid" Background="#000000">
                         <CheckBox x:Name="DisplayFutureCheck" Content="Calculate and display future lines (requires reload)" Click="SaveSettings" IsChecked="False" Focusable="False" Margin="10,10,10,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
                         <CheckBox x:Name="DisplayAreaCheck" Content="Display area" Click="SaveSettings" IsChecked="False" Focusable="False" Margin="10,31,10,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
                         <CheckBox x:Name="MakeStatsCheck" Content="Make statistics in random fast run" Click="SaveSettings" IsChecked="False" Focusable="False" Margin="10,52,10,0" HorizontalAlignment="Left" VerticalAlignment="Top" />

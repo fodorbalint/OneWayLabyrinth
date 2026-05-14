@@ -1555,9 +1555,16 @@ namespace OneWayLabyrinth
             ly = thisLy;
         }
 
-        void Check3DoubleArea() // the distance to the obstacle is maximum 3. Line cannot finish at the far corner, but at the field below. There is a second area created sith an obstacle on the right side.
+        void Check3DoubleArea() // the distance to the obstacle is maximum 3. Line cannot finish at the far corner, but at the field below. There is a second area created with an obstacle on the right side.
 
-        // has to be rotated ccw in first area case
+        // First case: 2024_0529_4 across
+        // Second case: 2024_0529_5 across
+        // Third case: 2024_0529_3 across
+
+        // C-shape checking is not necessary for first case: 2024_0529, 2024_0529_2 is solved by the straight obstacle single area rule
+        // C-shape checking is not necessary for second case: 2024_0529_1 is solved by the straight obstacle single area rule
+
+        // has to be rotated CCW in first area case
         {
             for (int i = 0; i < 2; i++)
             {
@@ -1667,7 +1674,7 @@ namespace OneWayLabyrinth
                                 {
                                     switch (caseNumber)
                                     {
-                                        case 1: // 2024_0601
+                                        case 1:
                                             DoubleArea1 = true;
                                             activeRules.Add("Double Area first case");
                                             activeRuleSizes.Add(new int[] { 4, 6 });

@@ -10,6 +10,9 @@
 8. Review context: 2024_0712_1 has wrong possibility. Also 9_22362
 9: Some 9 walkthroughs are the same but have different number, like 2034435 or 2059934. One or both are wrong. Also 9_23350320 can be in fact 9_23347853.
 10. Corner discovery error when loading a completed walkhtrough from svg, like 9_22326. Also the possibilities of future lines will be put next to the live end, 2025_0527_future.
+11. Delete non-specific rules that are only found because of function name, like StairAtEndConcaveStraight3.svg
+12. Images where the checker pattern fills the entire board are not prefereable 
+
 '''
 
 import os
@@ -18,7 +21,7 @@ import sys
 import time
 from datetime import datetime
 
-paths = ["References/", "References/countarea/", "References/checknearfield/", "References/rules/"]
+paths = ["References/", "References/countarea/", "References/checknearfield/", "References/rules/", "References/rules_sorted/5-grid/", "References/rules_sorted/7-grid/", "References/rules_sorted/9-grid/", "References/rules_sorted/13-grid/"]
 renameMode = False
 if len(sys.argv) > 1 and sys.argv[1] == "-r":
     renameMode = True
@@ -393,7 +396,8 @@ for i in range (0, len(all_files_full)):
     else:
         inCount += 1
 
-with open("filesNotFound.txt", "w", encoding="utf-8") as file:
-    file.write("\n".join(noCountFiles))
+if noCount > 0:
+    with open("filesNotFound.txt", "w", encoding="utf-8") as file:
+        file.write("\n".join(noCountFiles))
 
 print(f"Global inCount {inCount} noCount {noCount}")
