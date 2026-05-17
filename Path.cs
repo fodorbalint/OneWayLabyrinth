@@ -450,6 +450,10 @@ namespace OneWayLabyrinth
             StairAtStartConvexStraight4();
             T("StairAtStartConvexStraight5 " + ShowForbidden());
             StairAtStartConvexStraight5();
+            T("StairAtStartConvexOut2 " + ShowForbidden());
+            StairAtStartConvexOut2();
+            T("StairAtStartConvexOut3 " + ShowForbidden());
+            StairAtStartConvexOut3();
 
             T("StairAtEndConvexIn2 " + ShowForbidden());
             StairAtEndConvexIn2();
@@ -461,8 +465,10 @@ namespace OneWayLabyrinth
             StairAtEndConvexStraight3();
             T("StairAtEndConvexStraight4 " + ShowForbidden());
             StairAtEndConvexStraight4();
+            T("StairAtEndConvexOut3 " + ShowForbidden());
+            StairAtEndConvexOut3();
             T("StairAtEndConvexOut4 " + ShowForbidden());
-            StairAtEndConvexOut4(); // 2025_0525_1
+            StairAtEndConvexOut4();
 
             T("StairAtEndConcaveIn2 " + ShowForbidden());
             StairAtEndConcaveIn2();
@@ -1372,178 +1378,8 @@ namespace OneWayLabyrinth
                                             bool ruleTrue = false;
 
                                             // need to be generalized for larger than 1 vertical distance
-                                            if (hori == 2)
-                                            {
-                                                if (vert % 4 == 3 && j < 2) // 2024_0610, 2024_0610_1, 2024_0625_1, 2024_0611_2 (21 cutout)
-                                                {
-                                                    if (-whiteDiff == (vert - 3) / 4)
-                                                    {
-                                                        if (CheckCorner(1, 2, 0, 2, circleDirectionLeft, true))
-                                                        {
-                                                            ruleTrue = true;
-                                                            T("LeftRightCorner closed corner 2, 3: Cannot step left");
-                                                            AddForbidden(1, 0);
-                                                            if (j == 1) // big area
-                                                            {
-                                                                T("LeftRightCorner closed corner 2, 3: Cannot step down");
-                                                                AddForbidden(0, -1);
-                                                            }
-                                                        }
-                                                    }
-                                                }
-
-                                                else if (vert % 4 == 0 && j <= 1)  // 9_743059_1, 2024_0610_2, 2024_0610_3, 2024_0625
-                                                // These above cases are solved by the y = x + 2 return stair pattern too. But this algorithm can be applied to a straight extension as well.
-                                                {
-                                                    if (-whiteDiff == vert / 4)
-                                                    {
-                                                        // Add field so that a second circle can be drawn
-                                                        path.Add(new int[] { x + 2 * lx + (vert - 1) * sx, y + 2 * ly + (vert - 1) * sy });
-
-                                                        if (CheckCorner(1, vert - 2, 0, 2, circleDirectionLeft, true))
-                                                        {
-                                                            path.RemoveAt(path.Count - 1);
-                                                            ruleTrue = true;
-                                                            T("LeftRightCorner open corner 2, 4: Cannot step left");
-                                                            AddForbidden(1, 0);
-                                                            if (j == 1)
-                                                            {
-                                                                T("LeftRightCorner open corner 2, 4: Cannot step down");
-                                                                AddForbidden(0, -1);
-                                                            }
-                                                        }
-                                                        else
-                                                        {
-                                                            path.RemoveAt(path.Count - 1);
-                                                        }
-
-                                                        /*
-                                                        // 2024_0726, sequence on right side
-
-                                                        ResetExamAreas();
-
-                                                        counterrec = 0;
-
-                                                        lx2 = -lx2;
-                                                        ly2 = -ly2;
-                                                        if (CheckSequenceRecursive(1 - i))
-                                                        {
-                                                            AddExamAreas(true);
-
-                                                            T("Corner 2 4 Sequence at " + x + " " + y + ", stop at " + x2 + " " + y2 + ": Cannot step left");
-                                                            AddForbidden(1, 0);
-                                                            if (j == 1)
-                                                            {
-                                                                T("Corner 2 4 Sequence: Cannot step down");
-                                                                AddForbidden(0, -1);
-                                                            }
-                                                        }*/
-                                                    }
-                                                }
-                                            }
-                                            else if (vert == 2)
-                                            {
-                                                if (hori % 4 == 0 && j < 2 && -whiteDiff == hori / 4)
-                                                {
-                                                    // 2024_0720_3: mid across, 2024_0725_1: across
-                                                    // Find example for area
-                                                    if (CheckNearFieldSmallRel1(hori - 2, 1, 1, 0, true))
-                                                    {
-                                                        ruleTrue = true;
-                                                        T("LeftRightCorner 4 2 1B: Cannot step left");
-                                                        AddForbidden(1, 0);
-                                                        if (j == 1)
-                                                        {
-                                                            T("LeftRightCorner 4 2 1B: Cannot step down");
-                                                            AddForbidden(0, -1);
-                                                        }
-                                                    }
-
-                                                    /*
-                                                    // 2024_0711, sequence on left side
-                                                    path.Add(new int[] { x + (hori - 1) * lx + sx, y + (hori - 1) * ly + sy });
-
-                                                    x2 = x + (hori - 1) * lx + sx;
-                                                    y2 = y + (hori - 1) * ly + sy;
-
-                                                    lx2 = lx;
-                                                    ly2 = ly;
-                                                    sx2 = sx;
-                                                    sy2 = sy;
-
-                                                    ResetExamAreas();
-
-                                                    counterrec = 0;
-
-                                                    if (CheckSequenceRecursive(i)) // 2024_0711
-                                                    {
-                                                        path.RemoveAt(path.Count - 1);
-
-                                                        AddExamAreas(true);
-
-                                                        T("Corner 4 2 Sequence at " + x + " " + y + ", stop at " + x2 + " " + y2 + ": Cannot step left");
-                                                        AddForbidden(1, 0);
-                                                        if (j == 1)
-                                                        {
-                                                            T("Corner 4 2 Sequence: Cannot step down");
-                                                            AddForbidden(0, -1);
-                                                        }
-                                                    }
-                                                    else
-                                                    {
-                                                        path.RemoveAt(path.Count - 1);
-                                                    }
-                                                    */
-                                                }
-
-                                                // 2024_0727_1: mid across
-                                                if (hori % 4 == 2 && j < 2 && whiteDiff == (hori - 2) / 4 && CheckNearFieldSmallRel0(2, 2, 1, 0, false))
-                                                {
-                                                    ruleTrue = true;
-                                                    T("Corner hori % 4 = 2 vert 2 start obstacle: Cannot step straight");
-                                                    AddForbidden(0, 1);
-                                                    if (j == 0)
-                                                    {
-                                                        T("Corner hori % 4 = 2 vert 2 start obstacle: Cannot step right");
-                                                        AddForbidden(-1, 0);
-                                                    }
-                                                }
-                                            }
-
 
                                             // Stair extensions: 2, 3 or 4 fields on the top near the live end
-                                            if (vert == hori + 1 && -whiteDiff == hori - 2 && j <= 1) // 2024_0712
-                                            {
-                                                int m;
-                                                for (m = hori - 1; m >= 2; m--)
-                                                {
-                                                    path.Add(new int[] { x + m * lx + (m + 1) * sx, y + m * ly + (m + 1) * sy });
-                                                }
-
-                                                if (CheckCorner(1, 2, 0, 2, circleDirectionLeft, true))
-                                                {
-                                                    for (m = hori - 1; m >= 2; m--)
-                                                    {
-                                                        path.RemoveAt(path.Count - 1);
-                                                    }
-
-                                                    AddExamAreas();
-                                                    T("Corner y = x + 1 return stair close obstacle: Cannot step left");
-                                                    AddForbidden(1, 0);
-                                                    if (j == 1)
-                                                    {
-                                                        T("Corner y = x + 1 return stair close obstacle: Cannot step down");
-                                                        AddForbidden(0, -1);
-                                                    }
-                                                }
-                                                else
-                                                {
-                                                    for (m = hori - 1; m >= 2; m--)
-                                                    {
-                                                        path.RemoveAt(path.Count - 1);
-                                                    }
-                                                }
-                                            }
 
                                             if (vert == hori + 2 && -whiteDiff == hori - 1 && j <= 1) // Close mid across: 9_743059_1, 2024_0610_2, 2024_0610_3; Close across: 2024_0716_1, Area: 2024_0625, 2024_0720_1
                                             // stair entered from side
@@ -2215,8 +2051,8 @@ namespace OneWayLabyrinth
         }
 
         void StairAtStartConvexStraight4()
-        // 2024_0601, 2024_0618_2, 2026_0302_6, 2026_0304_1, 2026_0304_5: 1W
-        // 2024_0610_4, 2024_0610_5, 9_121670752, 2024_0627: 1B
+        // 1W: 2024_0601, 2024_0618_2, 2026_0302_6, 2026_0304_1, 2026_0304_5
+        // 1B: 2024_0610_4, 2024_0610_5, 9_121670752, 2024_0627
         // 2024_0725, 2024_0727_5: start obstacle as well
         {
             for (int i = 0; i < 2; i++)
@@ -2376,6 +2212,7 @@ namespace OneWayLabyrinth
         }
 
         void StairAtStartConvexStraight5()
+        // (h+1)W
         // 2024_0626; Stair at start convex 5
         // 2024_0727_4; start obstacle outside
         {
@@ -2461,10 +2298,7 @@ namespace OneWayLabyrinth
                                     // we cannot enter later
                                     if (white - black == hori + 1)
                                     {
-                                        for (int k = hori; k >= 0; k--)
-                                        {
-                                            path.Add(new int[] { x + k * lx + (k + 5) * sx, y + k * ly + (k + 5) * sy });
-                                        }
+                                        AddEndFar(hori + 1, hori, vert - 1);
                                         int counter = hori + 1;
 
                                         if (CheckCorner(0, 4, 0, 2, circleDirectionLeft, true))
@@ -2502,6 +2336,255 @@ namespace OneWayLabyrinth
                     ly = -sy;
                     sx = l0;
                     sy = l1;
+                }
+                sx = thisSx;
+                sy = thisSy;
+                lx = -thisLx;
+                ly = -thisLy;
+            }
+            sx = thisSx;
+            sy = thisSy;
+            lx = thisLx;
+            ly = thisLy;
+        }
+
+        void StairAtStartConvexOut2()
+        // E, end obstacle outiside
+        // 2024_0529_5: across
+        // 2024_0602, 2024_0610, 2024_0610_1: mid across
+        // 2024_0625_1, 2024_0611_2: area
+        // 2024_0712: stair, area
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                bool circleDirectionLeft = (i == 0) ? true : false;
+
+                for (int j = 0; j < 2; j++) // j = 0: straight area, j = 1: big area
+                {
+                    int dist = size; // vertical distance
+                    int quarter = quarters[i][j];
+
+                    foreach (int[] corner in closedCorners[quarter])
+                    {
+                        if (j == 0 && corner[1] == corner[0] + 1)
+                        {
+                            if (corner[1] < dist) dist = corner[1];
+                        }
+                        else if (j == 1 && corner[0] == corner[1] + 1)
+                        {
+                            if (corner[0] < dist) dist = corner[0];
+                        }
+                    }
+
+                    if (dist >= 3 && dist < size)
+                    {
+                        T("StairAtStartConvexOut2 distance " + (dist - 1), "side " + i, "rotation " + j);
+
+                        bool distanceEmpty = true;
+                        for (int k = 1; k <= dist - 1; k++)
+                        {
+                            if (k < 3)
+                            {
+                                if (InTakenRel(1, k)) distanceEmpty = false;
+                            }
+                            else
+                            {
+                                if (InTakenRel(k - 1, k)) distanceEmpty = false;
+                            }
+                        }
+
+                        if (distanceEmpty)
+                        {
+                            int hori = dist - 1;
+                            int vert = dist;
+
+                            int i1 = InTakenIndexRel(hori, vert);
+                            int i2 = InTakenIndexRel(hori + 1, vert);
+
+                            if (i2 > i1)
+                            {
+                                List<int[]> borderFields = new();
+                                for (int k = 2; k <= vert - 2; k++)
+                                {
+                                    if (hori >= 3 && k <= vert - 2)
+                                    {
+                                        borderFields.Add(new int[] { k - 1, k });
+                                        borderFields.Add(new int[] { k, k });
+                                    }
+                                }
+
+                                List<int[]> newBorderFields = new();
+                                for (int k = borderFields.Count - 1; k >= 0; k--)
+                                {
+                                    T("border field " + borderFields[k][0] + " " + borderFields[k][1]);
+                                    newBorderFields.Add(borderFields[k]);
+                                }
+
+                                ResetExamAreas();
+
+                                if (CountAreaRel(1, 1, hori - 1, vert - 1, newBorderFields, circleDirectionLeft, 2, true))
+                                {
+                                    int black = (int)info[1];
+                                    int white = (int)info[2];
+
+                                    T("b " + black + " w " + white);
+
+                                    // we cannot enter now
+                                    if (black == white)
+                                    {
+                                        int counter = hori - 1;
+                                        AddEndFar(counter, hori - 1, vert - 1);
+
+                                        if (CheckCorner(1, 2, 0, 2, circleDirectionLeft, true))
+                                        {
+                                            AddExamAreas();
+                                            T("StairAtStartConvexOut2 end obstacle at " + hori + " " + vert + ": Cannot step left");
+                                            RemoveEnd(counter);
+                                            AddForbidden(1, 0);
+                                        }
+                                        else
+                                        {
+                                            RemoveEnd(counter);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // rotate CW
+                    int s0 = sx;
+                    int s1 = sy;
+                    sx = -lx;
+                    sy = -ly;
+                    lx = s0;
+                    ly = s1;
+                }
+                sx = thisSx;
+                sy = thisSy;
+                lx = -thisLx;
+                ly = -thisLy;
+            }
+            sx = thisSx;
+            sy = thisSy;
+            lx = thisLx;
+            ly = thisLy;
+        }
+
+        void StairAtStartConvexOut3()
+        // (h-1)B, end obstacle outside
+        // 2024_0529_3, 2024_0610_2, 2024_0610_3: across
+        // 9_743059_1: mid across
+        // 2024_0625: area
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                bool circleDirectionLeft = (i == 0) ? true : false;
+
+                for (int j = 0; j < 2; j++) // j = 0: straight area, j = 1: big area
+                {
+                    int dist = size; // vertical distance
+                    int quarter = quarters[i][j];
+
+                    foreach (int[] corner in closedCorners[quarter])
+                    {
+                        if (j == 0 && corner[1] == corner[0] + 2)
+                        {
+                            if (corner[1] < dist) dist = corner[1];
+                        }
+                        else if (j == 1 && corner[0] == corner[1] + 2)
+                        {
+                            if (corner[0] < dist) dist = corner[0];
+                        }
+                    }
+
+                    if (dist >= 4 && dist < size)
+                    {
+                        T("StairAtStartConvexOut3 distance " + (dist - 1), "side " + i, "rotation " + j);
+
+                        bool distanceEmpty = true;
+                        for (int k = 1; k <= dist - 1; k++)
+                        {
+                            if (k < 4)
+                            {
+                                if (InTakenRel(1, k)) distanceEmpty = false;
+                            }
+                            else
+                            {
+                                if (InTakenRel(k - 2, k)) distanceEmpty = false;
+                            }
+                        }
+
+                        if (distanceEmpty)
+                        {
+                            int hori = dist - 2;
+                            int vert = dist;
+
+                            int i1 = InTakenIndexRel(hori, vert);
+                            int i2 = InTakenIndexRel(hori + 1, vert);
+
+                            if (i2 > i1)
+                            {
+                                List<int[]> borderFields = new();
+                                for (int k = 2; k <= vert - 2; k++)
+                                {
+                                    if (k <= 2)
+                                    {
+                                        borderFields.Add(new int[] { 1, k });
+                                    }
+                                    else if (hori >= 3 && k <= vert - 2)
+                                    {
+                                        borderFields.Add(new int[] { k - 2, k });
+                                        borderFields.Add(new int[] { k - 1, k });
+                                    }
+                                }
+
+                                List<int[]> newBorderFields = new();
+                                for (int k = borderFields.Count - 1; k >= 0; k--)
+                                {
+                                    T("border field " + borderFields[k][0] + " " + borderFields[k][1]);
+                                    newBorderFields.Add(borderFields[k]);
+                                }
+
+                                ResetExamAreas();
+
+                                if (CountAreaRel(1, 1, hori - 1, vert - 1, newBorderFields, circleDirectionLeft, 2, true))
+                                {
+                                    int black = (int)info[1];
+                                    int white = (int)info[2];
+
+                                    T("b " + black + " w " + white);
+
+                                    // we cannot enter now
+                                    if (black - white == hori - 1)
+                                    {
+                                        int counter = hori;
+                                        AddEndFar(counter, hori, vert - 1);
+
+                                        if (CheckCorner(1, 2, 0, 2, circleDirectionLeft, true))
+                                        {
+                                            AddExamAreas();
+                                            T("StairAtStartConvexOut3 end obstacle at " + hori + " " + vert + ": Cannot step left");
+                                            RemoveEnd(counter);
+                                            AddForbidden(1, 0);
+                                        }
+                                        else
+                                        {
+                                            RemoveEnd(counter);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // rotate CW
+                    int s0 = sx;
+                    int s1 = sy;
+                    sx = -lx;
+                    sy = -ly;
+                    lx = s0;
+                    ly = s1;
                 }
                 sx = thisSx;
                 sy = thisSy;
@@ -3235,7 +3318,8 @@ namespace OneWayLabyrinth
         }
 
         void StairAtEndConvexStraight4()
-        // 2024_0624
+        // 1W, start obstacle outside
+        // 2024_0624, 2024_0727_1: mid across
         {
             for (int i = 0; i < 2; i++)
             {
@@ -3368,8 +3452,152 @@ namespace OneWayLabyrinth
             ly = thisLy;
         }
 
+        void StairAtEndConvexOut3()
+        // (v-1)B, start obstacle outside
+        // 2024_0720_3: mid across
+        // 2024_0725_1: across
+        {
+            for (int i = 0; i < 2; i++)
+            {
+                bool circleDirectionLeft = (i == 0) ? true : false;
+
+                for (int j = 0; j < 2; j++) // j = 0: straight area, j = 1: big area
+                {
+                    int dist = size; // horizontal distance
+                    int quarter = quarters[i][j];
+
+                    List<int[]> corners = closedCorners[quarter];
+
+                    // Find closest step
+                    foreach (int[] corner in corners)
+                    {
+                        if (j == 0 && corner[0] == corner[1] + 2)
+                        {
+                            if (corner[0] < dist) dist = corner[0];
+                        }
+                        else if (j == 1 && corner[1] == corner[0] + 2)
+                        {
+                            if (corner[1] < dist) dist = corner[1];
+                        }
+                    }
+
+                    if (dist >= 4 && dist < size)
+                    {
+                        T("StairAtEndConvexOut3 distance " + (dist - 1), "side " + i, "rotation " + j);
+
+                        bool distanceEmpty = true;
+                        for (int k = 1; k <= dist - 1; k++)
+                        {
+                            if (k < dist - 2)
+                            {
+                                if (InTakenRel(k, k)) distanceEmpty = false;
+                            }
+                            else
+                            {
+                                if (InTakenRel(k, dist - 3)) distanceEmpty = false;
+                            }
+                        }
+
+                        if (distanceEmpty)
+                        {
+                            int hori = dist;
+                            int vert = dist - 2;
+
+                            int i1 = InTakenIndexRel(hori, vert);
+                            int i2 = InTakenIndexRel(hori + 1, vert);
+
+                            if (i2 > i1)
+                            {
+                                List<int[]> borderFields = new();
+                                for (int k = 2; k <= hori - 2; k++)
+                                {
+                                    if (vert == 2)
+                                    {
+                                        borderFields.Add(new int[] { k, vert - 1 });
+                                    }
+                                    else
+                                    {
+                                        if (k < hori - 2)
+                                        {
+                                            borderFields.Add(new int[] { k, k - 1 });
+                                            borderFields.Add(new int[] { k, k });
+                                        }
+                                        else
+                                        {
+                                            borderFields.Add(new int[] { k, vert - 1 });
+                                        }
+                                    }
+                                }
+
+                                bool takenFound = false;
+                                foreach (int[] field in borderFields)
+                                {
+                                    if (InTakenRel(field[0], field[1]))
+                                    {
+                                        takenFound = true;
+                                        break;
+                                    }
+                                }
+
+                                if (!takenFound)
+                                {
+                                    // reverse order
+                                    List<int[]> newBorderFields = new();
+                                    for (int k = borderFields.Count - 1; k >= 0; k--)
+                                    {
+                                        T("border field " + borderFields[k][0] + " " + borderFields[k][1]);
+                                        newBorderFields.Add(borderFields[k]);
+                                    }
+
+                                    ResetExamAreas();
+
+                                    if (CountAreaRel(1, 1, hori - 1, vert - 1, newBorderFields, circleDirectionLeft, 2, true))
+                                    {
+                                        int black = (int)info[1];
+                                        int white = (int)info[2];
+
+                                        T("b " + black + " w " + white);
+
+                                        if (black - white == vert - 1 && CheckNearFieldSmallRel1(vert, vert - 1, 1, 0, true))
+                                        {
+                                            AddExamAreas();
+
+                                            T("StairAtEndConvexOut3 at " + hori + " " + vert + ": Cannot step left");
+                                            AddForbidden(1, 0);
+
+                                            if (j == 1)
+                                            {
+                                                T("StairAtEndConvexOut3 at " + hori + " " + vert + ": Cannot step down");
+                                                AddForbidden(0, -1);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    // rotate CW
+                    int s0 = sx;
+                    int s1 = sy;
+                    sx = -lx;
+                    sy = -ly;
+                    lx = s0;
+                    ly = s1;
+                }
+                sx = thisSx;
+                sy = thisSy;
+                lx = -thisLx;
+                ly = -thisLy;
+            }
+            sx = thisSx;
+            sy = thisSy;
+            lx = thisLx;
+            ly = thisLy;
+        }
+
         void StairAtEndConvexOut4()
-        // 2025_0525_1
+        // 1W: 2025_0525_1
         {
             for (int i = 0; i < 2; i++)
             {

@@ -2,16 +2,17 @@
 1. Add 2023_/2024_ prefix to early examples; rename in documentation too.
 2. Make sure every case image has its .txt file. For this, implement .svg parsing in program, calculate possibilities at each step using the current rule set.
 3. Make sure every .txt file has its image too (if they are used in the project)
+4. (optional) Add subfolder for files that have something in common and are not cases.
+5. Delete files not used in readme0.md, Path.cs, Path_old.cs and Path_old2.cs
+6. Add size specification to txt files up to 2023-0729
 ----- DONE -----
-4. Delete files not used in readme0.md, Path.cs, Path_old.cs and Path_old2.cs
-5. Add size specification to txt files up to 2023-07-29
-6. (optional) Add subfolder for files that have something in common and are not cases.
-7. In Path.cs, some references are written without 2024_, while the file is correctly named. Find those with regex and correct. Path_old.cs has 821, which is a missing reference. Some references were incorrectly renamed, like in Path_old.cs 0730 -> 2023_0730 -> this refers to 2024_0730. Also 0710 and more
-8. Review context: 2024_0712_1 has wrong possibility. Also 9_22362
-9: Some 9 walkthroughs are the same but have different number, like 2034435 or 2059934. One or both are wrong. Also 9_23350320 can be in fact 9_23347853.
-10. Corner discovery error when loading a completed walkhtrough from svg, like 9_22326. Also the possibilities of future lines will be put next to the live end, 2025_0527_future.
-11. Delete non-specific rules that are only found because of function name, like StairAtEndConcaveStraight3.svg
-12. Images where the checker pattern fills the entire board are not prefereable 
+7. 2024_0530: we cannnot step there
+8: Some 9 walkthroughs are the same but have different number, like 2034435 or 2059934. One or both are wrong. Also 9_23350320 can be in fact 9_23347853.
+9. Corner discovery error when loading a completed walkhtrough from svg, like 9_22326. Also the possibilities of future lines will be put next to the live end, 2025_0527_future.
+10. Delete non-specific rules that are only found because of function name, like StairAtEndConcaveStraight3.svg
+11. Images where the checker pattern fills the entire board are not prefereable 
+12. On 2023_1021, arealine is drawn wrong. There might be other cases. 2023_1021_6
+13. Use AddEnd... functions everywhere
 
 '''
 
@@ -21,6 +22,16 @@ import sys
 import time
 from datetime import datetime
 
+def set_last_modified(file_path, new_datetime):
+    if not os.path.isfile(file_path):
+        raise FileNotFoundError(f"File not found: {file_path}")
+    
+    timestamp = time.mktime(new_datetime.timetuple())
+    
+    os.utime(file_path, (timestamp, timestamp))
+    print(f"Updated last modified date for '{file_path}' to {new_datetime}")
+
+r'''
 paths = ["References/", "References/countarea/", "References/checknearfield/", "References/rules/", "References/rules_sorted/5-grid/", "References/rules_sorted/7-grid/", "References/rules_sorted/9-grid/", "References/rules_sorted/13-grid/"]
 renameMode = False
 if len(sys.argv) > 1 and sys.argv[1] == "-r":
@@ -401,3 +412,34 @@ if noCount > 0:
         file.write("\n".join(noCountFiles))
 
 print(f"Global inCount {inCount} noCount {noCount}")
+'''
+
+files = []
+for filename in os.listdir("References/"):
+    if ".txt" in filename and int(filename.replace(".txt", "").replace("_","")[0:8]) > 20230101 and int(filename.replace(".txt", "").replace("_","")[0:8]) <= 20230729:
+        print(filename)
+        files.append(filename)
+
+for filename in files:
+    with open("References/" + filename.replace("txt", "svg"), "r") as file:
+        content = file.read()
+        pattern1 = re.compile(r'viewBox="0 0 (\d+) (\d+)"')
+        match = pattern1.search(content)
+        gr1 = match.group(1)
+        gr2 = match.group(2)
+        if gr1 != gr2:
+            sys.exit("Dimensions unequal")
+
+    with open("References/" + filename, "r") as file:
+        content = file.read()
+    
+    dt = datetime.fromtimestamp(os.path.getmtime("References/" + filename))
+
+    if content[1:2] != "|" and content[2:3] != "|":
+        content = gr1 + "|" + content
+        with open("References/" + filename, "w") as file:
+            file.write(content)
+
+        new_time = datetime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second)
+        set_last_modified("References/" + filename, new_time)
+

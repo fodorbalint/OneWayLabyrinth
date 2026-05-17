@@ -81,38 +81,33 @@ namespace OneWayLabyrinth
 
         /*T("DirectionalArea: " + DirectionalArea + "\n" + "DoubleArea1: " + DoubleArea1 + "\n" + "DoubleArea2: " + DoubleArea2 + "\n" + "DoubleArea3: " + DoubleArea3 + "\n" + "DoubleArea4: " + DoubleArea4 + "\n" + "DoubleArea1Rotated: " + DoubleArea1Rotated + "\n" + "Sequence1: " + Sequence1 + "\n" + "Sequence2: " + Sequence2 + "\n" + "Sequence3: " + Sequence3 + "\n" + "DownStairClose: " + DownStairClose + "\n" + "DownStair: " + DownStair + "\n" + "DoubleAreaFirstCaseRotatedNext: " + DoubleAreaFirstCaseRotatedNext + "\n" + "DownStairNext: " + DownStairNext);*/
 
-        /* 5 x 5: CheckNearCorner: 2023_0811_2
+        /*
+        Used rules for 5 x 5:
+
+        * CheckNearCorner
+        2023_0811_2
 
         Used rules for 7 x 7:
-            * Side back
-            * Side front
-            * Side front L
-            * Future L
-            2023_0827, 2023_0827_1
-            the start and end fields have to be in the same section, otherwise they can connect, like in 2023_0913
-            conditions are true already on 5x5 at 2023_0831_1, but it is handled in CheckNearCorner
 
-            * Future 2 x 2 Start End
-            * 2023_0909_1, 2023_0909_2
-            * On boards larger than 7 x 7, is it possible to apply the rule in straight left/right directions? It means that in the original example, the line is coming downwards instead of heading right.
+        * Side back
+        * Side front
+        * Side front L
+        * Future L
+        2023_0827, 2023_0827_1
+        the start and end fields have to be in the same section, otherwise they can connect, like in 2023_0913
+        conditions are true already on 5x5 at 2023_0831_1, but it is handled in CheckNearCorner
 
-            * Future 2 x 3 Start End
-                2023_0915
-                Is there a situation where the start and end fields are not part of one future line?
-                On boards larger than 7 x 7, is it possible to apply the rule in straight left/right directions? It means that in the original example, the line is coming downwards instead of heading right.
+        * Future 2 x 2 Start End
+        2023_0909_1, 2023_0909_2
+        On boards larger than 7 x 7, it is possible to apply the rule in straight left/right directions. It means that in the original example, the line is coming downwards instead of heading right.
 
-            * Future 3 x 3 Start End
-                2023_0916
+        * Future 2 x 3 Start End
+        2023_0915
+        On boards larger than 7 x 7, it is possible to apply the rule in straight left/right directions? It means that in the original example, the line is coming right instead of heading up.
 
-        * Notes for 9 x 9:
-
-        * if there is a close across large obstacle leading to a large area, there can be valid rules on the other side, see 9_2707632
-        * CheckAreaNearBorder() uses countarea, see 2023_0909. A 2x2 area would be created with one way to go in and out
-        * With the exception of closeAcross large area, all near field rules disable two fields, leaving only one option. Running further rules are not necessary. 
-        * Example of interference: 2023_1031_1
-        * CountArea3x3 2,2: 2023_1021_1
-
-        Check1x3: 2023_0430_2 */
+        * Future 3 x 3 Start End
+        2023_0916
+        */
 
         public void RunRules()
         {
@@ -797,7 +792,7 @@ namespace OneWayLabyrinth
                                 }
                             }
 
-                            if (InTakenRel(3, -1) && InTakenRel(3, -2) && !InTakenRel(1, -1) && !InTakenRel(1, 0) && !InTakenRel(1, 1)) // mid across down, 1,1: 2023_1021_7
+                            if (InTakenRel(3, -1) && InTakenRel(3, -2) && !InTakenRel(1, -1) && !InTakenRel(1, 0) && !InTakenRel(1, 1)) // mid across down, 1,1: 2023_1021_6
                             {
                                 T("farSideMidAcross down");
                                 farSideMidAcrossDown = true;

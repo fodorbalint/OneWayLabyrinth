@@ -32,52 +32,6 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.DependencyInjection;
 using System.Text.RegularExpressions;
 
-/*
-
-----------
-
-In 1-thin future line extension rule, it is not necessary that the far end is at the corner. We are in a closed loop where the far end cannot have effect on the near end, unless the field 2 to left is part of the same future line which took a U-turn.
-Write about counting area start end field rules
-Show arealine upon loading from file
-
-Create inferface for disabling/enabling rules. Find out why it is not equal:
-- Amount of walkthroughs before getting stuck at the second rule
-- Amount of walkthroughs before getting stuck at the first rule, plus further walkthroughs until the second rule.
-
-Needed printed fields: 2 arrows, 1 count area pair/impair start/end with gray background. 2 forbidden fields with gray background, 6 border or taken fields, 1 no-corner field with gray background
-
-Reset farStraight = false; and farMidAcross = false; within 2-cycle?
-
-Write about creating future line at the corner
-
-Decide possibilities without relying on future lines, new rules will be necessary, as in 9_19717655
-
------ 21 x 21 -----
-
-2023_0413: Path.CheckFutureSide: check case when both sides are true simultaneously, draw future line on left side to start with. See 2023_0430_2
-2023_0415_1: Future line start can be extended, but there is mistakenly no possibilities because of right across check.
-	Right now, forbidden fields only apply on the main line when the across field goes up. Are all across checks invalid for future line?
-2023_0521: Future line start can be extended now. Taken is connecting to future, but since the left and right fields are not simultaneously empty, future line cannot be extended. In this case, the end of the selected future line cannot fill the empty space next to the main line, unlike it would be the case when connecting to the future section on the top.
-2023_0430: previously used CheckLeftRightFuture to determine that we must step towards the future line.
-Implement right side of connecting to a loop
-Implement CheckNearFutureEnd on 21x21
-Test C-shape on 2023_0620_1, one step forward, the near end extends. The future line does not create a C shape if the end of the main line is the empty field to the left.
-CountArea needs to be implemented upon closed loop with future ?
-2023_0430: When we step on the right field, future line cannot be completed. It is right, but not because of C shape left and straight. The straight C shape is not right, because the field 2 ahead is a section start. We should also consider that the actual end to the right cannot go anywhere else.
-2023_0425: Challenge to complete
-
------ 25 x 25 -----
-
-2023_1212: Stepped on future, other end cannot be completed.
-
------ UNKNOWN SIZE -----
-
-1x2, 1x3 future line: check section merge after finding an example
-CheckFutureL: find a case when both sides are true
-Find out the minimum size for Check1x3 when far end of a future line extends
-
-*/
-
 namespace OneWayLabyrinth
 {
     /// <summaly>
@@ -2004,7 +1958,7 @@ namespace OneWayLabyrinth
                 }
 
                 // If there was a future start left or right to the head of the line in the previous step, that future line may be extended now if it has no other options to move.
-                // Example: 2023_0430_2. All 4 directions of needs to be examined, so that 2023_0618 works too.
+                // Example: 2023_0430_1. All 4 directions of needs to be examined, so that 2023_0618 works too.
                 // minimum size: 5
 
                 x = taken.path[count - 2][0];
@@ -2111,7 +2065,7 @@ namespace OneWayLabyrinth
                 taken.lx = taken.thisLx;
                 taken.ly = taken.thisLy;
 
-                // When there is a future start 2 to the left or right (due to the extension of the originally created C shape), and the live end goes straight or the other way (example: 2023_0430_1), the start end can be extended. It will in some cases act as 1x3 C shape checking 
+                // When there is a future start 2 to the left or right (due to the extension of the originally created C shape), and the live end goes straight or the other way (example: 2023_0430), the start end can be extended. It will in some cases act as 1x3 C shape checking 
                 // The future line is not necessarily the newest. Example: 2023_0427, 2023_0427_1
 
                 if (size >= 7)

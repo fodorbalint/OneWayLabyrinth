@@ -512,7 +512,7 @@ namespace OneWayLabyrinth
                                 }
                             }
 
-                            if (InTakenRel(3, -1) && InTakenRel(3, -2) && !InTakenRel(1, -1) && !InTakenRel(1, 0) && !InTakenRel(1, 1)) // mid across down, 1,1: 2023_1021_7
+                            if (InTakenRel(3, -1) && InTakenRel(3, -2) && !InTakenRel(1, -1) && !InTakenRel(1, 0) && !InTakenRel(1, 1)) // mid across down, 1,1: 2023_1021_6
                             {
                                 farSideMidAcrossDown = true;
 

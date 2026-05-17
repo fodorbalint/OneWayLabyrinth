@@ -36,29 +36,19 @@ References/rules_sorted/13-grid/
 
 MainWindow.xaml.cs
 
-" necessary, as in 9_19717655  ----- 21 x 21 -"    19717655
-"21 x 21 -----  2023_0413: Path.CheckFutureSid"    0413
-"tart with. See 2023_0430_2 2023_0415_1: Futur"    0430_2
-"ee 2023_0430_2 2023_0415_1: Future line start"    0415_1
-"r future line? 2023_0521: Future line start c"    0521
-"on on the top. 2023_0430: previously used Che"    0430
-"est C-shape on 2023_0620_1, one step forward,"    0620_1
-" with future ? 2023_0430: When we step on the"    0430
-"anywhere else. 2023_0425: Challenge to comple"    0425
-"25 x 25 -----  2023_1212: Stepped on future, "    1212
 "n fields, like in 9_349170             {     "    349170
 "there, like in 2024_0101_1                   "    0101_1
 "de. First example 9_19802714.                "    19802714
-"            // 2023_1021_3. Only if C-shape i"    1021_3
+"            // 2023_1021_2. Only if C-shape i"    1021_2
 " timely, as in 2023_0811                     "    0811
 "            // 2023_0911, 2023_0911_1: Future"    0911
 " // 2023_0911, 2023_0911_1: Future line on th"    0911_1
-"   // Example: 2023_0430_2. All 4 directions "    0430_2
+"   // Example: 2023_0430_1. All 4 directions "    0430_1
 "mined, so that 2023_0618 works too.          "    0618
 "m a 2x2 shape. 2023_0901_1 has a one-wide lin"    0901_1
 "s important in 2023_0928                     "    0928
 ")) // Example: 2023_0902                     "    0902
-" way (example: 2023_0430_1), the start end ca"    0430_1
+" way (example: 2023_0430), the start end can "    0430
 "west. Example: 2023_0427, 2023_0427_1        "    0427
 "le: 2023_0427, 2023_0427_1                  i"    0427_1
 " is needed for 2023_0927_1                   "    0927_1
@@ -90,7 +80,7 @@ MainWindow.xaml.cs
 "          //In 2023_0913_2 it can happen that"    0913_2
 " options, like 2024_0101_1                  i"    0101_1
 
-53 matches found, 0 needs to be replaced.
+43 matches found, 0 needs to be replaced.
 
 Path.cs
 
@@ -370,7 +360,7 @@ Path_control.cs
 " 2)) // -1, 2: 2023_1019_1                   "    1019_1
 "StraightRight) // 9_234256             {     "    234256
 "sary. Example: 2023_1019_7             if (!c"    1019_7
-"oss down, 1,1: 2023_1021_7                   "    1021_7
+"oss down, 1,1: 2023_1021_6                   "    1021_6
 "1, 2)) // 1,2: 2023_1021                     "    1021
 "(2, -2)) // 2,-2: 9_630259                   "    630259
 "& farSideDown) // 9_234256                   "    234256
@@ -407,20 +397,15 @@ Path_control.cs
 Path_old.cs
 
 "ft and right case 9_234320         //CheckNea"    234320
-"eckNearCorner: 2023_0811_2          Used rule"    0811_2
-" L             2023_0827, 2023_0827_1        "    0827
-"    2023_0827, 2023_0827_1             the st"    0827_1
-"nnect, like in 2023_0913             conditio"    0913
+"Corner         2023_0811_2          Used rule"    0811_2
+"ture L         2023_0827, 2023_0827_1        "    0827
+"    2023_0827, 2023_0827_1         the start "    0827_1
+"nnect, like in 2023_0913         conditions a"    0913
 "eady on 5x5 at 2023_0831_1, but it is handled"    0831_1
-"             * 2023_0909_1, 2023_0909_2      "    0909_1
-"* 2023_0909_1, 2023_0909_2             * On b"    0909_2
-"               2023_0915                 Is t"    0915
-"               2023_0916          * Notes for"    0916
-"e other side, see 9_2707632         * CheckAr"    2707632
-"countarea, see 2023_0909. A 2x2 area would be"    0909
-" interference: 2023_1031_1         * CountAre"    1031_1
-"ntArea3x3 2,2: 2023_1021_1          Check1x3:"    1021_1
-"     Check1x3: 2023_0430_2 */          public"    0430_2
+"rt End         2023_0909_1, 2023_0909_2      "    0909_1
+"  2023_0909_1, 2023_0909_2         On boards "    0909_2
+"rt End         2023_0915         On boards la"    0915
+"rt End         2023_0916         */          "    0916
 "n both sides, see 9_305112. Here, close strai"    305112
 "far rule, like in 9_1307639. The close rule h"    1307639
 ", 1)) // 0, 2: 2023_1225; 0, 1: 2023_1226    "    1225
@@ -434,7 +419,7 @@ Path_old.cs
 " 2)) // -1, 2: 2023_1019_1                   "    1019_1
 "StraightRight) // 9_234256             {     "    234256
 "sary. Example: 2023_1019_7             if (!c"    1019_7
-"oss down, 1,1: 2023_1021_7                   "    1021_7
+"oss down, 1,1: 2023_1021_6                   "    1021_6
 "1, 2)) // 1,2: 2023_1021                     "    1021
 "(2, -2)) // 2,-2: 9_630259                   "    630259
 "& farSideDown) // 9_234256                   "    234256
@@ -628,7 +613,7 @@ Path_old.cs
 "               // 9_350: checkstraight straig"    350
 "               // 9_1273: L-shape, end row fi"    1273
 
-221 matches found, 0 needs to be replaced.
+216 matches found, 0 needs to be replaced.
 
 Path_old2.cs
 
@@ -652,9 +637,9 @@ readme0.md
 "rc="References/2023_0821_1.svg" width="5" /> "    0821_1
 "rc="References/2023_1019_8.svg" width="5" />["    1019_8
 "rc="References/2023_1019_9.svg" width="5" /> "    1019_9
+"rc="References/2023_1021_3.svg" width="5" />["    1021_3
 "rc="References/2023_1021_4.svg" width="5" />["    1021_4
-"rc="References/2023_1021_5.svg" width="5" />["    1021_5
-"rc="References/2023_1021_6.svg" width="5" /> "    1021_6
+"rc="References/2023_1021_5.svg" width="5" /> "    1021_5
 "rc="References/2023_1019_10.svg" width="5" />"    1019_10
 "rc="References/2023_1019_11.svg" width="5" />"    1019_11
 "rc="References/2023_0821_2.svg" width="5" /> "    0821_2
@@ -667,8 +652,8 @@ readme0.md
 "rc="References/2023_0901.svg" width="7" />  -"    0901
 "rc="References/2023_0929.svg" width="7" />  I"    0929
 "rc="References/2023_1019_7.svg" width="9" />["    1019_7
-"rc="References/2023_1021_2.svg" width="9" /> "    1021_2
-"" src="References/7_450.svg" width="7" />   <"    450
+"rc="References/2023_1021_1.svg" width="9" /> "    1021_1
+"" src="References/7_450.svg" width="7" />  <i"    450
 "" src="References/7_465.svg" width="7" />  <i"    465
 "" src="References/7_1861.svg" width="7" />  A"    1861
 "rc="References/2023_1007.svg" width="9" />  <"    1007
@@ -1022,22 +1007,14 @@ readme0.md
 
 ----- Check if references are found in content -----
 
-MainWindow.xaml.cs 224530
+MainWindow.xaml.cs 221657
 
-"---- 21 x 21 -----  2023_0413: Path.CheckFutu"
 "he start end, as in 2023_0415                "
-"th. See 2023_0430_2 2023_0415_1: Future line "
-"t go anywhere else. 2023_0425: Challenge to c"
 "he newest. Example: 2023_0427, 2023_0427_1   "
 "Example: 2023_0427, 2023_0427_1              "
-"section on the top. 2023_0430: previously use"
-" loop with future ? 2023_0430: When we step o"
-"other way (example: 2023_0430_1), the start e"
-" to start with. See 2023_0430_2 2023_0415_1: "
-"        // Example: 2023_0430_2. All 4 direct"
-"id for future line? 2023_0521: Future line st"
+"other way (example: 2023_0430), the start end"
+"        // Example: 2023_0430_1. All 4 direct"
 "e examined, so that 2023_0618 works too.     "
-"x21 Test C-shape on 2023_0620_1, one step for"
 "in between, like in 2023_0714_1. Instead, we "
 "lder section, as in 2023_0730_1              "
 "his is not added in 2023_0803:               "
@@ -1069,20 +1046,18 @@ MainWindow.xaml.cs 224530
 "an be created as in 2023_1002 where the near "
 "utureRel2(1, 1)) // 2023_1006_1              "
 "utureRel2(3, 1)) // 2023_1006_2              "
-"                 // 2023_1021_3. Only if C-sh"
-"---- 25 x 25 -----  2023_1212: Stepped on fut"
+"                 // 2023_1021_2. Only if C-sh"
 " get there, like in 2024_0101_1              "
 "re no options, like 2024_0101_1              "
 "              /*See 2024_0701_1:     This sit"
-"be necessary, as in 9_19717655  ----- 21 x 21"
 "side. First example 9_19802714.              "
 "den fields, like in 9_349170             {   "
 " to begin the other C-Shape.                 "
 "                 M("Future L: " + completedCo"
 
-55 matches found, 0 replaced.
+45 matches found, 0 replaced.
 
-New length 224530 inCount 48 noCount 757
+New length 221657 inCount 40 noCount 755
 
 Path.cs 392475
 
@@ -1389,7 +1364,7 @@ Path.cs 392475
 
 300 matches found, 0 replaced.
 
-New length 392475 inCount 190 noCount 615
+New length 392475 inCount 190 noCount 605
 
 Path_control.cs 108728
 
@@ -1403,7 +1378,7 @@ Path_control.cs 108728
 "2023_1019_5, -2, 2: 2023_1019_6              "
 "necessary. Example: 2023_1019_7             i"
 "nRel(1, 2)) // 1,2: 2023_1021                "
-"d across down, 1,1: 2023_1021_7              "
+"d across down, 1,1: 2023_1021_6              "
 "Rel(0, 1)) // 0, 2: 2023_1225; 0, 1: 2023_122"
 "2: 2023_1225; 0, 1: 2023_1226                "
 "neously true, as in 2024_0505. If the bigger "
@@ -1473,26 +1448,24 @@ Path_control.cs 108728
 
 77 matches found, 0 replaced.
 
-New length 108728 inCount 63 noCount 742
+New length 108728 inCount 63 noCount 732
 
-Path_old.cs 258675
+Path_old.cs 257974
 
-"          Check1x3: 2023_0430_2 */          p"
 "TakenRel2(0, 1)) // 2023_0708 Field in front "
 "TakenRel2(0, 1)) // 2023_0708: Field in front"
-"5: CheckNearCorner: 2023_0811_2          Used"
-"uture L             2023_0827, 2023_0827_1   "
-"         2023_0827, 2023_0827_1             t"
+"kNearCorner         2023_0811_2          Used"
+" * Future L         2023_0827, 2023_0827_1   "
+"         2023_0827, 2023_0827_1         the s"
 "ckCOnFarBorder() // 2023_0831         {      "
 "plies from 7x7, see 2023_0831. Similar to Che"
 "e already on 5x5 at 2023_0831_1, but it is ha"
-"uses countarea, see 2023_0909. A 2x2 area wou"
 "AreaNearBorder() // 2023_0909. Check both str"
-"t End             * 2023_0909_1, 2023_0909_2 "
-"     * 2023_0909_1, 2023_0909_2             *"
-"an connect, like in 2023_0913             con"
-"End                 2023_0915                "
-"End                 2023_0916          * Note"
+"2 Start End         2023_0909_1, 2023_0909_2 "
+"       2023_0909_1, 2023_0909_2         On bo"
+"an connect, like in 2023_0913         conditi"
+"3 Start End         2023_0915         On boar"
+"3 Start End         2023_0916         */     "
 "tion. Can happen in 2023_1006                "
 "Rel(2, 2)) // 2, 2: 2023_1019                "
 "l(-1, 2)) // -1, 2: 2023_1019_1              "
@@ -1503,9 +1476,7 @@ Path_old.cs 258675
 "2023_1019_5, -2, 2: 2023_1019_6              "
 "necessary. Example: 2023_1019_7             i"
 "nRel(1, 2)) // 1,2: 2023_1021                "
-"* CountArea3x3 2,2: 2023_1021_1          Chec"
-"d across down, 1,1: 2023_1021_7              "
-"le of interference: 2023_1031_1         * Cou"
+"d across down, 1,1: 2023_1021_6              "
 "arting situation of 2023_1119, where we mark "
 "e field twice as in 2023_1208 side across dow"
 "Rel(0, 1)) // 0, 2: 2023_1225; 0, 1: 2023_122"
@@ -1669,7 +1640,6 @@ Path_old.cs 258675
 "arStraightRight) // 9_234256             {   "
 " && farSideDown) // 9_234256                 "
 "left and right case 9_234320         //CheckN"
-"the other side, see 9_2707632         * Check"
 "elds necessary, see 9_29558469             if"
 " on both sides, see 9_305112. Here, close str"
 "                  * 9_348                    "
@@ -1744,16 +1714,16 @@ Path_old.cs 258675
 "        // Checking C-Shape not necessary, si"
 "se;              // C-Shape, only left side s"
 "   }              //C-Shape up             if"
-"rner              * Future 2 x 2 Start End   "
+"arCorner          * Future 2 x 2 Start End   "
 "                 // Future 2 x 2 Start End   "
 "   activeRules.Add("Future 2 x 2 Start End");"
-"ght.              * Future 2 x 3 Start End   "
+"g right.          * Future 2 x 3 Start End   "
 "                 // Future 2 x 3 Start End   "
 "   activeRules.Add("Future 2 x 3 Start End");"
-"ght.              * Future 3 x 3 Start End   "
+"ding up.          * Future 3 x 3 Start End   "
 "                 // Future 3 x 3 Start End   "
 "   activeRules.Add("Future 3 x 3 Start End");"
-"ont L             * Future L             2023"
+"e front L         * Future L         2023_082"
 "                 // Future L                 "
 "   activeRules.Add("Future L");              "
 "     // Third case, Double Area Stair 2      "
@@ -1768,9 +1738,9 @@ Path_old.cs 258675
 "   activeRules.Add("Triple Area Exit Down"); "
 "                 // Triple Area              "
 
-290 matches found, 0 replaced.
+285 matches found, 0 replaced.
 
-New length 258675 inCount 169 noCount 636
+New length 257974 inCount 165 noCount 630
 
 Path_old2.cs 54935
 
@@ -1832,7 +1802,7 @@ Path_old2.cs 54935
 
 55 matches found, 0 replaced.
 
-New length 54935 inCount 22 noCount 783
+New length 54935 inCount 22 noCount 773
 
 Rules.xaml.cs 117076
 
@@ -1840,7 +1810,7 @@ Rules.xaml.cs 117076
 
 1 matches found, 0 replaced.
 
-New length 117076 inCount 1 noCount 804
+New length 117076 inCount 1 noCount 794
 
 readme.md 2269
 
@@ -1848,9 +1818,9 @@ readme.md 2269
 
 1 matches found, 0 replaced.
 
-New length 2269 inCount 1 noCount 804
+New length 2269 inCount 1 noCount 794
 
-readme0.md 157436
+readme0.md 157569
 
 "img src="References/2023_0806.svg" width="5" "
 "img src="References/2023_0821.svg" width="5" "
@@ -1879,10 +1849,10 @@ readme0.md 157436
 "img src="References/2023_1019_7.svg" width="9"
 "img src="References/2023_1019_8.svg" width="5"
 "img src="References/2023_1019_9.svg" width="5"
-"op" src="References/2023_1021_2.svg" width="9"
+"op" src="References/2023_1021_1.svg" width="9"
+"img src="References/2023_1021_3.svg" width="5"
 "img src="References/2023_1021_4.svg" width="5"
 "img src="References/2023_1021_5.svg" width="5"
-"img src="References/2023_1021_6.svg" width="5"
 "op" src="References/2023_1022.svg" width="9" "
 "op" src="References/2023_1022_1.svg" width="9"
 "op" src="References/2023_1022_2.svg" width="1"
@@ -2849,7 +2819,7 @@ readme0.md 157436
 
 994 matches found, 0 replaced.
 
-New length 157436 inCount 651 noCount 154
+New length 157569 inCount 651 noCount 144
 
 MainWindow.xaml.cs: Arrays equal
 Path.cs: Arrays equal
@@ -2860,4 +2830,4 @@ Rules.xaml.cs: Arrays equal
 readme.md: Arrays equal
 readme0.md: Arrays equal
 
-Global inCount 805 noCount 0
+Global inCount 795 noCount 0

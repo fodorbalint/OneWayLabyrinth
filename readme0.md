@@ -66,7 +66,7 @@ Here are the things to consider on a grid of this size:
 
 - Future line extension when we step on a future line: The far can be extended if it was 2 distance away from the near end. It can now fill the C-shape.
 
-<img src="References/2023_1021_4.svg" width="5" />[spacer]<img src="References/2023_1021_5.svg" width="5" />[spacer]<img src="References/2023_1021_6.svg" width="5" />
+<img src="References/2023_1021_3.svg" width="5" />[spacer]<img src="References/2023_1021_4.svg" width="5" />[spacer]<img src="References/2023_1021_5.svg" width="5" />
 
 The same goes with 1 x- and y-distance. A C-Shape is not always created in this case.
 
@@ -164,7 +164,7 @@ We are not finished. Did you notice the example above is not covered by these ru
 
 When any of the straight 1-distance rules are present, we don't need to check the side rules or the area created with the border. We can only move within the enclosed area:
 
-<img src="References/2023_1019_7.svg" width="9" />[spacer]<img align="top" src="References/2023_1021_2.svg" width="9" />
+<img src="References/2023_1019_7.svg" width="9" />[spacer]<img align="top" src="References/2023_1021_1.svg" width="9" />
 
 And these are the rest of the rules:
 
@@ -175,7 +175,6 @@ This is what I started the 7&nbsp;x&nbsp;7 introduction with. I will call it Fut
 <!---->
 
 <img align="top" src="References/rules_sorted/7-grid/Future 2 x 2 Start End.svg" width="6" />[spacer]<img align="top" src="References/7_450.svg" width="7" />
-
 
 <img align="top" src="References/rules_sorted/7-grid/Future 2 x 3 Start End.svg" width="3" />[spacer4]<img align="top" src="References/7_465.svg" width="7" />
 
@@ -3157,16 +3156,10 @@ Page 180: rewrite corner 5 1 extended stair 2.svg for stair at end convex straig
 Make pattern set representation: 2024_0625 can be extended vertically, holding a fixed 2 horizontal distance, or in a stair at the far end, so that vert = hori + 2. The two can also be combined. The same can happen with 2024_0625_1, which is just one vertical distance shorter. (Stair extension: 2024_0712)
 LeftRightCorner() has a case (2024_0611_2, 2024_0611_2_area.svg) that should be solved with StairAtStart, instead of using "closed corner"
 2025_0522 is solved by LeftRightCorner close obstacle inside instead of Stair at start concave. Also 2025_0527_2 close obstacle inside-outside.
-2025_0527_2 
 Is it worth checking an area like xdist.svg, just with a concave corner (two obstacles): xdist_closed.svg
 Write about optimizing performance / checking close rules first.
 2024_0530 does not match 9_743059 and is incorrect, we cannot step there.
-2024_0529_3 and is solved by LeftRightCorner open corner and return stair close obstacle, instead of new system.
-2024_0529_5 is solved by LeftRightCorner closed corner and return stair close obstacle, instead of new system.
-2024_0602 is solved by LeftRightCorner return stair close obstacle.
-Disable move while task running
+All open/closed corner and return stair subcases of LeftRightCorner can be solved by a stair pattern. 
 Replace two images with one where the path changes color at the decision point.
-
-<!---->
-
 Is there an example for Count Area Across Border C.svg, and is it solved by NextStepEnterLeft and NextStepEnterRight?
+In Path_old.cs, under the Used rules for 7 x 7 section, there are Side back, Side front and Side front L with no reference anywhere. 
