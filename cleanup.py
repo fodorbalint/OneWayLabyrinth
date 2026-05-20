@@ -10,9 +10,10 @@
 8: Some 9 walkthroughs are the same but have different number, like 2034435 or 2059934. One or both are wrong. Also 9_23350320 can be in fact 9_23347853.
 9. Corner discovery error when loading a completed walkhtrough from svg, like 9_22326. Also the possibilities of future lines will be put next to the live end, 2025_0527_future.
 10. Delete non-specific rules that are only found because of function name, like StairAtEndConcaveStraight3.svg
-11. Images where the checker pattern fills the entire board are not prefereable 
+11. Images where the checker pattern fills the entire board are not prefereable (2026_0404_3)
 12. On 2023_1021, arealine is drawn wrong. There might be other cases. 2023_1021_6
 13. Use AddEnd... functions everywhere
+14. Make sure all examples for the StairAtStart/End functions are listed in the documentation too.
 
 '''
 
@@ -31,7 +32,6 @@ def set_last_modified(file_path, new_datetime):
     os.utime(file_path, (timestamp, timestamp))
     print(f"Updated last modified date for '{file_path}' to {new_datetime}")
 
-r'''
 paths = ["References/", "References/countarea/", "References/checknearfield/", "References/rules/", "References/rules_sorted/5-grid/", "References/rules_sorted/7-grid/", "References/rules_sorted/9-grid/", "References/rules_sorted/13-grid/"]
 renameMode = False
 if len(sys.argv) > 1 and sys.argv[1] == "-r":
@@ -265,6 +265,7 @@ contentI = 0
 for contentName in contentList:
     with open(contentName, "r") as file:
         content = file.read()
+    oldContent = content
     
     print(f"{contentName} {len(content)}\n")
         
@@ -364,8 +365,9 @@ for contentName in contentList:
     print(f"{counter} matches found, {shortCounter} replaced.\n")
     print(f"New length {len(content)} inCount {inCount} noCount {noCount}\n")
 
-    with open(contentName.replace(".cs", "_1.cs").replace(".md", "_1.md"), "w") as file:
-        file.write(content)
+    if content != oldContent:
+        with open(contentName.replace(".cs", "_1.cs").replace(".md", "_1.md"), "w") as file:
+            file.write(content)
 
     contentI += 1
 
@@ -412,7 +414,8 @@ if noCount > 0:
         file.write("\n".join(noCountFiles))
 
 print(f"Global inCount {inCount} noCount {noCount}")
-'''
+
+r'''
 
 files = []
 for filename in os.listdir("References/"):
@@ -443,3 +446,4 @@ for filename in files:
         new_time = datetime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second)
         set_last_modified("References/" + filename, new_time)
 
+'''

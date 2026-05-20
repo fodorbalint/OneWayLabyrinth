@@ -102,7 +102,6 @@ Path.cs
 "0611_8, 9_234212, 9_522267             // 0 a"    522267
 "der: 3, 0, 1 (See 9_802973 and 9_2020799)    "    802973
 "(See 9_802973 and 9_2020799)             if ("    2020799
-"nvexOut4(); // 2025_0525_1              T("St"    0525_1
 "ncaveIn4(); // 2024_0814, ...             T(""    0814
 "ncaveIn5(); // 2024_0714             T("Stair"    0714
 "traight3(); // 2025_0527, 2025_0527_1 open co"    0527
@@ -125,35 +124,9 @@ Path.cs
 "across         // 7_2558: Close mid across bi"    2558
 "urn in case of 2024_0623 where the area would"    0623
 "               // 9_466                      "    466
-"3 && j < 2) // 2024_0610, 2024_0610_1, 2024_0"    0610
-" // 2024_0610, 2024_0610_1, 2024_0625_1, 2024"    0610_1
-", 2024_0610_1, 2024_0625_1, 2024_0611_2 (21 c"    0625_1
-", 2024_0625_1, 2024_0611_2 (21 cutout)       "    0611_2
-" 0 && j <= 1)  // 9_743059_1, 2024_0610_2, 20"    743059_1
-"// 9_743059_1, 2024_0610_2, 2024_0610_3, 2024"    0610_2
-", 2024_0610_2, 2024_0610_3, 2024_0625        "    0610_3
-", 2024_0610_3, 2024_0625                     "    0625
-"            // 2024_0726, sequence on right s"    0726
-"            // 2024_0720_3: mid across, 2024_"    0720_3
-"3: mid across, 2024_0725_1: across           "    0725_1
-"            // 2024_0711, sequence on left si"    0711
-"cursive(i)) // 2024_0711                     "    0711
-"            // 2024_0727_1: mid across       "    0727_1
-" && j <= 1) // 2024_0712                     "    0712
-"Close mid across: 9_743059_1, 2024_0610_2, 20"    743059_1
-"s: 9_743059_1, 2024_0610_2, 2024_0610_3; Clos"    0610_2
-", 2024_0610_2, 2024_0610_3; Close across: 202"    0610_3
-" Close across: 2024_0716_1, Area: 2024_0625, "    0716_1
-"_0716_1, Area: 2024_0625, 2024_0720_1        "    0625
-"ea: 2024_0625, 2024_0720_1                   "    0720_1
-" && j == 3) // 2024_0717, 2024_0717_3 (far ob"    0717
-" // 2024_0717, 2024_0717_3 (far obstacle)    "    0717_3
-"eDiff == 1) // 2024_0725_7, corner 2 5 stair "    0725_7
-"            // 2025_0522: Area has a maximum "    0522
-"            // 2025_0527_2: close obstacles i"    0527_2
-"            // 2024_0611_7, 2024_0611_8      "    0611_7
-"/ 2024_0611_7, 2024_0611_8                   "    0611_8
-"Diff == 1)) // 2024_0726_3                   "    0726_3
+"ond condition: 2024_0611_7, 2024_0611_8      "    0611_7
+": 2024_0611_7, 2024_0611_8                   "    0611_8
+"ird condition: 2024_0726_3                   "    0726_3
 "2()         // 2024_0727_3: mid across left, "    0727_3
 "ght         // 2024_0724: across up, mid acro"    0724
 "own         // 2024_0725_2:area up, mid acros"    0725_2
@@ -161,23 +134,41 @@ Path.cs
 " up         // 2024_0726_1: across, mid acros"    0726_1
 "oss         // 2024_0726_2: mid across, area "    0726_2
 "/ E         // 2026_0410: mid across, mid acr"    0410
-"3()         // 2024_0710, 2024_0710_1: area  "    0710
-" // 2024_0710, 2024_0710_1: area         // 2"    0710_1
-"rea         // 2026_0301_1: area         // 2"    0301_1
-"rea         // 2024_0611: [needs extension] c"    0611
-"4()         // 2024_0601, 2024_0618_2, 2026_0"    0601
-" // 2024_0601, 2024_0618_2, 2026_0302_6, 2026"    0618_2
+"/ E         // 2024_0710, 2024_0710_1: nostai"    0710
+" // 2024_0710, 2024_0710_1: nostair, area    "    0710_1
+"rea         // 2026_0301_1, 2024_0717_3: area"    0301_1
+"/ 2026_0301_1, 2024_0717_3: area         // 2"    0717_3
+"rea         // 2024_0717: mid across         "    0717
+"oss         // 2024_0611: [needs extension] c"    0611
+"        // 1W: 2024_0601, 2024_0618_2, 2026_0"    0601
+"1W: 2024_0601, 2024_0618_2, 2026_0302_6, 2026"    0618_2
 ", 2024_0618_2, 2026_0302_6, 2026_0304_1, 2026"    0302_6
-", 2026_0302_6, 2026_0304_1, 2026_0304_5: 1W  "    0304_1
-", 2026_0304_1, 2026_0304_5: 1W         // 202"    0304_5
-" 1W         // 2024_0610_4, 2024_0610_5, 9_12"    0610_4
-"/ 2024_0610_4, 2024_0610_5, 9_121670752, 2024"    0610_5
-"0_4, 2024_0610_5, 9_121670752, 2024_0627: 1B "    121670752
-", 9_121670752, 2024_0627: 1B         // 2024_"    0627
-" 1B         // 2024_0725, 2024_0727_5: start "    0725
+", 2026_0302_6, 2026_0304_1, 2026_0304_5      "    0304_1
+", 2026_0304_1, 2026_0304_5         // 1B: 202"    0304_5
+"        // 1B: 2024_0610_4, 2024_0610_5, 9_12"    0610_4
+": 2024_0610_4, 2024_0610_5, 9_121670752, 2024"    0610_5
+"0_4, 2024_0610_5, 9_121670752, 2024_0627     "    121670752
+", 9_121670752, 2024_0627         // 2024_0725"    0627
+"627         // 2024_0725, 2024_0727_5: start "    0725
 " // 2024_0725, 2024_0727_5: start obstacle as"    0727_5
-"5()         // 2024_0626; Stair at start conv"    0626
-"x 5         // 2024_0727_4; start obstacle ou"    0727_4
+"1)W         // 2025_0522: area         // 202"    0522
+"rea         // 2024_0626: across         // 2"    0626
+"oss         // 2024_0727_4: start obstacle ou"    0727_4
+"ide         // 2024_0529_5: across         //"    0529_5
+"oss         // 2024_0602, 2024_0610, 2024_061"    0602
+" // 2024_0602, 2024_0610, 2024_0610_1: mid ac"    0610
+"02, 2024_0610, 2024_0610_1: mid across       "    0610_1
+"oss         // 2024_0625_1, 2024_0611_2: area"    0625_1
+"/ 2024_0625_1, 2024_0611_2: area         // 2"    0611_2
+"rea         // 2024_0712: stair, area        "    0712
+"ide         // 2024_0529_3, 2024_0610_2, 2024"    0529_3
+"/ 2024_0529_3, 2024_0610_2, 2024_0610_2, 2024"    0610_2
+", 2024_0610_2, 2024_0610_2, 2024_0610_3, 2024"    0610_2
+", 2024_0610_2, 2024_0610_3, 2024_0716_1: acro"    0610_3
+", 2024_0610_3, 2024_0716_1: across         //"    0716_1
+"across         // 9_743059_1: mid across     "    743059_1
+"oss         // 2024_0625, 2024_0720_1: area  "    0625
+" // 2024_0625, 2024_0720_1: area         {   "    0720_1
 " 1:         // 2026_0302_3 mid across left, m"    0302_3
 "ght         // 2026_0404 across left, mid acr"    0404
 "ght         // 2026_0408_1 C-shape left, acro"    0408_1
@@ -201,24 +192,29 @@ Path.cs
 "own         // 2024_1012: mid across up, acro"    1012
 "st condition, see 9_25691                    "    25691
 "st condition, see 9_22325                    "    22325
-"ter         // 2024_0626_1, 2026_0404_1 mid a"    0626_1
+"ir:         // 2024_0626_1, 2026_0404_1 mid a"    0626_1
 "/ 2024_0626_1, 2026_0404_1 mid across, mic ac"    0404_1
 "oss         // 2024_0730: mid across left, ac"    0730
 "ght         // 2024_0729_3: across left, mid "    0729_3
 "ght         // 2026_0404_3 area left, mid acr"    0404_3
-" wall:         // 9_227130 across         // "    227130
-"oss         // 2024_0905 mid across         /"    0905
-"oss         // 2024_0531 mid across (also Sta"    0531
-"ce)         // 2024_0706, 2024_1001 (also Seq"    0706
-" // 2024_0706, 2024_1001 (also Sequence), 202"    1001
-"lso Sequence), 2024_1008 corner         // 20"    1008
-"ner         // 2024_0531          // Closed c"    0531
-"er:         // 2024_0916 across         // 9_"    0916
-"across         // 9_665575 mid across        "    665575
-"4()         // 2024_0624         {           "    0624
-"4()         // 2025_0525_1         {         "    0525_1
-"2()         // 2024_0717_4, 2024_0729_2      "    0717_4
-"/ 2024_0717_4, 2024_0729_2         {         "    0729_2
+"ir:         // 2026_0519_1: mid across left, "    0519_1
+" wall:         // 9_227130: nostair, across  "    227130
+"oss         // 2024_0905: nostair, mid across"    0905
+"oss         // 2024_0531: nostair, mid across"    0531
+"ce)         // 2024_1008: nostair, area      "    1008
+"rea         // 2024_0706, 2024_1001: nostair,"    0706
+" // 2024_0706, 2024_1001: nostair, area (also"    1001
+"er:         // 2024_0916: nostair, across    "    0916
+"oss         // 2024_0725_7: across         //"    0725_7
+"across         // 9_665575: nostair, mid acro"    665575
+"ide         // 2024_0624, 2024_0727_1: mid ac"    0624
+" // 2024_0624, 2024_0727_1: mid across       "    0727_1
+"ide         // 2025_0527_2: mid across inside"    0527_2
+"ide         // 2024_0720_3: mid across       "    0720_3
+"oss         // 2024_0725_1: across         { "    0725_1
+"        // 1W: 2025_0525_1         {         "    0525_1
+"air         // 2024_0717_4: mid across left, "    0717_4
+"ght         // 2024_0729_2: across left, mid "    0729_2
 "3()         // 2024_0716         {           "    0716
 "+ 5         // 2024_0814: stair, mid across x"    0814
 "x 2         // 2024_0619_1: mid across x 2   "    0619_1
@@ -228,12 +224,13 @@ Path.cs
 "+ 6         // 2024_0714: mid across x 2     "    0714
 "x 2         // 2026_0410_6: left mid across, "    0410_6
 "les         // 2026_0408_8          // CheckN"    0408_8
-"3()         // 2024_0619, 2024_0717_2, 2025_0"    0619
-" // 2024_0619, 2024_0717_2, 2025_0527, 2025_0"    0717_2
-", 2024_0717_2, 2025_0527, 2025_0527_1, 2026_0"    0527
-"_2, 2025_0527, 2025_0527_1, 2026_0302_4, 2026"    0527_1
-", 2025_0527_1, 2026_0302_4, 2026_0302_5      "    0302_4
-", 2026_0302_4, 2026_0302_5         {         "    0302_5
+"air         // 2024_0619, 2025_0527, 2025_052"    0619
+" // 2024_0619, 2025_0527, 2025_0527_1, 2026_0"    0527
+"19, 2025_0527, 2025_0527_1, 2026_0302_4, 2026"    0527_1
+", 2025_0527_1, 2026_0302_4, 2026_0302_5: mid "    0302_4
+", 2026_0302_4, 2026_0302_5: mid across       "    0302_5
+"oss         // 2024_0717_2: across (also Stai"    0717_2
+"            // 2024_0717_2: across (also Stai"    0717_2
 "            // 2025_0522_1             // in "    0522_1
 "            // 2024_0618, 2024_0717_1, 2025_0"    0618
 " // 2024_0618, 2024_0717_1, 2025_0525, 2026_0"    0717_1
@@ -262,15 +259,18 @@ Path.cs
 "e two corners (2024_0706_1) or close obstacle"    0706_1
 "lose obstacle (2024_0516_4) or area (2024_072"    0516_4
 "16_4) or area (2024_0727_6)                  "    0727_6
-"d()         // 2026_0124, 2026_0304         /"    0124
+" -1         // 2026_0124, 2026_0304         /"    0124
 " // 2026_0124, 2026_0304         // 2024_0726"    0304
 "304         // 2024_0726, 2024_0713: obstacle"    0726
 " // 2024_0726, 2024_0713: obstacles are not a"    0713
+" -1         // 2026_0519         {           "    0519
 "1()         // 2024_0731_1 straight area     "    0731_1
 "rea         // 2024_0725_4 small area        "    0725_4
 " Stair3x3() // 2024_0722 / Stair3x3. It is no"    0722
 "area sequence. 2024_1111 shows, even if we st"    1111
-"r()         // 2024_0818_1         // Find bi"    0818_1
+"s()         // 2024_0818_1, 2026_0519_3      "    0818_1
+"/ 2024_0818_1, 2026_0519_3         // Find bi"    0519_3
+"e to get here: 2026_0519_4         // Find bi"    0519_4    Missing reference
 "le.         // 2024_0706, 2024_1001: corner -"    0706
 " // 2024_0706, 2024_1001: corner -> StairAtEn"    1001
 " // [no stair] 2024_1005: mid across         "    1005
@@ -512,11 +512,11 @@ Path_old.cs
 "    // Across: 2024_0717_1                   "    0717_1
 "// Mid across: 2024_0619                     "    0619
 "    // Across: 2024_0717_2, area up 3 start o"    0717_2
-"ightSmall() // 2024_0619_1, 2024_0714, 2024_0"    0619_1
+"l()         // 2024_0619_1, 2024_0714, 2024_0"    0619_1
 "/ 2024_0619_1, 2024_0714, 2024_0716, 2024_071"    0714
 "_1, 2024_0714, 2024_0716, 2024_0717_4, 2024_0"    0716
 "14, 2024_0716, 2024_0717_4, 2024_0729_2      "    0717_4
-", 2024_0717_4, 2024_0729_2                   "    0729_2
+", 2024_0717_4, 2024_0729_2         // double "    0729_2
 "on right side (2024_0716)                 {  "    0716
 "            // 2024_0717_4: across down, mid "    0717_4
 "            // 2024_0729_2: mid across down, "    0729_2
@@ -896,6 +896,21 @@ readme0.md
 ", 9_121670752, 2024_0627; hB:  <img align="to"    0627
 "exStraight5()] 2024_0626; Stair at start conv"    0626
 "aight 5 (h+1)W 2024_0727_4; start obstacle ou"    0727_4
+"tConvexOut2()] 2024_0529_5, 2024_0602, 2024_0"    0529_5
+"] 2024_0529_5, 2024_0602, 2024_0610, 2024_061"    0602
+"_5, 2024_0602, 2024_0610, 2024_0610_1, 2024_0"    0610
+"02, 2024_0610, 2024_0610_1, 2024_0625_1, 2024"    0610_1
+", 2024_0610_1, 2024_0625_1, 2024_0611_2, 2024"    0625_1
+", 2024_0625_1, 2024_0611_2, 2024_0712; Stair "    0611_2
+", 2024_0611_2, 2024_0712; Stair at start conv"    0712
+"tConvexOut3()] 2024_0529_3, 2024_0610_2, 2024"    0529_3
+"] 2024_0529_3, 2024_0610_2, 2024_0610_2, 2024"    0610_2
+", 2024_0610_2, 2024_0610_2, 2024_0610_3, 2024"    0610_2
+", 2024_0610_2, 2024_0610_3, 2024_0716_1, 9_74"    0610_3
+", 2024_0610_3, 2024_0716_1, 9_743059_1, 2024_"    0716_1
+"0_3, 2024_0716_1, 9_743059_1, 2024_0625, 2024"    743059_1
+"1, 9_743059_1, 2024_0625, 2024_0720_1; Stair "    0625
+"_1, 2024_0625, 2024_0720_1; Stair at start co"    0720_1
 "ndConvexIn2()] 2026_0302_3, 2026_0404, 2026_0"    0302_3
 "] 2026_0302_3, 2026_0404, 2026_0408_1, 2026_0"    0404
 "_3, 2026_0404, 2026_0408_1, 2026_0408_9, 9_23"    0408_1
@@ -926,6 +941,9 @@ readme0.md
 "024_2024_1001, 2024_1008, 2024_0916; Stair at"    1008
 "01, 2024_1008, 2024_0916; Stair at end convex"    0916
 "()] (Page 182) 2024_0624; Stair at end convex"    0624
+"dConvexOut1()] 2025_0527_2; Stair at end conv"    0527_2
+"dConvexOut3()] 2024_0720_3, 2024_0725_1; Stai"    0720_3
+"] 2024_0720_3, 2024_0725_1; Stair at end conv"    0725_1
 "dConvexOut4()] 2025_0525_1; Stair at end conv"    0525_1
 "()] (Page 173) 2024_0717_4; Stair at end conc"    0717_4
 "dConcaveIn3()] 2024_0716; Stair at end concav"    0716
@@ -970,19 +988,14 @@ readme0.md
 "()] 2026_0124, 2026_0304, Double stair revers"    0304
 "rc="References/2025_0528.svg" width="13" />  "    0528
 "rc="References/2025_0528_1.svg" width="13" />"    0528_1
-"lopments:</b>  2024_0716; Straight small case"    0716
-"ge 129) Extend 2024_0720_3 case to any horizo"    0720_3
-" taken anyway (2024_0725_4, 2024_0731 step st"    0725_4
-" (2024_0725_4, 2024_0731 step straight) All S"    0731
-"rea rules like 2024_0725_6. Is it possible? A"    0725_6
-"t possible? At 2024_0726_2, applying sequence"    0726_2
-"ht 6. Clean up 2025_0522_1, 2025_0525 for irr"    0522_1
-"p 2025_0522_1, 2025_0525 for irrelevant area "    0525
-" in rules? Fx. 2024_0624 vs 2024_0727_1 solut"    0624
-". 2024_0624 vs 2024_0727_1 solutions (page 17"    0727_1
-"extX) % 4 = 2 (2024_0619 extension, page 207)"    0619
-"eStair across (2024_0818_1, page 207) Stair e"    0818_1
-" top far away (2024_0725_7) where the end obs"    0725_7
+"atitics: 1 error in 9986 random walkthroughs,"    9986    Missing reference
+"air (page 215) 2024_0818_1 cannot be solved. "    0818_1
+"ead of (0, 1). 2024_0717_2 is now valid in bo"    0717_2
+"Across exists: 2026_0519_4 has no option to m"    0519_4    Missing reference
+"ilable anyway (2025_0522_1: two LeftRightCorn"    0522_1
+" step, like in 2024_0624? Should we indicate "    0624
+"ons, not more (2024_0618). Check if page numb"    0618
+"a is outdated (2025_0527) and is not part of "    0527
 " the rules for 2025_0522 to 2025_0527, 2025_0"    0522
 "r 2025_0522 to 2025_0527, 2025_0527_1, the se"    0527
 " to 2025_0527, 2025_0527_1, the second obstac"    0527_1
@@ -996,14 +1009,11 @@ readme0.md
 "() has a case (2024_0611_2, 2024_0611_2_area."    0611_2
 "closed corner" 2025_0522 is solved by LeftRig"    0522
 " concave. Also 2025_0527_2 close obstacle ins"    0527_2
-"nside-outside. 2025_0527_2  Is it worth check"    0527_2
 "e rules first. 2024_0530 does not match 9_743"    0530
 "30 does not match 9_743059 and is incorrect, "    743059
-"ot step there. 2024_0529_3 and is solved by L"    0529_3
-"of new system. 2024_0529_5 is solved by LeftR"    0529_5
-"of new system. 2024_0602 is solved by LeftRig"    0602
+"nvexStraight3: 2024_0611 needs extension"    0611
 
-371 matches found, 0 needs to be replaced.
+381 matches found, 1 needs to be replaced.
 
 ----- Check if references are found in content -----
 
@@ -1057,9 +1067,9 @@ MainWindow.xaml.cs 221657
 
 45 matches found, 0 replaced.
 
-New length 221657 inCount 40 noCount 755
+New length 221657 inCount 40 noCount 763
 
-Path.cs 392475
+Path.cs 402787
 
 "ed for border as in 2023_0714. Find out the m"
 "other section as in 2023_0714_1 when we step "
@@ -1083,22 +1093,23 @@ Path.cs 392475
 "o stair] 9_2023198, 2024_0516_6, 2024_0516_7,"
 "23198, 2024_0516_6, 2024_0516_7, 2024_0516_8:"
 "516_6, 2024_0516_7, 2024_0516_8: C-shape left"
+" outside         // 2024_0529_3, 2024_0610_2,"
+"outiside         // 2024_0529_5: across      "
 "ss right         // 2024_0531: C-shape left, "
-"d across         // 2024_0531 mid across (als"
-"8 corner         // 2024_0531          // Clo"
+"d across         // 2024_0531: nostair, mid a"
 "onvexIn2         // 2024_0531 C-shape left, m"
-"aight4()         // 2024_0601, 2024_0618_2, 2"
-"4 == 3 && j < 2) // 2024_0610, 2024_0610_1, 2"
-" < 2) // 2024_0610, 2024_0610_1, 2024_0625_1,"
-" 1)  // 9_743059_1, 2024_0610_2, 2024_0610_3,"
-"across: 9_743059_1, 2024_0610_2, 2024_0610_3;"
-"059_1, 2024_0610_2, 2024_0610_3, 2024_0625   "
-"059_1, 2024_0610_2, 2024_0610_3; Close across"
-"04_5: 1W         // 2024_0610_4, 2024_0610_5,"
-"    // 2024_0610_4, 2024_0610_5, 9_121670752,"
+"t4()         // 1W: 2024_0601, 2024_0618_2, 2"
+": across         // 2024_0602, 2024_0610, 202"
+"      // 2024_0602, 2024_0610, 2024_0610_1: m"
+"24_0602, 2024_0610, 2024_0610_1: mid across  "
+"    // 2024_0529_3, 2024_0610_2, 2024_0610_2,"
+"529_3, 2024_0610_2, 2024_0610_2, 2024_0610_3,"
+"610_2, 2024_0610_2, 2024_0610_3, 2024_0716_1:"
+"04_5         // 1B: 2024_0610_4, 2024_0610_5,"
+"// 1B: 2024_0610_4, 2024_0610_5, 9_121670752,"
 "ne is not possible. 2024_0610_6              "
-"_1: area         // 2024_0611: [needs extensi"
-"610_1, 2024_0625_1, 2024_0611_2 (21 cutout)  "
+"d across         // 2024_0611: [needs extensi"
+"    // 2024_0625_1, 2024_0611_2: area        "
 "t);              // 2024_0611_3, 2024_0611_4,"
 "    // 2024_0611_3, 2024_0611_4, 2024_0611_5,"
 "611_3, 2024_0611_4, 2024_0611_5, 2024_0611_6,"
@@ -1107,23 +1118,22 @@ Path.cs 392475
 "t() // 2024_0611_5, 2024_0611_6, 2024_0611_7,"
 "611_5, 2024_0611_6, 2024_0611_7, 2024_0611_8,"
 "611_5, 2024_0611_6, 2024_0611_7, 2024_0611_8 "
-"                 // 2024_0611_7, 2024_0611_8 "
+"/ Second condition: 2024_0611_7, 2024_0611_8 "
 "611_6, 2024_0611_7, 2024_0611_8, 9_234212, 9_"
 "611_6, 2024_0611_7, 2024_0611_8         {    "
-"    // 2024_0611_7, 2024_0611_8              "
+"ition: 2024_0611_7, 2024_0611_8              "
 "   {             // 2024_0618, 2024_0717_1, 2"
 "          // Due to 2024_0618_1, new algorith"
-"      // 2024_0601, 2024_0618_2, 2026_0302_6,"
-"aight3()         // 2024_0619, 2024_0717_2, 2"
+"  // 1W: 2024_0601, 2024_0618_2, 2026_0302_6,"
+"no stair         // 2024_0619, 2025_0527, 202"
 "ross x 2         // 2024_0619_1: mid across x"
 "t return in case of 2024_0623 where the area "
-"aight4()         // 2024_0624         {      "
-"610_2, 2024_0610_3, 2024_0625                "
-" 2024_0716_1, Area: 2024_0625, 2024_0720_1   "
-"_0610, 2024_0610_1, 2024_0625_1, 2024_0611_2 "
-"aight5()         // 2024_0626; Stair at start"
-"er later         // 2024_0626_1, 2026_0404_1 "
-"610_5, 9_121670752, 2024_0627: 1B         // "
+" outside         // 2024_0624, 2024_0727_1: m"
+"d across         // 2024_0625, 2024_0720_1: a"
+"d across         // 2024_0625_1, 2024_0611_2:"
+"22: area         // 2024_0626: across        "
+"o stair:         // 2024_0626_1, 2026_0404_1 "
+"610_5, 9_121670752, 2024_0627         // 2024"
 "     else // Corner 2024_0627                "
 "      // [no stair] 2024_0630: area         /"
 "    // stair start, 2024_0630, 2024_0720, 202"
@@ -1131,7 +1141,7 @@ Path.cs 392475
 "uleStair         // 2024_0704, 2024_1014: are"
 "                 // 2024_0704, 2024_1014, 202"
 "if (!stairStart) // 2024_0704, 2024_1014, 202"
-"equence)         // 2024_0706, 2024_1001 (als"
+"ir, area         // 2024_0706, 2024_1001: nos"
 "ossible.         // 2024_0706, 2024_1001: cor"
 "eStair()         // 2024_0706_1, 2024_1006_1,"
 "of the two corners (2024_0706_1) or close obs"
@@ -1139,30 +1149,29 @@ Path.cs 392475
 "/ Second condition: 2024_0708_1: Finish corne"
 "// Third condition: 2024_0708_2: We never get"
 "ross x 2         // 2024_0709: C-shape left, "
-"aight3()         // 2024_0710, 2024_0710_1: a"
-"      // 2024_0710, 2024_0710_1: area        "
-"                 // 2024_0711, sequence on le"
-"nceRecursive(i)) // 2024_0711                "
+"    // E         // 2024_0710, 2024_0710_1: n"
+"      // 2024_0710, 2024_0710_1: nostair, are"
 "706_1, 2024_1006_1, 2024_0711         // Also"
-"i - 2 && j <= 1) // 2024_0712                "
+"_2: area         // 2024_0712: stair, area   "
 "      // 2024_0726, 2024_0713: obstacles are "
 "EndConcaveIn5(); // 2024_0714             T(""
 "vert + 6         // 2024_0714: mid across x 2"
 "ff == nowWCount) // 2024_0715                "
 "aveIn3()         // 2024_0716         {      "
-"10_3; Close across: 2024_0716_1, Area: 2024_0"
-"i - 1 && j == 3) // 2024_0717, 2024_0717_3 (f"
+"610_2, 2024_0610_3, 2024_0716_1: across      "
+"_3: area         // 2024_0717: mid across    "
 "      // 2024_0618, 2024_0717_1, 2025_0525, 2"
-"      // 2024_0619, 2024_0717_2, 2025_0527, 2"
-"== 3) // 2024_0717, 2024_0717_3 (far obstacle"
-"aveIn2()         // 2024_0717_4, 2024_0729_2 "
+"d across         // 2024_0717_2: across (also"
+"tair             // 2024_0717_2: across (also"
+"    // 2026_0301_1, 2024_0717_3: area        "
+" nostair         // 2024_0717_4: mid across l"
 "er later         // 2024_0718: mid across lef"
 "      // [no stair] 2024_0720: across left, m"
 "r start, 2024_0630, 2024_0720, 2024_0723, 202"
 "            else // 2024_0720                "
-"1, Area: 2024_0625, 2024_0720_1              "
+"      // 2024_0625, 2024_0720_1: area        "
 "ss right         // 2024_0720_2: mid across x"
-"                 // 2024_0720_3: mid across, "
+" outside         // 2024_0720_3: mid across  "
 " void Stair3x3() // 2024_0722 / Stair3x3. It "
 "      // [no stair] 2024_0723, 2024_0723_1: a"
 "24_0630, 2024_0720, 2024_0723, 2024_0723_1   "
@@ -1177,8 +1186,8 @@ Path.cs 392475
 "      // [no stair] 2024_0724_1: across      "
 "                 // 2024_0724_1              "
 "               { // 2024_0724_1              "
-"0627: 1B         // 2024_0725, 2024_0727_5: s"
-"0720_3: mid across, 2024_0725_1: across      "
+"024_0627         // 2024_0725, 2024_0727_5: s"
+"d across         // 2024_0725_1: across      "
 "oss down         // 2024_0725_2:area up, mid "
 "onvexIn2         // 2024_0725_2: left area, r"
 "24_1014, 2024_0724, 2024_0725_2: double area "
@@ -1186,17 +1195,16 @@ Path.cs 392475
 "End3Obtacles1(); // 2024_0725_4, 2024_0731_1 "
 "ght area         // 2024_0725_4 small area   "
 "/ (h+1)B         // 2024_0725_6: mid across d"
-"-whiteDiff == 1) // 2024_0725_7, corner 2 5 s"
-"                 // 2024_0726, sequence on ri"
+", across         // 2024_0725_7: across      "
 "026_0304         // 2024_0726, 2024_0713: obs"
 "cross up         // 2024_0726_1: across, mid "
 "d across         // 2024_0726_2: mid across, "
-"whiteDiff == 1)) // 2024_0726_3              "
+"// Third condition: 2024_0726_3              "
 "no stair         // 2024_0727: X-shape left, "
-"                 // 2024_0727_1: mid across  "
+"      // 2024_0624, 2024_0727_1: mid across  "
 "vexIn2()         // 2024_0727_3: mid across l"
 "onvexIn2         // 2024_0727_3: left mid acr"
-"convex 5         // 2024_0727_4; start obstac"
+": across         // 2024_0727_4: start obstac"
 "      // 2024_0725, 2024_0727_5: start obstac"
 "516_4, 2024_0516_5, 2024_0727_6         {    "
 "24_0516_4) or area (2024_0727_6)             "
@@ -1204,7 +1212,7 @@ Path.cs 392475
 "1 || vert == 0)) // 2024_0727_6. We need to t"
 "1 || vert == 0)) // 2024_0727_6              "
 "ross x 2         // 2024_0729_1: across down,"
-"    // 2024_0717_4, 2024_0729_2         {    "
+"ss right         // 2024_0729_2: across left,"
 "ss right         // 2024_0729_3: across left,"
 "cross up         // 2024_0729_4: mid across d"
 "c across         // 2024_0730: mid across lef"
@@ -1221,12 +1229,12 @@ Path.cs 392475
 "vert + 5         // 2024_0814: stair, mid acr"
 "rt obstalce inside: 2024_0817 mid across, 202"
 "rner             // 2024_0818, 2025_0720, 202"
-"eStair()         // 2024_0818_1         // Fi"
+"Across()         // 2024_0818_1, 2026_0519_3 "
 "cross up         // 2024_0820: mid across dow"
 "kthrough start. See 2024_0823             coo"
-"0 across         // 2024_0905 mid across     "
-" corner:         // 2024_0916 across         "
-"      // 2024_0706, 2024_1001 (also Sequence)"
+", across         // 2024_0905: nostair, mid a"
+" corner:         // 2024_0916: nostair, acros"
+"      // 2024_0706, 2024_1001: nostair, area "
 "      // 2024_0706, 2024_1001: corner -> Stai"
 "      // [no stair] 2024_1005: mid across    "
 "bleStair         // 2024_1006: across on the "
@@ -1235,7 +1243,7 @@ Path.cs 392475
 "_0724, 2024_0725_2, 2024_1006, 2026_0404, 202"
 "    // 2024_0706_1, 2024_1006_1, 2024_0711   "
 "                 // 2024_1006_1 shows that (1"
-"01 (also Sequence), 2024_1008 corner         "
+"equence)         // 2024_1008: nostair, area "
 "oss down         // 2024_1012: mid across up,"
 "      // 2024_0704, 2024_1014: area left, mid"
 "      // 2024_0704, 2024_1014: area on left, "
@@ -1244,34 +1252,33 @@ Path.cs 392475
 " 3x3 area sequence. 2024_1111 shows, even if "
 " at 4, 0         // 2024_1115: mid across -> "
 "                 // 2025_0516, C-shape ahead "
-"                 // 2025_0522: Area has a max"
-"   {             // 2025_0522_1             /"
+"/ (h+1)W         // 2025_0522: area         /"
+"air:             // 2025_0522_1             /"
 "caveStraight5(); // 2025_0525             T(""
 "caveStraight6(); // 2025_0525             T(""
 "_0618, 2024_0717_1, 2025_0525, 2026_0304_4: o"
-"EndConvexOut4(); // 2025_0525_1              "
-"exOut4()         // 2025_0525_1         {    "
+"t4()         // 1W: 2025_0525_1         {    "
 "caveStraight3(); // 2025_0527, 2025_0527_1 op"
-"_0619, 2024_0717_2, 2025_0527, 2025_0527_1, 2"
+"      // 2024_0619, 2025_0527, 2025_0527_1, 2"
 "t3(); // 2025_0527, 2025_0527_1 open corner  "
-"_0717_2, 2025_0527, 2025_0527_1, 2026_0302_4,"
-"                 // 2025_0527_2: close obstac"
+"24_0619, 2025_0527, 2025_0527_1, 2026_0302_4,"
+"-outside         // 2025_0527_2: mid across i"
 "      // 2024_0818, 2025_0720, 2026_0301, 202"
-"versed()         // 2026_0124, 2026_0304     "
+"at 3, -1         // 2026_0124, 2026_0304     "
 "24_0818, 2025_0720, 2026_0301, 2026_0302_1, 2"
-"_1: area         // 2026_0301_1: area        "
+"ir, area         // 2026_0301_1, 2024_0717_3:"
 "   {             // 2026_0302             // "
 "25_0720, 2026_0301, 2026_0302_1, 2026_0304_7:"
 " case 1:         // 2026_0302_3 mid across le"
-"_0527, 2025_0527_1, 2026_0302_4, 2026_0302_5 "
-"527_1, 2026_0302_4, 2026_0302_5         {    "
+"_0527, 2025_0527_1, 2026_0302_4, 2026_0302_5:"
+"527_1, 2026_0302_4, 2026_0302_5: mid across  "
 "_0601, 2024_0618_2, 2026_0302_6, 2026_0304_1,"
 "      // 2026_0124, 2026_0304         // 2024"
-"618_2, 2026_0302_6, 2026_0304_1, 2026_0304_5:"
+"618_2, 2026_0302_6, 2026_0304_1, 2026_0304_5 "
 "ndConcaveOut5(); // 2026_0304_2, 2026_0304_6 "
 "d obstacle outside: 2026_0304_2, 2026_0304_6 "
 "_0717_1, 2025_0525, 2026_0304_4: obstacle is "
-"302_6, 2026_0304_1, 2026_0304_5: 1W         /"
+"302_6, 2026_0304_1, 2026_0304_5         // 1B"
 "(); // 2026_0304_2, 2026_0304_6              "
 "tside: 2026_0304_2, 2026_0304_6         // Ch"
 "_0301, 2026_0302_1, 2026_0304_7: obstacle is "
@@ -1289,13 +1296,16 @@ Path.cs 392475
 "    // E         // 2026_0410: mid across, mi"
 "ss right         // 2026_0410_4: corner left,"
 "ross x 2         // 2026_0410_6: left mid acr"
+"at 3, -1         // 2026_0519         {      "
+"/ Stair:         // 2026_0519_1: mid across l"
+"    // 2024_0818_1, 2026_0519_3         // Fi"
 "d across         // 7_2558: Close mid across "
 "raight()         // 7_266: Close straight    "
 "AreaUp()         // 7_3627: Close mid across "
 " point of the area. 9_1023055626             "
 " point of the area. 9_1023055626             "
 " point of the area. 9_1023055626             "
-"610_4, 2024_0610_5, 9_121670752, 2024_0627: 1"
+"610_4, 2024_0610_5, 9_121670752, 2024_0627   "
 "equence: 9_2022763, 9_19720122, 2024_0516_4, "
 "left, across right, 9_19720122 mid across lef"
 "ss right         // 9_19720614: mid across le"
@@ -1305,7 +1315,7 @@ Path.cs 392475
 "      // [no stair] 9_2023198, 2024_0516_6, 2"
 "                 // 9_22325 shows that dist m"
 "last condition, see 9_22325                  "
-"ht wall:         // 9_227130 across         /"
+"ht wall:         // 9_227130: nostair, across"
 "ce also:         // 9_231960, 2024_0516: mid "
 "o enter.         // 9_234212, 9_522267       "
 "611_7, 2024_0611_8, 9_234212, 9_522267       "
@@ -1313,19 +1323,17 @@ Path.cs 392475
 "                 // 9_466                    "
 "       // 9_234212, 9_522267         int next"
 "4_0611_8, 9_234212, 9_522267             // 0"
-"6 across         // 9_665575 mid across      "
-"== 0 && j <= 1)  // 9_743059_1, 2024_0610_2, "
-"/ Close mid across: 9_743059_1, 2024_0610_2, "
+": across         // 9_665575: nostair, mid ac"
+": across         // 9_743059_1: mid across   "
 " overwrite it as in 9_802973             Corn"
 "order: 3, 0, 1 (See 9_802973 and 9_2020799)  "
 "611_5, 2024_0611_6, 2024_0611_7, 2024_0611_8,"
 "611_5, 2024_0611_6, 2024_0611_7, 2024_0611_8 "
-"                 // 2024_0611_7, 2024_0611_8 "
+"/ Second condition: 2024_0611_7, 2024_0611_8 "
 "611_6, 2024_0611_7, 2024_0611_8, 9_234212, 9_"
 "611_6, 2024_0611_7, 2024_0611_8         {    "
-"    // 2024_0611_7, 2024_0611_8              "
+"ition: 2024_0611_7, 2024_0611_8              "
 " It is not a nested 3x3 area sequence. 2024_1"
-" 1) // 2024_0725_7, corner 2 5 stair (shows l"
 "        // used for double area cases        "
 "       T("Next step double area, cannot step "
 "       T("Next step double area, cannot step "
@@ -1361,10 +1369,16 @@ Path.cs 392475
 "                 T("StairAtEndConvexStraight3"
 "                 T("StairAtEndConvexStraight3"
 "024_1001: corner -> StairAtEndConvexStraight3"
+"2();             T("StairAtStartConvexOut3 " "
+"den());             StairAtStartConvexOut3();"
+"    }          void StairAtStartConvexOut3() "
+"                 T("StairAtStartConvexOut3 di"
+"                 T("StairAtStartConvexOut3 en"
+"                 T("StairAtStartConvexOut3 en"
 
-300 matches found, 0 replaced.
+304 matches found, 0 replaced.
 
-New length 392475 inCount 190 noCount 605
+New length 402787 inCount 196 noCount 607
 
 Path_control.cs 108728
 
@@ -1448,9 +1462,9 @@ Path_control.cs 108728
 
 77 matches found, 0 replaced.
 
-New length 108728 inCount 63 noCount 732
+New length 108728 inCount 63 noCount 740
 
-Path_old.cs 257974
+Path_old.cs 257930
 
 "TakenRel2(0, 1)) // 2023_0708 Field in front "
 "TakenRel2(0, 1)) // 2023_0708: Field in front"
@@ -1518,7 +1532,7 @@ Path_old.cs 257974
 "er (y - x) % 4 = 2 (2024_0619 extension)     "
 "at 3 distance as in 2024_0619                "
 "     // Mid across: 2024_0619                "
-"kStraightSmall() // 2024_0619_1, 2024_0714, 2"
+"tSmall()         // 2024_0619_1, 2024_0714, 2"
 "                 // 2024_0619_1: mid across x"
 " be left and up. In 2024_0619_2 the walking e"
 "ent close obstacle: 2024_0624         {      "
@@ -1541,7 +1555,7 @@ Path_old.cs 257974
 "      // 2024_0611, 2024_0710, 2024_0710_1   "
 "24_0611, 2024_0710, 2024_0710_1              "
 "air() // 2024_0726, 2024_0713, nearStair 1/2/"
-"l() // 2024_0619_1, 2024_0714, 2024_0716, 202"
+"    // 2024_0619_1, 2024_0714, 2024_0716, 202"
 "te == black + 1) // 2024_0714: mid across x 2"
 "_0619_1, 2024_0714, 2024_0716, 2024_0717_4, 2"
 "hind on right side (2024_0716)               "
@@ -1589,7 +1603,7 @@ Path_old.cs 257974
 "     // Sixth case: 2024_0727_6, implemented "
 "                 // 2024_0729: mid across dow"
 "                 // 2024_0729_1: across down,"
-"_0716, 2024_0717_4, 2024_0729_2              "
+"_0716, 2024_0717_4, 2024_0729_2         // do"
 "                 // 2024_0729_2: mid across d"
 "no stair         // 2024_0729_3: across, mid "
 "                 // 2024_0729_3: across, mid "
@@ -1740,7 +1754,7 @@ Path_old.cs 257974
 
 285 matches found, 0 replaced.
 
-New length 257974 inCount 165 noCount 630
+New length 257930 inCount 165 noCount 638
 
 Path_old2.cs 54935
 
@@ -1802,7 +1816,7 @@ Path_old2.cs 54935
 
 55 matches found, 0 replaced.
 
-New length 54935 inCount 22 noCount 773
+New length 54935 inCount 22 noCount 781
 
 Rules.xaml.cs 117076
 
@@ -1810,7 +1824,7 @@ Rules.xaml.cs 117076
 
 1 matches found, 0 replaced.
 
-New length 117076 inCount 1 noCount 794
+New length 117076 inCount 1 noCount 802
 
 readme.md 2269
 
@@ -1818,9 +1832,9 @@ readme.md 2269
 
 1 matches found, 0 replaced.
 
-New length 2269 inCount 1 noCount 794
+New length 2269 inCount 1 noCount 802
 
-readme0.md 157569
+readme0.md 157779
 
 "img src="References/2023_0806.svg" width="5" "
 "img src="References/2023_0821.svg" width="5" "
@@ -1900,8 +1914,8 @@ readme0.md 157569
 "op" src="References/2024_0516_8.svg" width="8"
 "op" src="References/2024_0517.svg" width="6" "
 "op" src="References/2024_0528.svg" width="8" "
-" cannot step there. 2024_0529_3 and is solved"
-"tead of new system. 2024_0529_5 is solved by "
+"tStartConvexOut3()] 2024_0529_3, 2024_0610_2,"
+"tStartConvexOut2()] 2024_0529_5, 2024_0602, 2"
 "op" src="References/2024_0530.svg" width="7" "
 " close rules first. 2024_0530 does not match "
 "op" src="References/2024_0530_1.svg" width="8"
@@ -1910,33 +1924,42 @@ readme0.md 157569
 "op" src="References/2024_0531_3.svg" width="9"
 "op" src="References/2024_0531_5.svg" width="8"
 "tConvexStraight4()] 2024_0601, 2024_0618_2, 2"
-"tead of new system. 2024_0602 is solved by Le"
+"ut2()] 2024_0529_5, 2024_0602, 2024_0610, 202"
 "op" src="References/2024_0604.svg" width="8" "
 "op" src="References/2024_0604_1.svg" width="7"
 "op" src="References/2024_0607.svg" width="6" "
 "op" src="References/2024_0607_1.svg" width="6"
 "op" src="References/2024_0607_2.svg" width="6"
 "op" src="References/2024_0610.svg" width="5" "
+"_0529_5, 2024_0602, 2024_0610, 2024_0610_1, 2"
 "op" src="References/2024_0610_1.svg" width="5"
+"24_0602, 2024_0610, 2024_0610_1, 2024_0625_1,"
+"ut3()] 2024_0529_3, 2024_0610_2, 2024_0610_2,"
+"529_3, 2024_0610_2, 2024_0610_2, 2024_0610_3,"
+"610_2, 2024_0610_2, 2024_0610_3, 2024_0716_1,"
 ".svg" width="4" />  2024_0610_4, 2024_0610_5,"
 "4" />  2024_0610_4, 2024_0610_5, 2024_1012_1,"
 "convex straight 3 E 2024_0611 needs extension"
+"artConvexStraight3: 2024_0611 needs extension"
+"610_1, 2024_0625_1, 2024_0611_2, 2024_0712; S"
 "orner() has a case (2024_0611_2, 2024_0611_2_"
 "op" src="References/2024_0618.svg" width="11""
 "ConcaveStraight5()] 2024_0618, 2024_0717_1, 2"
+"mentions, not more (2024_0618). Check if page"
 "op" src="References/2024_0618_2.svg" width="1"
 "ight4()] 2024_0601, 2024_0618_2, 2026_0302_6,"
 "op" src="References/2024_0619.svg" width="11""
 "ConcaveStraight3()] 2024_0619, 2024_0717_2, 2"
-"Y - nextX) % 4 = 2 (2024_0619 extension, page"
 "op" src="References/2024_0619_1.svg" width="1"
 "age 207) 2024_0814, 2024_0619_1, 2024_0729_1,"
 "op" src="References/2024_0624.svg" width="11""
 "ight4()] (Page 182) 2024_0624; Stair at end c"
-"ments in rules? Fx. 2024_0624 vs 2024_0727_1 "
+" next step, like in 2024_0624? Should we indi"
 "op" src="References/2024_0625.svg" width="11""
+"0716_1, 9_743059_1, 2024_0625, 2024_0720_1; S"
 "set representation: 2024_0625 can be extended"
 "op" src="References/2024_0625_1.svg" width="1"
+"_0610, 2024_0610_1, 2024_0625_1, 2024_0611_2,"
 "ame can happen with 2024_0625_1, which is jus"
 "tConvexStraight5()] 2024_0626; Stair at start"
 "op" src="References/2024_0626_1.svg" width="1"
@@ -1958,6 +1981,7 @@ readme0.md 157569
 "op" src="References/2024_0711.svg" width="13""
 "727_6, 2024_1006_1, 2024_0711, Double stair  "
 "op" src="References/2024_0712.svg" width="11""
+"625_1, 2024_0611_2, 2024_0712; Stair at start"
 ". (Stair extension: 2024_0712) LeftRightCorne"
 "op" src="References/2024_0713.svg" width="11""
 "op" src="References/2024_0714.svg" width="11""
@@ -1965,21 +1989,23 @@ readme0.md 157569
 "op" src="References/2024_0715.svg" width="11""
 "op" src="References/2024_0716.svg" width="11""
 "rAtEndConcaveIn3()] 2024_0716; Stair at end c"
-">Developments:</b>  2024_0716; Straight small"
 "op" src="References/2024_0716_1.svg" width="1"
+"610_2, 2024_0610_3, 2024_0716_1, 9_743059_1, "
 "op" src="References/2024_0717.svg" width="11""
 "ight5()] 2024_0618, 2024_0717_1, 2024_0818, 2"
 "op" src="References/2024_0717_2.svg" width="1"
 "ight3()] 2024_0619, 2024_0717_2, 2025_0527, 2"
+" instead of (0, 1). 2024_0717_2 is now valid "
 "op" src="References/2024_0717_3.svg" width="1"
 "op" src="References/2024_0717_4.svg" width="1"
 "veIn2()] (Page 173) 2024_0717_4; Stair at end"
 "op" src="References/2024_0718.svg" width="11""
 "irAtEndConvexIn3()] 2024_0718, 2024_0720_2, 2"
 "op" src="References/2024_0720.svg" width="11""
+"43059_1, 2024_0625, 2024_0720_1; Stair at sta"
 "exIn3()] 2024_0718, 2024_0720_2, 2024_0709, 2"
 "op" src="References/2024_0720_3.svg" width="1"
-". (page 129) Extend 2024_0720_3 case to any h"
+"rAtEndConvexOut3()] 2024_0720_3, 2024_0725_1;"
 "op" src="References/2024_0722.svg" width="11""
 "op" src="References/2024_0723.svg" width="11""
 "op" src="References/2024_0724.svg" width="11""
@@ -1987,21 +2013,17 @@ readme0.md 157569
 "op" src="References/2024_0724_1.svg" width="1"
 "op" src="References/2024_0725.svg" width="11""
 "t 4 1W 2024_0727_5, 2024_0725: start obstacle"
+"ut3()] 2024_0720_3, 2024_0725_1; Stair at end"
 "op" src="References/2024_0725_2.svg" width="1"
-"ld is taken anyway (2024_0725_4, 2024_0731 st"
 "op" src="References/2024_0725_5.svg" width="1"
 "op" src="References/2024_0725_6.svg" width="1"
 "AtStartConvexIn3()] 2024_0725_6, 2024_0726_1,"
-"air-area rules like 2024_0725_6. Is it possib"
 "op" src="References/2024_0725_7.svg" width="1"
-" flat top far away (2024_0725_7) where the en"
 "op" src="References/2024_0726.svg" width="11""
 "In3()] 2024_0725_6, 2024_0726_1, 2024_0726_2;"
 "725_6, 2024_0726_1, 2024_0726_2; Stair at sta"
-" Is it possible? At 2024_0726_2, applying seq"
 "_0720_2, 2024_0709, 2024_0727; Stair at end c"
 "op" src="References/2024_0727_1.svg" width="1"
-"s? Fx. 2024_0624 vs 2024_0727_1 solutions (pa"
 "op" src="References/2024_0727_2.svg" width="9"
 "op" src="References/2024_0727_3.svg" width="1"
 "op" src="References/2024_0727_4.svg" width="1"
@@ -2016,7 +2038,6 @@ readme0.md 157569
 "626_1, 2026_0404_1, 2024_0730, 2024_0729_3, 2"
 "op" src="References/2024_0731.svg" width="11""
 ".svg" width="6" />  2024_0731, 2024_0811_3; h"
-"nyway (2024_0725_4, 2024_0731 step straight) "
 ".svg" width="6" />  2024_0805, 2024_0808; hor"
 "op" src="References/2024_0808.svg" width="11""
 "="6" />  2024_0805, 2024_0808; hori >= 4, vB;"
@@ -2029,7 +2050,7 @@ readme0.md 157569
 ")] Obstacle inside: 2024_0817, 2026_0408, out"
 "_0618, 2024_0717_1, 2024_0818, 2025_0525, 202"
 "op" src="References/2024_0818_1.svg" width="1"
-"RemoteStair across (2024_0818_1, page 207) St"
+"oteStair (page 215) 2024_0818_1 cannot be sol"
 "op" src="References/2024_0820.svg" width="13""
 "729_1, 2024_0729_4, 2024_0820; Stair at end c"
 "op" src="References/2024_0905.svg" width="11""
@@ -2059,18 +2080,18 @@ readme0.md 157569
 "ing "closed corner" 2025_0522 is solved by Le"
 "op" src="References/2025_0522_1.svg" width="1"
 "ConcaveStraight4()] 2025_0522_1; Stair at end"
-"traight 6. Clean up 2025_0522_1, 2025_0525 fo"
+"unavailable anyway (2025_0522_1: two LeftRigh"
 "op" src="References/2025_0525.svg" width="13""
 "_0717_1, 2024_0818, 2025_0525, 2025_0720, 202"
-"ean up 2025_0522_1, 2025_0525 for irrelevant "
 "op" src="References/2025_0525_1.svg" width="1"
 "rAtEndConvexOut4()] 2025_0525_1; Stair at end"
 "_0619, 2024_0717_2, 2025_0527, 2025_0527_1, 2"
+"e area is outdated (2025_0527) and is not par"
 "es for 2025_0522 to 2025_0527, 2025_0527_1, t"
 "_0717_2, 2025_0527, 2025_0527_1, 2026_0302_4,"
 "_0522 to 2025_0527, 2025_0527_1, the second o"
+"rAtEndConvexOut1()] 2025_0527_2; Stair at end"
 "start concave. Also 2025_0527_2 close obstacl"
-"cle inside-outside. 2025_0527_2  Is it worth "
 "op" src="References/2025_0528.svg" width="13""
 "op" src="References/2025_0528_1.svg" width="1"
 "op" src="References/2025_0716.svg" width="13""
@@ -2184,6 +2205,7 @@ readme0.md 157569
 "op" src="References/9_743059.svg" width="9" /"
 "0530 does not match 9_743059 and is incorrect"
 "op" src="References/9_743059_1.svg" width="9""
+"610_3, 2024_0716_1, 9_743059_1, 2024_0625, 20"
 "op" src="References/9_8076012.svg" width="9" "
 "op" src="References/9_8076012_1.svg" width="9"
 "op" src="References/9_8076044.svg" width="9" "
@@ -2523,9 +2545,13 @@ readme0.md 157569
 "c="References/rules/StairAtEndConvexIn3_E_3.s"
 "c="References/rules/StairAtEndConvexIn4_1W.sv"
 "c="References/rules/StairAtEndConvexIn4_1W_1."
+"c="References/rules/StairAtEndConvexOut1_E.sv"
+"c="References/rules/StairAtEndConvexOut1_E_1."
+"c="References/rules/StairAtEndConvexOut3_(v-1"
 "c="References/rules/StairAtEndConvexOut4_1W.s"
 "c="References/rules/StairAtEndConvexStraight "
 "svg" width="7" />  [StairAtEndConvexStraight3"
+"ndConvexIn4 nostair StairAtEndConvexStraight3"
 "c="References/rules/StairAtEndConvexStraight3"
 "c="References/rules/StairAtEndConvexStraight4"
 "c="References/rules/StairAtStart 3 1.svg" wid"
@@ -2542,10 +2568,14 @@ readme0.md 157569
 "c="References/rules/StairAtStartConvexIn3_E_1"
 "c="References/rules/StairAtStartConvexIn4_(hp"
 "c="References/rules/StairAtStartConvexIn4_(hp"
+"c="References/rules/StairAtStartConvexOut2_E."
 "c="References/rules/StairAtStartConvexOut3.sv"
 "c="References/rules/StairAtStartConvexOut3.sv"
 "c="References/rules/StairAtStartConvexOut3.sv"
 "c="References/rules/StairAtStartConvexOut3.sv"
+"h="5" />  <!---->  [StairAtStartConvexOut3()]"
+"nywhere.   <!---->  StairAtStartConvexOut3: C"
+"c="References/rules/StairAtStartConvexOut3_(h"
 "c="References/rules/StairAtStartConvexOut4.sv"
 "c="References/rules/StairAtStartConvexOut5.sv"
 "c="References/rules/StairAtStartConvexOut6.sv"
@@ -2594,7 +2624,6 @@ readme0.md 157569
 "tair at end concave straight 5 is rewritten f"
 "c="References/rules/straight 6.svg" width="3""
 "tair at end concave straight 6  <img align="t"
-"tair at end concave straight 6. Clean up 2025"
 "hecknearfield/close straight left right.svg" "
 "hecknearfield/close straight left left.svg" w"
 "/checknearfield/far straight left.svg" width="
@@ -2817,9 +2846,9 @@ readme0.md 157569
 "ules_sorted/13-grid/Across 3 Impair Determine"
 "s_sorted/9-grid/Mid Across 3 Impair Determine"
 
-994 matches found, 0 replaced.
+1009 matches found, 0 replaced.
 
-New length 157569 inCount 651 noCount 144
+New length 157779 inCount 659 noCount 144
 
 MainWindow.xaml.cs: Arrays equal
 Path.cs: Arrays equal
@@ -2828,6 +2857,7 @@ Path_old.cs: Arrays equal
 Path_old2.cs: Arrays equal
 Rules.xaml.cs: Arrays equal
 readme.md: Arrays equal
-readme0.md: Arrays equal
+readme0.md: Arrays inequal length: 1, 0
+9986 
 
-Global inCount 795 noCount 0
+Global inCount 803 noCount 0

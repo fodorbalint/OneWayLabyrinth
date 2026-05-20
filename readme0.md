@@ -2653,7 +2653,7 @@ This conflicts with the across obstacle inside the area.
 
 In the next example, the 3-long wall on the left together with the stair going downwards right encloses and area where the live end makes a near obstacle with one of the fields on the borderline. 
 
-<img align="top" src="References/2024_0818_1.svg" width="13" />[spacer]<img align="top" src="References/rules/remote stair.svg" width="7" />
+<img align="top" src="References/2024_0818_1.svg" width="13" />[spacer]<img align="top" src="References/rules/Remote Stair mid across.svg" width="7" />
 
 To start with, we can search for a corner obstacle enclosing a big area; its relative y coordinate must be x + 3. From there, taking each field to left and down, we check for the closest wall on the left side. If it is 2 distance away, the pattern is found and depending on the number of steps taken, the live end now acts as a close mid across obstacle, so we can only step left. Of course, the area has to be white = black.
 In theory, the live end can also be a close across obstacle. In that case, the corner obstacle is y = x + 4.
@@ -2885,6 +2885,18 @@ Next, I will describe every case in this system, based on the found examples. Fo
 
 <img align="top" src="References/rules/StairAtStartConvexStraight5_(hp1)W.svg" width="5" />[spacer]<img align="top" src="References/rules/StairAtStartConvexStraight5_(hp1)W_1.svg" width="4" />[spacer]<img align="top" src="References/rules/StairAtStartConvexStraight5_(hp1)W_2.svg" width="5" />[spacer]<img align="top" src="References/rules/StairAtStartConvexStraight5_(hp1)W_3.svg" width="4" />
 
+[StairAtStartConvexOut2()] 2024_0529_5, 2024_0602, 2024_0610, 2024_0610_1, 2024_0625_1, 2024_0611_2, 2024_0712; Stair at start convex out 2 E
+
+<img align="top" src="References/rules/StairAtStartConvexOut2_E.svg" width="5" />
+
+<!---->
+
+[StairAtStartConvexOut3()] 2024_0529_3, 2024_0610_2, 2024_0610_2, 2024_0610_3, 2024_0716_1, 9_743059_1, 2024_0625, 2024_0720_1; Stair at start convex out 3 (h-1)B
+
+<img align="top" src="References/rules/StairAtStartConvexOut3_(h-1)B.svg" width="5" />
+
+<!---->
+
 [StairAtEndConvexIn2()] 2026_0302_3, 2026_0404, 2026_0408_1, 2026_0408_9, 9_231960, 2024_0516, 2024_0704, 2024_1014; Stair at end convex in 2 vB; cannot enter now
 
 <img align="top" src="References/rules/StairAtEndConvexIn2_vB.svg" width="6" />[spacer]<img align="top" src="References/rules/StairAtEndConvexIn2_vB_1.svg" width="6" />
@@ -2921,6 +2933,16 @@ Rewrite obstacle discovery, so the loop is finished in the beginning. Stair addi
 [StairAtEndConvexStraight4()] (Page 182) 2024_0624; Stair at end convex straight 4 1W:
 
 <img align="top" src="References/rules/StairAtEndConvexStraight4_1W.svg" width="7" />
+
+<!---->
+
+[StairAtEndConvexOut1()] 2025_0527_2; Stair at end convex out 1 E:
+
+<img align="top" src="References/rules/StairAtEndConvexOut1_E.svg" width="5" />[spacer]<img align="top" src="References/rules/StairAtEndConvexOut1_E_1.svg" width="5" />
+
+[StairAtEndConvexOut3()] 2024_0720_3, 2024_0725_1; Stair at end convex out 3 (v-1)B:
+
+<img align="top" src="References/rules/StairAtEndConvexOut3_(v-1)B.svg" width="6" />
 
 <!---->
 
@@ -3081,62 +3103,54 @@ Exact calculation line:
 
 <span class="header">Development / correction notes</span>
 
-Current statitics: 1 error in 8288 random walkthroughs, averaged from 50 runs. 
+Current statitics: 1 error in 6910 random walkthroughs, averaged from 50 runs. 
 
 <b>Developments:</b>
 
-2024_0716; Straight small cases need to be reviewed and reclassified as middle cases between stair at start and stair at end.
 For all stair at start/end rules, extend to any distance beyond 3-6.
-Calculate next step enter left and right for any AreaUp and Corner distance. (page 129)
-Extend 2024_0720_3 case to any horizontal distance (page 180)
-Check if opposite empty fields should be disabled at certain rotations of the 4 single area rule groups. (fx. LeftRightAreaUpExtended closed corner 4: Cannot step down). A safety check can be impelmented: if the left and right direction is available but the straight direction is disabled, and there is not a close obstacle/corner on both sides, it is an error.
-
-<!---->
+Calculate next step enter left and right for any AreaUp and Corner distance. (page 128)
+Original example of RemoteStair (page 215) 2024_0818_1 cannot be solved.
 
 <b>Improvements:</b>
 
-Use new CornerDiscovery function everywhere
-Review rules if they have unnecessary rotations when disabling a field, fx. straight j = 2 enter later
-Review CountArea old and new algorithms
-Do not disable a possible field (and display the area) if the field is taken anyway (2024_0725_4, 2024_0731 step straight)
-All Sequence patterns should be replaced with stair-area rules like 2024_0725_6. Is it possible? At 2024_0726_2, applying sequence is unnecessary. 
-In CheckStairAtEndConcaveStraight5, the index of (hori, vert) is compared to (hori, vert + 1) to determine obstacle direction. Does (hori, vert + 1) always exist, or can it be empty or go out of the board?
-Can straight discovery algorithm terminate early, by finding an obstacle which would be within a larger area?
-StairAtEndConvexStraight4 uses InCornerRel after discovery. But the row at vert + 1 can not only be border but taken too.
-Construct case for DoubleStairReversed close obstacle at 3, -1
-Re-check / format stair functions:
-- Disable only one field in one of the rotations
-- CheckNearFieldSmallRel 0 / 1 / - should only be used minimally, based on the existing examples
-- Specify enter whether entering now or later is disabled in the beginning the function
-- Use AddEnd and RemoveEnd functions
-Consturct case for StairAtStartConvexIn4 that is not StairAtEndConvexIn4.
+To get a better overview and increase safety of the StairAtStart/End rules, they should be generated by a python script that takes a spreadsheet containing the unique traits of every function. 
+Check if only one field is disabled in one of the rotations acrosss all functions
+Check if CornerDiscovery is used everywhere it is applicable.
+Use IsEmptyRel everywhere where InTakenRel and InBorderRel is used together
+
+<!---->
+
+CheckNearFieldSmallRel 0 / 1 / - should only be used minimally, based on the existing examples. Right now, 0 is used for mid across, 1 is used for mid across and across, and - is used for mid across, across and C-shape. For each of the 3 case, an individual function should be created.
+Specify whether entering now or later is disabled in the beginning the function.
+Specify second obstacle position for every case (mid across, across or C-shae)
+Specify if the example is stair or nostair
+Use AddEnd and RemoveEnd functions everywhere
+StairAtEndConcaveStraight4 could be removed if the basis of the second obstacle in StairAtEndConcaveStraight3 is changed to (x, x+1) instead of (0, 1). 2024_0717_2 is now valid in both, because the first obstacle is a closed corner.
+
+<b> Find example </b>
+
+StairAtStartConvexIn4 that is not StairAtEndConvexIn4 nostair
+StairAtEndConvexStraight3 stair, area
+StairAtEndConcaveIn2 stair
 
 <!---->
 
 <b>Display:</b>
 
-Make an arrow at the end of the blue lines, to indicate direction. Important at Stair at end concave straight 6.
-Clean up 2025_0522_1, 2025_0525 for irrelevant area rules.
-Should we display non-critical border movements in rules? Fx. 2024_0624 vs 2024_0727_1 solutions (page 177-178)
-Indicate needed disabled fields in 11&nbsp;x&nbsp;11 rule representations?
-New pictures where areas were displayed incorrectly.
-Cite page numbers when mentioning a rule
+Update blue lines in earlier examples, so they have an arrow in the end, indicating their direction
+Should we display areas in valid rules where the disabled field is unavailable anyway (2025_0522_1: two LeftRightCorner and StairAtEndConcaveStraight4)?
+Should we change rule areas that are displayed for the invalid next step, like in 2024_0624?
+Should we indicate forbidden fields in rules starting from page 165, like on page 166?
+Check if the rule areas in the examples only show the actual rule that the documentation mentions, not more (2024_0618).
+Check if page numbers are cited everywhere a rule is referred to.
 Next step left/right areas could be shown in program
+If the display of future lines is turned on in the program, errors occur.
+Update pictures where rule area is outdated (2025_0527) and is not part of the documentation
 Specify future line extension and connection rules on page 3?
-
-The corner discovery head can be in any of the 4 quarters and the area is still closed at the right position. Only stop when reaching the corner or passing by the live end.
-
-<b>Find example:</b>
-
-StartObstacleInside corner (nextY - nextX) % 4 = 2 (2024_0619 extension, page 207)
-RemoteStair across (2024_0818_1, page 207)
-Stair extensions: flat top far away (2024_0725_7) where the end obstacle is far away. 
-StraightSmall 2 and 3 with stair leg, like StairAtEndConcave5 and 6.
-StairAtEndConcave6 with other than 2 x mid across obstacles 
 
 <!---->
 
-<b>To do:</b>
+<b>(Uncategorized)</b>
 
 In the rules for 2025_0522 to 2025_0527, 2025_0527_1, the second obstacle is always mid across, but I used CheckNearFieldSmallRel1 which also solves the across cases. They might never occur.
 Review page number references
@@ -3163,3 +3177,8 @@ All open/closed corner and return stair subcases of LeftRightCorner can be solve
 Replace two images with one where the path changes color at the decision point.
 Is there an example for Count Area Across Border C.svg, and is it solved by NextStepEnterLeft and NextStepEnterRight?
 In Path_old.cs, under the Used rules for 7 x 7 section, there are Side back, Side front and Side front L with no reference anywhere. 
+
+<!---->
+
+StairAtStartConvexOut3: Can the obstacle be at any point of the return step?
+StairAtStartConvexStraight3: 2024_0611 needs extension

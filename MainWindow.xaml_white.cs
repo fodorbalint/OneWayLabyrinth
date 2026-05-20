@@ -1811,7 +1811,7 @@ namespace OneWayLabyrinth
                                 return false; //to prevent NextStepPossibilities from running
                             }
                         }
-                        // 2023_1021_3. Only if C-shape is created.
+                        // 2023_1021_2. Only if C-shape is created.
                         if (Math.Abs(x - endX) == 1 && Math.Abs(y - endY) == 1)
                         {
                             future.path2 = taken.path;

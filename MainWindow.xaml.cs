@@ -434,40 +434,49 @@ namespace OneWayLabyrinth
             string file1, file2, file3;
 
             int yOffset = 0;
-            file1 = Ref1.Text;
-            file2 = Ref2.Text;
-            file3 = Ref3.Text;
+            file1 = baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "References\\" + Ref1.Text + ".svg";
+            file2 = baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "References\\" + Ref2.Text + ".svg";
+            file3 = baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "References\\" + Ref3.Text + ".svg";
+            if (!(File.Exists(file1)))
+            {
+                file1 = file1.Replace("References\\", "References\\unsolved\\");
+            }
+            if (!(File.Exists(file2)))
+            {
+                file2 = file2.Replace("References\\", "References\\unsolved\\");
+            }
+            if (!(File.Exists(file3)))
+            {
+                file3 = file3.Replace("References\\", "References\\unsolved\\");
+            }
 
             string saveFile1 = "", saveFile2 = "", saveFile3 = "";
 
-            if (File.Exists(baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "References\\" + file1 + ".svg"))
+            if (File.Exists(file1))
             {
-                Ref1.Text = file1;
                 Ref1.SelectionStart = Ref1.Text.Length;
                 Ref1.SelectionLength = 0;
-                saveFile1 = file1;
+                saveFile1 = Ref1.Text;
 
                 DrawSVG(file1, 240, 240, 20, 47);
                 yOffset += 255;
             }
 
-            if (File.Exists(baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "References\\" + file2 + ".svg"))
+            if (File.Exists(file2))
             {
-                Ref2.Text = file2;
                 Ref2.SelectionStart = Ref2.Text.Length;
                 Ref2.SelectionLength = 0;
-                saveFile2 = file2;
+                saveFile2 = Ref2.Text;
 
                 DrawSVG(file2, 240, 240, 20, yOffset + 47);
                 yOffset += 255;
             }
 
-            if (File.Exists(baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "References\\" + file3 + ".svg"))
+            if (File.Exists(file3))
             {
-                Ref3.Text = file3;
                 Ref3.SelectionStart = Ref3.Text.Length;
                 Ref3.SelectionLength = 0;
-                saveFile3 = file3;
+                saveFile3 = Ref3.Text;
 
                 DrawSVG(file3, 240, 240, 20, yOffset + 47);
             }
@@ -483,7 +492,7 @@ namespace OneWayLabyrinth
         {
             SKElement c = new();
             c.IgnorePixelScaling = true;
-            c.Tag = baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "References\\" + file + ".svg";
+            c.Tag = file;
             c.PaintSurface += SKElement_PaintSurface3;
             c.Width = w;
             c.Height = h;
@@ -4839,7 +4848,6 @@ namespace OneWayLabyrinth
         private void SKElement_PaintSurface3(object sender, SKPaintSurfaceEventArgs e)
         {
             string fileName = (string)((SKElement)sender).Tag;
-            T("SKElement_PaintSurface3 " + fileName);
             if (!File.Exists(fileName)) return;
             var canvas = e.Surface.Canvas;
             canvas.Clear(SKColors.White);

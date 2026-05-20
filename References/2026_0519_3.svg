@@ -1,0 +1,152 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21 21">
+	<path d="M0,0 h21 v21 h-21 z" fill="#dddddd" />
+	<rect x="9.25" y="9.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="8.25" y="8.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="10.25" y="8.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="7.25" y="7.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="9.25" y="7.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="6.25" y="6.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect x="8.25" y="6.25" width="0.5" height="0.5" fill="black" fill-opacity="0.5"  />
+	<rect width="1" height="1" x="0" y="0" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="1" y="0" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="2" y="0" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="3" y="0" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="4" y="0" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="4" y="1" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="4" y="2" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="4" y="3" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="4" y="4" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="4" y="5" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="4" y="6" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="5" y="6" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="5" y="5" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="6" y="5" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="7" y="5" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="8" y="5" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="9" y="5" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="9" y="6" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="10" y="6" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="10" y="7" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="11" y="7" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="11" y="8" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="12" y="8" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="13" y="8" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="13" y="9" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="13" y="10" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="13" y="11" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="13" y="12" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="12" y="12" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="12" y="13" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="11" y="13" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="11" y="14" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="10" y="14" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="9" y="14" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="8" y="14" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="7" y="14" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="6" y="14" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="6" y="13" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="6" y="12" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="6" y="11" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="6" y="10" fill="#e2bcbc" fill-opacity="1" />
+	<rect width="1" height="1" x="7" y="10" fill="#000000" fill-opacity="0.1" />
+	<rect width="1" height="0.25" x="9" y="9.75" fill="#FF4000" fill-opacity="0.25" />
+	<path d="M 8 10 v -1 h 0.25 v 0.75 h 0.75 v 0.25 z" fill="#FF4000" fill-opacity="0.25" />
+	<rect width="0.25" height="0.25" x="8" y="8.75" fill="#FF4000" fill-opacity="0.25" />
+	<path d="M 7 9 v -1 h 0.25 v 0.75 h 0.75 v 0.25 z" fill="#FF4000" fill-opacity="0.25" />
+	<rect width="0.25" height="0.25" x="7" y="7.75" fill="#FF4000" fill-opacity="0.25" />
+	<path d="M 6 8 v -1 h 0.25 v 0.75 h 0.75 v 0.25 z" fill="#FF4000" fill-opacity="0.25" />
+	<path d="M 6 6 h 1 v 0.25 h -0.75 v 0.75 h -0.25 z" fill="#FF4000" fill-opacity="0.25" />
+	<rect width="1" height="0.25" x="7" y="6" fill="#FF4000" fill-opacity="0.25" />
+	<path d="M 9 6 v 1 h -0.25 v -0.75 h -0.75 v -0.25 z" fill="#FF4000" fill-opacity="0.25" />
+	<rect width="0.25" height="0.25" x="8.75" y="7" fill="#FF4000" fill-opacity="0.25" />
+	<path d="M 10 7 v 1 h -0.25 v -0.75 h -0.75 v -0.25 z" fill="#FF4000" fill-opacity="0.25" />
+	<rect width="0.25" height="0.25" x="9.75" y="8" fill="#FF4000" fill-opacity="0.25" />
+	<path d="M 11 8 v 1 h -0.25 v -0.75 h -0.75 v -0.25 z" fill="#FF4000" fill-opacity="0.25" />
+	<path d="M 11 10 h -1 v -0.25 h 0.75 v -0.75 h 0.25 z" fill="#FF4000" fill-opacity="0.25" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0.01 0 v 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 0.01 h 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 1 0 v 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 1 h 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 2 0 v 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 2 h 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 3 0 v 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 3 h 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 4 0 v 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 4 h 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 5 0 v 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 5 h 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 6 0 v 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 6 h 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 7 0 v 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 7 h 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 8 0 v 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 8 h 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 9 0 v 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 9 h 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 10 0 v 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 10 h 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 11 0 v 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 11 h 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 12 0 v 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 12 h 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 13 0 v 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 13 h 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 14 0 v 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 14 h 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 15 0 v 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 15 h 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 16 0 v 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 16 h 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 17 0 v 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 17 h 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 18 0 v 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 18 h 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 19 0 v 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 19 h 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 20 0 v 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 20 h 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 20.99 0 v 21" />
+	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 20.99 h 21" />
+	<path d="M 0.5 0.5
+L 1 0.5
+L 2 0.5
+L 3 0.5
+L 4 0.5
+A 0.5 0.5 0 0 1 4.5 1
+L 4.5 2
+L 4.5 3
+L 4.5 4
+L 4.5 5
+L 4.5 6
+A 0.5 0.5 0 0 0 5 6.5
+A 0.5 0.5 0 0 0 5.5 6
+A 0.5 0.5 0 0 1 6 5.5
+L 7 5.5
+L 8 5.5
+L 9 5.5
+A 0.5 0.5 0 0 1 9.5 6
+A 0.5 0.5 0 0 0 10 6.5
+A 0.5 0.5 0 0 1 10.5 7
+A 0.5 0.5 0 0 0 11 7.5
+A 0.5 0.5 0 0 1 11.5 8
+A 0.5 0.5 0 0 0 12 8.5
+L 13 8.5
+A 0.5 0.5 0 0 1 13.5 9
+L 13.5 10
+L 13.5 11
+L 13.5 12
+A 0.5 0.5 0 0 1 13 12.5
+A 0.5 0.5 0 0 0 12.5 13
+A 0.5 0.5 0 0 1 12 13.5
+A 0.5 0.5 0 0 0 11.5 14
+A 0.5 0.5 0 0 1 11 14.5
+L 10 14.5
+L 9 14.5
+L 8 14.5
+L 7 14.5
+A 0.5 0.5 0 0 1 6.5 14
+L 6.5 13
+L 6.5 12
+L 6.5 11
+L 6.5 10.5" fill="white" fill-opacity="0" stroke="black" stroke-width="0.05" stroke-linecap="round" />
+</svg>

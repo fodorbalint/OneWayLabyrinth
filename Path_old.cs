@@ -2877,9 +2877,10 @@ namespace OneWayLabyrinth
             ly = thisLy;
         }
 
-        void CheckStraightSmall() // 2024_0619_1, 2024_0714, 2024_0716, 2024_0717_4, 2024_0729_2
-                                  // double obstacle inside
-                                  // Two columns are checked for being empty, but at the end the straight field must be taken, and the left field must be empty.
+        void CheckStraightSmall()
+        // 2024_0619_1, 2024_0714, 2024_0716, 2024_0717_4, 2024_0729_2
+        // double obstacle inside
+        // Two columns are checked for being empty, but at the end the straight field must be taken, and the left field must be empty.
         {
             for (int i = 0; i < 2; i++)
             {
