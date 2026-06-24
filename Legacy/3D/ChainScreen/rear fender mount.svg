@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   viewBox="0 0 92 88"
+   width="92mm"
+   height="88mm"
+   style="background-color: #bbbbbb;">
+    <style>   
+    .l {
+      fill:#cccccc;
+      stroke:#000000;
+      stroke-width:0.02;
+    }
+    .l1 {
+      fill:none;
+      stroke:#000000;
+      stroke-width:0.02;
+    }
+    .l2 {
+      fill:none;
+      stroke:#000000;
+      stroke-width:0.08;
+    }
+    .l3 {
+      fill:none;
+      stroke:green;
+      stroke-width:0.08;
+    }
+    </style> 
+    <rect width="100%" height="100%" fill="#dddddd" />
+    <path class="l2" d=" M 11.5 10 L 11.5 70 A 6 6 0 0 1 5.999 75.979 L 5.501 76.021 A 6 6 0 0 0 6 88 L 86 88 A 6 6 0 0 0 86.499 76.021 L 86.001 75.979 A 6 6 0 0 1 80.5 70 L 80.5 10 A 10 10 0 0 0 70.5 0 L 21.5 0 A 10 10 0 0 0 11.5 10 M 19.5 7.1 A 2.9 2.9 0 0 0 19.5 12.9 A 2.9 2.9 0 0 0 19.5 7.1 M 68.5 7.1 A 2.9 2.9 0 0 0 68.5 12.9 A 2.9 2.9 0 0 0 68.5 7.1 M 46 38.1 A 2.9 2.9 0 0 0 46 43.9 A 2.9 2.9 0 0 0 46 38.1 M 6 79.6 A 2.4 2.4 0 0 0 6 84.4 A 2.4 2.4 0 0 0 6 79.6 M 46 78.1 A 3.9 3.9 0 0 0 46 85.9 A 3.9 3.9 0 0 0 46 78.1 M 86 79.6 A 2.4 2.4 0 0 0 86 84.4 A 2.4 2.4 0 0 0 86 79.6" />
+</svg>

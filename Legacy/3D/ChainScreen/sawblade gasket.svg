@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns="http://www.w3.org/2000/svg"
+   viewBox="0 0 25.2 10.2"
+   width="25.2mm"
+   height="10.2mm"
+   style="background-color: #bbbbbb;">
+    <style>   
+    .l1 {
+      fill:none;
+      stroke:#000000;
+      stroke-width:0.02;
+    }
+    .l2 {
+      fill:none;
+      stroke:#000000;
+      stroke-width:0.2;
+    }
+    </style> 
+    <rect width="100%" height="100%" fill="#dddddd" />
+    
+    <path class="l2" transform="translate(0, 0)" d=" M 5.1 0 A 5.1 5.1 0 0 1 5.1 10.2 A 5.1 5.1 0 0 1 5.1 0 M 20.1 0 A 5.1 5.1 0 0 1 20.1 10.2 A 5.1 5.1 0 0 1 20.1 0 M 5.1 2.2 A 2.9 2.9 0 0 1 5.1 8 A 2.9 2.9 0 0 1 5.1 2.2 M 20.1 2.2 A 2.9 2.9 0 0 1 20.1 8 A 2.9 2.9 0 0 1 20.1 2.2" />
+</svg>

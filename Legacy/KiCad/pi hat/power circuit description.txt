@@ -1,0 +1,32 @@
+When the switch closes (J2 pin 1 and 2), current is flowing through U4 and U5
+PhotoMOSes until C2 is charged up. U4 will pull the gate of Q1 P-MOSFET low,
+raising the IN+ pin of the 3.7 to 5 V DC converter. U5 is still conducting,
+so C1 will be charged up. As long as it is charged, Q3 N-MOSFET is conducting,
+maintaining a low gate voltage on Q1 P-MOSFET.
+Because the boost converter gets activated while C2 is being charged up,
+it will reach a higher voltage than it would on the battery alone.
+Depending on switch quality, it is recommended to choose a capacitance between
+33 to 100 µF to ensure consistent current flow for the activation process.
+The system remains active as long as the load draws enough current.
+A Raspberry Pi with a 7 inch screen draws about 1.1 A, so 22 mV will be measured
+on R1 constantan resistor, while R3 is at 9 mV. In this case, IN+ of U3 comparator
+is lower than IN-, resulting in 0 V output.
+When the switch opens, C2 will be discharged, flipping the signal low on the Pi's
+pin 16. This will be detected by the python script running in the background, and
+a software shutdown is initiated.
+After shutdown, the voltage on the shunt drops to 2.2 mV. The comparator signal
+changes to 5 V, enabling Q2 N-MOSFET with a little delay, thanks to C4 capacitor.
+C1 is discharged through R5 resistor, and in about 24 seconds,
+at 1.2 V gate, Q3 stops conducting, driving the gate of Q1 high,
+which stops conducting too.
+The circuit collapses, and all load is removed from the battery, apart from the
+real-time clock.
+After the initial pulse at startup, C1 gets partially discharged down to 2.63 V,
+until the Pi draws full current consistently. R38 will take care of slowly
+charging up the capacitor again.
+The same shutdown sequence will occur when the Pi is shut down remotely.
+The switch has to be turned off and on in order to restart the system.
+
+In addition to power control, the board contains an USB socket for a trigger switch
+used by the oscilloscope program, a connector forwarding measurements to the AD7606
+module, and one channel is permanently set to monitor the battery voltage.

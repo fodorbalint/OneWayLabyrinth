@@ -1,0 +1,9 @@
+trigger = False
+triggerCurrentStart = 0.3
+triggerCurrentEnd = 0.1
+voltageDirection = True
+triggerVoltageStart = 1
+triggerVoltageEnd = 2
+voltageMultiplier = 13
+idleCurrent = 5.1
+multiSelection = False

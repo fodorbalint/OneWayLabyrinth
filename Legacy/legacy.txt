@@ -17,9 +17,6 @@ Decrypt:
 openssl enc -d -aes-256-cbc -pbkdf2 -in Partx.enc -out Partx.txt
 It will ask for the key now.
 
-Note:
-The diary spans over 14 months. It is in the process of being reviewed, so right now, only a portion of it is uploaded.
-
 Balint Fodor
 Born on 1986. december 19. in Nagykanizsa, Hungary
 Moved to Copenhagen, Denmark in 2009.
@@ -111,3 +108,10 @@ There is a long screw all the way through the steering column. This is the nut o
 - Body004Hole.3mf, Common002, Cut003: Sidewalls of the chain guard on the two-wheeled scooter. The plates are produced by ChainScreen80_2.py for laser cutting: plate big 80T.svg and plate small 80T.svg
 - Body005Pad015.3mf: Rear fender holder for the two-wheeled scooter.
 The rest of the file contains both preliminary sketches (aid for measurements) for the python script or generated shapes that are to be exported to dxf format for the metal laser cutter.
+
+Cart.FCStd
+A 120x80 cm transport vehicle that is attached to my tricycle. I used it when I moved to my current apartment and occasionally since then, when buying furniture or helping my flatmate move stuff.
+
+ChainScreen/Turntable.py
+The main component in my cart is a turntable bearing above each front wheel that makes them turn and resists the torque of pulling the vehicle or braking. I have it made by combining two axial bearings, enclosing them in a 7-layer laser-cut stainless steel housing. Functionally, it is identical to a Lazy Susan bearing, but it is much stronger and friction-free.
+This script also draws shapes for my concurrent projects: redesigning the bottom bracket on my tricycle and replacing the arbor on my mini saw to be able to mount a blade I bought locally.

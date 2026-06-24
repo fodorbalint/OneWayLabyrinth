@@ -2880,7 +2880,7 @@ Next, I will describe every case in this system, based on the found examples. Fo
 
 <!---->
 
-[StairAtStartConvexStraight5()] 2024_0626; Stair at start convex straight 5 (h+1)W
+[StairAtStartConvexStraight5()] 2025_0522, 2024_0626; Stair at start convex straight 5 (h+1)W
 2024_0727_4; start obstacle outside
 
 <img align="top" src="References/rules/StairAtStartConvexStraight5_(hp1)W.svg" width="5" />[spacer]<img align="top" src="References/rules/StairAtStartConvexStraight5_(hp1)W_1.svg" width="4" />[spacer]<img align="top" src="References/rules/StairAtStartConvexStraight5_(hp1)W_2.svg" width="5" />[spacer]<img align="top" src="References/rules/StairAtStartConvexStraight5_(hp1)W_3.svg" width="4" />
@@ -3142,7 +3142,7 @@ Should we display areas in valid rules where the disabled field is unavailable a
 Should we change rule areas that are displayed for the invalid next step, like in 2024_0624?
 Should we indicate forbidden fields in rules starting from page 165, like on page 166?
 Check if the rule areas in the examples only show the actual rule that the documentation mentions, not more (2024_0618).
-Check if page numbers are cited everywhere a rule is referred to.
+Check if page numbers are cited everywhere a rule is referred to, and verify page numbers are correct.
 Next step left/right areas could be shown in program
 If the display of future lines is turned on in the program, errors occur.
 Update pictures where rule area is outdated (2025_0527) and is not part of the documentation
@@ -3152,9 +3152,6 @@ Specify future line extension and connection rules on page 3?
 
 <b>(Uncategorized)</b>
 
-In the rules for 2025_0522 to 2025_0527, 2025_0527_1, the second obstacle is always mid across, but I used CheckNearFieldSmallRel1 which also solves the across cases. They might never occur.
-Review page number references
-Remove unnecessary markings in the five 2024_1005 examples (sequence walkthrough)
 When loading a file, possible fields are not displayed as numbers on the top. Does it only happen when the calculated moves are not the same as in the file?
 CheckStairAtEndConvexStraight3 Stair: Can the down field be free in rotation 1?
 Checking corner is not implemented in CheckStairAtEndConvexStraight3 4, 2 start obstacle before an example is found.
