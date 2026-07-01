@@ -89,9 +89,6 @@ namespace OneWayLabyrinth
 
         Used rules for 7 x 7:
 
-        * Side back
-        * Side front
-        * Side front L
         * Future L
         2023_0827, 2023_0827_1
         the start and end fields have to be in the same section, otherwise they can connect, like in 2023_0913

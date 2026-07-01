@@ -820,7 +820,6 @@ namespace OneWayLabyrinth
             }
 
             CurrentCoords.Content = taken.x + " " + taken.y;
-            PossibleCoords.Text = "";
 
             if (possibleDirections.Count == taken.path.Count)
             {

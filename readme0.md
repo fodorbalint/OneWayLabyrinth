@@ -1813,13 +1813,9 @@ And the left forbidden field in the first rule is already disabled too.
 <!---->
 
 Take a better look at the third.
-The reason the line is not exiting from the corner is that there is one more black field than white:
+The reason the line is not filling the corner before exiting is that there is one more black field than white:
 
-<img align="top" src="References/9_743059_1.svg" width="9" />[spacer]<img align="top" src="References/9_743059.svg" width="9" />
-
-So far, we simply assumed that it is the opposite, just because the area is impair, but such a case does not exist. Because of the single area rule with the obstacle, the step to get there is disabled. In the following example the desired area is 1B. So is the area defined by the obstacle on the right.
-
-<img align="top" src="References/2024_0530.svg" width="7" />
+<img align="top" src="References/9_743059.svg" width="9" />[spacer]<img align="top" src="References/9_743059_1.svg" width="9" />
 
 <!---->
 
@@ -1827,9 +1823,9 @@ When checking the conditions for the first area, these are the fields that need 
 
 <img align="top" src="References/rules/double area case 1.svg" width="2" />[spacer]<img align="top" src="References/rules/double area case 2.svg" width="3" />[spacer]<img align="top" src="References/rules/double area case 3.svg" width="3" />
 
-Notice that the first two cases can exist simultaneously. Then we examine the smaller area (second case); the obstacle in the first will create a C-shape with the exit of that area and the leftwards step will be disabled by the single area rule:
+Notice that the first two cases can exist simultaneously. Then we examine the smaller area (second case); the obstacle in the first will create a C-shape with the exit of that area, and the leftwards step will be disabled by the single area rule:
 
-<img align="top" src="References/2024_0530_1.svg" width="8" />
+<img align="top" src="References/2024_0530.svg" width="8" />
 
 <!---->
 
@@ -1851,7 +1847,7 @@ The next stop is similar in concept (Square 4&nbsp;x&nbsp;2 C-Shape and Square 4
 
 We can see that the mechanism is not limited to a few cases, but it can go on indefinitely. If after exiting the area, there are repeated C-shapes on the left side (a stair shape), the right side obstacle may be far away. And the stair can be combined with 2- or maybe 3-long flat walls that make it turn.
 
-<img align="top" src="References/2024_0531_5.svg" width="8" />[spacer]<img align="top" src="References/2024_0531_3.svg" width="9" />
+<img align="top" src="References/2024_0531_4.svg" width="8" />[spacer]<img align="top" src="References/2024_0531_3.svg" width="9" />
 
 A sequence is made from the start area and the close obstacle cases, and this can be programmed.
 
@@ -2323,12 +2319,6 @@ Therefore, we cannot enter later.
 Here, we have to extend the area of the previous example along the short axis. The area is still 1W.
 
 <img align="top" src="References/2024_0727_1.svg" width="11" />[spacer]<img align="top" src="References/rules/corner 5 1 extended stair.svg" width="7" />
-
-But we don't have to define this area separately. The x and y distance obstacle will solve it too:
-
-<img align="top" src="References/rules/corner 5 1 extended stair 2.svg" width="7" />
-
-<!---->
 
 It can be proved that the corner at (3,3) position does not do anything, so it is not a double obstacle outside case. The rule still holds if we move that obstacle.
 
@@ -2848,13 +2838,13 @@ Next, I will describe every case in this system, based on the found examples. Fo
 
 <img align="top" src="References/rules/StairAtStartConvexIn2_E.svg" width="5" />[spacer]<img align="top" src="References/rules/StairAtStartConvexIn2_E_1.svg" width="5" />
 
-[StairAtStartConvexIn3()] 2024_0725_6, 2024_0726_1, 2024_0726_2; Stair at start convex in 3 (h+1)B
+[StairAtStartConvexIn3()] 2024_0725_6, 2024_0726_1, 2024_0726_2; Stair at start convex in 3 (h+1)B; cannot enter now
 
 <img align="top" src="References/rules/StairAtStartConvexIn3_(hp1)B.svg" width="5" />[spacer]<img align="top" src="References/rules/StairAtStartConvexIn3_(hp1)B_1.svg" width="5" />
 
 <!---->
 
-2026_0410; E
+2026_0410; E; cannot enter later
 
 <img align="top" src="References/rules/StairAtStartConvexIn3_E.svg" width="5" />[spacer]<img align="top" src="References/rules/StairAtStartConvexIn3_E_1.svg" width="5" />
 
@@ -3107,19 +3097,22 @@ Current statitics: 1 error in 6910 random walkthroughs, averaged from 50 runs.
 
 <b>Developments:</b>
 
-For all stair at start/end rules, extend to any distance beyond 3-6.
+For all stair at start/end rules, extend to any distance beyond 3-6. (2024_0611)
 Calculate next step enter left and right for any AreaUp and Corner distance. (page 128)
 Original example of RemoteStair (page 215) 2024_0818_1 cannot be solved.
+2024_0727_6 is solved by Double Stair and Sequence. For the latter, a start obstacle at % 4 = 3 distance can be applied.
+Is it worth checking an area like xdist.svg, just with a concave corner (two obstacles): xdist_closed.svg?
+StairAtStartConvexOut3: Can the obstacle be at any point of the return step?
 
 <b>Improvements:</b>
 
 To get a better overview and increase safety of the StairAtStart/End rules, they should be generated by a python script that takes a spreadsheet containing the unique traits of every function. 
 Check if only one field is disabled in one of the rotations acrosss all functions
 Check if CornerDiscovery is used everywhere it is applicable.
-Use IsEmptyRel everywhere where InTakenRel and InBorderRel is used together
 
 <!---->
 
+Use IsEmptyRel everywhere where InTakenRel and InBorderRel is used together
 CheckNearFieldSmallRel 0 / 1 / - should only be used minimally, based on the existing examples. Right now, 0 is used for mid across, 1 is used for mid across and across, and - is used for mid across, across and C-shape. For each of the 3 case, an individual function should be created.
 Specify whether entering now or later is disabled in the beginning the function.
 Specify second obstacle position for every case (mid across, across or C-shae)
@@ -3147,35 +3140,7 @@ Next step left/right areas could be shown in program
 If the display of future lines is turned on in the program, errors occur.
 Update pictures where rule area is outdated (2025_0527) and is not part of the documentation
 Specify future line extension and connection rules on page 3?
-
-<!---->
-
-<b>(Uncategorized)</b>
-
-When loading a file, possible fields are not displayed as numbers on the top. Does it only happen when the calculated moves are not the same as in the file?
-CheckStairAtEndConvexStraight3 Stair: Can the down field be free in rotation 1?
-Checking corner is not implemented in CheckStairAtEndConvexStraight3 4, 2 start obstacle before an example is found.
-2024_0727_6 is added to Sequence2, but we need to think about a general UpExtended start area where distance to the obstacle % 4 = 3.
 Display relevant area rules in examples or clean them up where unnecessary rules are displayed. (For example 2024_1012_1)
-StairAtStart: are there 5 and 6-distance top stairs?
 Hypothesis: A wrong rule that unnecessarily disables a field does not only limit the number of walkthroughs but will result in a stuck case.
-Page 180: rewrite corner 5 1 extended stair 2.svg for stair at end convex straight.
-
-<!---->
-
-2024_0516_2 is both StairAtEndConvex and StairAtStart (representation: StairAtEndConvex 3 1 now nostair.svg and StairAtEndConvex 3 2 now nostair.svg)
-Make pattern set representation: 2024_0625 can be extended vertically, holding a fixed 2 horizontal distance, or in a stair at the far end, so that vert = hori + 2. The two can also be combined. The same can happen with 2024_0625_1, which is just one vertical distance shorter. (Stair extension: 2024_0712)
-LeftRightCorner() has a case (2024_0611_2, 2024_0611_2_area.svg) that should be solved with StairAtStart, instead of using "closed corner"
-2025_0522 is solved by LeftRightCorner close obstacle inside instead of Stair at start concave. Also 2025_0527_2 close obstacle inside-outside.
-Is it worth checking an area like xdist.svg, just with a concave corner (two obstacles): xdist_closed.svg
 Write about optimizing performance / checking close rules first.
-2024_0530 does not match 9_743059 and is incorrect, we cannot step there.
-All open/closed corner and return stair subcases of LeftRightCorner can be solved by a stair pattern. 
 Replace two images with one where the path changes color at the decision point.
-Is there an example for Count Area Across Border C.svg, and is it solved by NextStepEnterLeft and NextStepEnterRight?
-In Path_old.cs, under the Used rules for 7 x 7 section, there are Side back, Side front and Side front L with no reference anywhere. 
-
-<!---->
-
-StairAtStartConvexOut3: Can the obstacle be at any point of the return step?
-StairAtStartConvexStraight3: 2024_0611 needs extension

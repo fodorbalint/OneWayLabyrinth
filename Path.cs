@@ -1637,7 +1637,7 @@ namespace OneWayLabyrinth
                         }
                     }
 
-                    if (dist > 3 && dist < size)
+                    if (dist > 4 && dist < size)
                     {
                         T("StairAtStartConvexIn3 distance " + (dist - 1), "side " + i, "rotation " + j);
 
@@ -2054,7 +2054,7 @@ namespace OneWayLabyrinth
                                         if (CheckCorner(0, 3, 0, 2, circleDirectionLeft, true))
                                         {
                                             AddExamAreas();
-                                            T("StairAtStartConvexStraight4 1B at " + hori + " " + vert + ": Cannot step straight");
+                                            T("StairAtStartConvexStraight4 hB at " + hori + " " + vert + ": Cannot step straight");
                                             RemoveEnd(counter);
                                             AddForbidden(0, 1);
                                         }
@@ -2662,13 +2662,14 @@ namespace OneWayLabyrinth
         // 2024_0718: mid across left, across right
         // 2024_0720_2: mid across x 2
         // 2024_0709: C-shape left, mid across right, no stair
-        // 2024_0727: X-shape left, mid across right
+        // 2024_0727: C-shape left, mid across right
         // 2026_0410_4: corner left, mid across right, no stair
 
         // with 3 obstacles:
         // 2024_0731, 2024_0811_3
 
         // (v+1)B
+        // Also StairAtStartConvexIn3 (but inactive due to only using closed corners for the first obstacle):
         // 2024_0516_2: across up, mid across down
         // 2024_1012: mid across up, across down
 
@@ -3179,10 +3180,15 @@ namespace OneWayLabyrinth
                                         if (CheckCorner(hori - 2, vert, 1, 0, circleDirectionLeft, true))
                                         {
                                             AddExamAreas();
-                                            T("StairAtEndConvexStraight3 at " + hori + " " + vert + ": Cannot step left and down");
+                                            T("StairAtEndConvexStraight3 at " + hori + " " + vert + ": Cannot step left");
                                             RemoveEnd(counter);
                                             AddForbidden(1, 0);
-                                            AddForbidden(0, -1);
+
+                                            if (j == 1)
+                                            {
+                                                T("StairAtEndConvexStraight3 at " + hori + " " + vert + ": Cannot step down");
+                                                AddForbidden(0, -1);
+                                            }
                                         }
                                         else
                                         {

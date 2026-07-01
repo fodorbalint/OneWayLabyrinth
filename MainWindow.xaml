@@ -16,6 +16,10 @@
             <Setter Property="Foreground" Value="White" />
             <Setter Property="Background" Value="Black" />
         </Style>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="Black" />
+        </Style>
         <Style x:Key="GreenButton" TargetType="{x:Type Button}">
             <Setter Property="Background" Value="LightGreen" />
             <!-- LightGreen: #90EE90, LightPink: #FFB6C1 -->
