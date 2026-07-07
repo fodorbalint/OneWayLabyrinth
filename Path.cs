@@ -503,8 +503,8 @@ namespace OneWayLabyrinth
             Stair3x3();
             T("RemoteStairMidAcross " + ShowForbidden());
             RemoteStairMidAcross();
-            T("RemoteStairAcross " + ShowForbidden());
-            RemoteStairAcross();
+            // T("RemoteStairAcross " + ShowForbidden());
+            // RemoteStairAcross();
             T("Sequence " + ShowForbidden());
             Sequence();
         }
@@ -5992,6 +5992,7 @@ namespace OneWayLabyrinth
         }
 
         void RemoteStairAcross()
+        // Not used currently used: 2026_0705 results in error
         // 2026_0520
         // Find big area corner in the first quarter
         {

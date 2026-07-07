@@ -42,7 +42,7 @@ It contains a Raspberry Pi mini-computer, an Adafruit HDMI 7" 800x480 screen, an
 KiCad/pi hat
 This is the power control module that, instead of disconnecting the battery at once, ensures file-safe shutdown when a switch is turned off. A real-time clock is added to the board too, as well as connectors for the measurement channels and an USB switch. For explanation on how it works, refer to KiCad/pi hat/schematic.pdf
 
-3D/Raspberry Pi box
+3D/Raspberry Pi box.FCStd
 Casing for the hardware, including power switch and signal switch
 
 Voltage graph/python_graph.py
@@ -91,14 +91,21 @@ Two of these 3D-printed holders are used in the steering column in the three-whe
 - Revolve002 and Revolve003: Water block on the top end of the steering column
 - Ring aligner: Used for positioning the Hall-sensor holder around the axle while glueing.
 
-3D/Chain aligner.FCStd
-Screwed on the front fork of the three-wheeled scooter to prevent chain derailing.
+3D/Cart.FCStd
+A 120x80 cm transport vehicle that is attached to my tricycle. I used it when I moved to my current apartment and occasionally since then, when buying furniture or helping my flatmate move stuff.
 
 3D/Chain screen 80T.FCStd
 The chain guard for the three-wheeled scooter. The screw hole that connects to the Hall-sensor holder has a slot shape to allow vertical adjustment of the motor at chain elongation. This has to be updated to a vertical slot as chain tensioning now happens by moving the motor horizontally.
 
+3D/Chainguard lower threaded.FCStd
+3D/Chainguard lower nothread.FCStd
+Designed for a 68T sprocket, it is mounted on the bottom of the chainguard to protect it from impacts. It is CNC-cut from 7075 aluminium or 3D-printed with stainless steel (less precise, heavier but stronger).
+
 3D/Magnet holder.FCStd
 Bicycle computer magnet holder, glued on the rim.
+
+3D/Switch holder.FCStd
+Casing for two switches to mount on the handlebar, used to control the light (on/off and strength) on my electric scooter.
 
 3D/Turning pad spacer.FCStd
 There is a long screw all the way through the steering column. This is the nut on the bottom end, which also serves as a threaded hole when installing the mudguard.
@@ -108,9 +115,6 @@ There is a long screw all the way through the steering column. This is the nut o
 - Body004Hole.3mf, Common002, Cut003: Sidewalls of the chain guard on the two-wheeled scooter. The plates are produced by ChainScreen80_2.py for laser cutting: plate big 80T.svg and plate small 80T.svg
 - Body005Pad015.3mf: Rear fender holder for the two-wheeled scooter.
 The rest of the file contains both preliminary sketches (aid for measurements) for the python script or generated shapes that are to be exported to dxf format for the metal laser cutter.
-
-Cart.FCStd
-A 120x80 cm transport vehicle that is attached to my tricycle. I used it when I moved to my current apartment and occasionally since then, when buying furniture or helping my flatmate move stuff.
 
 ChainScreen/Turntable.py
 The main component in my cart is a turntable bearing above each front wheel that makes them turn and resists the torque of pulling the vehicle or braking. I have it made by combining two axial bearings, enclosing them in a 7-layer laser-cut stainless steel housing. Functionally, it is identical to a Lazy Susan bearing, but it is much stronger and friction-free.

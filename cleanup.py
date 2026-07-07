@@ -6,14 +6,13 @@
 5. Delete files not used in readme0.md, Path.cs, Path_old.cs and Path_old2.cs
 6. Add size specification to txt files up to 2023-0729
 ----- DONE -----
-7. 2024_0530: we cannnot step there
-8: Some 9 walkthroughs are the same but have different number, like 2034435 or 2059934. One or both are wrong. Also 9_23350320 can be in fact 9_23347853.
-9. Corner discovery error when loading a completed walkhtrough from svg, like 9_22326. Also the possibilities of future lines will be put next to the live end, 2025_0527_future.
-10. Delete non-specific rules that are only found because of function name, like StairAtEndConcaveStraight3.svg
-11. Images where the checker pattern fills the entire board are not prefereable (2026_0404_3)
-12. On 2023_1021, arealine is drawn wrong. There might be other cases. 2023_1021_6
-13. Use AddEnd... functions everywhere
-14. Make sure all examples for the StairAtStart/End functions are listed in the documentation too.
+7: Some 9 walkthroughs are the same but have different number. 9_23350320 can be in fact 9_23347853. Verify all 9 x 9 examples.
+8. Corner discovery error when loading a completed walkhtrough from svg, like 9_22326. Also the possibilities of future lines will be put next to the live end, 2025_0527_future.
+9. Delete non-specific rules that are only found because of function name, like StairAtEndConcaveStraight3.svg
+10. Images where the checker pattern fills the entire board are not prefereable (2026_0404_3)
+11. On 2023_1021, arealine is drawn wrong. There might be other cases. 2023_1021_6
+12. Use AddEnd... functions everywhere
+13. Make sure all examples for the StairAtStart/End functions are listed in the documentation too.
 
 '''
 

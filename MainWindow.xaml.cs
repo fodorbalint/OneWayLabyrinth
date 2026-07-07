@@ -434,9 +434,9 @@ namespace OneWayLabyrinth
             string file1, file2, file3;
 
             int yOffset = 0;
-            file1 = baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "References\\" + Ref1.Text + ".svg";
-            file2 = baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "References\\" + Ref2.Text + ".svg";
-            file3 = baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "References\\" + Ref3.Text + ".svg";
+            file1 = baseDir.Replace("bin\\Debug\\net10.0-windows\\", "") + "References\\" + Ref1.Text + ".svg";
+            file2 = baseDir.Replace("bin\\Debug\\net10.0-windows\\", "") + "References\\" + Ref2.Text + ".svg";
+            file3 = baseDir.Replace("bin\\Debug\\net10.0-windows\\", "") + "References\\" + Ref3.Text + ".svg";
             if (!(File.Exists(file1)))
             {
                 file1 = file1.Replace("References\\", "References\\unsolved\\");
@@ -490,6 +490,7 @@ namespace OneWayLabyrinth
 
         private void DrawSVG(string file, int w, int h, int left, int top)
         {
+            
             SKElement c = new();
             c.IgnorePixelScaling = true;
             c.Tag = file;
@@ -5076,9 +5077,9 @@ namespace OneWayLabyrinth
 
         private void CopyConsole_Click(object sender, RoutedEventArgs e)
         {
-            string file1 = File.ReadAllText(baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "Path.cs");
-            string file_control = File.ReadAllText(baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "Path_control.cs");
-            string file2 = File.ReadAllText(baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "Console app\\Program.cs");
+            string file1 = File.ReadAllText(baseDir.Replace("bin\\Debug\\net10.0-windows\\", "") + "Path.cs");
+            string file_control = File.ReadAllText(baseDir.Replace("bin\\Debug\\net10.0-windows\\", "") + "Path_control.cs");
+            string file2 = File.ReadAllText(baseDir.Replace("bin\\Debug\\net10.0-windows\\", "") + "Console app\\Program.cs");
 
             int pos1 = 0;
             int pos2 = 0;
@@ -5140,7 +5141,7 @@ namespace OneWayLabyrinth
             file2 = file2.Replace("window.", "");
             //file2 = Regex.Replace(file2, @"/\*.*?\*/", "");
 
-            File.WriteAllText(baseDir.Replace("bin\\Debug\\net6.0-windows\\", "") + "Console app\\Program.cs", file2);
+            File.WriteAllText(baseDir.Replace("bin\\Debug\\net10.0-windows\\", "") + "Console app\\Program.cs", file2);
 
             T("File copied.");
             MessageBox.Show("File copied.");

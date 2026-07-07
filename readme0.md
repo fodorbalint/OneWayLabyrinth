@@ -3093,13 +3093,12 @@ Exact calculation line:
 
 <span class="header">Development / correction notes</span>
 
-Current statitics: 1 error in 6910 random walkthroughs, averaged from 50 runs. 
+Current statitics: 1 error in 8758 random walkthroughs, averaged from 50 runs. 
 
 <b>Developments:</b>
 
 For all stair at start/end rules, extend to any distance beyond 3-6. (2024_0611)
 Calculate next step enter left and right for any AreaUp and Corner distance. (page 128)
-Original example of RemoteStair (page 215) 2024_0818_1 cannot be solved.
 2024_0727_6 is solved by Double Stair and Sequence. For the latter, a start obstacle at % 4 = 3 distance can be applied.
 Is it worth checking an area like xdist.svg, just with a concave corner (two obstacles): xdist_closed.svg?
 StairAtStartConvexOut3: Can the obstacle be at any point of the return step?

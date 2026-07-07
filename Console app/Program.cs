@@ -2415,7 +2415,7 @@ void StairAtStartConvexIn3()
                 }
             }
 
-            if (dist > 3 && dist < size)
+            if (dist > 4 && dist < size)
             {
                 // T("StairAtStartConvexIn3 distance " + (dist - 1), "side " + i, "rotation " + j);
 
@@ -2832,7 +2832,7 @@ void StairAtStartConvexStraight4()
                                 if (CheckCorner(0, 3, 0, 2, circleDirectionLeft, true))
                                 {
                                     AddExamAreas();
-                                    // T("StairAtStartConvexStraight4 1B at " + hori + " " + vert + ": Cannot step straight");
+                                    // T("StairAtStartConvexStraight4 hB at " + hori + " " + vert + ": Cannot step straight");
                                     RemoveEnd(counter);
                                     AddForbidden(0, 1);
                                 }
@@ -3265,6 +3265,7 @@ void StairAtStartConvexOut3()
 }
 
 void StairAtEndConvexIn2()
+// vB
 // case 1:
 // 2026_0302_3 mid across left, mid across right
 // 2026_0404 across left, mid across right
@@ -3439,13 +3440,14 @@ void StairAtEndConvexIn3()
 // 2024_0718: mid across left, across right
 // 2024_0720_2: mid across x 2
 // 2024_0709: C-shape left, mid across right, no stair
-// 2024_0727: X-shape left, mid across right
+// 2024_0727: C-shape left, mid across right
 // 2026_0410_4: corner left, mid across right, no stair
 
 // with 3 obstacles:
 // 2024_0731, 2024_0811_3
 
 // (v+1)B
+// Also StairAtStartConvexIn3 (but inactive due to only using closed corners for the first obstacle):
 // 2024_0516_2: across up, mid across down
 // 2024_1012: mid across up, across down
 
@@ -3956,10 +3958,15 @@ void StairAtEndConvexStraight3()
                                 if (CheckCorner(hori - 2, vert, 1, 0, circleDirectionLeft, true))
                                 {
                                     AddExamAreas();
-                                    // T("StairAtEndConvexStraight3 at " + hori + " " + vert + ": Cannot step left and down");
+                                    // T("StairAtEndConvexStraight3 at " + hori + " " + vert + ": Cannot step left");
                                     RemoveEnd(counter);
                                     AddForbidden(1, 0);
-                                    AddForbidden(0, -1);
+
+                                    if (j == 1)
+                                    {
+                                        // T("StairAtEndConvexStraight3 at " + hori + " " + vert + ": Cannot step down");
+                                        AddForbidden(0, -1);
+                                    }
                                 }
                                 else
                                 {
@@ -6594,7 +6601,7 @@ void Stair3x3() // 2024_0722 / Stair3x3. It is not a nested 3x3 area sequence. 2
 
 void RemoteStairMidAcross()
 // 2024_0818_1, 2026_0519_3
-// Find big area corner in the first quarter, mirrored of remote stair.svg. Rotate CCW.
+// Find big area corner in the first quarter, mirrored of Remote Stair mid across.svg. Rotate CCW.
 {
     for (int i = 0; i < 2; i++)
     {
