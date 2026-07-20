@@ -50,6 +50,7 @@
 	<rect width="1" height="1" x="7" y="4" fill="#e2bcbc" fill-opacity="1" />
 	<rect width="1" height="1" x="7" y="3" fill="#e2bcbc" fill-opacity="1" />
 	<rect width="1" height="1" x="7" y="2" fill="#000000" fill-opacity="0.1" />
+	<rect width="1" height="1" x="6" y="3" fill="#000000" fill-opacity="0.1" />
 	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0.01 0 v 9" />
 	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 0 0.01 h 9" />
 	<path fill="transparent" stroke="gray" stroke-width="0.02" d="M 1 0 v 9" />

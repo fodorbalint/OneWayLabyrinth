@@ -38,6 +38,7 @@ if len(sys.argv) > 1 and sys.argv[1] == "-r":
 
 # make sure every svg file has its txt and vice-versa and rename files to long version
 print("----- Checking file pairs and short versions -----\n")
+
 index = 0
 for path in paths:
     print(f"{path}\n") 
@@ -260,6 +261,7 @@ for contentName in contentList:
 
 # rename references in contents to long version
 print("----- Check if references are found in content -----\n")
+
 contentI = 0
 for contentName in contentList:
     with open(contentName, "r") as file:
@@ -415,6 +417,8 @@ if noCount > 0:
 print(f"Global inCount {inCount} noCount {noCount}")
 
 r'''
+# early examples did not designate size in the saved file. We extract them from their image.
+print("----- Add size to the beginning of the source files -----\n")
 
 files = []
 for filename in os.listdir("References/"):
@@ -444,5 +448,15 @@ for filename in files:
 
         new_time = datetime(dt.year, dt.month, dt.day, dt.hour, dt.minute, dt.second)
         set_last_modified("References/" + filename, new_time)
-
 '''
+
+r''' from natsort import natsorted
+
+# verify the number of all 9 x 9 examples
+files = []
+for filename in os.listdir("References/"):
+    if filename[0:2] == "9_" and filename[-4:] == ".txt":
+        files.append(filename)
+
+sorted_filenames = natsorted(files)
+print(sorted_filenames) '''

@@ -1046,7 +1046,7 @@ namespace OneWayLabyrinth
                                     forbidden.Add(new int[] { x - lx, y - ly });
                                 }
                                 else // We can enter later, check for start C on the opposite side (if the obstacle is up on the left, we check the straight field for next step C, not the right field.) 
-                                // 9_466
+                                // 9_465
                                 {
                                     if (ex == 2 && !InTakenRel(-1, 1) && (InTakenRel(-2, 1) || InBorderRel(-2, 1)) && InTakenRel(-1, 0))
                                     {

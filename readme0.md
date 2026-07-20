@@ -306,25 +306,25 @@ We can see that defining a rule with future line starts and ends does not tell u
 
 <!---->
 
-As we run the program further, we will discover this at 227 200:
+As we run the program further, we will discover this at 227 252:
 
-<img align="top" src="References/9_227200.svg" width="9" />
+<img align="top" src="References/9_227252_1.svg" width="9" />
 
 Intuitively, we can draw up the square, and let's mark the exit as well. There can be loops on the upper, lower and right side, they have no importance when tracing it back to the live end. There is only one way to go through.
 
-<img align="top" src="References/rules/Square 4 x 2 orig.svg" width="5" />[spacer]<img align="top" src="References/9_227200_1.svg" width="9" />
+<img align="top" src="References/rules/Square 4 x 2 orig.svg" width="5" />[spacer]<img align="top" src="References/9_227252.svg" width="9" />
 
 <!---->
 
-233 810 will look like:
+233 832 will look like:
 
-<img align="top" src="References/9_233810.svg" width="9" />
+<img align="top" src="References/9_233832_1.svg" width="9" />
 
 Once we step to A, it is unavoidable to get to B before entering the outlined area. It is because we can only reach B from the left or the bottom.
 The area is impair, therefore we cannot complete it starting in C and ending in D.
 If we omit the C field from the area, the area becomes pair. It is clear that the start and end field being across each other, a pair amount of fields cannot be filled. We must therefore enter the area now.
 
-<img align="top" src="References/rules_sorted/9-grid/Count Area 2 Across.svg" width="5" />[spacer]<img align="top" src="References/9_233810_1.svg" width="9" />
+<img align="top" src="References/rules_sorted/9-grid/Count Area 2 Across.svg" width="5" />[spacer]<img align="top" src="References/9_233832.svg" width="9" />
 
 <!---->
 
@@ -663,7 +663,7 @@ Still, the number of completed walkthroughs before the appereance of the rule ma
 
 <!---->
 
-9_462, Double Area C-Shape 
+462, Double Area C-Shape 
 
 <img align="top" src="References/9_462.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Double Area C-Shape.svg" width="5" />
 
@@ -687,19 +687,19 @@ Still, the number of completed walkthroughs before the appereance of the rule ma
 
 <img align="top" src="References/9_22328_3.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Straight Across End Area.svg" width="4" />
 
-25 153, Straight Across End C
+25 157, Straight Across End C
 
-<img align="top" src="References/9_25153.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Straight Across End C.svg" width="3" />
+<img align="top" src="References/9_25157.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Straight Across End C.svg" width="3" />
 
 <!---->
 
-227 130, Square 4&nbsp;x&nbsp;2 C-Shape 
+227 250, Square 4&nbsp;x&nbsp;2 C-Shape 
 
-<img align="top" src="References/9_227130.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Square 4 x 2 C-Shape.svg" width="5" />
+<img align="top" src="References/9_227250.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Square 4 x 2 C-Shape.svg" width="5" />
 
-231 960, Square 43&nbsp;x&nbsp;2 Area
+232 080, Square 43&nbsp;x&nbsp;2 Area
 
-<img align="top" src="References/9_231960.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Square 4 x 2 Area.svg" width="5" />
+<img align="top" src="References/9_232080.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Square 4 x 2 Area.svg" width="5" />
 
 <!---->
 
@@ -1740,7 +1740,7 @@ When we re-run the program on 9&nbsp;x&nbsp;9, it will be obvious that covering 
 
 If we don't apply the first size-specific rule, we get stuck here:
 
-<img align="top" src="References/9_464.svg" width="9" />
+<img align="top" src="References/9_462_1.svg" width="9" />
 
 As a reminder:
 
@@ -1754,7 +1754,7 @@ What happens here is that the 3&nbsp;x&nbsp;2 area has a certain exit point, the
 
 In general, if we have an area of this shape,
 
-<img align="top" src="References/rules/9_464_rule1.svg" width="5" />[spacer]<img align="top" src="References/rules/9_464_rule2.svg" width="6" />[spacer]<img align="top" src="References/rules/9_464_rule3.svg" width="7" />
+<img align="top" src="References/rules/9_462_rule1.svg" width="5" />[spacer]<img align="top" src="References/rules/9_462_rule2.svg" width="6" />[spacer]<img align="top" src="References/rules/9_462_rule3.svg" width="7" />
 
 that consists equal amount of black and white fields, and we enter now, we will exit at the black field, and the preceding field could only have been the farthest corner white, and we can continue backwards through all corner whites like this:
 
@@ -1790,7 +1790,7 @@ Reviewing those 2-distance rules, we can see that many of them has a double area
 
 Per our expectation, the program stops at the next double area case.
 
-<img align="top" src="References/9_22328.svg" width="9" />[spacer]<img align="top" src="References/9_22328_1.svg" width="9" />
+<img align="top" src="References/9_22328_1.svg" width="9" />
 
 What is common in these rules?
 
@@ -2887,7 +2887,7 @@ Next, I will describe every case in this system, based on the found examples. Fo
 
 <!---->
 
-[StairAtEndConvexIn2()] 2026_0302_3, 2026_0404, 2026_0408_1, 2026_0408_9, 9_231960, 2024_0516, 2024_0704, 2024_1014; Stair at end convex in 2 vB; cannot enter now
+[StairAtEndConvexIn2()] 2026_0302_3, 2026_0404, 2026_0408_1, 2026_0408_9, 9_232080, 2024_0516, 2024_0704, 2024_1014; Stair at end convex in 2 vB; cannot enter now
 
 <img align="top" src="References/rules/StairAtEndConvexIn2_vB.svg" width="6" />[spacer]<img align="top" src="References/rules/StairAtEndConvexIn2_vB_1.svg" width="6" />
 
@@ -2915,7 +2915,7 @@ Next, I will describe every case in this system, based on the found examples. Fo
 
 <img align="top" src="References/rules/StairAtEndConvexIn4_1W.svg" width="7" />[spacer]<img align="top" src="References/rules/StairAtEndConvexIn4_1W_1.svg" width="7" />
 
-[StairAtEndConvexStraight3()] 9_227130, 2024_0905, 2024_0706, 2024_2024_1001, 2024_1008, 2024_0916; Stair at end convex straight 3 vB:
+[StairAtEndConvexStraight3()] 9_227250, 2024_0905, 2024_0706, 2024_2024_1001, 2024_1008, 2024_0916; Stair at end convex straight 3 vB:
 Rewrite obstacle discovery, so the loop is finished in the beginning. Stair addition cases are double stair cases.
 
 <img align="top" src="References/rules/StairAtEndConvexStraight3_vB.svg" width="6" />

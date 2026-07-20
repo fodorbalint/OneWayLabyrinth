@@ -1,4 +1,12 @@
 using System.Diagnostics;
+using System;
+using System.IO;
+using System.Linq;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+
+[DllImport("shlwapi.dll", CharSet = CharSet.Unicode)]
+static extern int StrCmpLogicalW(string psz1, string psz2);
 
 int targetCompletedCount = int.MaxValue;
 bool debug = false, debug2 = false;
@@ -25,6 +33,12 @@ Random rand = new Random();
 int numberOfRuns = 0;
 long numberOfCompleted = 0;
 int statsRuns = 0;
+
+bool verifyExamples;
+List<long> exampleNumbers = new();
+string exampleDirectory = "c:/Users/Balint/OneWayLabyrinth/References";
+bool lastLineEmpty = false;
+
 int count = 0;
 int sx = 0; //straight, left and right coordinates
 int sy = 0;
@@ -70,7 +84,6 @@ int sy2 = 0;
 int lx2 = 0;
 int ly2 = 0;
 
-int counterrec = 0;
 int sequenceLeftObstacleIndex = -1;
 
 List<int[]>[] closedCorners = new List<int[]>[4];
@@ -91,6 +104,8 @@ if (File.Exists(baseDir + "settings.txt"))
     makeStats = bool.Parse(arr[1]);
     arr = lines[3].Split(": ");
     statsRuns = int.Parse(arr[1]);
+    arr = lines[4].Split(": ");
+    verifyExamples = bool.Parse(arr[1]);
 }
 else
 {
@@ -98,13 +113,20 @@ else
     saveFrequency = 1000000;
     makeStats = false;
     statsRuns = 100;
-    string[] lines = new string[] { "size: " + size, "saveFrequency: " + saveFrequency, "makeStats: " + makeStats, "statsRuns: " + statsRuns };
+    verifyExamples = false;
+    string[] lines = new string[] { "size: " + size, "saveFrequency: " + saveFrequency, "makeStats: " + makeStats, "statsRuns: " + statsRuns, "verifyExamples: " + verifyExamples };
     File.WriteAllLines(baseDir + "settings.txt", lines);
 }
 
-L("Size setting: " + size, "save frequency: " + saveFrequency, "make stats: " + makeStats);
+L("Size setting: " + size, "save frequency: " + saveFrequency, "make stats: " + makeStats, "verify examples: " + verifyExamples);
 
-ReadDir();
+if (!verifyExamples) {
+    ReadDir();
+}
+else {
+    loadFile = "";
+}
+    
 
 if (loadFile != "" && !makeStats)
 {
@@ -162,7 +184,6 @@ if (makeStats)
             File.Delete(file);
         }
     }
-
 }
 else
 {
@@ -198,6 +219,22 @@ else
     }
     completedCount = fileCompletedCount;
     lastTimerValue = startTimerValue;
+
+    if (verifyExamples) {
+        Console.WriteLine(""); 
+        var files = Directory.GetFiles(exampleDirectory)
+            .Select(Path.GetFileName)
+            .Where(name => name.StartsWith("9_") && name.EndsWith(".txt"))
+            .ToList();
+        files.Sort((x, y) => StrCmpLogicalW(x, y));
+
+        foreach (var filename in files)
+        {
+            long number = long.Parse(filename.Substring(2).Replace(".txt", "").Split("_")[0]);
+            Console.WriteLine(number);
+            exampleNumbers.Add(number);
+        }         
+    }
 }
 
 Stopwatch watch = Stopwatch.StartNew();
@@ -272,7 +309,6 @@ void NextClick()
             bool rightFound = false;
             nextDirection = -1;
             bool oppositeFound;
-            bool leftFound;
 
             do
             {
@@ -378,9 +414,68 @@ void NextClick()
                 {
                     if (completedCount == targetCompletedCount)
                         SavePath();
+                        
+                    if (completedCount == 1000000) {
+                        errorInWalkthrough = true;
+                        criticalError = true;
+                        errorString = "Test complete.";
+                    }
 
-                    if (completedCount % 1000 == 0)
-                        Console.Write("\r{0} completed.", completedCount);
+                    if (completedCount % 10000 == 0) {
+                        Console.WriteLine("\r{0} completed.", completedCount);
+                        lastLineEmpty = false;
+                    }
+                        
+
+                    if (verifyExamples && exampleNumbers.IndexOf(completedCount - 1) != -1) {
+                        string savePath = SavePath();
+                        string content = File.ReadAllText(exampleDirectory + "/9_" + (completedCount - 1) + ".txt");
+                        
+                        File.WriteAllText(baseDir + "9_" + (completedCount - 1) + "_new.txt", savePath);
+
+                        if (!lastLineEmpty) {
+                            Console.WriteLine("");
+                        }
+                        
+                        bool showContent = false;
+                        if (savePath.Substring(0, content.Length) != content) {
+                            Console.WriteLine((completedCount - 1) + ": no match");
+                            showContent = true;
+                        }
+                        else {
+                            Console.WriteLine((completedCount - 1) + ": match");
+                            switch (savePath.Substring(content.Length, 1)) {
+                                case ";":
+                                    Console.WriteLine("Possibilities not present");
+                                    showContent = true;
+                                    break;
+                                case ",":
+                                    Console.WriteLine("Possibilities do not match");
+                                    showContent = true;
+                                    break;
+                                case "-":
+                                    break;
+                            }
+                        }
+                        if (showContent) {
+                            int index = content.Zip(savePath, (c1, c2) => c1 == c2).TakeWhile(b => b).Count() + 1;
+
+                            if (content.Length >= index + 2) {
+                                Console.WriteLine("");
+                                Console.WriteLine(content.Substring(0, index + 2));
+                                Console.WriteLine("");
+                                Console.WriteLine(savePath.Substring(0, index + 2));
+                            }
+                            else { // when match, but possibilities are not present
+                               Console.WriteLine("");
+                                Console.WriteLine(content);
+                                Console.WriteLine("");
+                                Console.WriteLine(savePath); 
+                            }
+                        }
+                        Console.WriteLine("");
+                        lastLineEmpty = true;
+                    }
 
                     if (completedCount % saveFrequency == 0)
                     {
@@ -612,8 +707,8 @@ void NextStepPossibilities2()
                     if (possible.Count == 1) break;
 
                     // ----- copy start -----
-                    bool rules = true;
-                    bool rules_control = false;
+                    bool rules = false;
+                    bool rules_control = true;
 
                     if (rules && rules_control)
                     {
@@ -727,7 +822,7 @@ void PreviousStep()
     }
 }
 
-void SavePath(bool isCompleted = true) // used in fast run mode
+string SavePath(bool isCompleted = true) // used in fast run mode
 {
     int startX = 1;
     int startY = 1;
@@ -848,6 +943,7 @@ void SavePath(bool isCompleted = true) // used in fast run mode
             }
         }
     }
+    return savePath;
 }
 
 void ReadDir()
@@ -918,7 +1014,7 @@ void LoadFromFile()
         possibleDirections.Add(new int[] { });
     }
 
-    L("Loading", loadFile, "path count: " + path.Count, "possible count: " + possibleDirections.Count);
+    L("Loading " + loadFile, "path count: " + path.Count, "possible count: " + possibleDirections.Count);
 
     nextDirection = -1;
 
@@ -1282,7 +1378,7 @@ void ApplyRules()
     // T("RemoteStairMidAcross " + ShowForbidden());
     RemoteStairMidAcross();
     // T("RemoteStairAcross " + ShowForbidden());
-    RemoteStairAcross();
+    // RemoteStairAcross();
     // T("Sequence " + ShowForbidden());
     Sequence();
 }
@@ -1711,7 +1807,7 @@ void CheckLeftRightAreaUp()
                                         AddForbidden(-1, 0);
                                     }
                                     else if (j != 2) // We can enter later, check for start C on the opposite side (if the obstacle is up on the left, we check the straight field for next step C, not the right field.) 
-                                    // 9_466
+                                    // 9_465
                                     {
                                         if (ex == 2)
                                         {
@@ -3272,7 +3368,7 @@ void StairAtEndConvexIn2()
 // 2026_0408_1 C-shape left, across right
 // 2026_0408_9 area left, mid across right
 // Sequence also:
-// 9_231960, 2024_0516: mid across left, across right
+// 9_232080, 2024_0516: mid across left, across right
 // 2024_0704, 2024_1014: area left, mid across right
 // 2024_0531: C-shape left, mid across right
 
@@ -3586,7 +3682,7 @@ void StairAtEndConvexIn3()
                                                 AddForbidden(-1, 0);
                                             }
                                         }
-                                        // for first condition, see 9_25691
+                                        // for first condition, see 9_48016
                                         // for last condition, see 9_22325
                                         else if (dist > 4 && CheckNearFieldSmallRel0(hori - 4, vert + 2, 0, 0, true) && (InTakenRel(hori - 6, vert + 2) || InBorderRel(hori - 6, vert + 2)) && !InTakenRel(hori - 5, vert + 2) && !InBorderRel(hori - 5, vert + 2))
                                         {
@@ -3839,7 +3935,7 @@ void StairAtEndConvexIn4()
 
 void StairAtEndConvexStraight3()
 // Straight wall:
-// 9_227130: nostair, across
+// 9_227250: nostair, across
 // 2024_0905: nostair, mid across
 // 2024_0531: nostair, mid across (also StairAtEndConvexIn2, Sequence)
 // 2024_1008: nostair, area
@@ -6770,6 +6866,7 @@ void RemoteStairMidAcross()
 }
 
 void RemoteStairAcross()
+// Not used currently used: 2026_0705 results in error
 // 2026_0520
 // Find big area corner in the first quarter
 {
@@ -9459,7 +9556,7 @@ void CheckLeftRightAreaUp_control()
                             forbidden.Add(new int[] { x - lx, y - ly });
                         }
                         else // We can enter later, check for start C on the opposite side (if the obstacle is up on the left, we check the straight field for next step C, not the right field.) 
-                        // 9_466
+                        // 9_465
                         {
                             if (ex == 2 && !InTakenRel(-1, 1) && (InTakenRel(-2, 1) || InBorderRel(-2, 1)) && InTakenRel(-1, 0))
                             {
@@ -11753,13 +11850,6 @@ bool InBorderRelExact(int left, int straight)
 {
     int x0 = x + left * lx + straight * sx;
     int y0 = y + left * ly + straight * sy;
-    return InBorderExact(x0, y0);
-}
-
-bool InBorderRelExact2(int left, int straight)
-{
-    int x0 = x2 + left * lx2 + straight * sx2;
-    int y0 = y2 + left * ly2 + straight * sy2;
     return InBorderExact(x0, y0);
 }
 

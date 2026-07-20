@@ -933,7 +933,7 @@ namespace OneWayLabyrinth
                                                 AddForbidden(-1, 0);
                                             }
                                             else if (j != 2) // We can enter later, check for start C on the opposite side (if the obstacle is up on the left, we check the straight field for next step C, not the right field.) 
-                                            // 9_466
+                                            // 9_465
                                             {
                                                 if (ex == 2)
                                                 {
@@ -2494,7 +2494,7 @@ namespace OneWayLabyrinth
         // 2026_0408_1 C-shape left, across right
         // 2026_0408_9 area left, mid across right
         // Sequence also:
-        // 9_231960, 2024_0516: mid across left, across right
+        // 9_232080, 2024_0516: mid across left, across right
         // 2024_0704, 2024_1014: area left, mid across right
         // 2024_0531: C-shape left, mid across right
 
@@ -2808,7 +2808,7 @@ namespace OneWayLabyrinth
                                                         AddForbidden(-1, 0);
                                                     }
                                                 }
-                                                // for first condition, see 9_25691
+                                                // for first condition, see 9_48016
                                                 // for last condition, see 9_22325
                                                 else if (dist > 4 && CheckNearFieldSmallRel0(hori - 4, vert + 2, 0, 0, true) && (InTakenRel(hori - 6, vert + 2) || InBorderRel(hori - 6, vert + 2)) && !InTakenRel(hori - 5, vert + 2) && !InBorderRel(hori - 5, vert + 2))
                                                 {
@@ -3061,7 +3061,7 @@ namespace OneWayLabyrinth
 
         void StairAtEndConvexStraight3()
         // Straight wall:
-        // 9_227130: nostair, across
+        // 9_227250: nostair, across
         // 2024_0905: nostair, mid across
         // 2024_0531: nostair, mid across (also StairAtEndConvexIn2, Sequence)
         // 2024_1008: nostair, area
