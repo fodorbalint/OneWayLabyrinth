@@ -328,9 +328,9 @@ If we omit the C field from the area, the area becomes pair. It is clear that th
 
 <!---->
 
-234 256 has at first sight something to do with future lines.
+234 325 has at first sight something to do with future lines.
 
-<img align="top" src="References/9_234256.svg" width="9" />
+<img align="top" src="References/9_234325.svg" width="9" />
 
 But it is more than that. Notice that enclosed areas has been created on both sides simultaneously. Because of the universal rules for approaching an older section of the line, now we have no option to move. The areas can be filled individually, but we cannot step to left and right at the same time.
 We have to create 2-distance rules, which take both sides into account.
@@ -347,9 +347,9 @@ As far as porgramming concerned, it just needed a rework of the universal rules,
 
 <!---->
 
-At 349 215, we find this:
+At 349 290, we find this:
 
-<img align="top" src="References/9_349215.svg" width="9" />
+<img align="top" src="References/9_349290_1.svg" width="9" />
 
 Though a double C-shape has been created in backwards direction, it indicates that the area on the right cannot be filled either.
 We have made a similar rule previously. Now we need to simplify it.
@@ -360,9 +360,9 @@ The area now has to be impair for the right direction to be forbidden. Essential
 
 <!---->
 
-478 361 is similar to what we have seen before, only now there is a 2-wide path to exit the area:
+478 445 is similar to what we have seen before, only now there is a 2-wide path to exit the area:
 
-<img align="top" src="References/9_478361.svg" width="9" />
+<img align="top" src="References/9_478445.svg" width="9" />
 
 We have to mark where the area has been created in another way.
 
@@ -373,9 +373,9 @@ In order to establish an enclosed area, we must not encounter the bottom-right c
 
 <!---->
 
-626 071 is:
+626 313 is:
 
-<img align="top" src="References/9_626071.svg" width="9" />[spacer]<img align="top" src="References/9_626071_1.svg" width="9" />
+<img align="top" src="References/9_626313.svg" width="9" />[spacer]<img align="top" src="References/9_626313_1.svg" width="9" />
 
 With the marked area being pair, if we enter the area by stepping left, we will exit at A. But we can only get there from B; if we entered from the top, nothing would fill B, and we cannot enter and exit it after we left the area - subtracting 1 from the area would make it impair, so then we couldn't have exited at A.
 The taken field C creates a C-shape, which we need to step into from B.
@@ -388,9 +388,9 @@ The universal far across rule have to be extended. By default, we disable the op
 [spacer_h]
 <img align="bottom" src="References/checknearfield/far side across up.svg" width="4" />[spacer]<img align="bottom" src="References/checknearfield/far side across up end C.svg" width="5" />
 
-The same concept we encounter at 635 301, only the C-shape is created when we enter an area, on the other side of it.
+The same concept we encounter at 635 542, only the C-shape is created when we enter an area, on the other side of it.
 
-<img align="top" src="References/9_635301.svg" width="9" />[spacer]<img align="top" src="References/9_635301_1.svg" width="9" />
+<img align="top" src="References/9_635542.svg" width="9" />[spacer]<img align="top" src="References/9_635542_1.svg" width="9" />
 
 <!---->
 
@@ -466,9 +466,9 @@ And now the walkthrough is possible.
 
 <!---->
 
-Continuing the 9&nbsp;x&nbsp;9 program, we get this at 641 019:
+Continuing the 9&nbsp;x&nbsp;9 program, we get this at 641 261:
 
-<img align="top" src="References/9_641019.svg" width="9" />[spacer]<img align="top" src="References/9_641019_1.svg" width="9" />
+<img align="top" src="References/9_641261.svg" width="9" />[spacer]<img align="top" src="References/9_641261_1.svg" width="9" />
 
 If you enter the pair area straight ahead, you will exit at A, and you need to turn towards B because of the C-shape. Now you cannot go in and out of the area enclosed by C, and the situation would be the same if that obstacle was in D. 
 
@@ -486,7 +486,7 @@ So we get the 2-distance across rule, the straight 3-distance rule to prevent a 
 
 Let's return to the last example and make a modification:
 
-<img align="top" src="References/9_641019_2.svg" width="9" />
+<img align="top" src="References/9_740527_1.svg" width="9" />
 
 The field previously marked with B is now empty. But we still need to step in that direction, due to the area enclosed by A, which obstacle could as well be in B.
 
@@ -496,9 +496,9 @@ The rule will be now symmetrical. It is similar to the square obstacle pattern.
 
 <img align="top" src="References/rules_sorted/9-grid/Triple Area.svg" width="5" />
 
-The same concept we encounter at 725 325. We have seen this previously, just with C-shape, not an area.
+The same concept we encounter at 725 579. We have seen this previously, just with C-shape, not an area.
 
-<img align="top" src="References/9_725325.svg" width="9" />
+<img align="top" src="References/9_725579.svg" width="9" />
 
 The rule is now:
 
@@ -506,9 +506,9 @@ The rule is now:
 
 <!---->
 
-740 039 is a slight modification.
+740 293 is a slight modification.
 
-<img align="top" src="References/9_740039.svg" width="9" />[spacer]<img align="top" src="References/9_740039_1.svg" width="9" />
+<img align="top" src="References/9_740293.svg" width="9" />[spacer]<img align="top" src="References/9_740293_1.svg" width="9" />
 
 The only difference is, that the obstacle is 3-distance away. With the area being impair, if we enter at A, we must exit at C.
 What if we omit D from the area? Then the area will be pair, so we must exit at B, and the only way to get there is from C. And if D is included, we can only step to C from there. Either way, we step away from the area beyond D, so the rule will be:
@@ -517,9 +517,9 @@ What if we omit D from the area? Then the area will be pair, so we must exit at 
 
 <!---->
 
-811 808:
+812 064:
 
-<img align="top" src="References/9_811808.svg" width="9" />[spacer]<img align="top" src="References/9_811808_1.svg" width="9" />
+<img align="top" src="References/9_812064.svg" width="9" />[spacer]<img align="top" src="References/9_812064_1.svg" width="9" />
 
 Recognize it is a variation of the square obstacle pattern where instead of an area, there is a C-shape at the rule's upper edge. 
 
@@ -527,9 +527,9 @@ Recognize it is a variation of the square obstacle pattern where instead of an a
 
 <!---->
 
-1 261 580:
+1 261 932:
 
-<img align="top" src="References/9_1261580.svg" width="9" />[spacer]<img align="top" src="References/9_1261580_1.svg" width="9" />
+<img align="top" src="References/9_1261932.svg" width="9" />[spacer]<img align="top" src="References/9_1261932_1.svg" width="9" />
 
 Again, same pattern with area. The upper obstacle is now moved, but it will satisfy the previous examples too. The rule replaces the old one.
 
@@ -703,13 +703,13 @@ Still, the number of completed walkthroughs before the appereance of the rule ma
 
 <!---->
 
-740 129, Straight Across 3 End Area 
+740 293, Straight Across 3 End Area 
 
-<img align="top" src="References/9_740129.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Straight Across 3 End Area.svg" width="4" />
+<img align="top" src="References/9_740293_2.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Straight Across 3 End Area.svg" width="4" />
 
-740 363, Triple Area
+740 527, Triple Area
 
-<img align="top" src="References/9_740363.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Triple Area.svg" width="5" />
+<img align="top" src="References/9_740527.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Triple Area.svg" width="5" />
 
 <!---->
 

@@ -38,6 +38,12 @@ bool verifyExamples;
 List<long> exampleNumbers = new();
 string exampleDirectory = "c:/Users/Balint/OneWayLabyrinth/References";
 bool lastLineEmpty = false;
+bool searchForMatch = false;
+string searchContent = "";
+int matchLength = 0;
+int maxMatchLength = 0;
+string previousWalkthrough = "";
+long maxCompletedCount = 0;
 
 int count = 0;
 int sx = 0; //straight, left and right coordinates
@@ -125,6 +131,7 @@ if (!verifyExamples) {
 }
 else {
     loadFile = "";
+    ReadDir();
 }
     
 
@@ -233,7 +240,9 @@ else
             long number = long.Parse(filename.Substring(2).Replace(".txt", "").Split("_")[0]);
             Console.WriteLine(number);
             exampleNumbers.Add(number);
-        }         
+        } 
+        Console.WriteLine("");
+        lastLineEmpty = true;        
     }
 }
 
@@ -287,8 +296,13 @@ void DoThread()
         }
         else
         {
-            Console.Write("\r\nError at " + completedCount + ": " + errorString);
-            SavePath(false);
+            if (errorString == "Test interrupted." || errorString == "Test complete.") {
+                Console.Write("\r\n" + errorString);
+            }
+            else {
+                Console.Write("\r\nError at " + completedCount + ": " + errorString);
+                SavePath(false);
+            }
             Console.Read();
         }
     }
@@ -415,65 +429,147 @@ void NextClick()
                     if (completedCount == targetCompletedCount)
                         SavePath();
                         
-                    if (completedCount == 1000000) {
+                    if (completedCount == 2000000) {
                         errorInWalkthrough = true;
                         criticalError = true;
                         errorString = "Test complete.";
                     }
 
                     if (completedCount % 10000 == 0) {
-                        Console.WriteLine("\r{0} completed.", completedCount);
+                        Console.Write("\r{0} completed.", completedCount);
                         lastLineEmpty = false;
                     }
-                        
 
-                    if (verifyExamples && exampleNumbers.IndexOf(completedCount - 1) != -1) {
-                        string savePath = SavePath();
+                    if (verifyExamples && searchForMatch) {
+                        string savePath = SavePath(false);
+
+                        bool result = ComparePaths(savePath, searchContent);
+                        // The example might contain an impossible extension (marked with blue background) for illustration purposes. Therefore, to find the example number, we need to find the closest match. When the match length declines, that's when we know that the previous number was the right, but if there are several examples with the maximum match, we need to take the first. (9_349290)
+                        if (matchLength < maxMatchLength) {
+                            Console.WriteLine((completedCount - 1) + ": current match length: " + matchLength + ", max " + maxMatchLength + " at " + maxCompletedCount);
+                            searchForMatch = false;
+
+                            Console.WriteLine("");
+                            CompareFull(previousWalkthrough, searchContent);
+                            Console.WriteLine("");
+                            savePath = TrimCompleted(previousWalkthrough, maxMatchLength);
+                            File.WriteAllText(baseDir + "9_" + maxCompletedCount + ".txt", savePath);
+
+                            errorInWalkthrough = true;
+                            criticalError = true;
+                            errorString = "Test interrupted.";
+                        }
+                        else {
+                            // no match
+                            if (!result) {
+                                if (matchLength > maxMatchLength) {
+                                    Console.WriteLine((completedCount - 1) + ": " + matchLength);
+                                    maxMatchLength = matchLength;
+                                    maxCompletedCount = completedCount - 1;
+                                    previousWalkthrough = savePath;
+                                }
+
+                                return;
+                            }
+                            // match with possible issues
+                            else {
+                                bool showContent = false; 
+                                searchForMatch = false;
+
+                                if (savePath.Substring(0, searchContent.Length) != searchContent) {
+                                    Console.WriteLine((completedCount - 1) + ": match, but possibilities different");
+                                    showContent = true;
+                                }
+                                else {
+                                    switch (savePath.Substring(searchContent.Length, 1)) {
+                                    case ";":
+                                        Console.WriteLine((completedCount - 1) + ": match, but possibilities not present");
+                                        showContent = true;
+                                        break;
+                                    case ",":
+                                        Console.WriteLine((completedCount - 1) + ": match, but end possibilities restricted");
+                                        showContent = true;
+                                        break;
+                                    case "-":
+                                        Console.WriteLine((completedCount - 1) + ": match");
+                                        break;
+                                    }
+                                }
+
+                                if (showContent) {
+                                    Console.WriteLine("");
+                                    CompareFull(savePath, searchContent);
+                                    Console.WriteLine("");
+                                    savePath = TrimCompleted(savePath, matchLength);
+                                }
+                                else {
+                                    savePath = searchContent;
+                                }
+
+                                File.WriteAllText(baseDir + "9_" + (completedCount - 1) + ".txt", savePath);
+
+                                errorInWalkthrough = true;
+                                criticalError = true;
+                                errorString = "Test interrupted.";
+                            }
+                        }
+                    }
+                    else if (verifyExamples && exampleNumbers.IndexOf(completedCount - 1) != -1) {
+                        string savePath = SavePath(false);
                         string content = File.ReadAllText(exampleDirectory + "/9_" + (completedCount - 1) + ".txt");
-                        
-                        File.WriteAllText(baseDir + "9_" + (completedCount - 1) + "_new.txt", savePath);
 
                         if (!lastLineEmpty) {
                             Console.WriteLine("");
                         }
+
+                        // compares the steps only, discarding possibilities. Returns true if the steps of content are the first steps of savePath.
+                        bool result = ComparePaths(savePath, content);
                         
-                        bool showContent = false;
-                        if (savePath.Substring(0, content.Length) != content) {
-                            Console.WriteLine((completedCount - 1) + ": no match");
-                            showContent = true;
+                        bool showContent = false;        
+                        if (!result) {
+                            Console.WriteLine("");
+                            Console.WriteLine((completedCount - 1) + ": no match, match count: " + matchLength);
+
+                            /*Console.WriteLine("");
+                            CompareFull(savePath, content);
+                            Console.WriteLine("");*/
+
+                            searchForMatch = true;
+                            searchContent = content;
+                            maxMatchLength = matchLength;
+                            maxCompletedCount = completedCount - 1;
+                            previousWalkthrough = savePath;
                         }
                         else {
-                            Console.WriteLine((completedCount - 1) + ": match");
-                            switch (savePath.Substring(content.Length, 1)) {
+                            if (savePath.Substring(0, content.Length) != content) {
+                                Console.WriteLine((completedCount - 1) + ": match, but possibilities different");
+                                showContent = true;
+                            }
+                            else {
+                                switch (savePath.Substring(content.Length, 1)) {
                                 case ";":
-                                    Console.WriteLine("Possibilities not present");
+                                    Console.WriteLine((completedCount - 1) + ": match, but possibilities not present");
                                     showContent = true;
                                     break;
                                 case ",":
-                                    Console.WriteLine("Possibilities do not match");
+                                    Console.WriteLine((completedCount - 1) + ": match, but end possibilities restricted");
                                     showContent = true;
                                     break;
                                 case "-":
+                                    Console.WriteLine((completedCount - 1) + ": match");
                                     break;
+                                }
                             }
                         }
+                        
                         if (showContent) {
-                            int index = content.Zip(savePath, (c1, c2) => c1 == c2).TakeWhile(b => b).Count() + 1;
-
-                            if (content.Length >= index + 2) {
-                                Console.WriteLine("");
-                                Console.WriteLine(content.Substring(0, index + 2));
-                                Console.WriteLine("");
-                                Console.WriteLine(savePath.Substring(0, index + 2));
-                            }
-                            else { // when match, but possibilities are not present
-                               Console.WriteLine("");
-                                Console.WriteLine(content);
-                                Console.WriteLine("");
-                                Console.WriteLine(savePath); 
-                            }
+                            Console.WriteLine("");
+                            CompareFull(savePath, content);
+                            Console.WriteLine("");
+                            savePath = TrimCompleted(savePath, matchLength);
+                            File.WriteAllText(baseDir + "9_" + (completedCount - 1) + ".txt", savePath);
+                            Console.WriteLine("");
                         }
-                        Console.WriteLine("");
                         lastLineEmpty = true;
                     }
 
@@ -953,7 +1049,7 @@ void ReadDir()
     foreach (string file in files)
     {
         string fileName = System.IO.Path.GetFileName(file);
-        if (fileName != "settings.txt" && fileName != "log_stats.txt" && fileName != "log_rules.txt" && fileName != "log_performance.txt" && fileName != "completedPaths.txt" && fileName.IndexOf("_temp") == -1 && fileName.IndexOf("_error") == -1)
+        if (fileName != "settings.txt" && fileName != "log_stats.txt" && fileName != "log_rules.txt" && fileName != "log_performance.txt" && fileName != "completedPaths.txt" && fileName.IndexOf("_temp") == -1 && fileName.IndexOf("_error") == -1 && fileName[1] != '_')
         {
             loadFile = fileName;
             return;
@@ -1164,7 +1260,7 @@ void ShowActiveRules(List<string> rules, List<List<int[]>> forbiddenFields, List
 {
     if (rules.Count == 0) return;
 
-    // only record new rule when its forbidden fields were not created by other rules. More complicated rules can be true together with simpler rules that already added the necessary forbidden fields, like in 349170
+    // only record new rule when its forbidden fields were not created by other rules. More complicated rules can be true together with simpler rules that already added the necessary forbidden fields, like in 349290
     int ruleNo = 0;
 
     if (File.Exists(baseDir + "log_rules.txt"))
@@ -1275,7 +1371,7 @@ void ApplyRules()
     openCWCorners = new List<int[]>[] { new List<int[]>(), new List<int[]>(), new List<int[]>(), new List<int[]>() };
     openCCWCorners = new List<int[]>[] { new List<int[]>(), new List<int[]>(), new List<int[]>(), new List<int[]>() };
 
-    // needs to be checked before AreaUp, it can overwrite it as in 9_802973
+    // needs to be checked before AreaUp, it can overwrite it as in 9_802969
     CornerDiscoveryAll();
 
     // T("CheckCShapeNext");
@@ -1290,9 +1386,9 @@ void ApplyRules()
 
     // T("NextStepEnter " + nextStepEnterLeft + " " + nextStepEnterRight);
 
-    // 2024_0611_3, 2024_0611_4, 2024_0611_5, 2024_0611_6, 2024_0611_7, 2024_0611_8, 9_234212, 9_522267
+    // 2024_0611_3, 2024_0611_4, 2024_0611_5, 2024_0611_6, 2024_0611_7, 2024_0611_8, 9_234319, 9_522266
     // 0 and 0 or 1 and 3. Beware of 1 and -1.
-    // Overwrite order: 3, 0, 1 (See 9_802973 and 9_2020799)
+    // Overwrite order: 3, 0, 1 (See 9_802969 and 9_2020799)
     if (nextStepEnterLeft == 0 && nextStepEnterRight == 0 || nextStepEnterLeft + nextStepEnterRight == 4 && Math.Abs(nextStepEnterLeft - nextStepEnterRight) == 2)
     {
         switch (nextStepEnterLeft)
@@ -8568,7 +8664,7 @@ void ApplyRules_control()
     closeStraightLarge = false;
     closeMidAcrossLarge = false;
 
-    // needed for far left and right case 9_234320
+    // needed for far left and right case 9_234319
     CheckNearField();
 
     if (closeStraightSmall || closeMidAcrossSmall || closeAcrossSmall || closeStraightLarge || closeMidAcrossLarge) return;
@@ -8749,7 +8845,7 @@ void CheckNearField()
     lx = thisLx;
     ly = thisLy;
 
-    // Far rules shouldn't be checked until close rules are checked on both sides, see 9_305112. Here, close straight is only true on the right side, but left side far rules get checked before.
+    // Far rules shouldn't be checked until close rules are checked on both sides, see 9_305232. Here, close straight is only true on the right side, but left side far rules get checked before.
     // A close rule may be true on one side, but on the other side there can be a far rule, like in 9_1307639. The close rule has to be large in this case.
 
     // A large close mid across on one side can have a small far across on the other side.
@@ -8901,7 +8997,7 @@ void CheckNearField()
         ly = thisLy;
     }
 
-    if (farStraightLeft && farStraightRight) // 9_234256
+    if (farStraightLeft && farStraightRight) // 9_234325
     {
         forbidden.Add(new int[] { x + sx, y + sy });
     }
@@ -9073,7 +9169,7 @@ void CheckNearField()
                     }
                 }
 
-                if (!farSideStraightDown && !farSideMidAcrossDown && InTakenRel(3, -2) && InTakenRel(3, -3) && !InTakenRel(1, -1) && !InTakenRel(1, 0) && !InTakenRel(1, 1) && !InTakenRel(2, -2)) // 2,-2: 9_630259
+                if (!farSideStraightDown && !farSideMidAcrossDown && InTakenRel(3, -2) && InTakenRel(3, -3) && !InTakenRel(1, -1) && !InTakenRel(1, 0) && !InTakenRel(1, 1) && !InTakenRel(2, -2)) // 2,-2: 9_630501
                 {
                     int middleIndex = InTakenIndexRel(3, -2);
                     int sideIndex = InTakenIndexRel(3, -3);
@@ -9096,7 +9192,7 @@ void CheckNearField()
                 }
             }
 
-            if (farSideUp && farSideDown) // 9_234256
+            if (farSideUp && farSideDown) // 9_234325
             {
                 forbidden.Add(new int[] { x + lx, y + ly });
             }
@@ -11978,4 +12074,94 @@ string ShowForbidden()
     {
         return "";
     }
+}
+
+/* ----- Cleanup ----- */
+
+bool ComparePaths(string haystack, string needle) {
+    haystack = haystack.Split("|")[1];
+    needle = needle.Split("|")[1];
+    string[] hArr = haystack.Split(";");
+    string[] nArr = needle.Split(";");
+    List<string> hCoords = new();
+    List<string> nCoords = new();
+    
+    foreach(string step in hArr) {
+        if (step.IndexOf("-") != -1) {
+            hCoords.Add(step.Split("-")[1]);           
+        }
+    }
+    foreach(string step in nArr) {
+        if (step.IndexOf("-") != -1) {
+            nCoords.Add(step.Split("-")[1]);           
+        }
+    }
+
+    bool isSub = true;
+    for (int i = 0; i < nCoords.Count(); i++) {
+        if (nCoords[i] != hCoords[i]) {
+            matchLength = i;
+            isSub = false;
+            break;
+        }
+    }
+
+    if (isSub) matchLength = nCoords.Count();
+
+    /*string hCoordsStr = string.Join(";", hCoords);
+    string nCoordsStr = string.Join(";", nCoords);
+
+    int index = nCoordsStr.Zip(hCoordsStr, (c1, c2) => c1 == c2).TakeWhile(b => b).Count() + 1;
+    if (index < nCoordsStr.Length - 1) {
+        Console.WriteLine(nCoordsStr.Substring(0, index + 2));
+        Console.WriteLine(hCoordsStr.Substring(0, index + 2));
+        Console.WriteLine("Match length: " + matchLength);
+        Console.WriteLine("");
+    }*/
+
+    // To get the index of first difference in a string, use:
+    // int index = content.Zip(savePath, (c1, c2) => c1 == c2).TakeWhile(b => b).Count() + 1;
+
+    if (isSub) return true;
+    else return false;
+}
+
+string TrimCompleted(string haystack, int stepCount) {
+    string[] hArr = haystack.Split(";");
+    string newPoss = hArr[stepCount].Split("-")[0];
+    hArr = hArr.Take(stepCount).ToArray();
+    string ret = string.Join(";", hArr) + ";" + newPoss;
+
+    Console.WriteLine("New file:");
+    Console.WriteLine(ret);
+
+    return ret;
+}
+
+void CompareFull(string haystack, string needle) {
+    string[] hArr = haystack.Split(";");
+    string[] nArr = needle.Split(";");
+
+    string diffStr = "Differences: ";
+    for(int i = 0; i < nArr.Length; i++) {
+        // compare only full steps, not the last where only the possibilities are present
+        if (nArr[i].IndexOf("-") != -1 && nArr[i] != hArr[i]) {
+            diffStr += (i + 1) + ": " + nArr[i] + " / " + hArr[i] + " | ";
+        }
+    }
+
+    // last item is a full step, next possibilities missing
+    if (nArr[nArr.Length - 1].IndexOf("-") != -1) {
+        diffStr += (nArr.Length + 1) + ": - / " + hArr[nArr.Length].Split("-")[0] + " | ";  
+    }
+    else {
+        // last item contains only possibilities, but they are not the same as the haystack's possibilities
+        if (nArr[nArr.Length - 1] != hArr[nArr.Length - 1].Split("-")[0]) {
+            diffStr += nArr.Length + ": " + nArr[nArr.Length - 1] + " / " + hArr[nArr.Length - 1].Split("-")[0] + " | ";   
+        }
+    }
+
+    diffStr = diffStr.Substring(0, diffStr.Length - 3);
+
+    Console.WriteLine(diffStr);
 }

@@ -281,7 +281,7 @@ namespace OneWayLabyrinth
 
             int i;
 
-            if (isTaskRunning) // only record new rule when its forbidden fields were not created by other rules. More complicated rules can be true together with simpler rules that already added the necessary forbidden fields, like in 9_349170
+            if (isTaskRunning) // only record new rule when its forbidden fields were not created by other rules. More complicated rules can be true together with simpler rules that already added the necessary forbidden fields, like in 9_349290
             {
                 /*i = 0;
                 foreach (List<int[]> forbiddenField in forbiddenFields)
@@ -821,6 +821,7 @@ namespace OneWayLabyrinth
             }
 
             CurrentCoords.Content = taken.x + " " + taken.y;
+            Steps.Content = taken.path.Count;
 
             if (possibleDirections.Count == taken.path.Count)
             {
@@ -870,6 +871,7 @@ namespace OneWayLabyrinth
             if (!isTaskRunning)
             {
                 CurrentCoords.Content = taken.x + " " + taken.y;
+                Steps.Content = taken.path.Count;
                 PossibleCoords.Text = "";
             }
 
@@ -1700,7 +1702,10 @@ namespace OneWayLabyrinth
 
             taken.path.Add(new int[] { x, y });
 
-            if (!isTaskRunning) CurrentCoords.Content = x + " " + y;
+            if (!isTaskRunning) {
+                CurrentCoords.Content = x + " " + y;
+                Steps.Content = taken.path.Count;
+            }
 
             if (calculateFuture)
                 return CheckFutureLine(x, y);
@@ -3231,7 +3236,11 @@ namespace OneWayLabyrinth
                     if (!isTaskRunning) PossibleCoords.Text += newX + " " + newY + "\n";
                 }
 
-                if (!isTaskRunning) CurrentCoords.Content = taken.x + " " + taken.y;
+                if (!isTaskRunning) {
+                    CurrentCoords.Content = taken.x + " " + taken.y;
+                    Steps.Content = taken.path.Count;
+                }
+
             }
             else // Next click when there is no possibilities or Next/Previous/OK click after stepping on future line, and it cannot extend				
             {

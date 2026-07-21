@@ -80,6 +80,9 @@
             <Button x:Name="DisableRulesButton" Content="Disable rules" HorizontalAlignment="Left" Margin="435,85,0,0" Padding="10,0,10,0" VerticalAlignment="Top" Click="DisableRules_Click" Height="21"  Focusable="False"/>
             <Label Content="Current: " HorizontalAlignment="Left" Margin="375,30,0,0" VerticalAlignment="Top"/>
             <Label x:Name="CurrentCoords" Content="1, 1" HorizontalAlignment="Left" Margin="426,30,0,0" VerticalAlignment="Top"/>
+            <Label Content="Steps: " HorizontalAlignment="Left" Margin="375,50,0,0" VerticalAlignment="Top"/>
+            <Label x:Name="Steps" Content="1, 1" HorizontalAlignment="Left" Margin="426,50,0,0" VerticalAlignment="Top"/>
+
             <Label Content="Possible: " HorizontalAlignment="Left" Margin="465,30,0,0" VerticalAlignment="Top"/>
             <TextBlock x:Name="PossibleCoords" TextWrapping="NoWrap" HorizontalAlignment="Left" Margin="524,35,0,0" VerticalAlignment="Top">
 1, 2<LineBreak />

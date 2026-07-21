@@ -61,7 +61,7 @@ namespace OneWayLabyrinth
         //bool closeAcross = false;
 
         // rotation at which if we step straight, an area is created on both sides that we need to enter.
-        // 9_234212, 9_522267
+        // 9_234319, 9_522266
         int nextStepEnterLeft = -1;
         int nextStepEnterRight = -1;
 
@@ -401,7 +401,7 @@ namespace OneWayLabyrinth
             openCWCorners = new List<int[]>[] { new List<int[]>(), new List<int[]>(), new List<int[]>(), new List<int[]>() };
             openCCWCorners = new List<int[]>[] { new List<int[]>(), new List<int[]>(), new List<int[]>(), new List<int[]>() };
 
-            // needs to be checked before AreaUp, it can overwrite it as in 9_802973
+            // needs to be checked before AreaUp, it can overwrite it as in 9_802969
             CornerDiscoveryAll();
 
             T("CheckCShapeNext");
@@ -416,9 +416,9 @@ namespace OneWayLabyrinth
 
             T("NextStepEnter " + nextStepEnterLeft + " " + nextStepEnterRight);
 
-            // 2024_0611_3, 2024_0611_4, 2024_0611_5, 2024_0611_6, 2024_0611_7, 2024_0611_8, 9_234212, 9_522267
+            // 2024_0611_3, 2024_0611_4, 2024_0611_5, 2024_0611_6, 2024_0611_7, 2024_0611_8, 9_234319, 9_522266
             // 0 and 0 or 1 and 3. Beware of 1 and -1.
-            // Overwrite order: 3, 0, 1 (See 9_802973 and 9_2020799)
+            // Overwrite order: 3, 0, 1 (See 9_802969 and 9_2020799)
             if (nextStepEnterLeft == 0 && nextStepEnterRight == 0 || nextStepEnterLeft + nextStepEnterRight == 4 && Math.Abs(nextStepEnterLeft - nextStepEnterRight) == 2)
             {
                 switch (nextStepEnterLeft)

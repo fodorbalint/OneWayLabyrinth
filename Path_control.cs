@@ -58,7 +58,7 @@ namespace OneWayLabyrinth
             closeStraightLarge = false;
             closeMidAcrossLarge = false;
 
-            // needed for far left and right case 9_234320
+            // needed for far left and right case 9_234319
             CheckNearField();
 
             if (closeStraightSmall || closeMidAcrossSmall || closeAcrossSmall || closeStraightLarge || closeMidAcrossLarge) return;
@@ -239,7 +239,7 @@ namespace OneWayLabyrinth
             lx = thisLx;
             ly = thisLy;
 
-            // Far rules shouldn't be checked until close rules are checked on both sides, see 9_305112. Here, close straight is only true on the right side, but left side far rules get checked before.
+            // Far rules shouldn't be checked until close rules are checked on both sides, see 9_305232. Here, close straight is only true on the right side, but left side far rules get checked before.
             // A close rule may be true on one side, but on the other side there can be a far rule, like in 9_1307639. The close rule has to be large in this case.
 
             // A large close mid across on one side can have a small far across on the other side.
@@ -391,7 +391,7 @@ namespace OneWayLabyrinth
                 ly = thisLy;
             }
 
-            if (farStraightLeft && farStraightRight) // 9_234256
+            if (farStraightLeft && farStraightRight) // 9_234325
             {
                 forbidden.Add(new int[] { x + sx, y + sy });
             }
@@ -563,7 +563,7 @@ namespace OneWayLabyrinth
                             }
                         }
 
-                        if (!farSideStraightDown && !farSideMidAcrossDown && InTakenRel(3, -2) && InTakenRel(3, -3) && !InTakenRel(1, -1) && !InTakenRel(1, 0) && !InTakenRel(1, 1) && !InTakenRel(2, -2)) // 2,-2: 9_630259
+                        if (!farSideStraightDown && !farSideMidAcrossDown && InTakenRel(3, -2) && InTakenRel(3, -3) && !InTakenRel(1, -1) && !InTakenRel(1, 0) && !InTakenRel(1, 1) && !InTakenRel(2, -2)) // 2,-2: 9_630501
                         {
                             int middleIndex = InTakenIndexRel(3, -2);
                             int sideIndex = InTakenIndexRel(3, -3);
@@ -586,7 +586,7 @@ namespace OneWayLabyrinth
                         }
                     }
 
-                    if (farSideUp && farSideDown) // 9_234256
+                    if (farSideUp && farSideDown) // 9_234325
                     {
                         forbidden.Add(new int[] { x + lx, y + ly });
                     }
