@@ -690,9 +690,10 @@ namespace OneWayLabyrinth
                             {
                                 if (!(taken.possible[i][0] == takenPossible[i][0] && taken.possible[i][1] == takenPossible[i][1]))
                                 {
+                                    T("Wrong possible movements at step " + taken.path.Count + ", index " + i + ": file " + takenPossible[i][0] + "," + takenPossible[i][1] + "; calculated " + taken.possible[i][0] + "," + taken.possible[i][1]);
+
                                     ReplaceLastPossible(takenPossible);
 
-                                    T("Wrong possible movements at step " + taken.path.Count + ".");
                                     M("Wrong possible movements at step " + taken.path.Count + ".");
                                     toBreak = true;
                                     break;
@@ -1455,7 +1456,7 @@ namespace OneWayLabyrinth
                         {
                             if (direction != secondDir && direction % 2 == secondDir % 2) // two difference
                             {
-                                // opposite is found, but we don't know yet if it is on the left or right side. First example 9_19802714.
+                                // opposite is found, but we don't know yet if it is on the left or right side. First example 9_19802725.
 
                                 if (secondDir == firstDir + 1 || firstDir == 3 && secondDir == 0)
                                 { // line turned to left. The opposite direction is on the right side

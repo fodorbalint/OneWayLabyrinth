@@ -240,7 +240,7 @@ namespace OneWayLabyrinth
             ly = thisLy;
 
             // Far rules shouldn't be checked until close rules are checked on both sides, see 9_305232. Here, close straight is only true on the right side, but left side far rules get checked before.
-            // A close rule may be true on one side, but on the other side there can be a far rule, like in 9_1307639. The close rule has to be large in this case.
+            // A close rule may be true on one side, but on the other side there can be a far rule, like in 9_1307998. The close rule has to be large in this case.
 
             // A large close mid across on one side can have a small far across on the other side.
             // A large close across on one side can have a small far mid across / across on the other side.
@@ -2266,7 +2266,7 @@ namespace OneWayLabyrinth
                         int tempSx = sx;
                         int tempSy = sy;
 
-                        // Both: 9_18677343
+                        // Both: 9_18677355
 
                         // Double Area only: 9_59434452
                         if (Check3DoubleAreaRotated(i))

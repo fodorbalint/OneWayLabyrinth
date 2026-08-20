@@ -537,9 +537,9 @@ Again, same pattern with area. The upper obstacle is now moved, but it will sati
 
 <!---->
 
-2 022 337 is getting stuck because of the stair-shaped walls that force the future line along them. Therefore, an area is created with only one field to go in and out of it. What is the solution?
+2 023 047 is getting stuck because of the stair-shaped walls that force the future line along them. Therefore, an area is created with only one field to go in and out of it. What is the solution?
 
-<img align="top" src="References/9_2022337.svg" width="9" />[spacer]<img align="top" src="References/9_2022337_1.svg" width="9" />
+<img align="top" src="References/9_2023047.svg" width="9" />[spacer]<img align="top" src="References/9_2023047_1.svg" width="9" />
 
 Though not as universal as we want it to be, this will solve this specific situation:
 
@@ -547,9 +547,9 @@ Though not as universal as we want it to be, this will solve this specific situa
 
 <!---->
 
-And soon, at 2 022 773 we encounter a similar one:
+And soon, at 2 023 482 we encounter a similar one:
 
-<img align="top" src="References/9_2022773.svg" width="9" />[spacer]<img align="top" src="References/9_2022773_1.svg" width="9" />
+<img align="top" src="References/9_2023482.svg" width="9" />[spacer]<img align="top" src="References/9_2023482_1.svg" width="9" />
 [spacer_h]
 <img align="top" src="References/rules_sorted/9-grid/Double Area Stair 2.svg" width="5" />
 
@@ -561,9 +561,9 @@ On 17&nbsp;x&nbsp;17, we can construct a situation where the obstacle across the
 
 <!---->
 
-We have all the tools to handle 2 034 575.
+We have all the tools to handle 2 035 282.
 
-<img align="top" src="References/9_2034575.svg" width="9" />[spacer]<img align="top" src="References/9_2034575_1.svg" width="9" />
+<img align="top" src="References/9_2035282.svg" width="9" />[spacer]<img align="top" src="References/9_2035282_1.svg" width="9" />
 
 It is an impair area where the number of the starting field's color is less than the other color.
 
@@ -571,9 +571,9 @@ It is an impair area where the number of the starting field's color is less than
 
 <!---->
 
-Next stop is at 3 224 847.
+Next stop is at 3 225 778.
 
-<img align="top" src="References/9_3224847.svg" width="9" />[spacer]<img align="top" src="References/9_3224847_1.svg" width="9" />
+<img align="top" src="References/9_3225778.svg" width="9" />[spacer]<img align="top" src="References/9_3225778_1.svg" width="9" />
 
 A pair area is created with the obstacle 3 distance away, so if we step into it, we will exit at the middle, but because of an area, we cannot step there.
 
@@ -587,17 +587,17 @@ From our experience, the area can be substituted with C-shape.
 
 <img align="top" src="References/2023_1219.svg" width="11" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Straight Mid Across 3 End C.svg" width="2" />
 
-3 225 432 is a variation of the impair area imbalance rules we have seen before.
+3 226 386 is a variation of the impair area imbalance rules we have seen before.
 
-<img align="top" src="References/9_3225432.svg" width="9" />[spacer]<img align="top" src="References/9_3225432_1.svg" width="9" />
+<img align="top" src="References/9_3226386.svg" width="9" />[spacer]<img align="top" src="References/9_3226386_1.svg" width="9" />
 [spacer_h]
 <img align="top" src="References/rules_sorted/9-grid/Mid Mid Across 3 Determined.svg" width="5" />
 
 <!---->
 
-8 076 012 builds upon the existing rule where C-shapes are created on both sides if we enter an impair area.
+8 079 553 builds upon the existing rule where C-shapes are created on both sides if we enter an impair area.
 
-<img align="top" src="References/9_8076012.svg" width="9" />[spacer]<img align="top" src="References/9_8076012_1.svg" width="9" />
+<img align="top" src="References/9_8079553.svg" width="9" />[spacer]<img align="top" src="References/9_8079553_1.svg" width="9" />
 
 Here, a C-shape at the start would force the line to enter the area.
 
@@ -607,7 +607,7 @@ Here, a C-shape at the start would force the line to enter the area.
 
 Soon we get a similar situation, only here it is the imbalance of pair and impair fields that is to blame.
 
-<img align="top" src="References/9_8076044.svg" width="9" />[spacer]<img align="top" src="References/9_8076044_1.svg" width="9" />
+<img align="top" src="References/9_8079585.svg" width="9" />[spacer]<img align="top" src="References/9_8079585_1.svg" width="9" />
 
 If we step to A, we cannot step left and therefure must continue to B (or right). From B, the only possibility is C, but the 5&nbsp;x&nbsp;3 area is not just impair, there is less of the C-parity field than the other.
 In the rule, I introduced a new field that indicates the entry point; this has always been the start field until now.
@@ -616,13 +616,13 @@ In the rule, I introduced a new field that indicates the entry point; this has a
 
 <!---->
 
-At 19 717 655 the program stops.
+At 19 732 094, the program stops.
 
-<img align="top" src="References/9_19717655.svg" width="9" />[spacer]<img align="top" src="References/9_19717655_1.svg" width="9" />
+<img align="top" src="References/9_19732094.svg" width="9" />[spacer]<img align="top" src="References/9_19732094_1.svg" width="9" />
 
 Obvously, we cannot step straight, but had we extended the future line until the end corner, the situation would not have occurred and we would have just got this:
 
-<img align="top" src="References/9_19717655_2.svg" width="9" />
+<img align="top" src="References/9_19732094_2.svg" width="9" />
 
 Though the algorithm including the reliance on the future lines is just as solvable, we miss patterns and therefore narrow the spectrum of the discoverable rules. We would eventually discover the patterns as we increase the table, but why not gain the most out of the 9&nbsp;x&nbsp;9 study?
 
@@ -630,7 +630,7 @@ Though the algorithm including the reliance on the future lines is just as solva
 
 From now on, future lines are treated as a visible aid, but they do not play a role in deciding which fields are available for the next move. When a possible field is within the body of a future line, the program should stop. 
 
-<img align="top" src="References/9_19717655_3.svg" width="9" />
+<img align="top" src="References/9_19732094_3.svg" width="9" />
 
 It is not the only thing. So far, when we entered a future line, the program just followed it without checking the possibilities for the next step.
 This behaviour needs to be changed too. Future lines are no longer needed, and we should restart the 9&nbsp;x&nbsp;9 walkthroughs.
@@ -641,9 +641,9 @@ For now, here is the solution to this and the next cases:
 
 <!---->
 
-19 718 148 is a slight modification of 2 022 773 where there is an area instead of a C-shape straight ahead.
+19 732 586 is a slight modification of 2 023 482 where there is an area instead of a C-shape straight ahead.
 
-<img align="top" src="References/9_19718148.svg" width="9" />[spacer]<img align="top" src="References/9_19718148_1.svg" width="9" />
+<img align="top" src="References/9_19732586.svg" width="9" />[spacer]<img align="top" src="References/9_19732586_1.svg" width="9" />
 [spacer_h]
 <img align="top" src="References/rules_sorted/9-grid/Double Area Stair 2.svg" width="5" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Double Area Stair Area.svg" width="5" />
 
@@ -713,53 +713,53 @@ Still, the number of completed walkthroughs before the appereance of the rule ma
 
 <!---->
 
-2 022 763, Double Area Stair
+2 023 047, Double Area Stair
 
-<img align="top" src="References/9_2022763.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Double Area Stair.svg" width="7" />
+<img align="top" src="References/9_2023047_2.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Double Area Stair.svg" width="7" />
 
-2 023 198, Double Area Stair 2
+2 023 482, Double Area Stair 2
 
-<img align="top" src="References/9_2023198.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Double Area Stair 2.svg" width="5" />
-
-<!---->
-
-2 034 435, Mid Mid Across 3 Determined (and Mid Across 3 Impair Determined)
-
-<img align="top" src="References/9_2034435.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Mid Mid Across 3 Determined.svg" width="5" />
-
-2 059 934, Mid Across 3 Impair Determined
-
-<img align="top" src="References/9_2059934.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Mid Across 3 Impair Determined.svg" width="4" />
+<img align="top" src="References/9_2023482_2.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Double Area Stair 2.svg" width="5" />
 
 <!---->
 
-8 076 202, Straight Mid Across 3 End C
+2 034 719, Mid Mid Across 3 Determined (and Mid Across 3 Impair Determined)
 
-<img align="top" src="References/9_8076202.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Straight Mid Across 3 End C.svg" width="2" />
+<img align="top" src="References/9_2034719.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Mid Mid Across 3 Determined.svg" width="5" />
 
-8 076 706, Double C-Shape Start C
+2 060 226, Mid Across 3 Impair Determined
 
-<img align="top" src="References/9_8076706.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Double C-Shape Start C.svg" width="3" />
-
-<!---->
-
-8 076 762, Double C-Shape Determined
-
-<img align="top" src="References/9_8076762.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Double C-Shape Determined.svg" width="3" />
-
-18 665 383, Triple Area Exit Down
-
-<img align="top" src="References/9_18665383.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Triple Area Exit Down.svg" width="6" />
+<img align="top" src="References/9_2060226.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Mid Across 3 Impair Determined.svg" width="4" />
 
 <!---->
 
-19 720 122, Triple Area Stair
+8 078 718, Straight Mid Across 3 End C
 
-<img align="top" src="References/9_19720122.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Triple Area Stair.svg" width="7" />
+<img align="top" src="References/9_8078718.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Straight Mid Across 3 End C.svg" width="2" />
 
-19 720 614, Double Area Stair Area
+8 079 222, Double C-Shape Start C
 
-<img align="top" src="References/9_19720614.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Double Area Stair Area.svg" width="5" />
+<img align="top" src="References/9_8079222.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Double C-Shape Start C.svg" width="3" />
+
+<!---->
+
+8 079 278, Double C-Shape Determined
+
+<img align="top" src="References/9_8079278.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Double C-Shape Determined.svg" width="3" />
+
+18 677 355, Triple Area Exit Down
+
+<img align="top" src="References/9_18677355.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Triple Area Exit Down.svg" width="6" />
+
+<!---->
+
+19 732 094, Triple Area Stair
+
+<img align="top" src="References/9_19732094_4.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Triple Area Stair.svg" width="7" />
+
+19 732 586, Double Area Stair Area
+
+<img align="top" src="References/9_19732586_2.svg" width="9" />[spacer]<img align="top" src="References/rules_sorted/9-grid/Double Area Stair Area.svg" width="5" />
 
 <!---->
 
@@ -1887,7 +1887,7 @@ But we do need the Across on both sides:
 
 Notice that if the first obstacle placement 4 straight, 1 right, the Directional Area will be activated too at minimal distance.
 
-<img align="top" src="References/9_2034760.svg" width="9" />[spacer]<img align="top" src="References/rules/Directional Area.svg" width="7" />
+<img align="top" src="References/9_2034772.svg" width="9" />[spacer]<img align="top" src="References/rules/Directional Area.svg" width="7" />
 
 I have rotated the rule to accomodate both fields that need to be distabled, as well as I added the Across cases for a blue obstacle. While in theory this is a workable rule, is there a case where the distance to the first obstacle is greater than 3? When I tried to recreate such a scenario, one of the single area rules got in the way.
 
@@ -1942,7 +1942,7 @@ Similarly, at 4 distance we cannot even recreate a 1B area if there is an obstac
 
 Now, take a look at the following two cases. The first is the well-known Triple Area Exit Down, at over 18 million, while the other comes at around 51 million.
 
-<img align="top" src="References/9_18677343_1.svg" width="9" />[spacer]<img align="top" src="References/9_51015231_1.svg" width="9" />
+<img align="top" src="References/9_18677355_2.svg" width="9" />[spacer]<img align="top" src="References/9_51015231_1.svg" width="9" />
 
 In the first, we can only step left. In the second, we cannot step left.
 It is easy to see that the pattern can be longer. If there is a stair shape downwards with 3 fields at the bottom, there will be a stair backwards, which conflicts with the obstacle on the left (D).
@@ -2248,9 +2248,9 @@ If we enter at the first white field, we collide with the closest close obstacle
 
 <!---->
 
-The same area definition at 3 distance will solve Triple Area Exit Down, making the previous solution obsolete. The area is now W = B.
+  3 distance will solve Triple Area Exit Down, making the previous solution obsolete. The area is now W = B.
 
-<img align="top" src="References/9_18677343.svg" width="9" />[spacer]<img align="top" src="References/rules/straight 3 extended.svg" width="4" />[spacer]<img align="top" src="References/rules/straight 3 extended 2.svg" width="4" />
+<img align="top" src="References/9_18677355_1.svg" width="9" />[spacer]<img align="top" src="References/rules/straight 3 extended.svg" width="4" />[spacer]<img align="top" src="References/rules/straight 3 extended 2.svg" width="4" />
 
 <img align="top" src="References/2024_0709.svg" width="11" />[spacer]<img align="top" src="References/rules/straight 3 extended C.svg" width="4" />
 
@@ -2998,7 +2998,7 @@ Area is vB. If we enter now and exit at the nearest blue line, the area with the
 
 <img align="top" src="References/rules/StairAtEndConcaveOut5_1W.svg" width="8" />[spacer]<img align="top" src="References/rules/StairAtEndConcaveOut5_1W_1.svg" width="8" />
 
-[DoubleStair()] 9_2022763, 2024_0516_4, 2024_0516_5, 2024_0706_1, 2024_0727_6, 2024_1006_1, 2024_0711, Double stair
+[DoubleStair()] 9_2023047, 2024_0516_4, 2024_0516_5, 2024_0706_1, 2024_0727_6, 2024_1006_1, 2024_0711, Double stair
 
 <img align="top" src="References/rules/Double stair_1.svg" width="8" />[spacer]<img align="top" src="References/rules/Double stair_2.svg" width="8" />
 

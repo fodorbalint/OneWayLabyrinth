@@ -356,7 +356,7 @@ void NextClick()
                 {
                     if (direction != secondDir && direction % 2 == secondDir % 2) // two difference
                     {
-                        // opposite is found, but we don't know yet if it is on the left or right side. First example 19802714.
+                        // opposite is found, but we don't know yet if it is on the left or right side. First example 19802725.
 
                         if (secondDir == firstDir + 1 || firstDir == 3 && secondDir == 0)
                         { // line turned to left. The opposite direction is on the right side
@@ -429,11 +429,11 @@ void NextClick()
                     if (completedCount == targetCompletedCount)
                         SavePath();
                         
-                    if (completedCount == 2000000) {
+                    /*if (completedCount == 2000000) {
                         errorInWalkthrough = true;
                         criticalError = true;
                         errorString = "Test complete.";
-                    }
+                    }*/
 
                     if (completedCount % 10000 == 0) {
                         Console.Write("\r{0} completed.", completedCount);
@@ -462,6 +462,10 @@ void NextClick()
                         else {
                             // no match
                             if (!result) {
+                                if (!lastLineEmpty) {
+                                    Console.WriteLine("");
+                                    lastLineEmpty = true;
+                                }
                                 if (matchLength > maxMatchLength) {
                                     Console.WriteLine((completedCount - 1) + ": " + matchLength);
                                     maxMatchLength = matchLength;
@@ -477,21 +481,21 @@ void NextClick()
                                 searchForMatch = false;
 
                                 if (savePath.Substring(0, searchContent.Length) != searchContent) {
-                                    Console.WriteLine((completedCount - 1) + ": match, but possibilities different");
+                                    Console.WriteLine((completedCount - 1) + ": match (length: " + matchLength + "), but possibilities different");
                                     showContent = true;
                                 }
                                 else {
                                     switch (savePath.Substring(searchContent.Length, 1)) {
                                     case ";":
-                                        Console.WriteLine((completedCount - 1) + ": match, but possibilities not present");
+                                        Console.WriteLine((completedCount - 1) + ": match (length: " + matchLength + "), but possibilities not present");
                                         showContent = true;
                                         break;
                                     case ",":
-                                        Console.WriteLine((completedCount - 1) + ": match, but end possibilities restricted");
+                                        Console.WriteLine((completedCount - 1) + ": match (length: " + matchLength + "), but end possibilities restricted");
                                         showContent = true;
                                         break;
                                     case "-":
-                                        Console.WriteLine((completedCount - 1) + ": match");
+                                        Console.WriteLine((completedCount - 1) + ": match (length: " + matchLength + ")");
                                         break;
                                     }
                                 }
@@ -1388,7 +1392,7 @@ void ApplyRules()
 
     // 2024_0611_3, 2024_0611_4, 2024_0611_5, 2024_0611_6, 2024_0611_7, 2024_0611_8, 9_234319, 9_522266
     // 0 and 0 or 1 and 3. Beware of 1 and -1.
-    // Overwrite order: 3, 0, 1 (See 9_802969 and 9_2020799)
+    // Overwrite order: 3, 0, 1 (See 9_802969 and 9_2020798)
     if (nextStepEnterLeft == 0 && nextStepEnterRight == 0 || nextStepEnterLeft + nextStepEnterRight == 4 && Math.Abs(nextStepEnterLeft - nextStepEnterRight) == 2)
     {
         switch (nextStepEnterLeft)
@@ -6357,7 +6361,7 @@ void StairAtEndConcaveOut5()
 
 void DoubleStair()
 // 2024_0706_1, 2024_1006_1, 2024_0711
-// Also Sequence: 9_2022763, 9_19720122, 2024_0516_4, 2024_0516_5, 2024_0727_6
+// Also Sequence: 9_2023047, 9_19732094, 2024_0516_4, 2024_0516_5, 2024_0727_6
 {
     for (int i = 0; i < 2; i++)
     {
@@ -7144,11 +7148,11 @@ void Sequence()
 // 2024_1006: across on the left at the end of the sequence -> DobuleStair
 // 2024_0704, 2024_1014: area on left, close mid across on right -> StairAtEndConvexIn2
 // 2024_0531 C-shape left, mid across right -> StairAtEndConvexIn2()
-// 9_2022763 C-shape left, across right, 9_19720122 mid across left, across right -> DoubleStair()
+// 9_2023047 C-shape left, across right, 9_19732094 mid across left, across right -> DoubleStair()
 
 // Start at 3, -1. 3 rotations possible.
-// [no stair] 9_2023198, 2024_0516_6, 2024_0516_7, 2024_0516_8: C-shape left, across right
-// 9_19720614: mid across left, across right
+// [no stair] 9_2023482, 2024_0516_6, 2024_0516_7, 2024_0516_8: C-shape left, across right
+// 9_19732586: mid across left, across right
 // 2026_0405 -> Next step double area
 
 // Start at 4, 0
@@ -8846,7 +8850,7 @@ void CheckNearField()
     ly = thisLy;
 
     // Far rules shouldn't be checked until close rules are checked on both sides, see 9_305232. Here, close straight is only true on the right side, but left side far rules get checked before.
-    // A close rule may be true on one side, but on the other side there can be a far rule, like in 9_1307639. The close rule has to be large in this case.
+    // A close rule may be true on one side, but on the other side there can be a far rule, like in 9_1307998. The close rule has to be large in this case.
 
     // A large close mid across on one side can have a small far across on the other side.
     // A large close across on one side can have a small far mid across / across on the other side.
@@ -10872,7 +10876,7 @@ void Check3DistNextStep()
                 int tempSx = sx;
                 int tempSy = sy;
 
-                // Both: 9_18677343
+                // Both: 9_18677355
 
                 // Double Area only: 9_59434452
                 if (Check3DoubleAreaRotated(i))

@@ -504,7 +504,7 @@ namespace OneWayLabyrinth
             ly = thisLy;
 
             // Far rules shouldn't be checked until close rules are checked on both sides, see 9_305232. Here, close straight is only true on the right side, but left side far rules get checked before.
-            // A close rule may be true on one side, but on the other side there can be a far rule, like in 9_1307639. The close rule has to be large in this case.
+            // A close rule may be true on one side, but on the other side there can be a far rule, like in 9_1307998. The close rule has to be large in this case.
 
             // A large close mid across on one side can have a small far across on the other side.
             // A large close across on one side can have a small far mid across / across on the other side.
@@ -1034,7 +1034,7 @@ namespace OneWayLabyrinth
         void CheckDirectionalArea()
         {
             // Now StairAtEndConvexStraight3
-            // 9_462, 9_2034760
+            // 9_462, 9_2034772
             for (int i = 0; i < 2; i++)
             {
                 for (int j = 0; j < 2; j++)
@@ -1300,7 +1300,7 @@ namespace OneWayLabyrinth
                         int tempSx = sx;
                         int tempSy = sy;
 
-                        // Both: 9_18677343
+                        // Both: 9_18677355
 
                         // Double Area only: 9_59434452
                         if (Check3DoubleAreaRotated(i))
@@ -2163,7 +2163,7 @@ namespace OneWayLabyrinth
         // Enter later, 0B area:
         // StairAtEndConvex 3 1 / 3 2 later
         // 2024_0718: across down, mid across up
-        // 9_18677343, 9_59434452: mid across x 2, no stair
+        // 9_18677355, 9_59434452: mid across x 2, no stair
         // 2024_0720_2: mid across x 2
         // 2024_0709: mid across down, C-shape up, no stair
         // 2024_0727: mid across down, C-shape up
@@ -2306,7 +2306,7 @@ namespace OneWayLabyrinth
                                         int white = (int)info[2];
 
                                         // 2024_0718: across down, mid across up
-                                        // 9_18677343, 9_59434452: mid across x 2, no stair
+                                        // 9_18677355, 9_59434452: mid across x 2, no stair
                                         // 2024_0720_2: mid across x 2
                                         // 2024_0709: mid across down, C-shape up, no stair
                                         // 2024_0727: mid across down, C-shape up
@@ -3168,7 +3168,7 @@ namespace OneWayLabyrinth
             ly = thisLy;
         }
 
-        void CheckStraightBig() // 9_18677343 -> StairAtEndConvex, 9_59434452 -> StairAtEndConvex, 2024_0626_1 -> StairAtStart 4, 2024_0516_2 -> StairAtEndConvex
+        void CheckStraightBig() // 9_18677355 -> StairAtEndConvex, 9_59434452 -> StairAtEndConvex, 2024_0626_1 -> StairAtStart 4, 2024_0516_2 -> StairAtEndConvex
         {
             for (int i = 0; i < 2; i++)
             {
@@ -3212,7 +3212,7 @@ namespace OneWayLabyrinth
                                     int black = (int)info[1];
                                     int white = (int)info[2];
 
-                                    /*// 9_18677343, 9_59434452: mid across x 2
+                                    /*// 9_18677355, 9_59434452: mid across x 2
                                     // 2024_0709: mid across down, C-shape up 
                                     if (white == black)
                                     {
@@ -4554,7 +4554,7 @@ namespace OneWayLabyrinth
             // Can we have an area with a corner if this field is taken? It isn't in the border line.
             if (!InTakenRel(startX, startY) && !InBorderRel(startX, startY))
             {
-                // checking taken fields from the middle to side is incomplete: 9_17699719
+                // checking taken fields from the middle to side is incomplete: 9_17699717
                 // instead, we check fields in the first row until an obstacle is found, then we walk around the first (top-left) quarter.
                 if (toLeft)
                 {

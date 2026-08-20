@@ -418,7 +418,7 @@ namespace OneWayLabyrinth
 
             // 2024_0611_3, 2024_0611_4, 2024_0611_5, 2024_0611_6, 2024_0611_7, 2024_0611_8, 9_234319, 9_522266
             // 0 and 0 or 1 and 3. Beware of 1 and -1.
-            // Overwrite order: 3, 0, 1 (See 9_802969 and 9_2020799)
+            // Overwrite order: 3, 0, 1 (See 9_802969 and 9_2020798)
             if (nextStepEnterLeft == 0 && nextStepEnterRight == 0 || nextStepEnterLeft + nextStepEnterRight == 4 && Math.Abs(nextStepEnterLeft - nextStepEnterRight) == 2)
             {
                 switch (nextStepEnterLeft)
@@ -5387,7 +5387,7 @@ namespace OneWayLabyrinth
 
         void DoubleStair()
         // 2024_0706_1, 2024_1006_1, 2024_0711
-        // Also Sequence: 9_2022763, 9_19720122, 2024_0516_4, 2024_0516_5, 2024_0727_6
+        // Also Sequence: 9_2023047, 9_19732094, 2024_0516_4, 2024_0516_5, 2024_0727_6
         {
             for (int i = 0; i < 2; i++)
             {
@@ -6174,11 +6174,11 @@ namespace OneWayLabyrinth
         // 2024_1006: across on the left at the end of the sequence -> DobuleStair
         // 2024_0704, 2024_1014: area on left, close mid across on right -> StairAtEndConvexIn2
         // 2024_0531 C-shape left, mid across right -> StairAtEndConvexIn2()
-        // 9_2022763 C-shape left, across right, 9_19720122 mid across left, across right -> DoubleStair()
+        // 9_2023047 C-shape left, across right, 9_19732094 mid across left, across right -> DoubleStair()
 
         // Start at 3, -1. 3 rotations possible.
-        // [no stair] 9_2023198, 2024_0516_6, 2024_0516_7, 2024_0516_8: C-shape left, across right
-        // 9_19720614: mid across left, across right
+        // [no stair] 9_2023482, 2024_0516_6, 2024_0516_7, 2024_0516_8: C-shape left, across right
+        // 9_19732586: mid across left, across right
         // 2026_0405 -> Next step double area
 
         // Start at 4, 0

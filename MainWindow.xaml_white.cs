@@ -1432,7 +1432,7 @@ namespace OneWayLabyrinth
                         {
                             if (direction != secondDir && direction % 2 == secondDir % 2) // two difference
                             {
-                                // opposite is found, but we don't know yet if it is on the left or right side. First example 9_19802714.
+                                // opposite is found, but we don't know yet if it is on the left or right side. First example 9_19802725.
 
                                 if (secondDir == firstDir + 1 || firstDir == 3 && secondDir == 0)
                                 { // line turned to left. The opposite direction is on the right side
