@@ -1,0 +1,424 @@
+1: Test limit 1 s, unit 1, 680 nF filter capacitor, full speed
+2: Test limit 5 s, unit 1, 680 nF filter capacitor
+3: Accelerating 5 s, unit 1, 680 nF filter capacitor
+4: Driving 5 s, unit 1, 680 nF filter capacitor 
+5: Test no limit 3 s, unit 2, 680 nF filter capacitor
+6: Test limit 5 s, unit 2, 680 nF filter capacitor
+7: Test no limit 5 s, unit 3, 100 nF filter capacitor, 510 Ω buck resistor (5.54 V regulated voltage)
+8: Test limit 5 s, unit 3, 100 nF filter capacitor, 510 Ω buck resistor
+9: Test limit 5 s, unit 1, 680 nF filter capacitor
+10: Test limit 5 s, unit 1, 680 nF filter capacitor, start at drained throttle
+11: Test limit 5 s, unit 3, 100 nF filter capacitor
+12: Test limit 5 s, unit 3, 100 nF filter capacitor, start at drained throttle
+13: Test limit 1 s, unit 3, 100 nF filter capacitor, full speed
+14: Driving flat 5 s, 631.6 switches per second
+15: Driving uphill 5 s, 619.8 switches per second
+16: Driving downhill 5 s, 628.6 switches per second
+17: Accelerating 5 s
+18: Accelerating 5 s
+19: Driving downhill 4.75 s, 629.3 switches per second
+20: Driving flat 4.75 s, error - regulated voltage low, 717.3 switches per second
+21: Driving uphill 4.75 s, 621.3 switches per second
+22: Driving flat 5 s, error - regulated voltage low, 695.6 switches per second
+23: Driving downhill 5 s, 634.8 switches per second
+24: Driving uphill 5 s, 622.6 switches per second
+25: Driving uphill 5 s, 619.8 switches per second. Change ratio by 1.01036 - 639 to 646 and 640 to 647
+26: Two-wheeled scooter, 594/s before setting, C1 = C2 = 100 nF.
+27: No limit 1160/s
+28: Highest limit 847/s
+29: 3 s acceleration, 847/s
+30: 3 s acceleration, C1 = 100 nF, C2 = 47 nF, 830/s
+31: Highest limit 843/s
+32: C1 = 47 nF, C2 = 47 nF, 1072/s achievable
+33: C1 = 47 nF, C2 = 47 nF, set 863/s (647 * 20 / 15)
+40: C1 = 68 nF, C2 = 68 nF, 1079/s
+41: 1156/s
+45: 863/s
+46: 3 s, acceleration 265 ms
+47: 3 s, acceleration from zero brake signal 280 ms
+48: 7 s, acceleration in 260 ms, deceleration in 4.409 ms
+49: brake signal drop in 50 ms
+51: 1 s downhill 863 / s V range 1.56 - 2.11
+52: 1 s flat 856 / s V range 1.53 - 2.09
+56: Acceleration start at 450 ms, 853/s reached at 5.044 ms in 4.594 ms
+57: Acceleration start at 433 ms, 850/s reached at 5.300 ms in 4.867 ms
+61: 1 s uphill 836/s, V range 1.5-2.08
+62: 100 ms startup, R8 1K, C2 33 uF, Q1 gate, no pre-trigger
+63: 100 ms startup, R8 1K, C2 33 uF, Q1 gate, 5 % pre-trigger 
+64: 100 ms startup, R8 1K, C2 33 uF, Q1 gate, 10 % pre-trigger 
+65: 100 ms startup, R8 1K, step-up voltage, C1 220 uF, no pre-trigger
+66: 100 ms startup, R8 1K, step-up voltage, C1 220 uF, 5 % pre-trigger 
+67: 100 ms startup, R8 1K, step-up voltage, C1 220 uF, 10 % pre-trigger
+68: 25 s low load, Q1 gate, step-up voltage, C1 220 uF, no pre-trigger
+69: 30 s load disconnect, Q1 gate, step-up voltage, C1 220 uF, 5 % pre-trigger
+70: 10 s circuit closing at timeout, Q1 gate, step-up voltage, C1 220 uF, 5 % pre-trigger
+71: 0.2 s switch connect, C2 33 uF, GPIO 100k to ground, 10 % pre-trigger
+72: 2 s switch disconnect, C2 33 uF, GPIO 100k to ground, 10 % pre-trigger
+73: Comparator output when using LM2903
+74: Comparator output when using LM2903
+75: Using MCP6022
+76: 0.2 s switch connect, C2 33 uF, 0.1 V rising edge on ch1, 10 % pre-trigger
+77: 2 s switch disconnect, C2 33 uF, 3.5 V falling edge on ch1, 10 % pre-trigger
+78: 0.2 s switch connect, shutdown with 180k to ground, 0.3 V rising edge on ch1, 10 % pre-trigger
+79: 2 s switch disconnect, shutdown with 180k to ground, 3.2 V falling edge on ch1, 10 % pre-trigger
+80: 100 ms startup, U4 LED resistor (R9), C2+, Q1 gate; 0.1 V rising edge on ch1, 10 % pre-trigger. Connecting sequence black/yellow/green/blue/red: J8/1, J7/2, C2+, J8/2, J7/1. Grounds: 4, 0, 0, 5
+81: 100 ms startup, U4 LED resistor (R9), step-up voltage, C1 220 uF; 0.2 V rising edge on ch1, 10 % pre-trigger. Connecting sequence: J8/1, J7/2, J8/4, J8/5, J7/1. Grounds: 4, 0, 7, 5  
+82: 25 s low load, Q1 gate, load circuit voltage, C1 220 uF; 0.1 V rising edge on ch1, 5 % pre-trigger. Connecting sequence: J8/1, J8/2, J8/4, J8/5, J8/3. Grounds: 0, 4, 7, 5
+83: 25 s low load + recovery, Q1 gate, load circuit voltage, C1 220 uF; 0.1 V rising edge on ch1, 5 % pre-trigger. Connecting sequence: J8/1, J8/2, J8/4, J8/5, J8/3. Grounds: 0, 4, 7, 5
+84: 25 s load disconnect, Q1 gate, load circuit voltage, C1 220 uF; 4.4 V falling edge on ch3, 5 % pre-trigger. Connecting sequence: J8/1, J8/2, J8/4, J8/5, J8/3. Grounds: 0, 4, 7, 5
+85: 5 s circuit closing at timeout, Q1 gate, load circuit voltage, C1 220 uF, 4.9 V falling edge on ch2, 10 % pre-trigger. Connecting sequence: J8/1, J8/2, J8/4, J8/5, J8/3. Grounds: 0, 4, 7, 5
+87: Comparator output, Q2 gate
+91: Shutdown
+92: Shutdown
+93: Shutdown
+94: Pi hat v5, 100 ms startup; U4 LED resistor (R8), step-up voltage, C1 220 uF; 0.2 V rising edge on ch1, 10 % pre-trigger. Connecting sequence J7/1, J8/5, J8/3, J7/2. Ground to J8/1. Grounds 4, GND, GND, Off
+95: 30 s low load; Q1 gate, load circuit voltage, C1 220 uF; 0.2 V rising edge on ch1, 5 % pre-trigger. Connecting sequence J8/4, J8/5, J8/3, Battery +. Ground to J8/1. Grounds -4, GND, GND, Off
+96: 5 s circuit closing at timeout; Q1 gate, load circuit voltage, C1 220 uF, 4.9 V falling edge on ch2, 10 % pre-trigger. Connecting sequence J8/4, J8/5, J8/3, Battery +. Ground to J8/1. Grounds -4, GND, GND, Off
+97: Q2 gate, comparator output on Pi hat v5, board 2
+98: MCP6022 comparator test on 3.7 V with 10 k output resistor and 47 uF capacitor 
+99: TLV3201 comparator test on 3.7 V with 10 k output resistor and 47 uF capacitor
+100: TLV3201 comparator test on 3.7 V
+101: MCP6022 comparator test on 3.7 V
+103: Testing 24 to 3.7 V converter at input; Battery connected
+104: Input / Battery + 1 Ω)
+105: Input / 2.2 Ω
+106: Input / Battery + 2.2 Ω
+107: Output / Battery + 2.2 Ω
+108: Input / 1 Ω
+109: Pi hat v6, 100 ms startup; U4 LED resistor (R8), step-up voltage, C1 220 uF; 0.2 V rising edge on ch1, 10 % pre-trigger. Connecting sequence J7/1, J8/5, J8/3, J7/2. Ground to J8/1. Grounds 4, GND, GND, Off
+110: 30 s low load; Q1 gate, load circuit voltage, C1 220 uF; 0.2 V rising edge on ch1, 5 % pre-trigger. Connecting sequence J8/4, J8/5, J8/3, Battery +. Ground to J8/1. Grounds -4, GND, GND, Off
+111: 5 s circuit closing at timeout; Q1 gate, load circuit voltage, C1 220 uF, 4.9 V falling edge on ch2, 10 % pre-trigger. Connecting sequence J8/4, J8/5, J8/3, Battery +. Ground to J8/1. Grounds -4, GND, GND, Off
+112: 2 s comparator output, Q2 gate; low-high-low / load-noload-load, 0.1 V rising edge on ch1, 10 % pre-trigger
+113: 5 s C1 100 uF; off-on-off, 0.1 V rising edge, 5 % pre-trigger
+114: 1 s shunt voltage, reference voltage; load-noload-load
+115: Pi hat v6, unit 2, 100 ms startup; U4 LED resistor (R8), step-up voltage, C1 220 uF; 0.2 V rising edge on ch1, 10 % pre-trigger. Connecting sequence J7/1, J8/5, J8/3, J7/2. Ground to J8/1. Grounds 4, GND, GND, Off
+116: 30 s low load; Q1 gate, load circuit voltage, C1 220 uF; 0.2 V rising edge on ch1, 5 % pre-trigger. Connecting sequence J8/4, J8/5, J8/3, Battery +. Ground to J8/1. Grounds -4, GND, GND, Off
+117: 5 s circuit closing at timeout; Q1 gate, load circuit voltage, C1 220 uF, 4.9 V falling edge on ch2, 10 % pre-trigger. Connecting sequence J8/4, J8/5, J8/3, Battery +. Ground to J8/1. Grounds -4, GND, GND, Off
+118: 2 s comparator output, Q2 gate; low-high-low / load-noload-load, 0.1 V rising edge on ch1, 10 % pre-trigger
+119: 5 s C1 100 uF; off-on-off, 0.1 V rising edge, 5 % pre-trigger
+120: 1 s shunt voltage, reference voltage; load-noload-load
+121: 1 s, no trigger, XL4015 CC charging a LiFePo4 battery, without filter
+122: 5 s, trigger, XL4015 CC charging a LiFePo4 battery, without filter
+123: 2 s connecting battery, XL4015 CC charging a LiFePo4 battery, with filter
+124: 2 s power on module, XL4015 CC charging a LiFePo4 battery, with filter
+125: 1 s continuous, XL4015 CC charging a LiFePo4 battery, with filter
+126: 10 s connecting battery, other DC converter charging a LiFePo4 battery, with filter
+127: 10 s power on module, other DC converter charging a LiFePo4 battery, with filter
+128: 1 s continuous, other DC converter charging a LiFePo4 battery, with filter
+129: 5 s continuous, other DC converter charging a LiFePo4 battery, with filter
+130: Testing 18 mOhm inductor with 2.2 ohm resistors
+131: Testing 18 mOhm inductor with 39 ohm resistors
+132: Testing 18 mOhm inductor with 2.2 ohm in series, 39 ohm in parallel to the battery
+133: Relaxation oscillator circuit. MCP6022 output, capacitor, LED with 1k resistor through a 2N7000 N-Mosfet. Reference: 2 x 150k, up/down: 56k, series with capacitor: 56k, capacitor: 1 uF. 5.5 Hz
+134: Capacitor: 33 nF. 185 Hz
+135: MCP6022 output -> MOSFET gate, 189 Hz
+136: Buzzer added, 200 Hz
+137: 20127 Hz
+138: Boost circuit: CS400090 inductor (18 mOhm), 63 uF capacitor, load: 1000 + 10000 ohm, load current across 1000 ohm resistor, 200 Hz
+139: Inductor current across 0.1 ohm resistor
+140: Load current, load: 100 + 1000 ohm
+141: Inductor current
+142: Load current, load: 10 + 100 ohm
+143: Inductor current
+144: Load current, load: 10 + 100 ohm, frequency 8100 Hz
+145: Inductor current, frequency 8200 Hz
+146: Load current on 10 ohm resistor, 50 ohm total
+147: Inductor current
+148: Highest output voltage 12.3 V at 5050 Hz
+149: PWM added 195 Hz
+150: 940 Hz
+151: Max voltage 3.6 -> 15 V at 7750 Hz
+152: Inductor current, 7300 Hz
+153: LM2903 used. Oscillator, second comparator output, 1/5 output voltage at 4050 Hz
+154: 1/5 output voltage 1000 Hz
+155: Inductor current 1000 Hz
+156: 1/11 switch voltage 1000 Hz
+157: 1/5 output voltage 4000 Hz
+158: Inductor current 4000 Hz
+159: 1/11 switch voltage 4000 Hz
+160: TLV3201 gate drive. Oscillator, gate, 1/5 ouput voltage 500 Hz
+161: Oscillator, gate, current through 20 mOhm, 500 Hz
+162: Oscillator, gate, 1/5 ouput voltage 500 Hz
+163: Oscillator, gate, 1/5 ouput voltage 1000 Hz
+164: Oscillator, gate, 1/5 ouput voltage 2000 Hz
+165: Current through 20 mOhm, 500 Hz
+166: Voltage regulation implemented. Testing with a weaker inductor with default PWM 50%, voltage set to 12 V, load 150 ohm, 1600 Hz. Showing current through 100 mOhm.
+167: Output voltage divided as 12.76k + 100k. (1.358 V = 12 V out)
+168: Current through 100 mOhm at 10 kHz, load 50 ohm at 11.81 V.
+169: Output voltage
+170: PWM generator comparator and voltage stabilizer comparator inputs inverted, measuring reference voltage at open-circuit
+171: Gate drive at 5 KHz 50 ohm load 17.66 V
+172: Gate drive at 10 KHz 50 ohm load 11.6 V
+173: Gate pull-up changed from 1k to 470, 11.7 V
+174: PNP drive added, 12.4 V
+175: 1k pull-up, 13.4 V
+176: 1820 pull-up, 13.3 V
+177: no transistor, 12.2 V
+178: transistor back, 3.3 k pull-up 12.5 V
+179: 5 kHz 16.6 V
+180: Current draw through 0.1 ohm
+181: 10 kHz, no transistor, 13.5 V
+182: 10 kHz, transistor pair, no emitter - gate resistor, 12 V
+183: 1 kHz, 330 nF charge test with LM339 output, 1k pull-up
+184: 1 kHz, 330 nF charge test with dual resistor
+185: 1k between emitter-base
+186: 10k between emitter-base
+187: 1 kHz, no resistor between emitter-base, measuring MOSFET gate, 11.8 V
+188: Ideal frequency 7600 Hz 18 V on 3.6 V battery
+189: Constant current 20 mOhm at load 50 ohm, 343 mA
+190: Constant current 20 mOhm at load 20 ohm, 448 mA 
+191: PWM, reference, 50 uH 25 mOhm filter inductor current on 20 mOhm, 4000 Hz 50 ohm 15 V.
+192: 330 uH ? mOhm power inductor
+193: Max voltage 21.4 V
+194: 8000 Hz 23.3 V
+195: Regulated to 15 V
+196: No load, 16.39 V
+197: PWM, reference, voltage reference, scaled-down output at 50 ohm load
+198: No load
+199: 4000 Hz, load
+200: No load
+201: PWM, reference, scaled-down output, voltage comparator output at load
+202: No load
+203: Triangle wave 1000 Hz at LM339 (open-drain output). Pull-up resistor 10k, series resistor 13k, capacitor 33n. Rise is slower than fall.
+204: TLV3201 output, triangle wave at 1000 Hz
+205: Triangle wave, PWM default reference, PWM output at 1000 Hz
+206: Triangle wave, PWM reference, PWM output charging a 1 uF capacitor at 1000 Hz
+207: Triangle wave, PWM reference, PWM output + 2N5401 and 2N5551 charging a 1 uF capacitor at 1000 Hz
+208: Triangle wave, PWM reference, PWM output + 2N5401 and 2N5551 charging a 10 uF capacitor at 1000 Hz
+209: Triangle wave, PWM reference, PWM output + 2N3906 and 2N3904 charging a 10 uF capacitor at 1000 Hz
+210: PWM reference, PWM output, inductor current at 20 mOhm, 330 uH, 1000 Hz, 13.05 V output
+211: PWM reference, PWM output, inductor current at 20 mOhm, 100 uH, 1000 Hz, 11.34 V output
+212: PWM reference, PWM output, inductor current at 20 mOhm, 100 uH, 2000 Hz, 14.95 V output
+213: PWM reference, PWM output, inductor current at 20 mOhm, 100 uH, 4000 Hz, 12.67 V output
+214: Max. PWM 16.6 V
+215: Triangle wave, reference, inductor current, 68 uH, 8000 Hz, 19.7 V regualated output
+216: Kontron shutdown; battery voltage, output divided voltage, current draw through 20 mOhm
+217: Kontron shutdown; oscillator 7.7 kHz, current draw through 20 mOhm
+218: MCP6022 switching thresholds when used in a capacitor balancing circuit as a voltage follower, and a resistor is added from output to input+ to create hysteresis
+219: Erratic switching once
+220: Testing first SMD assembled boost converter at 4 kHz, 330 uH, 12 V, 50 ohm load. PWM reference capacitor 47 nF. Oscillator, PWM reference, output divided voltage
+221: PWM reference, output divided voltage, 1.25 V reference
+222: Oscillator, PWM, PWM reference
+223: PWM reference, current draw through 20 mOhm
+224: Battery scaled down voltage, low voltage reference, PWM reference
+225: Low voltage disable set to minimum
+226: PWM reference, current draw through 20 mOhm resistor
+227: 150 ohm load: PWM reference, current draw
+228: Oscillator, PWM reference, input capacitor
+229: Oscillator, PWM reference, battery voltage
+230: Oscillator, PWM reference, output scaled-down voltage
+231: Ground placed on GND2 from GND 1; PWM reference, output divided voltage, 1.25 V reference
+232: PWM reference, current draw signal, current reference
+233: PWM, current draw
+234: Output capacitor replaced from 470 uF to 63 uF; oscillator, PWM reference, scaled down output voltage
+235: PWM reference, current draw
+236: PWM reference capacitor replaced from 47 nF to 10 nF. Oscillator, PWM reference, output scaled-down voltage
+237: PWM reference capacitor replaced from 10 nF to 220 nF. Oscillator, PWM reference, output scaled-down voltage
+238: PWM reference, current draw
+239: Output capacitor replaced from 63 uF to 470 uF. Oscillator, PWM reference, output scaled-down voltage
+240: PWM reference, current draw
+241: Load changed from 150 ohm to 50 ohm. Oscillator, PWM reference, output scaled-down voltage
+242: Output capacitor replaced from 470 uF to 63 uF. Oscillator, PWM reference, output scaled-down voltage
+243: No load
+244: Load connect
+245: Output capacitor replaced from 68 uF to 10 uF
+246: Output capacitor replaced from 10 uF to 4.7 uF, load only
+247: Output divider measured at 10 / 50 ohm load
+248: Voltage feedback capacitors removed, both from ref to ground and between input + and -.
+249: Oscillator, voltage divider, voltage reference
+250: Voltage reference to ground capacitor re-added.
+251: Instability at 14.4 kHz
+252: 15.2 V at 8 kHz, 20.3 V no-load
+253: Output capacitor changed from 4.7 uF to 14.7 uF: Instability
+254: Stable at 3.2 kHz, 16.6 V load, 20.3 V no-load
+255: Current draw
+256: Load connect
+257: Oscillator, voltage divider, voltage reference
+258: Instability starts when voltage setting is increased.
+259: 330 uH inductor + 470 uF capacitor added on output, load connect. Load 15.2, no-load 21.3 V. Oscillator, voltage divider, 10/50 ohm load divider 
+260: PWM reference capacitor replaced from 220 nF to 47 nF. Oscillator, PWM reference, voltage divider
+261: Inductor replaced from 330 uH to 100 uH. Oscillator, PWM reference, output divider, 5 kHz, 20 V load, 22.1 V no-load
+262: Current draw
+263: 8.3 nF oscillator reference capacitor added, Oscillator, PWM reference, output divider, 21 V load, 23.5 V no-load
+264: 3.7 nF oscillator reference capacitor
+265: 100 uF ceramic capacitor added across MCP6022.
+266: Instability: oscillator, PWM reference, +3.8V
+267: 100 ohm resistor added to +3.8V. Oscillator, PWM reference, +3.8V. Load 21.2 V, no-load 31.3 V
+268: Oscillator, +3.8V (after series resistor), +3.8V input
+269: Series +3.8V resistor replaced from 100 to 33 ohm, output capacitor from 14.7 to 72.2 uF. 24.4 V load
+270: Oscillator, PWM reference, output divider
+271: Current draw
+272: Output capacitor replaced from 72.7 uF to 470 uF. Oscillator, PWM reference, output divider. Load 25 V
+273: GND placed on input-
+274: GND back to shunt-, current draw
+275: Load connect, 31.1 -> 25.8 V
+276: Voltage set to 24 V no-load, load 23.4 V. Oscillator, PWM reference, output divider
+277: Oscillator, PWM reference, comparator output
+278: Oscillator, +3.8V after series resistor, comparator output
+279: Oscillator, +3.8V after series resistor, MOSFET gate
+280: 18V at 10 kHz
+281: Oscillator, +3.8V after resistor, before resistor
+282: 100 uF ceramic capacitor added to the input
+283: Output set higher, instability. Oscillator, PWM reference, +3.8V input
+284: PWM reference capacitor (C7) replaced from 47 nF to 33 nF. 20 V output at 10 Khz.
+285: Oscillator reference capacitor replaced from 3.7 nF to 1.5 nF
+286: Oscillator, +3.8V after resistor, MOSFET gate
+287: Upper MOSFET gate disconnected and tied to ground.
+288: 20.5 V no-load. Oscillator, +3.8V after resistor, before resistor
+289: 20.1 V load
+290: Current draw
+291: Shunt resistor changed from 20 mOhm to 100 mOhm. 18.85 no-load, 18.5 V load. Efficiency 86%
+292: No-load 18.85 V. Oscillator, +3.8V after resistor, before
+293: Load 18.5 V
+294: PWM comparator output, GND1 (=after fuse)
+295: MOSFET gate, GND2 (=at the base of chunt near the output)
+296: Oscillator, PWM reference
+297: Duty cycle 50%, output 10.58 V
+298: Comparator output GND1
+299: MOSFET gate GND2
+300: PWM output cut off. 10 kHz oscillator, no oscillator reference capacitor
+301: 1 nF oscillator reference capacitor
+302: With 43k put in between PWM reference and ground, 50% PWM is set. Oscillator, PWM reference, PWM output
+303: 100k added from PWM output to PWM reference (channel 2 input +), for more definitive switching.
+304: MCP6022 channel 2 replaced with TLV3201
+305: PWM output connected, load connected: 10.58 V
+306: Oscillator, PWM reference, MOSFET gate
+307: Max voltage 18.54 V
+308: MCP5022 max output 18.5 V
+309: MCP6022 signal integrity test with TLV3201, 56k + 100 nF on its output. Supply: 3.24 V, In+: 0.54 V (1/6 of supply), In-: PWM signal. Green line shows that PWM signal is below the reference 48.9% of the time.
+310: MOSFET gate below 0.54 V 30% of the time.
+311: PWM signal above 5/6 of supply 51 % of the time
+312: MOSFET gate above 5/6 supply 50.8 % of the time
+313: MOSFET gate, 5/6 supply, time % value
+314: 10.5 V, 50 % PWM. Supply voltage, gate, gate under 1.6 V 48.5 % of the time
+315: 18.5 V. Gate under 2.33 V 94% of the time
+316: Gate under 2.20 V 20.2 % of the time
+317: Gate under 1.35 V 16.8 %
+318: Gate under 0.57 V 15.3 %
+319: Gate under 0.49 V 3.6 %
+320: Second MOSFET re-connected. Output 17.85 V Ref  0.57 V 16.5 %
+321: PWM signal, MOSFET gate, source voltage
+322: 100 nF driven by N- and P-MOSFET configuration (2N7000 lower, BS250 upper, common gate and drain). Drain inverts gate.
+323: PCB MOSFET gate, 100 nF, source voltage
+324: PWM output, double MOSFET pair output, source voltage after resistor. 17.25 V out on 3.4 V battery (3.53 V resting).
+325: PCB MOSFET gate, current draw on 100 mOhm.
+326: MOSFET gate, 18.9 % under 1.43 V, source voltage
+327: 17.9 % under 30 mV
+328: 4.5 % under 200 uV
+329: 19.28 V max output at 3.48 -> 3.37 battery. oscillator, PWM reference, source voltage after series resistor.
+330: PWM reference capacitor replaced to 15n, 19.55 V output
+331: 3.45 -> 3.34 battery, 21.1 V output, 31.2 V no-load
+332: PWM, 16.5 % under 1.43 V, source voltage after resistor
+333: PWM, current draw on 20 mOhm, 20.2 V output, 3.45 -> 3.34 V battery, 3.04 V at module input. 12.92 W in, 8.16 W out, 63 % efficiency
+334: 22 V output (22.7 no-load). MOSFET gate, battery - to fuse + voltage drop at 3.8 V battery.
+335: External MOSFET configuration disconnected, and transistor pair connected. Same output voltage.
+336: Battery voltage (3.8 V unloaded), module input voltage
+337: Gate, input voltage, input voltage after resistor (33 ohm)
+338: At 3.82 -> 3.56 V battery 25.4 V max output at 4.1 kHz. Oscillator, PWM reference, source voltage after resistor
+339: 20 mOhm resistor inserted, output 24.5 V. Source voltage after resistor, current draw.
+340: Oscillator, current draw
+341: Input voltage, current draw. In 17.13 W, out 12 W, efficiency 70 %
+342: Oscillator, PWM reference, output divider at GND2
+343: Oscillator, PWM reference, output divider at GND1
+344: Gate, current draw between GND2 and GND1
+345: 24.5 V. Gate, current draw on 20 mOhm
+346: 1600 to 2600 uF input capacitance
+347: 10 kHz, 22.1 V
+348: Input capacitor changed from 2600 to 1600 uF
+349: Inductor replaced from 100 to 68 uH. Output 21.4, module input 3.4 V. Input 9.197 W, output 9.159 W, efficiency 99.6 %
+350: Measuring current on 100 mOhm shunt. In 3.22 out 20.1 V. In 9.048 W, out 8.161 W, efficiency 90.2 %.
+351: Max voltage at 5.6 KHz, 2.79 In, 22.4 V Out. In 13.16 W, out 10.035 W, efficiency 76 %.
+352: Current measurement from 100 mOhm to 20 mOhm. 5 kHz. In 2.87 V, out 25.6 V, in 18.425 W, out 13.107 W, efficiency 71.1 %.
+353: Current measurement across T6A fuse. 5.6 kHz, 22.4 out. 4.735 A average current. Fuse = 16.81 mOhm
+354: No shunt. 5 KHz, 26.4 V out, 2.95 V in, current 7.882 A, in 23.25 W, out 13.94 W, 60 % efficiency
+355: !0 kHz. 22.6 V out, 3.42 in, current 3.22 A. Input 11.027 W, output 10.215 W, 92.6 % efficiency.
+356: 20 kHz. Out 21.7 V, in 3.43 V, current 2.796 A. In 9.59 W, out 9.418 W, efficiency 98.2 %.
+357: 10 kHz load connect. 22 V no-load, 21.4 V load, output divider, current draw on fuse.
+358: Load connect on 850F supercapacitor. 4.01 -> 3.85 V
+359: Low voltage disable: 20.2 -> 19.6 V. PWM reference, input voltage, supply voltage after resistor (GND1)
+360: Oscillator, PWM reference, +2.5V_1 that has ground at GND 1 (GND2)
+361: +2.5V_2
+362: PWM reference, +2.5V_1, low voltage divider
+363: 10 V - strongest low voltage disable
+364: Complete low voltage disable
+365: 100k hysteresis added from low voltage comparator output to input+ (supply divider)
+366: Maximum low voltage effect at 10.5 V. PWM reference, current draw on fuse.
+374: 20 -> 18 V low voltage cutoff after merging output with voltage and current regulator comparators. Oscillator, PWM reference, input voltage
+375: Maximum low voltage cutoff effect at 6.3 V.
+376: 20 -> 18 V low voltage cutoff. Source voltage, input voltage, PWM reference
+367: 20.2 V, source has 100 uF capacitance. oscillator, source voltage, input voltage
+368: Source capacitance 200 uF
+369: AD7606 1 Mohm resistor on negative test lead.
+370: 100 kOhm
+371: 10 kOhm
+372: 1 kOhm
+373: 1 kOhm on channel 3 (input voltage) as well.
+377: New AD7606 with 1k on all test lines. 20 V oscillator, PWM reference, input, supply
+378: Oscillator and PWM reference capacitor replaced from 15n to 10n. 10 kHz, 21.3 V. Oscillator, PWM reference, supply, input
+379: Oscillator, PWM reference, supply, output divider
+380: Output capacitor replaced from 470 uF to 100 uF. 21 V, no-load 22.2 V.
+381: Load connect 22.2 V -> 21 V
+382: Load connect 23.5 V -> 20.5 V (connecting probe to output divider affects measurement from 22.4 -> 21.4 V). Oscillator, PWM reference, output divider, regulator output. Load connect 23.5 V -> 20.5 V (connecting probe to output divider affects measurement from 22.4 -> 21.4 V). Oscillator, PWM reference, output divider, regulator output
+383: Load connect 22.4 -> 21.4 V. PWM reference, output divider, current on T6A fuse.
+384: Fuse replaced to F10A. Resistance approx. 10.41 mOhm
+385: 100 mOhm inserted into the power line. 19.84 V
+386: Current across 100 mOhm shunt. F10A fuse = 9.16 mOhm
+387: Current from GND2 to fuse +
+388: Current from diode to output +
+389: 19.4 -> 17.3 low voltage. Oscillator, input, PWM reference, regulator output
+390: 6.2 V low voltage
+391: 10V. Regulated by voltage setting.
+392: 5.2 V lowest output
+393: 10.5 V. Regulated by current setting.
+394: 10V regulated by low voltage setting.
+396: Startup 22.2 V. Current across F10A fuse, input, supply
+397: Oscillator, input, suppy, PWM reference
+398: Output divider, input, supply, regulator output
+399: Output divider, input, supply, 1.25 V
+400: 6 kHz, 7.8 nF oscillator reference capacitor. Oscillator, oscillator reference, supply voltage, PWM reference at no-load
+401: Oscillator narrowing at 8.8 kHz
+402: 15 kHz
+403: 7.8 -> 1 nF capacitor, 6 kHz
+404: 10 kHz
+405: 15 kHz
+406: Input capacitor current draw on 20 mOhm (yellow probe on board side), oscillator, PWM reference at 10 kHz. Ground GND1. Output 19.6 V.
+407: Inverse measurement
+408: 5 kHz 20.1 V
+409: Inverse measurement
+412: Input capacitor replaced to 270 uF
+410: 1500 uF input capacitor, 33 ohm supply resistor. Oscillator, PWM reference, supply, input
+411: 22 ohm supply capacitor
+413: Input capacitor current draw on 20 mOhm (yellow probe on board side), oscillator, PWM reference at 10 kHz. Ground GND1. Output 19.74 V.
+414: Inverse measurement
+415: 5 kHz 20.2 V
+416: Inverse measurement
+417: Load connect. Oscillator, PWM reference, input voltage, output divider,
+418: Oscillator, PWM reference, input, supply
+419: 22 V max output at 5 kHz
+420: 21.9 V at 10 kHz
+421: 21.1 V at 20 kHz
+422: Battery 2x18650 2600 mAh 4.14 -> 3.9, 22.6 V output (23 V without test leads), ground at GND2
+423: 850F capacitor. 4.15 -> 3.95, 24.4 V output (25.4 without test leads)
+424: Ground on input -
+425: 1 minute run: Battery 3.7 V, output 22.8 V. Battery recovers to 4.03 V.
+426: Voltage set to minimum: 5.14 V at 50 ohm. Oscillator, PWM reference, output divider, supply. Battery on AC charger.
+427: No load 10.19 V
+428: 5.06 V at 50 ohm load. Battery not on charger.
+429: No load 10.16 V
+430: No-load 5.1 V by adding 156k resistor from PWM reference to ground.
+431: 50 ohm load, same output voltage.
+432: 19.4 V max, battery on charger
+433: 24.2 V max with resistor removed
+434: 25.4 V with 1M from PWM reference to supply
+435: 10.18 V no load with minimum voltage setting, no resistor added. Oscillator, PWM reference, supply, regulator output
+436: 5.46 V output at 3.3 ohm load, minimum voltage settings. Input capacitor still 270 uF, output capacitor 100 uF. Oscillator, PWM reference, supply, output divider.
+437: Output capacitor replaced from 100 to 470 uF. Ground still at GND2
+438: Input capacitor replaced from 270 to 1500 uF. 5.28 V output.
+439: 20 kHz, 5.33 V output
+440: Current draw on 100 mOhm, PWM reference, supply. 5.28 V output.
+441: 10 kHz, 5.29 V output
+442: Current draw, input, supply, ground at input -. Input 3.342 * 3.71 = 12.4 W, output 8.48 W, efficiency 68.4%. (not accurate due to averaging at high deviation)
+443: 22 V 50 ohm. Input 3.459 x 3.22 = 11.138 W, output: 9.68 W, efficiency 86.91 %.
+444: 20 kHz. Input 3.474 * 3.15 = 10. 94 W, efficiency 88.48 %
+445: ZK-S4 converter in 3.443 x 3.36 = 11.568 W, efficiency 83.68 %.
+446: Input 3.486 * 3.17 = 11.05 W, output 5.3 V * 5.3 V/ 3.3 ohm = 8.512 W, efficiency 77.03 %.
